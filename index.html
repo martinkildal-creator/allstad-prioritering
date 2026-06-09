@@ -140,7 +140,7 @@ tbody tr:hover{background:var(--sand)}
     </div>
     <div style="display:flex;align-items:center;gap:10px">
       <button class="btn ghost" style="padding:8px 13px;font-size:13px" onclick="openMetode()">ⓘ Slik regnes det</button>
-      <span class="tag">Internt · v21</span>
+      <span class="tag">Internt · v22</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -191,6 +191,9 @@ tbody tr:hover{background:var(--sand)}
         <div class="ctl"><label>Tomt for makebytte <b id="vN2">8</b></label><input type="range" id="n2" min="0" max="25" value="8"></div>
         <div class="section-h">Indikativ kostnad</div>
         <div class="ctl"><label>Enhetspris <b id="vPris">3,5</b> mill. kr</label><input type="range" id="pris" min="1" max="8" step="0.1" value="3.5"><div class="hint">Grov byggekostnad per omsorgsbolig (eks. mva). Sett mot Norsk Prisbok / egne enhetspriser.</div></div>
+        <div class="section-h">Besparelse (drift per år)</div>
+        <div class="ctl"><label>Kostnad uten plass <b id="vAlt">1,8</b> mill. kr/år</label><input type="range" id="altkost" min="0.5" max="3" step="0.1" value="1.8"><div class="hint">Anslått årlig kostnad per person med udekket behov (sykehus/overliggere + intensiv hjemmetjeneste).</div></div>
+        <div class="ctl"><label>Drift egen plass <b id="vDrift">1,3</b> mill. kr/år</label><input type="range" id="driftkost" min="0.5" max="2.5" step="0.1" value="1.3"><div class="hint">Brukes hvis kommunens egen KOSTRA-driftskostnad ikke er lastet.</div></div>
       </details>
 
       <div class="section-h">Data</div>
@@ -239,6 +242,15 @@ tbody tr:hover{background:var(--sand)}
     <h2 style="font-family:'Fraunces';font-size:19px;font-weight:600;margin:0 0 2px">Topp 15 kommuner</h2>
     <div class="sub" style="margin-bottom:8px">Høyest totalscore nå. Klikk en søyle for behovsnotatet. Farge: <span style="color:#3A6FA8">●</span> Kjøp · <span style="color:#2E6F62">●</span> Samfond-leie · <span style="color:#9AA6A3">●</span> økonomi ikke lastet.</div>
     <div id="overview"></div>
+  </div>
+
+  <div class="panel overviewcard" style="margin-top:22px">
+    <h2 style="font-family:'Fraunces';font-size:19px;font-weight:600;margin:0 0 2px">Behovskart – hvor er behovet størst?</h2>
+    <div class="sub" style="margin-bottom:8px">Hvert fylke er en boble. <b>Størrelse</b> = samlet HDO-behov mot 2035. <b>Farge</b> = snitt totalscore (mørkere = høyere prioritet). Klikk et fylke for å se toppkommunene der. Forenklet skjematisk kart.</div>
+    <div style="display:flex;flex-wrap:wrap;gap:18px;align-items:flex-start">
+      <div id="fylkekart" style="flex:0 0 360px;max-width:100%"></div>
+      <div id="fylkeliste" style="flex:1;min-width:240px"></div>
+    </div>
   </div>
 
   <div class="foot">
@@ -300,7 +312,7 @@ function applyEiendom(){
 const P=()=>({
   r1:+r1.value/100, r2:+r2.value/100, r3:+r3.value/100, sunn:+sunn.value/100, blend:+blend.value/100,
   wb:+wb.value, wf:+wf.value,
-  tndr:+tndr.value/1000, tdf:+tdf.value/100, n1:+n1.value, n2:+n2.value, pris:+pris.value,
+  tndr:+tndr.value/1000, tdf:+tdf.value/100, n1:+n1.value, n2:+n2.value, pris:+pris.value, altkost:+altkost.value, driftkost:+driftkost.value,
   base:50, samfond:20, weak:10
 });
 
@@ -364,6 +376,7 @@ function render(){
     </tr>`).join("");
   count.textContent="· "+(searchTerm?arr.length+" av "+DATA.length:DATA.length+" kommuner")+(isDemo?" (demo)":"");
   overviewChart();
+  fylkekart();
 }
 function behovChart(d){
   const items=[['Dagens kapasitet',d.plasser||0,'#9AA6A3'],['Behov i dag',d.behovNow||0,'#7FB3A8'],['Behov 2035',d.behovFuture||0,'#2E6F62']];
@@ -460,6 +473,42 @@ function overviewChart(){
     y+=rowH;});
   el.innerHTML=`<svg viewBox="0 0 ${W} ${y+4}" width="100%" style="font-family:'Hanken Grotesk'">${g}</svg>`;
 }
+const FPOS={"56":[300,42],"55":[250,82],"18":[212,150],"50":[186,248],"15":[110,300],"34":[216,318],"46":[80,360],"33":[176,380],"03":[214,396],"32":[236,388],"31":[252,416],"39":[206,420],"40":[160,414],"42":[140,460],"11":[90,432]};
+function fylkekart(){
+  const el=document.getElementById('fylkekart'); if(!el)return;
+  const agg={};
+  DATA.forEach(d=>{const k=("").concat(d.nr).padStart(4,"0").slice(0,2); if(!FPOS[k])return;
+    (agg[k]=agg[k]||{behov:0,score:0,n:0,navn:FYLKE[k]}); agg[k].behov+=d.behovFuture||0; agg[k].score+=d.total||0; agg[k].n++;});
+  const keys=Object.keys(agg); if(!keys.length){el.innerHTML='<div class="sub">Ingen data lastet ennå.</div>';return;}
+  const maxB=Math.max(...keys.map(k=>agg[k].behov),1);
+  const W=380,H=560; let g='';
+  // faint connecting spine
+  g+=`<path d="M300 42 L250 82 L212 150 L186 248 L216 318 L214 396 L140 460" fill="none" stroke="var(--line)" stroke-width="1"/>`;
+  keys.sort((a,b)=>agg[b].behov-agg[a].behov).forEach(k=>{
+    const a=agg[k],[x,yy]=FPOS[k],r=12+Math.sqrt(a.behov/maxB)*30;
+    const sc=a.n?a.score/a.n:0,L=78-Math.min(1,sc/100)*46;
+    g+=`<g style="cursor:pointer" onclick="fylkeKlikk('${k}')"><title>${a.navn}: ~${Math.round(a.behov).toLocaleString('no')} HDO-plasser 2035 · snittscore ${sc.toFixed(1)}</title>`;
+    g+=`<circle cx="${x}" cy="${yy}" r="${r.toFixed(1)}" fill="hsl(168,40%,${L.toFixed(0)}%)" stroke="#2E6F62" stroke-width="1" fill-opacity="0.92"/>`;
+    g+=`<text x="${x}" y="${(yy+3).toFixed(0)}" text-anchor="middle" font-size="10" font-weight="700" fill="${L<55?'#fff':'#2C2A26'}">${Math.round(a.behov).toLocaleString('no')}</text>`;
+    g+=`<text x="${x}" y="${(yy+r+11).toFixed(0)}" text-anchor="middle" font-size="9.5" fill="var(--muted)">${a.navn}</text></g>`;
+  });
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-family:'Hanken Grotesk';max-height:560px">${g}</svg>`;
+}
+function fylkeKlikk(k){
+  const el=document.getElementById('fylkeliste'); if(!el)return;
+  const arr=DATA.filter(d=>("").concat(d.nr).padStart(4,"0").slice(0,2)===k).sort((a,b)=>b.total-a.total).slice(0,8);
+  if(!arr.length){el.innerHTML='';return;}
+  let rows=arr.map((d,i)=>`<tr style="cursor:pointer" onclick='openNote(${JSON.stringify(d.navn)})'>
+    <td style="padding:5px 8px;color:var(--muted)">${i+1}.</td>
+    <td style="padding:5px 8px;font-weight:600">${d.navn}</td>
+    <td style="padding:5px 8px;text-align:right">${Math.round(d.behovFuture).toLocaleString('no')}</td>
+    <td style="padding:5px 8px;text-align:right;font-weight:600">${d.total.toFixed(1)}</td></tr>`).join('');
+  el.innerHTML=`<h3 style="font-family:'Fraunces';font-size:16px;margin:0 0 4px">${FYLKE[k]} – toppkommuner</h3>
+    <div class="sub" style="margin-bottom:6px">Klikk en kommune for behovsnotatet.</div>
+    <table style="width:100%;border-collapse:collapse;font-size:13px">
+    <tr style="color:var(--muted);font-size:11px;text-transform:uppercase"><td style="padding:4px 8px"></td><td style="padding:4px 8px">Kommune</td><td style="padding:4px 8px;text-align:right">Behov 2035</td><td style="padding:4px 8px;text-align:right">Score</td></tr>
+    ${rows}</table>`;
+}
 function demoChart(d){
   const a1=d.a1!=null?d.a1:(d.i80||0)*2.4,a2=d.a2!=null?d.a2:(d.i80||0)*0.82,a3=d.a3!=null?d.a3:(d.i80||0)*0.18;
   const f1=d.f1!=null?d.f1:(d.i80_35||0)*2.4,f2=d.f2!=null?d.f2:(d.i80_35||0)*0.82,f3=d.f3!=null?d.f3:(d.i80_35||0)*0.18;
@@ -482,8 +531,47 @@ function demoChart(d){
     <circle cx="${mL+74}" cy="13" r="5" fill="#2E6F62"/><text x="${mL+83}" y="17" font-size="11" fill="var(--muted)">2035</text>
   </svg>`;
 }
+function besparelseChart(d,U){
+  const P_=P();
+  const drift=d.kostpr?d.kostpr/1e6:P_.driftkost;
+  const alt=P_.altkost;
+  const yrs=10;
+  const W=560,H=260,mL=54,mR=16,mT=24,mB=42,pw=W-mL-mR,ph=H-mT-mB;
+  const aTot=U*alt*yrs,max=Math.max(1,aTot);
+  const step=max>1000?500:(max>400?100:(max>100?50:(max>40?20:(max>10?5:2))));
+  const niceMax=Math.max(step,Math.ceil(max/step)*step);
+  const Y=v=>mT+ph-(v/niceMax)*ph,X=t=>mL+pw*t/yrs;
+  const A=t=>U*alt*t,B=t=>U*drift*t;
+  let g='';
+  for(let i=0;i<=4;i++){const val=niceMax*i/4,y=Y(val);g+=`<line x1="${mL}" y1="${y}" x2="${W-mR}" y2="${y}" stroke="var(--line)"/><text x="${mL-8}" y="${y+4}" text-anchor="end" font-size="10" fill="var(--muted)">${Math.round(val).toLocaleString('no')}</text>`;}
+  [0,5,10].forEach(t=>{g+=`<text x="${X(t)}" y="${mT+ph+18}" text-anchor="middle" font-size="11" fill="var(--ink)">${t===0?'I dag':'År '+t}</text>`;});
+  if(alt>drift)g+=`<polygon points="${X(0)},${Y(0).toFixed(1)} ${X(yrs)},${Y(A(yrs)).toFixed(1)} ${X(yrs)},${Y(B(yrs)).toFixed(1)}" fill="#2E6F62" fill-opacity="0.13"/>`;
+  let la='M'+X(0)+' '+Y(0);for(let t=1;t<=yrs;t++)la+=' L'+X(t)+' '+Y(A(t)).toFixed(1);
+  let lb='M'+X(0)+' '+Y(0);for(let t=1;t<=yrs;t++)lb+=' L'+X(t)+' '+Y(B(t)).toFixed(1);
+  g+=`<path d="${la}" fill="none" stroke="#B5701F" stroke-width="2.5"/>`;
+  g+=`<path d="${lb}" fill="none" stroke="#2E6F62" stroke-width="2.5"/>`;
+  if(alt>drift){const my=(Y(A(yrs))+Y(B(yrs)))/2;g+=`<text x="${X(yrs)-6}" y="${my.toFixed(1)}" text-anchor="end" font-size="11" font-weight="600" fill="#2E6F62">spart ${Math.round((A(yrs)-B(yrs))).toLocaleString('no')} mill.</text>`;}
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-family:'Hanken Grotesk'">${g}
+    <line x1="${mL}" y1="${mT+ph}" x2="${W-mR}" y2="${mT+ph}" stroke="var(--muted)"/>
+    <text x="6" y="${mT-8}" font-size="10" fill="var(--muted)">mill. kr (akkumulert)</text>
+    <line x1="${mL+6}" y1="13" x2="${mL+24}" y2="13" stroke="#B5701F" stroke-width="2.5"/><text x="${mL+30}" y="17" font-size="11" fill="var(--muted)">Uten utbygging</text>
+    <line x1="${mL+150}" y1="13" x2="${mL+168}" y2="13" stroke="#2E6F62" stroke-width="2.5"/><text x="${mL+174}" y="17" font-size="11" fill="var(--muted)">Med egne plasser</text>
+  </svg>`;
+}
+function besparTekst(d,U){
+  const P_=P(),drift=d.kostpr?d.kostpr/1e6:P_.driftkost,alt=P_.altkost,yr=U*(alt-drift),pos=yr>=0;
+  return `Med <b>${U.toLocaleString('no')}</b> egne plasser: anslått <b>${pos?'besparelse':'merkostnad'}</b> på <b>~${Math.abs(yr).toFixed(1).replace('.',',')} mill. kr/år</b> · <b>~${Math.abs(yr*10).toFixed(0)} mill. kr</b> over 10 år. <small>(Kostnad uten plass ${alt.toFixed(1).replace('.',',')} − drift egen plass ${drift.toFixed(1).replace('.',',')} mill. kr/plass/år${d.kostpr?', kommunens egen KOSTRA-kostnad':''}.)</small>`;
+}
+function besparelse(){
+  const d=DATA.find(x=>x.navn===window._note); if(!d)return;
+  const inp=document.getElementById('bespN'); let U=Math.max(0,Math.round(+inp.value||0));
+  document.getElementById('bespChart').innerHTML=besparelseChart(d,U);
+  document.getElementById('bespLbl').innerHTML=besparTekst(d,U);
+}
 function openNote(navn){
   const d=DATA.find(x=>x.navn===navn); if(!d)return;
+  window._note=navn;
+  const besparDefault=Math.max(0,Math.round(d.gap))>0?Math.max(0,Math.round(d.gap)):40;
   const pct=v=>(v*100).toFixed(1).replace('.',',')+"%";
   const n=Math.round(d.gap);
   const capKnown=(d.plasser||0)>0;
@@ -539,6 +627,12 @@ function openNote(navn){
     <div>${demoChart(d)}</div>
     <h3>Indikativ prosjektstørrelse</h3>
     <div class="recco">~<b>${enheter.toLocaleString('no')} enheter</b> ${capKnown?'(udekket behov mot dagens kapasitet)':'(vekstdrevet behov mot 2035)'} · grovt kostnadsanslag <b>~${kost.toLocaleString('no')} mill. kr</b> <small>(eks. mva, ved ${pris.toFixed(1).replace('.',',')} mill. kr/enhet)</small>. Grovt anslag for møteforberedelse – ikke et tilbud.</div>
+    <h3>Hva sparer kommunen i drift?</h3>
+    <div class="recco" style="margin-bottom:10px">Sammenligner hva det koster å håndtere personer med heldøgns behov <b>uten</b> egen plass (sykehus/overliggere + intensiv hjemmetjeneste) mot å gi dem en <b>egen</b> plass. Endre antall plasser – graf og tall oppdateres.</div>
+    <div class="edrow" style="margin-bottom:8px"><span>Antall plasser kommunen bygger</span><input id="bespN" type="number" min="0" max="3000" value="${besparDefault}" oninput="besparelse()" style="width:96px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;font-size:14px"></div>
+    <div id="bespLbl" class="recco" style="background:#EAF2EF">${besparTekst(d,besparDefault)}</div>
+    <div id="bespChart">${besparelseChart(d,besparDefault)}</div>
+    <div class="recco" style="font-size:12px">Anslag for møteforberedelse. Forutsetningene (kostnad uten plass / drift egen plass) justeres under «Avanserte innstillinger». I tillegg kommer investeringstilskudd fra Husbanken og Allstads leiemodell (ingen kommunal investeringsutgift) – be om eget regnestykke for disse.</div>
     <h3>Finansiering</h3>
     <div class="recco">${d.hasEcon?`Anbefalt modell: <b>${d.modell}</b>. ${d.lease?'Svak/anstrengt kommuneøkonomi – leiemodellen via Samfond fjerner kommunens investeringsblokkering.':'Solid økonomi – kommunen kan eie selv; kjøps-pitch.'} Fin.fit-score ${d.finfit.toFixed(0)}/100.${d.robek?' Merk: ROBEK-kommune.':''}${d.gjeld?` Netto lånegjeld ~${Math.round(d.gjeld).toLocaleString('no')} kr/innb.`:''}`:'Økonomidata er ikke lastet for denne kommunen ennå. Last opp KOSTRA/ROBEK-tall for å få anbefalt finansieringsmodell.'}</div>
     <h3>Tomt</h3>
@@ -620,7 +714,7 @@ function closeMetode(){metodeBg.classList.remove('open');metodeModal.classList.r
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMetode();closeDrawer();}});
 
 // controls
-const ids=["wb","wf","blend","r1","r2","r3","sunn","tndr","tdf","n1","n2","pris"];
+const ids=["wb","wf","blend","r1","r2","r3","sunn","tndr","tdf","n1","n2","pris","altkost","driftkost"];
 ids.forEach(id=>document.getElementById(id).addEventListener("input",syncLabels));
 function syncLabels(){
   vWb.textContent=wb.value+"%"; vWf.textContent=wf.value+"%";
@@ -628,6 +722,7 @@ function syncLabels(){
   const bl=+blend.value; vBlend.textContent=bl>=60?"Vekst":(bl<=40?"Volum":"Balansert");
   vTndr.textContent=(+tndr.value/10).toFixed(2).replace('.',',')+"%"; vTdf.textContent=tdf.value+"%";
   vN1.textContent=n1.value; vN2.textContent=n2.value; vPris.textContent=(+pris.value).toFixed(1).replace('.',',');
+  vAlt.textContent=(+altkost.value).toFixed(1).replace('.',','); vDrift.textContent=(+driftkost.value).toFixed(1).replace('.',',');
   const s=+wb.value+ +wf.value;
   sum.textContent="Sum "+s+"% · normaliseres til 100% i beregning";
   sum.className="sumchk "+(s===100?"sumok":"sumbad");
