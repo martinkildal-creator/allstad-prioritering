@@ -140,7 +140,7 @@ tbody tr:hover{background:var(--sand)}
     </div>
     <div style="display:flex;align-items:center;gap:10px">
       <button class="btn ghost" style="padding:8px 13px;font-size:13px" onclick="openMetode()">ⓘ Slik regnes det</button>
-      <span class="tag">Internt · v22</span>
+      <span class="tag">Internt · v24</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -184,7 +184,7 @@ tbody tr:hover{background:var(--sand)}
         <div class="ctl"><label>90+ år trenger plass <b id="vR3">38%</b></label><input type="range" id="r3" min="0" max="60" step="1" value="38"><div class="hint">Aldersdifferensiert dekningsgrad × framskrevet befolkning per aldersgruppe – mer presist enn flat 25%-norm.</div></div>
         <div class="ctl"><label>Sunn aldring: behov −<b id="vSunn">0%</b>/år</label><input type="range" id="sunn" min="0" max="1" step="0.1" value="0"><div class="hint">Antar friskere eldre i framtiden. 0 = behovsrater holdes konstant.</div></div>
         <div class="section-h">Når foreslås leie (Samfond) vs. kjøp?</div>
-        <div class="ctl"><label>Svak økonomi: driftsres. under <b id="vTndr">1,75%</b></label><input type="range" id="tndr" min="0" max="40" value="18"><div class="hint">Kommuner svakere enn dette foreslås leie i stedet for kjøp.</div></div>
+        <div class="ctl"><label>Svak økonomi: driftsres. under <b id="vTndr">1,80%</b></label><input type="range" id="tndr" min="0" max="40" value="18"><div class="hint">Et av to økonomisignaler. Lav netto lånegjeld kan overstyre ett enkelt svakt signal.</div></div>
         <div class="ctl"><label>Svak økonomi: disp.fond under <b id="vTdf">5%</b></label><input type="range" id="tdf" min="0" max="20" value="5"></div>
         <div class="section-h">Tomtefordel (ekstrapoeng)</div>
         <div class="ctl"><label>Egen egnet tomt <b id="vN1">12</b></label><input type="range" id="n1" min="0" max="25" value="12"></div>
@@ -313,7 +313,7 @@ const P=()=>({
   r1:+r1.value/100, r2:+r2.value/100, r3:+r3.value/100, sunn:+sunn.value/100, blend:+blend.value/100,
   wb:+wb.value, wf:+wf.value,
   tndr:+tndr.value/1000, tdf:+tdf.value/100, n1:+n1.value, n2:+n2.value, pris:+pris.value, altkost:+altkost.value, driftkost:+driftkost.value,
-  base:50, samfond:20, weak:10
+  base:50, samfond:20, weak:10, gjeldLav:45000
 });
 
 function compute(){
@@ -334,10 +334,15 @@ function compute(){
     d.vekst80=d.i80? (d.i80_35-d.i80)/d.i80 : 0;
     d.hasEcon=(d.econLoaded===true)||isDemo||d.robek;
     if(d.hasEcon){
-      d.lease=d.robek||d.ndr<p.tndr||d.disp<p.tdf;
+      const wNdr=d.ndr<p.tndr, wDisp=d.disp<p.tdf, weak=(wNdr?1:0)+(wDisp?1:0);
+      const gjeldLow=(d.gjeld!==0&&d.gjeld!=null)&&(d.gjeld<p.gjeldLav);
+      d.ecoTrig={ndr:wNdr,disp:wDisp,robek:!!d.robek,gjeldLow:gjeldLow,weak:weak};
+      d.lease=d.robek||weak>=2||(weak===1&&!gjeldLow);
       d.modell=d.lease?"Samfond-leie":"Kjøp";
-      d.finfit=Math.min(100,p.base+(d.robek?p.samfond:0)+(d.ndr<p.tndr?p.weak:0)+(d.disp<p.tdf?p.weak:0));
-    }else{d.lease=false;d.modell="–";d.finfit=null;}
+      let fit=p.base+(d.robek?p.samfond:0)+(wNdr?p.weak:0)+(wDisp?p.weak:0);
+      if(gjeldLow) fit-=p.weak;
+      d.finfit=Math.max(0,Math.min(100,fit));
+    }else{d.lease=false;d.modell="–";d.finfit=null;d.ecoTrig=null;}
   });
   const vks=DATA.map(d=>d.behovVekst),vmn=Math.min(...vks),vmx=Math.max(...vks);
   const gps=DATA.map(d=>d.gap),gmn=Math.min(...gps),gmx=Math.max(...gps);
@@ -531,6 +536,65 @@ function demoChart(d){
     <circle cx="${mL+74}" cy="13" r="5" fill="#2E6F62"/><text x="${mL+83}" y="17" font-size="11" fill="var(--muted)">2035</text>
   </svg>`;
 }
+function partyColor(t){t=(t||'').toLowerCase();
+  if(/rødt|rodt/.test(t))return'#8A1A1A';
+  if(/sosialistisk venstre/.test(t))return'#C2002F';
+  if(/arbeider/.test(t))return'#E11926';
+  if(/senterparti/.test(t))return'#16924B';
+  if(/miljøpartiet|grønne/.test(t))return'#5FA336';
+  if(/kristelig/.test(t))return'#F0B323';
+  if(/fremskritt/.test(t))return'#1F3A6E';
+  if(/venstre/.test(t))return'#2C9C8E';
+  if(/høyre|hoyre/.test(t))return'#0F76BC';
+  if(/pensjonist/.test(t))return'#9C6FB0';
+  return'#9AA6A3';}
+function partyShort(t){const l=(t||'').toLowerCase();
+  if(/rødt|rodt/.test(l))return'Rødt';
+  if(/sosialistisk venstre/.test(l))return'SV';
+  if(/arbeider/.test(l))return'Ap';
+  if(/senterparti/.test(l))return'Sp';
+  if(/miljøpartiet|grønne/.test(l))return'MDG';
+  if(/fremskritt/.test(l))return'FrP';
+  if(/kristelig/.test(l))return'KrF';
+  if(/venstre/.test(l)&&!/sosialistisk/.test(l))return'V';
+  if(/høyre|hoyre/.test(l))return'H';
+  if(/pensjonist/.test(l))return'PP';
+  return (t||'').length>14?(t.slice(0,13)+'…'):(t||'–');}
+function politikkBar(d){
+  if(!d.politikk||!d.politikk.length)return '';
+  const arr=[...d.politikk].filter(x=>x.s>0).sort((a,b)=>b.s-a.s);
+  const total=arr.reduce((s,x)=>s+x.s,0); if(!total)return '';
+  let seg='',leg='';
+  arr.forEach(x=>{const w=(x.s/total*100).toFixed(2);
+    seg+=`<div title="${x.p}: ${x.s}" style="width:${w}%;background:${partyColor(x.p)}"></div>`;
+    leg+=`<span style="display:inline-flex;align-items:center;gap:5px;margin:0 12px 5px 0;font-size:12.5px"><span style="width:11px;height:11px;border-radius:2px;background:${partyColor(x.p)};display:inline-block"></span>${partyShort(x.p)} <b>${x.s}</b></span>`;});
+  const top=arr[0];
+  return `<div style="margin:16px 0 6px">
+    <div style="font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Kommunestyret ${META.polYear||'2023'} · ${total} representanter · størst parti: ${partyShort(top.p)}</div>
+    <div style="display:flex;height:20px;border-radius:6px;overflow:hidden;border:1px solid var(--line)">${seg}</div>
+    <div style="margin-top:8px;line-height:1.7">${leg}</div>
+  </div>`;}
+function finForklaring(d){
+  if(!d.hasEcon) return 'Økonomidata er ikke lastet for denne kommunen ennå. Last opp KOSTRA/ROBEK-tall for å få anbefalt finansieringsmodell.';
+  const p=P(),t=d.ecoTrig||{};
+  const ndrPct=(d.ndr*100).toFixed(1).replace('.',','),dispPct=(d.disp*100).toFixed(1).replace('.',',');
+  const tndrPct=(p.tndr*100).toFixed(1).replace('.',','),tdfPct=(p.tdf*100).toFixed(0);
+  const flag='#B5701F',good='#2E6F62';
+  const sig=[];
+  sig.push(`netto driftsresultat <b>${ndrPct}%</b> ${t.ndr?`<span style="color:${flag}">(under ${tndrPct}%)</span>`:'<span style="color:'+good+'">(ok)</span>'}`);
+  sig.push(`disposisjonsfond <b>${dispPct}%</b> ${t.disp?`<span style="color:${flag}">(under ${tdfPct}%)</span>`:'<span style="color:'+good+'">(ok)</span>'}`);
+  if(d.gjeld)sig.push(`netto lånegjeld <b>${Math.round(d.gjeld).toLocaleString('no')}</b> kr/innb.${t.gjeldLow?` <span style="color:${good}">(lav – god investeringsevne)</span>`:''}`);
+  if(d.robek)sig.push(`<b style="color:${flag}">ROBEK</b>`);
+  let concl;
+  if(d.lease){
+    concl=d.robek?'Kommunen er i ROBEK og kan ikke ta opp lån fritt – Samfond-leie fjerner investeringsblokkeringen.'
+      :'Flere signaler peker mot <b>begrenset investeringskapasitet</b> – leiemodellen via Samfond lar kommunen etablere plasser uten egen investeringsutgift.';
+  }else{
+    concl=t.gjeldLow?'Lav netto lånegjeld tyder på <b>god investeringsevne</b> – kommunen kan eie selv. Kjøps-pitch (Samfond-leie kan tilbys som alternativ).'
+      :'Økonomien gir rom for å eie selv – kjøps-pitch.';
+  }
+  return `Anbefalt modell: <b>${d.modell}</b>. ${concl}<br><span style="font-size:12px;color:var(--muted)">Grunnlag: ${sig.join(' · ')}. Leie-egnethet ${d.finfit.toFixed(0)}/100 – høyere = svakere økonomi, mer aktuell for leiemodellen (ikke et mål på dårlig kommune).</span>`;
+}
 function besparelseChart(d,U){
   const P_=P();
   const drift=d.kostpr?d.kostpr/1e6:P_.driftkost;
@@ -580,12 +644,13 @@ function openNote(navn){
   const vekstP=(d.vekst80*100).toFixed(0);
   const modelltxt=d.hasEcon?(d.lease?'svak kommuneøkonomi gjør Samfond-leiemodellen særlig aktuell':'solid økonomi – kommunen kan eie selv'):'økonomi ikke vurdert';
   const tomttxt=d.tomt===1?'Allstad eier egnet tomt':d.tomt===2?'Allstad har tomt for makebytte':'tomt må skaffes';
-  const kildelinje=`Kilder: SSB folkemengde (tab. ${META.popTable||'07459'}, ${META.popYear||'–'}), framskriving (${META.framTable||'13600'}, ${META.framYear||'–'}, alt. MMMM)${META.econTable?`, KOSTRA økonomi (${META.econTable}, ${META.econYear||''})`:''}${META.kapTable?`, kapasitet (${META.kapTable}, ${META.kapYear||''})`:''}. Behov beregnet med aldersdifferensiert dekningsgrad (Agenda Kaupang/KS-metode).${META.date?' Hentet '+META.date+'.':''}`;
+  const kildelinje=`Kilder: SSB folkemengde (tab. ${META.popTable||'07459'}, ${META.popYear||'–'}), framskriving (${META.framTable||'13600'}, ${META.framYear||'–'}, alt. MMMM)${META.econTable?`, KOSTRA økonomi (${META.econTable}, ${META.econYear||''})`:''}${META.kapTable?`, kapasitet (${META.kapTable}, ${META.kapYear||''})`:''}${META.polTable?`, kommunestyre (${META.polTable}, ${META.polYear||''})`:''}. Behov beregnet med aldersdifferensiert dekningsgrad (Agenda Kaupang/KS-metode).${META.date?' Hentet '+META.date+'.':''}`;
   noteBody.innerHTML=`
     <button class="x" onclick="closeDrawer()">×</button>
     <div class="eyebrow">Behovsnotat${d.won?' · eksisterende prosjekt':''}</div>
     <h1>${d.navn}</h1>
     <div class="lede">Kommunenr ${d.nr} · rangert som nr. ${d.rang} av ${DATA.length} · totalscore ${d.total.toFixed(1)}</div>
+    ${politikkBar(d)}
     <div class="summary"><b>${d.navn}</b> er rangert nr. ${d.rang} av ${DATA.length}. Innbyggere 80+ ventes å vokse ${vekstP}% mot 2035, og det aldersdifferensierte behovet tilsvarer ~${Math.round(d.behovFuture).toLocaleString('no')} heldøgnsplasser. ${capKnown?`Mot dagens kapasitet er udekket behov ~${Math.max(0,n).toLocaleString('no')} plasser. `:''}${modelltxt.charAt(0).toUpperCase()+modelltxt.slice(1)}. ${tomttxt}.</div>
     <h3>Slik er totalscoren satt sammen</h3>
     <div>${scoreBar(d)}</div>
@@ -634,7 +699,7 @@ function openNote(navn){
     <div id="bespChart">${besparelseChart(d,besparDefault)}</div>
     <div class="recco" style="font-size:12px">Anslag for møteforberedelse. Forutsetningene (kostnad uten plass / drift egen plass) justeres under «Avanserte innstillinger». I tillegg kommer investeringstilskudd fra Husbanken og Allstads leiemodell (ingen kommunal investeringsutgift) – be om eget regnestykke for disse.</div>
     <h3>Finansiering</h3>
-    <div class="recco">${d.hasEcon?`Anbefalt modell: <b>${d.modell}</b>. ${d.lease?'Svak/anstrengt kommuneøkonomi – leiemodellen via Samfond fjerner kommunens investeringsblokkering.':'Solid økonomi – kommunen kan eie selv; kjøps-pitch.'} Fin.fit-score ${d.finfit.toFixed(0)}/100.${d.robek?' Merk: ROBEK-kommune.':''}${d.gjeld?` Netto lånegjeld ~${Math.round(d.gjeld).toLocaleString('no')} kr/innb.`:''}`:'Økonomidata er ikke lastet for denne kommunen ennå. Last opp KOSTRA/ROBEK-tall for å få anbefalt finansieringsmodell.'}</div>
+    <div class="recco">${finForklaring(d)}</div>
     <h3>Tomt</h3>
     <p>${d.tomter?`Allstad eier <b>${d.tomter.toLocaleString('no')} tomter</b> i ${d.navn} – et reelt fortrinn for å etablere prosjekt raskt. `:'Allstad eier ingen registrerte tomter i denne kommunen. '}${d.tomt===1?'Vurdert som egnet/sentral tomt – bygg direkte (+'+P().n1+' poeng).':d.tomt===2?'Vurdert som makebytte-potensial – byttekort, ofte mot kommunen selv (+'+P().n2+' poeng).':'Ingen egnet tomt vurdert – markedserverv eller makebytte må vurderes.'} Tomtenivå og egnethet justeres per kommune under «Sett egne data».</p>
 
@@ -679,6 +744,7 @@ function openMetode(){
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.econTable||'12143'}</td><td style="padding:5px 8px">KOSTRA: netto driftsresultat og disposisjonsfond (% av brutto driftsinntekter)</td><td style="padding:5px 8px">${META.econYear||'–'}</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.kapTable||'12293'}</td><td style="padding:5px 8px">KOSTRA: dekningsgrad institusjon + bemannet bolig, hjemmetjeneste høy timeinnsats, enerom, driftskostnad per plass</td><td style="padding:5px 8px">${META.kapYear||'–'}</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.gjeldTable||'12137'}</td><td style="padding:5px 8px">KOSTRA: netto lånegjeld per innbygger</td><td style="padding:5px 8px">${META.gjeldYear||'–'}</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.polTable||'04813'}</td><td style="padding:5px 8px">Kommunestyremedlemmer etter parti/valgliste (politisk sammensetning)</td><td style="padding:5px 8px">${META.polYear||'–'}</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">KLASS 131</td><td style="padding:5px 8px">Gjeldende kommuneinndeling</td><td style="padding:5px 8px">løpende</td></tr>
       </tbody>
     </table>
@@ -697,7 +763,7 @@ function openMetode(){
     <p>Behovsscoren blander to perspektiver, styrt av «Behovsprofil»-bryteren (nå: <b>${blt}</b>, ${blv}/100): hvor raskt behovet <b>vokser</b> (vektes ${blv}%) og hvor stort <b>gapet i antall</b> er (vektes ${100-blv}%). Begge skaleres 0–100 mot alle kommuner, så en liten kommune med sterk vekst kan rangere over en storby.</p>
 
     <h3>5. Finansiering – kjøp eller Samfond-leie</h3>
-    <p>Kommunen rutes til <b>Samfond-leie</b> hvis den har anstrengt økonomi, ellers <b>Kjøp</b>. Leie anbefales hvis netto driftsresultat &lt; ${ndrT}% <i>eller</i> disposisjonsfond &lt; ${tdf.value}% <i>eller</i> kommunen er i ROBEK. Tanken: svak økonomi gjør at kommunen ikke kan/vil investere selv, og leiemodellen via Samfond fjerner investeringsblokkeringen.</p>
+    <p>Kommunen rutes til <b>Samfond-leie</b> ved begrenset investeringskapasitet, ellers <b>Kjøp</b>. Et økonomisignal regnes svakt hvis netto driftsresultat &lt; ${ndrT}% eller disposisjonsfond &lt; ${tdf.value}%. Leie anbefales hvis kommunen er i <b>ROBEK</b>, eller hvis <b>minst to</b> signaler er svake. Men en kommune med <b>lav netto lånegjeld</b> (under ${(45000).toLocaleString('no')} kr/innb.) regnes å ha investeringsevne og rutes til <b>Kjøp</b> selv om ett signal er svakt – dette hindrer at f.eks. formuende kraftkommuner med tynt driftsresultat ett år feilstemples som svake. Netto driftsresultat er en årlig margin (svinger), og disposisjonsfond fanger bare frie fond, ikke bundne kraft-/næringsfond – derfor brukes lånegjeld som motvekt. Notatet viser hvilke signaler som slo ut for hver kommune.</p>
 
     <h3>6. Totalscore</h3>
     <div class="formula">Total = Behovsscore × ${wB}% + Finansiering × ${wF}% + tomtepåslag</div>
@@ -938,6 +1004,38 @@ async function fetchGjeld(id){
   META.gjeldTable=id; if(tid)META.gjeldYear=tid.values[tid.values.length-1];
   return out;
 }
+async function fetchPolitikk(id){
+  const meta=await ssbGet(id),vars=meta.variables;
+  const reg=vars.find(v=>/region/i.test(v.code)||/region|kommune/i.test(v.text||""));
+  const tid=vars.find(v=>v.time)||vars.find(v=>/(^|[^a-z])(tid|år|year)([^a-z]|$)/i.test(v.code+" "+(v.text||"")));
+  if(!reg)throw new Error(id+": ingen region");
+  const cc=vars.find(v=>/contents/i.test(v.code));
+  let seatVal=null;
+  if(cc){const i=(cc.valueTexts||[]).findIndex(t=>/representant|medlem|mandat/i.test(t));seatVal=cc.values[i>=0?i:0];}
+  const used=new Set([reg.code,tid&&tid.code,cc&&cc.code].filter(Boolean));
+  const party=vars.find(v=>!used.has(v.code)&&/parti|valgliste/i.test(v.code+" "+(v.text||"")))||vars.find(v=>!used.has(v.code));
+  if(!party)throw new Error(id+": fant ikke parti-dimensjon");
+  const q=[{code:reg.code,selection:{filter:"all",values:["*"]}},{code:party.code,selection:{filter:"all",values:["*"]}}];
+  if(cc)q.push({code:cc.code,selection:{filter:"item",values:[seatVal]}});
+  if(tid)q.push({code:tid.code,selection:{filter:"item",values:[tid.values[tid.values.length-1]]}});
+  vars.forEach(v=>{if(v===reg||v===party||(cc&&v===cc)||(tid&&v===tid))return;const vt=v.valueTexts||[];let i=vt.findIndex(t=>/begge|i alt|samlet|total/i.test(t));if(i<0)i=0;q.push({code:v.code,selection:{filter:"item",values:[v.values[i]]}});});
+  const js=await ssbPost(id,{query:q,response:{format:"json-stat2"}});
+  const ids=js.id,size=js.size,val=js.value,strides=size.map((_,i)=>size.slice(i+1).reduce((a,b)=>a*b,1));
+  const ri=ids.indexOf(reg.code),pi=ids.indexOf(party.code);
+  const rI=js.dimension[reg.code].category.index,rPos={};for(const c in rI)rPos[rI[c]]=c;
+  const pI=js.dimension[party.code].category.index,pPos={};for(const c in pI)pPos[pI[c]]=c;
+  const pLab=js.dimension[party.code].category.label||{};
+  const N=size.reduce((a,b)=>a*b,1),out={};
+  for(let idx=0;idx<N;idx++){const v=val[idx];if(v==null||v===0)continue;
+    let rem=idx,p=[];for(let i=0;i<size.length;i++){p[i]=Math.floor(rem/strides[i])%size[i];}
+    const mm=(""+rPos[p[ri]]).match(/\d{4}/);if(!mm)continue;const rc=mm[0];
+    const plabel=pLab[pPos[p[pi]]]||pPos[p[pi]];
+    if(/alle parti|i alt|samlet|total/i.test(plabel))continue;
+    (out[rc]=out[rc]||[]).push({p:plabel,s:v});}
+  if(!Object.keys(out).length)throw new Error(id+": ingen mandater");
+  META.polTable=id; if(tid)META.polYear=tid.values[tid.values.length-1];
+  return out;
+}
 async function fetchSSB(){
   setBanner("","⏳","<b>Henter fra SSB…</b> befolkning, framskriving, økonomi og kapasitet for alle kommuner – noen sekunder.");
   META.date=new Date().toLocaleDateString('no');
@@ -949,8 +1047,9 @@ async function fetchSSB(){
   let kap={},kapErr="";
   for(const t of ["12209","12293"]){try{const r=await fetchKapasitet(t);if(Object.keys(r).length){kap=r;kapErr="";break;}}catch(e){kapErr=e.message;console.warn("Kapasitet "+t+":",e);}}
   let gjeld={};try{const r=await fetchGjeld("12137");if(Object.keys(r).length)gjeld=r;}catch(e){console.warn("Gjeld:",e);}
+  let pol={};try{const r=await fetchPolitikk("04813");if(Object.keys(r).length)pol=r;}catch(e){console.warn("Politikk:",e);}
   const rows=Object.values(pop).filter(p=>!cur||cur.has(p.nr)).map(p=>{
-    const e=econ[p.nr]||{}; const fr=fram[p.nr]||{}; const k=kap[p.nr]||{}; const gj=gjeld[p.nr]||{};
+    const e=econ[p.nr]||{}; const fr=fram[p.nr]||{}; const k=kap[p.nr]||{}; const gj=gjeld[p.nr]||{}; const pl=pol[p.nr]||null;
     const hasE=e.ndr!=null||e.disp!=null;
     const i80=Math.round(p.plus80);
     const kpct=((k.inst||0)+(k.bolig||0))/100;
@@ -962,16 +1061,17 @@ async function fetchSSB(){
       plasser:kpct>0?Math.round(kpct*i80):0, kapLoaded:kpct>0,
       instP:k.inst||0, boligP:k.bolig||0, hjemHoy:k.hjem||0, enerom:k.enerom||0, kostpr:k.kostpr||0, overligger:0,
       ndr:e.ndr!=null?e.ndr:0,disp:e.disp!=null?e.disp:0,gjeld:gj.g!=null?gj.g:0,
-      robek:false,tomt:3,won:false,econLoaded:hasE};});
+      robek:false,tomt:3,won:false,econLoaded:hasE,politikk:pl};});
   if(!rows.length)throw new Error("ingen kommuner i svaret");
   DATA=rows;isDemo=false;
   const econN=rows.filter(r=>r.econLoaded).length, kapN=rows.filter(r=>r.kapLoaded).length, econKeys=Object.keys(econ).length;
   const econMsg=econN>0?("økonomi "+econN+" ✓")
     :(econKeys>0?("økonomi: 0 matchet kommunenr"):("økonomi ikke hentet"+(econErr?" ("+econErr+")":"")));
   const kapMsg=kapN>0?("kapasitet "+kapN+" ✓"):("kapasitet ikke hentet"+(kapErr?" ("+kapErr+")":""));
+  const polN=rows.filter(r=>r.politikk&&r.politikk.length).length; const polMsg=polN>0?("politikk "+polN+" ✓"):"politikk ikke hentet";
   applyRobek();
   const robekN=rows.filter(r=>r.robek).length;
-  setBanner((econN>0&&kapN>0)?"ok":"","✓","<b>"+rows.length+" kommuner hentet fra SSB.</b> Befolkning + framskriving OK · "+econMsg+" · "+kapMsg+" · ROBEK forhåndsutfylt ("+robekN+", mars 2026). Sett tomt per kommune.");
+  setBanner((econN>0&&kapN>0)?"ok":"","✓","<b>"+rows.length+" kommuner hentet fra SSB.</b> Befolkning + framskriving OK · "+econMsg+" · "+kapMsg+" · "+polMsg+" · ROBEK forhåndsutfylt ("+robekN+", mars 2026). Sett tomt per kommune.");
   compute();
 }
 async function autoLoad(){try{await fetchSSB();}catch(e){setBanner("","⚠︎","<b>Kunne ikke hente fra SSB nå.</b> Viser demo-data. Prøv «Hent fra SSB» igjen, eller last opp data. (Detalj: "+e.message+")");}}
