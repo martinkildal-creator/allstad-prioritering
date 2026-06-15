@@ -146,7 +146,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
     </div>
     <div style="display:flex;align-items:center;gap:10px">
       <button class="btn ghost" style="padding:8px 13px;font-size:13px" onclick="openMetode()">ⓘ Slik regnes det</button>
-      <span class="tag">Internt · v25</span>
+      <span class="tag">Internt · v26</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -642,6 +642,7 @@ function closePDF(){document.body.classList.remove('pdfmode');document.getElemen
 function kommunePDF(navn){
   const d=DATA.find(x=>x.navn===navn); if(!d)return;
   const fmt=n=>Math.round(n).toLocaleString('no');
+  const pc=v=>(v*100).toFixed(0)+'%';
   const vekstP=(d.vekst80*100).toFixed(0);
   const behovF=Math.round(d.behovFuture);
   const capKnown=(d.plasser||0)>0, gap=Math.max(0,Math.round(d.gap));
@@ -649,64 +650,81 @@ function kommunePDF(navn){
   const pris=P().pris, kost=Math.round(enheter*pris);
   const drift=d.kostpr?d.kostpr/1e6:P().driftkost, alt=P().altkost;
   const U=enheter>0?enheter:gap, yrSave=U*(alt-drift);
-  const logo=document.getElementById('logoImg'); const logoSrc=logo&&logo.src&&!/^https?:\/\/$/.test(logo.src)&&logo.naturalWidth>0?logo.src:'';
+  const byrdeNow=d.i80?(d.yrk/d.i80):0, byrde35=d.i80_35?(d.yrk35/d.i80_35):0;
+  const andelPlass=capKnown&&d.i80?(d.plasser/d.i80):null;
   const dato=new Date().toLocaleDateString('no',{day:'numeric',month:'long',year:'numeric'});
-  const G='#2E6F62';
+  const GREEN='#2E3A2C', GOLD='#BE8A4E', CREAM='#F0EADB', INK='#2B2B27', MUT='#6E7268', LINE='#E3E0D5';
+  const h2=t=>`<h2 style="font-family:'Fraunces',serif;color:${GREEN};font-size:19px;margin:28px 0 4px">${t}</h2><div style="height:2px;width:46px;background:${GOLD};margin:0 0 12px"></div>`;
   const rows=[
     ['Innbyggere 80+ i dag', fmt(d.i80)],
     ['Innbyggere 80+ i 2035', fmt(d.i80_35)],
-    ['Vekst 80+ mot 2035', vekstP+'%'],
-    ['Anslått behov for heldøgns omsorgsplasser (2035)', '~'+fmt(behovF)],
-  ];
-  if(capKnown){rows.push(['Dagens kapasitet (heldøgns)', fmt(d.plasser)]);rows.push(['Udekket behov mot 2035', '~'+fmt(gap)+' plasser']);}
+    ['Vekst blant 80+ mot 2035', vekstP+'%'],
+    ['Anslått behov for heldøgns omsorgsplasser (2035)', '~'+fmt(behovF)] ];
+  if(capKnown){rows.push(['Heldøgns plasser i dag', fmt(d.plasser)]);}
+  if(andelPlass!=null){rows.push(['Andel 80+ med heldøgns plass i dag', pc(andelPlass)]);}
+  if(capKnown){rows.push(['Udekket behov mot 2035', '~'+fmt(gap)+' plasser']);}
+  rows.push(['Yrkesaktive (20–66) per innbygger 80+, i dag', byrdeNow.toFixed(1).replace('.',',')]);
+  rows.push(['Samme, i 2035', byrde35.toFixed(1).replace('.',',')]);
   rows.push(['Indikativ prosjektstørrelse', '~'+fmt(enheter)+' enheter']);
-  rows.push(['Grovt kostnadsanslag', '~'+fmt(kost)+' mill. kr <span style="font-weight:400;color:#777">(eks. mva, ved '+pris.toFixed(1).replace('.',',')+' mill./bolig)</span>']);
-  const tbl=rows.map((r,i)=>`<tr style="background:${i%2?'#F5F7F6':'#fff'}"><td style="padding:8px 12px;border-bottom:1px solid #E5EAE8">${r[0]}</td><td style="padding:8px 12px;border-bottom:1px solid #E5EAE8;text-align:right;font-weight:600">${r[1]}</td></tr>`).join('');
-  const bespBlokk = (alt>drift&&U>0)?`
-    <h2 style="font-family:'Fraunces',serif;color:${G};font-size:18px;margin:26px 0 8px">Hva en utbygging betyr økonomisk</h2>
-    <p style="margin:0 0 10px">Å gi personer med heldøgns behov en egnet plass er som regel rimeligere enn å håndtere det udekkede behovet gjennom sykehusinnleggelser (overliggerdøgn for utskrivningsklare pasienter, om lag 6 172 kr per døgn i 2026) og intensiv hjemmetjeneste. Med <b>${fmt(U)}</b> egne plasser anslås en årlig driftsbesparelse på <b>~${Math.abs(yrSave).toFixed(1).replace('.',',')} mill. kr</b> – i størrelsesorden <b>~${Math.abs(yrSave*10).toFixed(0)} mill. kr</b> over ti år.</p>
+  rows.push(['Grovt kostnadsanslag', '~'+fmt(kost)+' mill. kr <span style="font-weight:400;color:'+MUT+'">(eks. mva, ved '+pris.toFixed(1).replace('.',',')+' mill./bolig)</span>']);
+  const tbl=rows.map((r,i)=>`<tr style="background:${i%2?'#F7F5EE':'#fff'}"><td style="padding:8px 12px;border-bottom:1px solid ${LINE}">${r[0]}</td><td style="padding:8px 12px;border-bottom:1px solid ${LINE};text-align:right;font-weight:600">${r[1]}</td></tr>`).join('');
+  const bespBlokk=(alt>drift&&U>0)?`
+    ${h2('Hva en utbygging betyr økonomisk')}
+    <p style="margin:0 0 10px">Å gi personer med heldøgns behov en egnet plass er som regel rimeligere enn å håndtere udekket behov gjennom sykehusinnleggelser (overliggerdøgn for utskrivningsklare pasienter, om lag 6 172 kr per døgn i 2026) og intensiv hjemmetjeneste. Med <b>${fmt(U)}</b> egne plasser anslås en årlig driftsbesparelse på <b>~${Math.abs(yrSave).toFixed(1).replace('.',',')} mill. kr</b> – i størrelsesorden <b>~${Math.abs(yrSave*10).toFixed(0)} mill. kr</b> over ti år.</p>
     <div style="margin:8px 0 4px">${besparelseChart(d,U)}</div>
-    <p style="font-size:11px;color:#777;margin:2px 0 0">Anslag. Forutsetninger: kostnad uten plass ${alt.toFixed(1).replace('.',',')} mill./år, drift egen plass ${drift.toFixed(1).replace('.',',')} mill./år${d.kostpr?' (kommunens egne KOSTRA-tall)':''}.</p>`:'';
-  document.getElementById('pdfview').innerHTML=`
-    <div class="pdf-toolbar" style="position:sticky;top:0;background:#fff;border-bottom:1px solid #E5EAE8;padding:12px 20px;display:flex;gap:10px;justify-content:flex-end;z-index:2">
-      <button onclick="window.print()" style="background:${G};color:#fff;border:0;border-radius:8px;padding:9px 16px;font-size:14px;font-weight:600;cursor:pointer">⎙ Skriv ut / lagre som PDF</button>
+    <p style="font-size:11px;color:${MUT};margin:2px 0 0">Anslag. Kostnad uten plass ${alt.toFixed(1).replace('.',',')} mill./år, drift egen plass ${drift.toFixed(1).replace('.',',')} mill./år${d.kostpr?' (kommunens egne KOSTRA-tall)':''}.</p>`:'';
+  const pv=document.getElementById('pdfview');
+  pv.innerHTML=`
+    <div class="pdf-toolbar" style="position:sticky;top:0;background:#fff;border-bottom:1px solid ${LINE};padding:12px 20px;display:flex;gap:10px;justify-content:flex-end;z-index:2">
+      <button onclick="window.print()" style="background:${GREEN};color:${CREAM};border:0;border-radius:8px;padding:9px 16px;font-size:14px;font-weight:600;cursor:pointer">⎙ Skriv ut / lagre som PDF</button>
       <button onclick="closePDF()" style="background:#fff;color:#333;border:1px solid #D5DCDA;border-radius:8px;padding:9px 16px;font-size:14px;cursor:pointer">Lukk</button>
     </div>
-    <div style="max-width:720px;margin:0 auto;padding:34px 40px 60px;font-family:'Hanken Grotesk',system-ui,sans-serif;color:#222;line-height:1.55;font-size:14px">
-      <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:3px solid ${G};padding-bottom:14px;margin-bottom:22px">
-        ${logoSrc?`<img src="${logoSrc}" style="height:34px">`:`<div style="font-family:'Fraunces',serif;font-weight:700;font-size:22px;color:${G};letter-spacing:.5px">ALLSTAD</div>`}
-        <div style="text-align:right;font-size:12px;color:#777">${dato}</div>
+    <div style="background:#FBFAF5">
+    <div style="max-width:730px;margin:0 auto;font-family:'Hanken Grotesk',system-ui,sans-serif;color:${INK};line-height:1.55;font-size:14px">
+      <div style="background:${GREEN};color:${CREAM};padding:34px 40px 28px">
+        <div style="font-family:'Fraunces',serif;font-weight:700;font-size:20px;letter-spacing:1px;color:#fff">ALLSTAD</div>
+        <div style="height:2px;width:54px;background:${GOLD};margin:18px 0 16px"></div>
+        <h1 style="font-family:'Fraunces',serif;font-size:30px;margin:0 0 8px;color:#fff;font-weight:600;line-height:1.15">Behovsvurdering:<br>omsorgsboliger i ${d.navn}</h1>
+        <p style="margin:0;color:${CREAM};opacity:.85;font-size:14px">Et kunnskapsgrunnlag for dialog om heldøgns omsorgsplasser · ${dato}</p>
       </div>
-      <h1 style="font-family:'Fraunces',serif;font-size:26px;color:#1c1c1c;margin:0 0 4px">Behovsvurdering: omsorgsboliger i ${d.navn}</h1>
-      <p style="color:#777;margin:0 0 22px">Et kunnskapsgrunnlag for dialog om heldøgns omsorgsplasser, utarbeidet av Allstad.</p>
-
-      <h2 style="font-family:'Fraunces',serif;color:${G};font-size:18px;margin:0 0 8px">Om Allstad</h2>
-      <p style="margin:0 0 18px">Allstad er en langsiktig grunneier og utbygger av omsorgsboliger med prosjekter i en rekke norske kommuner. Vi utvikler, bygger og kan eie omsorgsboliger med heldøgns bemanning. Gjennom vår Samfond-modell kan kommunen <b>leie</b> ferdige boliger i stedet for å investere selv – slik at etablering kan skje uavhengig av kommunens investeringsramme og lånekapasitet.</p>
-
-      <h2 style="font-family:'Fraunces',serif;color:${G};font-size:18px;margin:0 0 8px">Situasjonen i ${d.navn}</h2>
-      <p style="margin:0 0 12px">Antallet eldre over 80 år i ${d.navn} ventes å ${d.vekst80>=0?'vokse':'endres'} med <b>${vekstP}%</b> fram mot 2035. Behovet for heldøgns omsorgsplasser beregnes ut fra aldersdifferensiert dekningsgrad (KS/Agenda Kaupang-metode) anvendt på SSBs befolkningsframskriving.</p>
-      <table style="width:100%;border-collapse:collapse;margin:0 0 16px;border:1px solid #E5EAE8;border-radius:8px;overflow:hidden">${tbl}</table>
-      <div style="margin:6px 0 4px">${behovChart(d)}</div>
-
-      <h2 style="font-family:'Fraunces',serif;color:${G};font-size:18px;margin:26px 0 8px">Konsekvens uten utbygging</h2>
-      <p style="margin:0 0 8px">Uten nye plasser øker gapet mot 2035. Udekket behov for heldøgns omsorg gir typisk økt press på hjemmetjenesten og flere overliggerdøgn på sykehus.</p>
+      <div style="padding:6px 40px 56px">
+      ${h2('Om Allstad')}
+      <p style="margin:0 0 10px">Allstad er et <b>statlig selskap</b> som eier og forvalter eiendom i over 300 norske kommuner – en arv historisk knyttet til prestegårdene. Vi har <b>ingen private eiere</b> som tar ut utbytte; går et prosjekt med overskudd, går det til <b>Kirkebevaringsfondet</b>, som finansierer restaurering av norske kirkebygg.</p>
+      <p style="margin:0 0 4px">For en kommune betyr det en samarbeidspartner uten profittmotiv: vi utvikler, bygger og kvalitetssikrer omsorgsboliger med heldøgns bemanning, og bærer byggherrerisikoen i utviklingsfasen.</p>
+      ${h2('Behovsvurdering for '+d.navn)}
+      <p style="margin:0 0 12px">Behovet for <b>heldøgns omsorgsplasser</b> – langtids institusjon og omsorgsbolig med heldøgns bemanning – er beregnet ved å anvende aldersdifferensierte dekningsgrader på SSBs befolkningsframskriving (hovedalternativet), etter metodikk fra KS og Agenda Kaupang. Jo eldre innbyggerne er, desto høyere andel trenger en plass – derfor er veksten blant de aller eldste særlig viktig.</p>
+      <table style="width:100%;border-collapse:collapse;margin:0 0 18px;border:1px solid ${LINE};border-radius:8px;overflow:hidden">${tbl}</table>
+      <div style="margin:6px 0 2px">${behovChart(d)}</div>
+      <p style="font-size:12px;color:${MUT};margin:4px 0 0">Kapasitet i dag mot beregnet behov i dag og i 2035.</p>
+      ${h2('Demografi og omsorgsbyrde')}
+      <p style="margin:0 0 8px">Samtidig som antallet eldre øker, synker <b>omsorgsbyrden</b>: det blir færre yrkesaktive (20–66 år) bak hver innbygger over 80. Færre hender per eldre forsterker behovet for effektive, samlokaliserte plasser.</p>
+      <div style="margin:4px 0">${omsorgsbyrdeChart(d)}</div>
+      ${h2(d.navn+' mot snittet')}
+      <p style="margin:0 0 8px">Hvordan ${d.navn} ligger an mot fylkes- og landssnittet på vekst blant de eldste og på andel 80+ med en heldøgns plass i dag.</p>
+      <div style="margin:4px 0">${snittChart(d)}</div>
+      ${h2('Konsekvens uten utbygging')}
+      <p style="margin:0 0 8px">Uten nye plasser øker gapet mot 2035. Udekket behov gir typisk økt press på hjemmetjenesten og flere overliggerdøgn på sykehus.</p>
       <div style="margin:4px 0">${konsekvensChart(d)}</div>
       ${bespBlokk}
-
-      <h2 style="font-family:'Fraunces',serif;color:${G};font-size:18px;margin:26px 0 8px">To finansieringsmodeller</h2>
-      <p style="margin:0 0 18px"><b>Kjøp:</b> kommunen eier boligene selv. &nbsp; <b>Samfond-leie:</b> Allstad eier og bygger, og kommunen leier ferdige boliger – uten å binde egen investeringsramme. Vi tilpasser modellen til kommunens økonomi og ønsker.</p>
-
-      <h2 style="font-family:'Fraunces',serif;color:${G};font-size:18px;margin:0 0 8px">Veien videre</h2>
+      ${h2('Finansiering – to modeller')}
+      <p style="margin:0 0 10px">Allstad bygger gjennom et eget prosjektselskap. Når bygget står ferdig kan kommunen <b>kjøpe det selv</b>, eller la <b>Samfond</b> – KLPs eiendomsfond – <b>kjøpe og leie det tilbake</b> til kommunen på en 30-årig avtale. Med leiemodellen trenger kommunen ikke låne opp en krone.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 14px">
+        <div style="border:1px solid ${LINE};border-radius:8px;padding:12px 14px"><b style="color:${GREEN}">Ingen lånebelastning</b><div style="font-size:13px;color:${MUT};margin-top:3px">Forutsigbar leie i 30 år erstatter en stor enkeltinvestering på balansen.</div></div>
+        <div style="border:1px solid ${LINE};border-radius:8px;padding:12px 14px"><b style="color:${GREEN}">Trygg motpart</b><div style="font-size:13px;color:${MUT};margin-top:3px">Samfond har KLP – kommune-Norges eget pensjonsselskap – som største eier.</div></div>
+        <div style="border:1px solid ${LINE};border-radius:8px;padding:12px 14px"><b style="color:${GREEN}">Byggherrerisiko hos oss</b><div style="font-size:13px;color:${MUT};margin-top:3px">Allstad bærer risikoen i utviklingsfasen; kommunen overtar et ferdig, kvalitetssikret bygg.</div></div>
+        <div style="border:1px solid ${LINE};border-radius:8px;padding:12px 14px"><b style="color:${GREEN}">Overskudd til kulturarven</b><div style="font-size:13px;color:${MUT};margin-top:3px">Allstads andel av overskuddet går til Kirkebevaringsfondet – uansett hvilken modell kommunen velger.</div></div>
+      </div>
+      ${h2('Veien videre')}
       <p style="margin:0 0 6px">Allstad bistår gjerne ${d.navn} med et konkret skisseprosjekt og et finansieringsalternativ tilpasset kommunens situasjon. Ta kontakt for en uforpliktende gjennomgang.</p>
       <p style="margin:0 0 22px;color:#555">[Kontaktperson · e-post · telefon]</p>
-
-      <div style="border-top:1px solid #E5EAE8;padding-top:12px;font-size:11px;color:#999">
-        Datagrunnlag: SSB (folkemengde, befolkningsframskriving alt. MMMM), KOSTRA (kapasitet og kostnadstall). Behov beregnet med aldersdifferensiert dekningsgrad (KS/Agenda Kaupang). Tall er anslag for dialogformål. © Allstad ${new Date().getFullYear()}.
+      <div style="border-top:1px solid ${LINE};padding-top:12px;font-size:11px;color:#999">Datagrunnlag: SSB (folkemengde, befolkningsframskriving hovedalt.), KOSTRA (kapasitet og kostnadstall). Behov beregnet med aldersdifferensiert dekningsgrad (KS/Agenda Kaupang). Tallene er anslag for dialogformål. © Allstad ${new Date().getFullYear()}.</div>
       </div>
+    </div>
     </div>`;
   document.body.classList.add('pdfmode');
-  document.getElementById('pdfview').scrollTop=0;
+  pv.scrollTop=0;
 }
+
 function openNote(navn){
   const d=DATA.find(x=>x.navn===navn); if(!d)return;
   window._note=navn;
