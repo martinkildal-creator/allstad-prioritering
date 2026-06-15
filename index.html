@@ -146,7 +146,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
     </div>
     <div style="display:flex;align-items:center;gap:10px">
       <button class="btn ghost" style="padding:8px 13px;font-size:13px" onclick="openMetode()">ⓘ Slik regnes det</button>
-      <span class="tag">Internt · v26</span>
+      <span class="tag">Internt · v28</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -197,9 +197,10 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
         <div class="ctl"><label>Tomt for makebytte <b id="vN2">8</b></label><input type="range" id="n2" min="0" max="25" value="8"></div>
         <div class="section-h">Indikativ kostnad</div>
         <div class="ctl"><label>Enhetspris <b id="vPris">3,1</b> mill. kr</label><input type="range" id="pris" min="1" max="8" step="0.1" value="3.1"><div class="hint">Grov byggekostnad per omsorgsbolig (eks. mva). Sett mot Norsk Prisbok / egne enhetspriser.</div></div>
-        <div class="section-h">Besparelse (drift per år)</div>
-        <div class="ctl"><label>Kostnad uten plass <b id="vAlt">1,8</b> mill. kr/år</label><input type="range" id="altkost" min="0.5" max="3" step="0.1" value="1.8"><div class="hint">Anslått årlig kostnad per person med udekket behov (sykehus/overliggere + intensiv hjemmetjeneste).</div></div>
-        <div class="ctl"><label>Drift egen plass <b id="vDrift">1,3</b> mill. kr/år</label><input type="range" id="driftkost" min="0.5" max="2.5" step="0.1" value="1.3"><div class="hint">Brukes hvis kommunens egen KOSTRA-driftskostnad ikke er lastet.</div></div>
+        <div class="section-h">Besparelse (drift per år) – Agenda Kaupang-metodikk</div>
+        <div class="ctl"><label>Institusjonsplass (erstattes) <b id="vInst">1,30</b> mill. kr/år</label><input type="range" id="instkost" min="0.8" max="2" step="0.05" value="1.3"><div class="hint">Driften som unngås når behovet dekkes på et lavere trinn. Kommunens egen KOSTRA-kostnad brukes om den er lastet.</div></div>
+        <div class="ctl"><label>Omsorgsbolig m/døgntjenester (ny) <b id="vBolig">0,85</b> mill. kr/år</label><input type="range" id="boligkost" min="0.4" max="1.5" step="0.05" value="0.85"><div class="hint">Drift av den nye omsorgsboligen (trinn 5). Differansen mot institusjon = substitusjonsgevinst (øvre anslag).</div></div>
+        <div class="ctl"><label>Effektivisering/forebygging <b id="vEff">0,27</b> mill. kr/plass/år</label><input type="range" id="effgev" min="0" max="0.6" step="0.01" value="0.27"><div class="hint">Nedre anslag: samlokalisert hjemmetjeneste + utsatt behov (Agenda Kaupang).</div></div>
       </details>
 
       <div class="section-h">Data</div>
@@ -318,7 +319,7 @@ function applyEiendom(){
 const P=()=>({
   r1:+r1.value/100, r2:+r2.value/100, r3:+r3.value/100, sunn:+sunn.value/100, blend:+blend.value/100,
   wb:+wb.value, wf:+wf.value,
-  tndr:+tndr.value/1000, tdf:+tdf.value/100, n1:+n1.value, n2:+n2.value, pris:+pris.value, altkost:+altkost.value, driftkost:+driftkost.value,
+  tndr:+tndr.value/1000, tdf:+tdf.value/100, n1:+n1.value, n2:+n2.value, pris:+pris.value, instkost:+instkost.value, boligkost:+boligkost.value, effgev:+effgev.value,
   base:50, samfond:20, weak:10, gjeldLav:45000
 });
 
@@ -335,6 +336,13 @@ function compute(){
     d.behovFuture=(f1*p.r1+f2*p.r2+f3*p.r3)*sa;
     d.behovVekst=d.behovNow>0?(d.behovFuture/d.behovNow-1):0;
     d.gap=d.behovFuture-(d.plasser||0);
+    const has40=d.g1!=null||d.i80_40!=null;
+    if(has40){const sa40=Math.pow(1-p.sunn,16);
+      const g1=d.g1!=null?d.g1:(d.i80_40||0)*2.4, g2=d.g2!=null?d.g2:(d.i80_40||0)*0.82, g3=d.g3!=null?d.g3:(d.i80_40||0)*0.18;
+      d.behovFuture40=(g1*p.r1+g2*p.r2+g3*p.r3)*sa40;
+      d.vekst40=d.i80?(d.i80_40-d.i80)/d.i80:0;
+      d.gap40=d.behovFuture40-(d.plasser||0);
+    }else{d.behovFuture40=null;d.vekst40=null;d.gap40=null;}
     d.dekn=d.i80? d.plasser/d.i80 : 0;
     d.andel80=d.folketall? d.i80/d.folketall : 0;
     d.vekst80=d.i80? (d.i80_35-d.i80)/d.i80 : 0;
@@ -391,6 +399,7 @@ function render(){
 }
 function behovChart(d){
   const items=[['Dagens kapasitet',d.plasser||0,'#9AA6A3'],['Behov i dag',d.behovNow||0,'#7FB3A8'],['Behov 2035',d.behovFuture||0,'#2E6F62']];
+  if(d.behovFuture40!=null)items.push(['Behov 2040',d.behovFuture40,'#1F5249']);
   const W=560,H=240,mL=46,mR=14,mT=26,mB=40,pw=W-mL-mR,ph=H-mT-mB;
   const max=Math.max(1,...items.map(i=>i[1]));
   const step=max>2000?1000:(max>400?200:(max>80?20:10));
@@ -405,21 +414,24 @@ function behovChart(d){
   return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-family:'Hanken Grotesk'">${g}<line x1="${mL}" y1="${mT+ph}" x2="${W-mR}" y2="${mT+ph}" stroke="var(--muted)"/></svg>`;
 }
 function konsekvensChart(d){
-  const bnow=d.behovNow||0,bfut=d.behovFuture||0,cap=d.plasser||0;
+  const bnow=d.behovNow||0,bfut=d.behovFuture||0,has40=d.behovFuture40!=null,bf40=has40?d.behovFuture40:bfut,cap=d.plasser||0;
+  const span=has40?15:10;
   const W=560,H=260,mL=46,mR=16,mT=24,mB=42,pw=W-mL-mR,ph=H-mT-mB;
-  const max=Math.max(1,bfut,cap),step=max>2000?1000:(max>400?200:(max>80?20:10)),niceMax=Math.max(step,Math.ceil(max/step)*step);
-  const Y=v=>mT+ph-(v/niceMax)*ph, X=t=>mL+pw*t/10, behov=t=>bnow+(bfut-bnow)*t/10;
+  const max=Math.max(1,bfut,bf40,cap),step=max>2000?1000:(max>400?200:(max>80?20:10)),niceMax=Math.max(step,Math.ceil(max/step)*step);
+  const Y=v=>mT+ph-(v/niceMax)*ph, X=t=>mL+pw*t/span;
+  const behov=t=>t<=10? bnow+(bfut-bnow)*t/10 : bfut+(bf40-bfut)*(t-10)/5;
   let g='';
   for(let i=0;i<=4;i++){const val=niceMax*i/4,y=Y(val);g+=`<line x1="${mL}" y1="${y}" x2="${W-mR}" y2="${y}" stroke="var(--line)"/><text x="${mL-8}" y="${y+4}" text-anchor="end" font-size="10" fill="var(--muted)">${Math.round(val).toLocaleString('no')}</text>`;}
-  [0,5,10].forEach(t=>{g+=`<text x="${X(t)}" y="${mT+ph+18}" text-anchor="middle" font-size="11" fill="var(--ink)">${2025+t}</text>`;});
-  let tc=null; if(bnow>=cap)tc=0; else if(bfut>cap)tc=(cap-bnow)/(bfut-bnow)*10;
-  if(tc!==null){const pts=[[X(tc),Y(cap)]];for(let t=Math.ceil(tc);t<=10;t++)pts.push([X(t),Y(behov(t))]);pts.push([X(10),Y(cap)]);
+  const ticks=has40?[0,5,10,15]:[0,5,10];
+  ticks.forEach(t=>{g+=`<text x="${X(t)}" y="${mT+ph+18}" text-anchor="middle" font-size="11" fill="var(--ink)">${2025+t}</text>`;});
+  let tc=null; if(bnow>=cap)tc=0; else if(behov(span)>cap&&bfut!==bnow)tc=(cap-bnow)/(bfut-bnow)*10;
+  if(tc!==null&&isFinite(tc)){const pts=[[X(tc),Y(cap)]];for(let t=Math.ceil(tc);t<=span;t++)pts.push([X(t),Y(behov(t))]);pts.push([X(span),Y(cap)]);
     g+=`<polygon points="${pts.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ')}" fill="#D98C3F" fill-opacity="0.22"/>`;}
-  let bl='';for(let t=0;t<=10;t++)bl+=(t?'L':'M')+X(t).toFixed(1)+' '+Y(behov(t)).toFixed(1)+' ';
+  let bl='';for(let t=0;t<=span;t++)bl+=(t?'L':'M')+X(t).toFixed(1)+' '+Y(behov(t)).toFixed(1)+' ';
   g+=`<path d="${bl}" fill="none" stroke="#2E6F62" stroke-width="2.5"/>`;
   g+=`<line x1="${mL}" y1="${Y(cap)}" x2="${W-mR}" y2="${Y(cap)}" stroke="#9AA6A3" stroke-width="2" stroke-dasharray="5 4"/>`;
-  const gap=Math.max(0,Math.round(bfut-cap));
-  if(gap>0&&cap>0)g+=`<text x="${X(10)}" y="${(Y(bfut)-8).toFixed(1)}" text-anchor="end" font-size="12" font-weight="600" fill="#B5701F">+${gap.toLocaleString('no')} uten plass</text>`;
+  const gap=Math.max(0,Math.round(bf40-cap));
+  if(gap>0&&cap>0)g+=`<text x="${X(span)}" y="${(Y(bf40)-8).toFixed(1)}" text-anchor="end" font-size="12" font-weight="600" fill="#B5701F">+${gap.toLocaleString('no')} uten plass</text>`;
   return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-family:'Hanken Grotesk'">${g}
     <line x1="${mL}" y1="${mT+ph}" x2="${W-mR}" y2="${mT+ph}" stroke="var(--muted)"/>
     <circle cx="${mL+6}" cy="13" r="5" fill="#2E6F62"/><text x="${mL+15}" y="17" font-size="11" fill="var(--muted)">Behov</text>
@@ -429,6 +441,7 @@ function konsekvensChart(d){
 function omsorgsbyrdeChart(d){
   const rNow=d.i80?d.yrk/d.i80:0, r35=d.i80_35?d.yrk35/d.i80_35:0;
   const items=[['I dag',rNow,'#9AA6A3'],['2035',r35,'#D98C3F']];
+  if(d.i80_40&&d.yrk40!=null)items.push(['2040',d.yrk40/d.i80_40,'#B5701F']);
   const W=560,H=210,mL=42,mR=16,mT=22,mB=36,pw=W-mL-mR,ph=H-mT-mB;
   const max=Math.max(1,rNow,r35),niceMax=Math.max(2,Math.ceil(max/2)*2);
   const Y=v=>mT+ph-(v/niceMax)*ph, bw=pw/items.length*0.4;
@@ -444,6 +457,7 @@ function snittChart(d){
   const sameFy=DATA.filter(x=>fylkeAv(x.nr)===fylkeAv(d.nr));
   const avg=(arr,f)=>{const v=arr.map(f).filter(x=>x!=null&&isFinite(x));return v.length?v.reduce((a,b)=>a+b,0)/v.length:0;};
   const metrics=[{label:'Vekst i antall eldre (80+) mot 2035',vals:[['Kommune',d.vekst80],['Fylke',avg(sameFy.filter(x=>x.i80>0),x=>x.vekst80)],['Land',avg(DATA.filter(x=>x.i80>0),x=>x.vekst80)]]}];
+  if(d.vekst40!=null)metrics.push({label:'Vekst i antall eldre (80+) mot 2040',vals:[['Kommune',d.vekst40],['Fylke',avg(sameFy.filter(x=>x.vekst40!=null),x=>x.vekst40)],['Land',avg(DATA.filter(x=>x.vekst40!=null),x=>x.vekst40)]]});
   if(d.plasser>0)metrics.push({label:'Andel 80+ med plass i dag',ref:0.25,vals:[['Kommune',d.dekn],['Fylke',avg(sameFy.filter(x=>x.plasser>0),x=>x.dekn)],['Land',avg(DATA.filter(x=>x.plasser>0),x=>x.dekn)]]});
   const W=560,rowH=24,mL=78,barW=W-mL-72;let y=6,g='';
   metrics.forEach(m=>{
@@ -601,36 +615,42 @@ function finForklaring(d){
   }
   return `Anbefalt modell: <b>${d.modell}</b>. ${concl}<br><span style="font-size:12px;color:var(--muted)">Grunnlag: ${sig.join(' · ')}. Leie-egnethet ${d.finfit.toFixed(0)}/100 – høyere = svakere økonomi, mer aktuell for leiemodellen (ikke et mål på dårlig kommune).</span>`;
 }
-function besparelseChart(d,U){
+function besparGev(d){
   const P_=P();
-  const drift=d.kostpr?d.kostpr/1e6:P_.driftkost;
-  const alt=P_.altkost;
+  const inst=d.kostpr?d.kostpr/1e6:P_.instkost, bolig=P_.boligkost;
+  const subPer=Math.max(0,inst-bolig), effPer=Math.max(0,P_.effgev);
+  return {inst:inst,bolig:bolig,loPer:Math.min(subPer,effPer),hiPer:Math.max(subPer,effPer),subPer:subPer,effPer:effPer};
+}
+function besparelseChart(d,U){
+  const G=besparGev(d),loPer=G.loPer,hiPer=G.hiPer;
   const yrs=10;
   const W=560,H=260,mL=54,mR=16,mT=24,mB=42,pw=W-mL-mR,ph=H-mT-mB;
-  const aTot=U*alt*yrs,max=Math.max(1,aTot);
+  const hiTot=U*hiPer*yrs,max=Math.max(1,hiTot);
   const step=max>1000?500:(max>400?100:(max>100?50:(max>40?20:(max>10?5:2))));
   const niceMax=Math.max(step,Math.ceil(max/step)*step);
   const Y=v=>mT+ph-(v/niceMax)*ph,X=t=>mL+pw*t/yrs;
-  const A=t=>U*alt*t,B=t=>U*drift*t;
+  const Lo=t=>U*loPer*t,Hi=t=>U*hiPer*t;
   let g='';
   for(let i=0;i<=4;i++){const val=niceMax*i/4,y=Y(val);g+=`<line x1="${mL}" y1="${y}" x2="${W-mR}" y2="${y}" stroke="var(--line)"/><text x="${mL-8}" y="${y+4}" text-anchor="end" font-size="10" fill="var(--muted)">${Math.round(val).toLocaleString('no')}</text>`;}
   [0,5,10].forEach(t=>{g+=`<text x="${X(t)}" y="${mT+ph+18}" text-anchor="middle" font-size="11" fill="var(--ink)">${t===0?'I dag':'År '+t}</text>`;});
-  if(alt>drift)g+=`<polygon points="${X(0)},${Y(0).toFixed(1)} ${X(yrs)},${Y(A(yrs)).toFixed(1)} ${X(yrs)},${Y(B(yrs)).toFixed(1)}" fill="#2E6F62" fill-opacity="0.13"/>`;
-  let la='M'+X(0)+' '+Y(0);for(let t=1;t<=yrs;t++)la+=' L'+X(t)+' '+Y(A(t)).toFixed(1);
-  let lb='M'+X(0)+' '+Y(0);for(let t=1;t<=yrs;t++)lb+=' L'+X(t)+' '+Y(B(t)).toFixed(1);
-  g+=`<path d="${la}" fill="none" stroke="#B5701F" stroke-width="2.5"/>`;
-  g+=`<path d="${lb}" fill="none" stroke="#2E6F62" stroke-width="2.5"/>`;
-  if(alt>drift){const my=(Y(A(yrs))+Y(B(yrs)))/2;g+=`<text x="${X(yrs)-6}" y="${my.toFixed(1)}" text-anchor="end" font-size="11" font-weight="600" fill="#2E6F62">spart ${Math.round((A(yrs)-B(yrs))).toLocaleString('no')} mill.</text>`;}
+  const band=[];for(let t=0;t<=yrs;t++)band.push(X(t).toFixed(1)+','+Y(Hi(t)).toFixed(1));for(let t=yrs;t>=0;t--)band.push(X(t).toFixed(1)+','+Y(Lo(t)).toFixed(1));
+  g+=`<polygon points="${band.join(' ')}" fill="#2E6F62" fill-opacity="0.15"/>`;
+  let lh='M'+X(0)+' '+Y(0);for(let t=1;t<=yrs;t++)lh+=' L'+X(t)+' '+Y(Hi(t)).toFixed(1);
+  let ll='M'+X(0)+' '+Y(0);for(let t=1;t<=yrs;t++)ll+=' L'+X(t)+' '+Y(Lo(t)).toFixed(1);
+  g+=`<path d="${lh}" fill="none" stroke="#2E6F62" stroke-width="2.5"/>`;
+  g+=`<path d="${ll}" fill="none" stroke="#2E6F62" stroke-width="1.6" stroke-dasharray="5 4" opacity="0.8"/>`;
+  g+=`<text x="${X(yrs)-6}" y="${(Y((Hi(yrs)+Lo(yrs))/2)).toFixed(1)}" text-anchor="end" font-size="11" font-weight="600" fill="#2E6F62">spart ~${Math.round(Lo(yrs)).toLocaleString('no')}–${Math.round(Hi(yrs)).toLocaleString('no')} mill.</text>`;
   return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-family:'Hanken Grotesk'">${g}
     <line x1="${mL}" y1="${mT+ph}" x2="${W-mR}" y2="${mT+ph}" stroke="var(--muted)"/>
-    <text x="6" y="${mT-8}" font-size="10" fill="var(--muted)">mill. kr (akkumulert)</text>
-    <line x1="${mL+6}" y1="13" x2="${mL+24}" y2="13" stroke="#B5701F" stroke-width="2.5"/><text x="${mL+30}" y="17" font-size="11" fill="var(--muted)">Uten utbygging</text>
-    <line x1="${mL+150}" y1="13" x2="${mL+168}" y2="13" stroke="#2E6F62" stroke-width="2.5"/><text x="${mL+174}" y="17" font-size="11" fill="var(--muted)">Med egne plasser</text>
+    <text x="6" y="${mT-8}" font-size="10" fill="var(--muted)">mill. kr (akkumulert besparelse)</text>
+    <line x1="${mL+6}" y1="13" x2="${mL+24}" y2="13" stroke="#2E6F62" stroke-width="2.5"/><text x="${mL+30}" y="17" font-size="11" fill="var(--muted)">Øvre: substitusjon</text>
+    <line x1="${mL+170}" y1="13" x2="${mL+188}" y2="13" stroke="#2E6F62" stroke-width="1.6" stroke-dasharray="5 4"/><text x="${mL+194}" y="17" font-size="11" fill="var(--muted)">Nedre: effektivisering</text>
   </svg>`;
 }
 function besparTekst(d,U){
-  const P_=P(),drift=d.kostpr?d.kostpr/1e6:P_.driftkost,alt=P_.altkost,yr=U*(alt-drift),pos=yr>=0;
-  return `Med <b>${U.toLocaleString('no')}</b> egne plasser: anslått <b>${pos?'besparelse':'merkostnad'}</b> på <b>~${Math.abs(yr).toFixed(1).replace('.',',')} mill. kr/år</b> · <b>~${Math.abs(yr*10).toFixed(0)} mill. kr</b> over 10 år. <small>(Kostnad uten plass ${alt.toFixed(1).replace('.',',')} − drift egen plass ${drift.toFixed(1).replace('.',',')} mill. kr/plass/år${d.kostpr?', kommunens egen KOSTRA-kostnad':''}.)</small>`;
+  const G=besparGev(d);
+  const lo=G.loPer*U, hi=G.hiPer*U;
+  return `Med <b>${U.toLocaleString('no')}</b> omsorgsboliger: anslått årlig driftsbesparelse <b>~${lo.toFixed(1).replace('.',',')}–${hi.toFixed(1).replace('.',',')} mill. kr/år</b> · <b>~${Math.round(lo*10).toLocaleString('no')}–${Math.round(hi*10).toLocaleString('no')} mill. kr</b> over 10 år. <small>Nedre = effektivisering/forebygging (samlokalisert hjemmetjeneste, utsatt behov). Øvre = substitusjon: institusjon ${G.inst.toFixed(2).replace('.',',')} → omsorgsbolig ${G.bolig.toFixed(2).replace('.',',')} mill./plass/år${d.kostpr?' (institusjon = kommunens KOSTRA-kostnad)':''}. Metodikk: Agenda Kaupang.</small>`;
 }
 function besparelse(){
   const d=DATA.find(x=>x.navn===window._note); if(!d)return;
@@ -648,8 +668,8 @@ function kommunePDF(navn){
   const capKnown=(d.plasser||0)>0, gap=Math.max(0,Math.round(d.gap));
   const enheter=Math.max(0,Math.round(capKnown? d.gap : (d.behovFuture-d.behovNow)));
   const pris=P().pris, kost=Math.round(enheter*pris);
-  const drift=d.kostpr?d.kostpr/1e6:P().driftkost, alt=P().altkost;
-  const U=enheter>0?enheter:gap, yrSave=U*(alt-drift);
+  const U=enheter>0?enheter:gap;
+  const Gv=besparGev(d), loYr=Gv.loPer*U, hiYr=Gv.hiPer*U;
   const byrdeNow=d.i80?(d.yrk/d.i80):0, byrde35=d.i80_35?(d.yrk35/d.i80_35):0;
   const andelPlass=capKnown&&d.i80?(d.plasser/d.i80):null;
   const dato=new Date().toLocaleDateString('no',{day:'numeric',month:'long',year:'numeric'});
@@ -660,6 +680,7 @@ function kommunePDF(navn){
     ['Innbyggere 80+ i 2035', fmt(d.i80_35)],
     ['Vekst blant 80+ mot 2035', vekstP+'%'],
     ['Anslått behov for heldøgns omsorgsplasser (2035)', '~'+fmt(behovF)] ];
+  if(d.behovFuture40!=null){rows.push(['Innbyggere 80+ i 2040', fmt(d.i80_40)]);rows.push(['Vekst blant 80+ mot 2040', (d.vekst40*100).toFixed(0)+'%']);rows.push(['Anslått behov heldøgns omsorgsplasser (2040)', '~'+fmt(d.behovFuture40)]);}
   if(capKnown){rows.push(['Heldøgns plasser i dag', fmt(d.plasser)]);}
   if(andelPlass!=null){rows.push(['Andel 80+ med heldøgns plass i dag', pc(andelPlass)]);}
   if(capKnown){rows.push(['Udekket behov mot 2035', '~'+fmt(gap)+' plasser']);}
@@ -668,11 +689,11 @@ function kommunePDF(navn){
   rows.push(['Indikativ prosjektstørrelse', '~'+fmt(enheter)+' enheter']);
   rows.push(['Grovt kostnadsanslag', '~'+fmt(kost)+' mill. kr <span style="font-weight:400;color:'+MUT+'">(eks. mva, ved '+pris.toFixed(1).replace('.',',')+' mill./bolig)</span>']);
   const tbl=rows.map((r,i)=>`<tr style="background:${i%2?'#F7F5EE':'#fff'}"><td style="padding:8px 12px;border-bottom:1px solid ${LINE}">${r[0]}</td><td style="padding:8px 12px;border-bottom:1px solid ${LINE};text-align:right;font-weight:600">${r[1]}</td></tr>`).join('');
-  const bespBlokk=(alt>drift&&U>0)?`
+  const bespBlokk=(hiYr>0&&U>0)?`
     ${h2('Hva en utbygging betyr økonomisk')}
-    <p style="margin:0 0 10px">Å gi personer med heldøgns behov en egnet plass er som regel rimeligere enn å håndtere udekket behov gjennom sykehusinnleggelser (overliggerdøgn for utskrivningsklare pasienter, om lag 6 172 kr per døgn i 2026) og intensiv hjemmetjeneste. Med <b>${fmt(U)}</b> egne plasser anslås en årlig driftsbesparelse på <b>~${Math.abs(yrSave).toFixed(1).replace('.',',')} mill. kr</b> – i størrelsesorden <b>~${Math.abs(yrSave*10).toFixed(0)} mill. kr</b> over ti år.</p>
+    <p style="margin:0 0 10px">En omsorgsbolig med døgntjenester koster mindre å drifte enn en institusjonsplass, og samlokalisering gir mer effektiv hjemmetjeneste og kan utsette behovet for plass. Med <b>${fmt(U)}</b> omsorgsboliger anslås en årlig driftsbesparelse på <b>~${loYr.toFixed(1).replace('.',',')}–${hiYr.toFixed(1).replace('.',',')} mill. kr</b> – i størrelsesorden <b>~${Math.round(loYr*10).toLocaleString('no')}–${Math.round(hiYr*10).toLocaleString('no')} mill. kr</b> over ti år. Nedre anslag er effektivisering/forebygging, øvre er substitusjon (institusjon → omsorgsbolig).</p>
     <div style="margin:8px 0 4px">${besparelseChart(d,U)}</div>
-    <p style="font-size:11px;color:${MUT};margin:2px 0 0">Anslag. Kostnad uten plass ${alt.toFixed(1).replace('.',',')} mill./år, drift egen plass ${drift.toFixed(1).replace('.',',')} mill./år${d.kostpr?' (kommunens egne KOSTRA-tall)':''}.</p>`:'';
+    <p style="font-size:11px;color:${MUT};margin:2px 0 0">Anslag basert på Agenda Kaupangs metodikk. Institusjon ${Gv.inst.toFixed(2).replace('.',',')} → omsorgsbolig ${Gv.bolig.toFixed(2).replace('.',',')} mill./plass/år${d.kostpr?' (institusjon = kommunens KOSTRA-kostnad)':''}.</p>`:'';
   const pv=document.getElementById('pdfview');
   pv.innerHTML=`
     <div class="pdf-toolbar" style="position:sticky;top:0;background:#fff;border-bottom:1px solid ${LINE};padding:12px 20px;display:flex;gap:10px;justify-content:flex-end;z-index:2">
@@ -714,6 +735,7 @@ function kommunePDF(navn){
         <div style="border:1px solid ${LINE};border-radius:8px;padding:12px 14px"><b style="color:${GREEN}">Byggherrerisiko hos oss</b><div style="font-size:13px;color:${MUT};margin-top:3px">Allstad bærer risikoen i utviklingsfasen; kommunen overtar et ferdig, kvalitetssikret bygg.</div></div>
         <div style="border:1px solid ${LINE};border-radius:8px;padding:12px 14px"><b style="color:${GREEN}">Overskudd til kulturarven</b><div style="font-size:13px;color:${MUT};margin-top:3px">Allstads andel av overskuddet går til Kirkebevaringsfondet – uansett hvilken modell kommunen velger.</div></div>
       </div>
+      <div style="background:#F2EFE6;border-left:3px solid ${GOLD};padding:12px 16px;margin:22px 0 6px;font-size:13px;color:${INK}">Dette er et foreløpig anslag til dialog. Allstad utarbeider, sammen med Agenda Kaupang, en detaljert bolig- og tjenesteanalyse (boligtrapp-metodikk) tilpasset kommunen før endelige tall og anbefalinger fastsettes.</div>
       ${h2('Veien videre')}
       <p style="margin:0 0 6px">Allstad bistår gjerne ${d.navn} med et konkret skisseprosjekt og et finansieringsalternativ tilpasset kommunens situasjon. Ta kontakt for en uforpliktende gjennomgang.</p>
       <p style="margin:0 0 22px;color:#555">[Kontaktperson · e-post · telefon]</p>
@@ -755,6 +777,7 @@ function openNote(navn){
       <div><div class="k">Andel 80+</div><div class="v">${pct(d.andel80)}</div></div>
       <div><div class="k">Innb. 80+ i dag</div><div class="v">${d.i80.toLocaleString('no')}</div></div>
       <div><div class="k">Innb. 80+ 2035</div><div class="v">${d.i80_35.toLocaleString('no')} <small>+${(d.vekst80*100).toFixed(0)}%</small></div></div>
+      ${d.i80_40!=null?`<div><div class="k">Innb. 80+ 2040</div><div class="v">${d.i80_40.toLocaleString('no')} <small>+${(d.vekst40*100).toFixed(0)}%</small></div></div>`:''}
       <div><div class="k">Andel 80+ med plass i dag</div><div class="v">${pct(d.dekn)}</div></div>
       <div><div class="k">Kapasitetsgap</div><div class="v">${n>0?'+':''}${n.toLocaleString('no')} <small>plasser</small></div></div>
     </div>
@@ -786,7 +809,7 @@ function openNote(navn){
     <h3>Indikativ prosjektstørrelse</h3>
     <div class="recco">~<b>${enheter.toLocaleString('no')} enheter</b> ${capKnown?'(udekket behov mot dagens kapasitet)':'(vekstdrevet behov mot 2035)'} · grovt kostnadsanslag <b>~${kost.toLocaleString('no')} mill. kr</b> <small>(eks. mva, ved ${pris.toFixed(1).replace('.',',')} mill. kr/enhet)</small>. Grovt anslag for møteforberedelse – ikke et tilbud.</div>
     <h3>Hva sparer kommunen i drift?</h3>
-    <div class="recco" style="margin-bottom:10px">Sammenligner hva det koster å håndtere personer med heldøgns behov <b>uten</b> egen plass (sykehus/overliggere + intensiv hjemmetjeneste) mot å gi dem en <b>egen</b> plass. Endre antall plasser – graf og tall oppdateres.</div>
+    <div class="recco" style="margin-bottom:10px">Besparelsen følger Agenda Kaupangs logikk: en omsorgsbolig med døgntjenester koster mindre å drifte enn en institusjonsplass (<b>substitusjon</b>), og samlokalisering gir mer effektiv hjemmetjeneste og utsatt behov (<b>effektivisering/forebygging</b>). Intervallet under spenner fra nedre (effektivisering) til øvre (substitusjon). Endre antall plasser – graf og tall oppdateres.</div>
     <div class="edrow" style="margin-bottom:8px"><span>Antall plasser kommunen bygger</span><input id="bespN" type="number" min="0" max="3000" value="${besparDefault}" oninput="besparelse()" style="width:96px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;font-size:14px"></div>
     <div id="bespLbl" class="recco" style="background:#EAF2EF">${besparTekst(d,besparDefault)}</div>
     <div id="bespChart">${besparelseChart(d,besparDefault)}</div>
@@ -835,6 +858,7 @@ function openMetode(){
       <tbody>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.popTable||'07459'}</td><td style="padding:5px 8px">Folkemengde og aldersfordeling i dag (67–79, 80–89, 90+, 20–66)</td><td style="padding:5px 8px">${META.popYear||'–'}</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.framTable||'13600'}</td><td style="padding:5px 8px">Befolkningsframskriving mot 2035 (hovedalt. MMMM)</td><td style="padding:5px 8px">${META.framYear||'–'}</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.fram40Table||'13600'}</td><td style="padding:5px 8px">Befolkningsframskriving mot 2040 (hovedalt. MMMM)</td><td style="padding:5px 8px">${META.fram40Year||'–'}</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.econTable||'12143'}</td><td style="padding:5px 8px">KOSTRA: netto driftsresultat og disposisjonsfond (% av brutto driftsinntekter)</td><td style="padding:5px 8px">${META.econYear||'–'}</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.kapTable||'12293'}</td><td style="padding:5px 8px">KOSTRA: dekningsgrad institusjon + bemannet bolig, hjemmetjeneste høy timeinnsats, enerom, driftskostnad per plass</td><td style="padding:5px 8px">${META.kapYear||'–'}</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.gjeldTable||'12137'}</td><td style="padding:5px 8px">KOSTRA: netto lånegjeld per innbygger</td><td style="padding:5px 8px">${META.gjeldYear||'–'}</td></tr>
@@ -874,7 +898,7 @@ function closeMetode(){metodeBg.classList.remove('open');metodeModal.classList.r
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMetode();closeDrawer();}});
 
 // controls
-const ids=["wb","wf","blend","r1","r2","r3","sunn","tndr","tdf","n1","n2","pris","altkost","driftkost"];
+const ids=["wb","wf","blend","r1","r2","r3","sunn","tndr","tdf","n1","n2","pris","instkost","boligkost","effgev"];
 ids.forEach(id=>document.getElementById(id).addEventListener("input",syncLabels));
 function syncLabels(){
   vWb.textContent=wb.value+"%"; vWf.textContent=wf.value+"%";
@@ -882,7 +906,7 @@ function syncLabels(){
   const bl=+blend.value; vBlend.textContent=bl>=60?"Vekst":(bl<=40?"Volum":"Balansert");
   vTndr.textContent=(+tndr.value/10).toFixed(2).replace('.',',')+"%"; vTdf.textContent=tdf.value+"%";
   vN1.textContent=n1.value; vN2.textContent=n2.value; vPris.textContent=(+pris.value).toFixed(1).replace('.',',');
-  vAlt.textContent=(+altkost.value).toFixed(1).replace('.',','); vDrift.textContent=(+driftkost.value).toFixed(1).replace('.',',');
+  vInst.textContent=(+instkost.value).toFixed(2).replace('.',','); vBolig.textContent=(+boligkost.value).toFixed(2).replace('.',','); vEff.textContent=(+effgev.value).toFixed(2).replace('.',',');
   const s=+wb.value+ +wf.value;
   sum.textContent="Sum "+s+"% · normaliseres til 100% i beregning";
   sum.className="sumchk "+(s===100?"sumok":"sumbad");
@@ -944,8 +968,21 @@ function loadDemo(){DATA=DEMO.map(d=>({...d}));isDemo=true;
 
 // ---- SSB live-henting ----
 function setBanner(type,icon,html){banner.className="banner"+(type==="ok"?" ok":"");banner.innerHTML="<span>"+icon+"</span><span>"+html+"</span>";}
-async function ssbGet(id){const r=await fetch(`https://data.ssb.no/api/v0/no/table/${id}`);if(!r.ok)throw new Error("metadata "+id+" "+r.status);return r.json();}
-async function ssbPost(id,body){const r=await fetch(`https://data.ssb.no/api/v0/no/table/${id}`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});if(!r.ok)throw new Error("tabell "+id+" svar "+r.status);return r.json();}
+function ssbSleep(ms){return new Promise(r=>setTimeout(r,ms));}
+async function ssbReq(url,opts,label){
+  let lastErr;
+  for(let a=0;a<4;a++){
+    try{
+      const r=await fetch(url,opts);
+      if((r.status===429||r.status===503||r.status===502)){lastErr=new Error(label+" "+r.status);await ssbSleep(700*(a+1));continue;}
+      if(!r.ok)throw new Error(label+" "+r.status);
+      return await r.json();
+    }catch(e){lastErr=e;if(a<3)await ssbSleep(600*(a+1));}
+  }
+  throw lastErr;
+}
+async function ssbGet(id){return ssbReq(`https://data.ssb.no/api/v0/no/table/${id}`,undefined,"metadata "+id);}
+async function ssbPost(id,body){return ssbReq(`https://data.ssb.no/api/v0/no/table/${id}`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)},"tabell "+id);}
 function parseAge(js,regC,aldC){
   const ids=js.id,size=js.size,val=js.value;
   const strides=size.map((_,i)=>size.slice(i+1).reduce((a,b)=>a*b,1));
@@ -1136,14 +1173,17 @@ async function fetchSSB(){
   const cur=await currentKommuner();
   const pop=await fetchAgeTable("07459",null,"pop");
   let fram={};try{fram=await fetchAgeTable("13600",2035,"fram");}catch(e){try{fram=await fetchAgeTable("14288",2035,"fram");}catch(e2){fram={};}}
+  let fram40={};await ssbSleep(350);try{fram40=await fetchAgeTable("13600",2040,"fram40");}catch(e){try{fram40=await fetchAgeTable("14288",2040,"fram40");}catch(e2){fram40={};}}
   let econ={},econErr="";
+  await ssbSleep(350);
   for(const t of ["12143","12144"]){try{const r=await fetchKostra(t);if(Object.keys(r).length){econ=r;econErr="";break;}}catch(e){econErr=e.message;console.warn("Økonomi "+t+":",e);}}
   let kap={},kapErr="";
+  await ssbSleep(350);
   for(const t of ["12209","12293"]){try{const r=await fetchKapasitet(t);if(Object.keys(r).length){kap=r;kapErr="";break;}}catch(e){kapErr=e.message;console.warn("Kapasitet "+t+":",e);}}
-  let gjeld={};try{const r=await fetchGjeld("12137");if(Object.keys(r).length)gjeld=r;}catch(e){console.warn("Gjeld:",e);}
-  let pol={};try{const r=await fetchPolitikk("04813");if(Object.keys(r).length)pol=r;}catch(e){console.warn("Politikk:",e);}
+  let gjeld={};await ssbSleep(350);try{const r=await fetchGjeld("12137");if(Object.keys(r).length)gjeld=r;}catch(e){console.warn("Gjeld:",e);}
+  let pol={};await ssbSleep(350);try{const r=await fetchPolitikk("04813");if(Object.keys(r).length)pol=r;}catch(e){console.warn("Politikk:",e);}
   const rows=Object.values(pop).filter(p=>!cur||cur.has(p.nr)).map(p=>{
-    const e=econ[p.nr]||{}; const fr=fram[p.nr]||{}; const k=kap[p.nr]||{}; const gj=gjeld[p.nr]||{}; const pl=pol[p.nr]||null;
+    const e=econ[p.nr]||{}; const fr=fram[p.nr]||{}; const fr40=fram40[p.nr]||{}; const k=kap[p.nr]||{}; const gj=gjeld[p.nr]||{}; const pl=pol[p.nr]||null;
     const hasE=e.ndr!=null||e.disp!=null;
     const i80=Math.round(p.plus80);
     const kpct=((k.inst||0)+(k.bolig||0))/100;
@@ -1152,6 +1192,8 @@ async function fetchSSB(){
       a1:p.b6779,a2:p.b8089,a3:p.b90,
       yrk:Math.round(p.b2066), yrk35:fr.b2066!=null?Math.round(fr.b2066):Math.round(p.b2066),
       f1:fr.b6779!=null?fr.b6779:p.b6779, f2:fr.b8089!=null?fr.b8089:p.b8089, f3:fr.b90!=null?fr.b90:p.b90,
+      i80_40:fr40.plus80!=null?Math.round(fr40.plus80):null, yrk40:fr40.b2066!=null?Math.round(fr40.b2066):null,
+      g1:fr40.b6779!=null?fr40.b6779:null, g2:fr40.b8089!=null?fr40.b8089:null, g3:fr40.b90!=null?fr40.b90:null,
       plasser:kpct>0?Math.round(kpct*i80):0, kapLoaded:kpct>0,
       instP:k.inst||0, boligP:k.bolig||0, hjemHoy:k.hjem||0, enerom:k.enerom||0, kostpr:k.kostpr||0, overligger:0,
       ndr:e.ndr!=null?e.ndr:0,disp:e.disp!=null?e.disp:0,gjeld:gj.g!=null?gj.g:0,
