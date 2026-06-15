@@ -146,7 +146,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
     </div>
     <div style="display:flex;align-items:center;gap:10px">
       <button class="btn ghost" style="padding:8px 13px;font-size:13px" onclick="openMetode()">ⓘ Slik regnes det</button>
-      <span class="tag">Internt · v28</span>
+      <span class="tag">Internt · v29</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -168,7 +168,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
   <div class="grid">
     <!-- CONTROLS -->
     <aside class="panel">
-      <h2>Forutsetninger</h2>
+      <h2>Forutsetninger <span style="font-family:'Fraunces',serif;font-style:italic;font-size:13px;font-weight:600;color:#2E6F62;letter-spacing:.2px;margin-left:6px">· Agenda Kildal</span></h2>
       <div class="sub">Dra i glidebryterne – lista oppdateres med en gang. Du trenger bare de fire øverste til daglig.</div>
 
       <div class="section-h">Hvor mye skal hvert kriterium telle?</div>
@@ -693,7 +693,7 @@ function kommunePDF(navn){
     ${h2('Hva en utbygging betyr økonomisk')}
     <p style="margin:0 0 10px">En omsorgsbolig med døgntjenester koster mindre å drifte enn en institusjonsplass, og samlokalisering gir mer effektiv hjemmetjeneste og kan utsette behovet for plass. Med <b>${fmt(U)}</b> omsorgsboliger anslås en årlig driftsbesparelse på <b>~${loYr.toFixed(1).replace('.',',')}–${hiYr.toFixed(1).replace('.',',')} mill. kr</b> – i størrelsesorden <b>~${Math.round(loYr*10).toLocaleString('no')}–${Math.round(hiYr*10).toLocaleString('no')} mill. kr</b> over ti år. Nedre anslag er effektivisering/forebygging, øvre er substitusjon (institusjon → omsorgsbolig).</p>
     <div style="margin:8px 0 4px">${besparelseChart(d,U)}</div>
-    <p style="font-size:11px;color:${MUT};margin:2px 0 0">Anslag basert på Agenda Kaupangs metodikk. Institusjon ${Gv.inst.toFixed(2).replace('.',',')} → omsorgsbolig ${Gv.bolig.toFixed(2).replace('.',',')} mill./plass/år${d.kostpr?' (institusjon = kommunens KOSTRA-kostnad)':''}.</p>`:'';
+    <p style="font-size:11px;color:${MUT};margin:2px 0 0">Anslag basert på substitusjon mellom omsorgstrinn og effektivisering. Institusjon ${Gv.inst.toFixed(2).replace('.',',')} → omsorgsbolig ${Gv.bolig.toFixed(2).replace('.',',')} mill./plass/år${d.kostpr?' (institusjon = kommunens KOSTRA-kostnad)':''}.</p>`:'';
   const pv=document.getElementById('pdfview');
   pv.innerHTML=`
     <div class="pdf-toolbar" style="position:sticky;top:0;background:#fff;border-bottom:1px solid ${LINE};padding:12px 20px;display:flex;gap:10px;justify-content:flex-end;z-index:2">
@@ -713,7 +713,7 @@ function kommunePDF(navn){
       <p style="margin:0 0 10px">Allstad er et <b>statlig selskap</b> som eier og forvalter eiendom i over 300 norske kommuner – en arv historisk knyttet til prestegårdene. Vi har <b>ingen private eiere</b> som tar ut utbytte; går et prosjekt med overskudd, går det til <b>Kirkebevaringsfondet</b>, som finansierer restaurering av norske kirkebygg.</p>
       <p style="margin:0 0 4px">For en kommune betyr det en samarbeidspartner uten profittmotiv: vi utvikler, bygger og kvalitetssikrer omsorgsboliger med heldøgns bemanning, og bærer byggherrerisikoen i utviklingsfasen.</p>
       ${h2('Behovsvurdering for '+d.navn)}
-      <p style="margin:0 0 12px">Behovet for <b>heldøgns omsorgsplasser</b> – langtids institusjon og omsorgsbolig med heldøgns bemanning – er beregnet ved å anvende aldersdifferensierte dekningsgrader på SSBs befolkningsframskriving (hovedalternativet), etter metodikk fra KS og Agenda Kaupang. Jo eldre innbyggerne er, desto høyere andel trenger en plass – derfor er veksten blant de aller eldste særlig viktig.</p>
+      <p style="margin:0 0 12px">Behovet for <b>heldøgns omsorgsplasser</b> – langtids institusjon og omsorgsbolig med heldøgns bemanning – er beregnet ved å anvende aldersdifferensierte dekningsgrader på SSBs befolkningsframskriving (hovedalternativet), etter KS-metodikk for heldøgns omsorg. Jo eldre innbyggerne er, desto høyere andel trenger en plass – derfor er veksten blant de aller eldste særlig viktig.</p>
       <table style="width:100%;border-collapse:collapse;margin:0 0 18px;border:1px solid ${LINE};border-radius:8px;overflow:hidden">${tbl}</table>
       <div style="margin:6px 0 2px">${behovChart(d)}</div>
       <p style="font-size:12px;color:${MUT};margin:4px 0 0">Kapasitet i dag mot beregnet behov i dag og i 2035.</p>
@@ -735,7 +735,7 @@ function kommunePDF(navn){
         <div style="border:1px solid ${LINE};border-radius:8px;padding:12px 14px"><b style="color:${GREEN}">Byggherrerisiko hos oss</b><div style="font-size:13px;color:${MUT};margin-top:3px">Allstad bærer risikoen i utviklingsfasen; kommunen overtar et ferdig, kvalitetssikret bygg.</div></div>
         <div style="border:1px solid ${LINE};border-radius:8px;padding:12px 14px"><b style="color:${GREEN}">Overskudd til kulturarven</b><div style="font-size:13px;color:${MUT};margin-top:3px">Allstads andel av overskuddet går til Kirkebevaringsfondet – uansett hvilken modell kommunen velger.</div></div>
       </div>
-      <div style="background:#F2EFE6;border-left:3px solid ${GOLD};padding:12px 16px;margin:22px 0 6px;font-size:13px;color:${INK}">Dette er et foreløpig anslag til dialog. Allstad utarbeider, sammen med Agenda Kaupang, en detaljert bolig- og tjenesteanalyse (boligtrapp-metodikk) tilpasset kommunen før endelige tall og anbefalinger fastsettes.</div>
+      <div style="background:#F2EFE6;border-left:3px solid ${GOLD};padding:12px 16px;margin:22px 0 6px;font-size:13px;color:${INK}">Dette er et foreløpig anslag til dialog. Endelige tall og anbefalinger fastsettes i en detaljert bolig- og tjenesteanalyse tilpasset kommunen.</div>
       ${h2('Veien videre')}
       <p style="margin:0 0 6px">Allstad bistår gjerne ${d.navn} med et konkret skisseprosjekt og et finansieringsalternativ tilpasset kommunens situasjon. Ta kontakt for en uforpliktende gjennomgang.</p>
       <p style="margin:0 0 22px;color:#555">[Kontaktperson · e-post · telefon]</p>
