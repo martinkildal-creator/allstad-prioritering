@@ -124,7 +124,8 @@ tbody tr:hover{background:var(--sand)}
   .note .x,.note .btnrow,.note .ed{display:none}
   body.pdfmode>*:not(#pdfview){display:none!important}
   body.pdfmode .drawer,body.pdfmode .drawer-bg{display:none!important}
-  body.pdfmode #pdfview{display:block!important;position:static}
+  html,body.pdfmode{height:auto!important;overflow:visible!important}
+  body.pdfmode #pdfview{display:block!important;position:static!important;inset:auto!important;height:auto!important;overflow:visible!important;z-index:auto!important}
   #pdfview .pdf-toolbar{display:none!important}
 }
 #pdfview{display:none}
@@ -146,7 +147,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
     </div>
     <div style="display:flex;align-items:center;gap:10px">
       <button class="btn ghost" style="padding:8px 13px;font-size:13px" onclick="openMetode()">ⓘ Slik regnes det</button>
-      <span class="tag">Internt · v29</span>
+      <span class="tag">Internt · v30</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -737,8 +738,7 @@ function kommunePDF(navn){
       </div>
       <div style="background:#F2EFE6;border-left:3px solid ${GOLD};padding:12px 16px;margin:22px 0 6px;font-size:13px;color:${INK}">Dette er et foreløpig anslag til dialog. Endelige tall og anbefalinger fastsettes i en detaljert bolig- og tjenesteanalyse tilpasset kommunen.</div>
       ${h2('Veien videre')}
-      <p style="margin:0 0 6px">Allstad bistår gjerne ${d.navn} med et konkret skisseprosjekt og et finansieringsalternativ tilpasset kommunens situasjon. Ta kontakt for en uforpliktende gjennomgang.</p>
-      <p style="margin:0 0 22px;color:#555">[Kontaktperson · e-post · telefon]</p>
+      <p style="margin:0 0 22px">Allstad bistår gjerne ${d.navn} med et konkret skisseprosjekt og et finansieringsalternativ tilpasset kommunens situasjon. Ta kontakt for en uforpliktende gjennomgang.</p>
       <div style="border-top:1px solid ${LINE};padding-top:12px;font-size:11px;color:#999">Datagrunnlag: SSB (folkemengde, befolkningsframskriving hovedalt.), KOSTRA (kapasitet og kostnadstall). Behov beregnet med aldersdifferensiert dekningsgrad (KS/Agenda Kaupang). Tallene er anslag for dialogformål. © Allstad ${new Date().getFullYear()}.</div>
       </div>
     </div>
