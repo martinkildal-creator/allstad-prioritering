@@ -119,6 +119,7 @@ tbody tr:hover{background:var(--sand)}
 .foot b{color:var(--ink)}
 .hidden{display:none}
 @media print{
+  @page{margin:13mm}
   body{background:#fff} .grid,.tablecard,.banner,header.top,.foot,.steps,.scattercard,.overviewcard{display:none!important}
   .drawer-bg{display:none} .drawer{position:static;transform:none;width:100%;box-shadow:none;background:#fff}
   .note .x,.note .btnrow,.note .ed{display:none}
@@ -148,7 +149,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
     </div>
     <div style="display:flex;align-items:center;gap:10px">
       <button class="btn ghost" style="padding:8px 13px;font-size:13px" onclick="openMetode()">ⓘ Slik regnes det</button>
-      <span class="tag">Internt · v31</span>
+      <span class="tag">Internt · v32</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -696,14 +697,20 @@ function kommunePDF(navn){
     <p style="margin:0 0 10px">En omsorgsbolig med døgntjenester koster mindre å drifte enn en institusjonsplass, og samlokalisering gir mer effektiv hjemmetjeneste og kan utsette behovet for plass. Med <b>${fmt(U)}</b> omsorgsboliger anslås en årlig driftsbesparelse på <b>~${loYr.toFixed(1).replace('.',',')}–${hiYr.toFixed(1).replace('.',',')} mill. kr</b> – i størrelsesorden <b>~${Math.round(loYr*10).toLocaleString('no')}–${Math.round(hiYr*10).toLocaleString('no')} mill. kr</b> over ti år. Nedre anslag er effektivisering/forebygging, øvre er substitusjon (institusjon → omsorgsbolig).</p>
     <div style="margin:8px 0 4px">${besparelseChart(d,U)}</div>
     <p style="font-size:11px;color:${MUT};margin:2px 0 0">Anslag basert på substitusjon mellom omsorgstrinn og effektivisering. Institusjon ${Gv.inst.toFixed(2).replace('.',',')} → omsorgsbolig ${Gv.bolig.toFixed(2).replace('.',',')} mill./plass/år${d.kostpr?' (institusjon = kommunens KOSTRA-kostnad)':''}.</p>`:'';
+  const kilder=[
+    `folkemengde og alder (SSB ${META.popTable||'07459'}${META.popYear?', '+META.popYear:''})`,
+    `befolkningsframskriving mot 2035 og 2040 (SSB ${META.framTable||'13600'}, hovedalt. MMMM)`];
+  if(META.kapTable)kilder.push(`kapasitet og kostnad per plass (KOSTRA ${META.kapTable}${META.kapYear?', '+META.kapYear:''})`);
+  if(META.econTable)kilder.push(`kommuneøkonomi (KOSTRA ${META.econTable}${META.econYear?', '+META.econYear:''})`);
+  if(META.gjeldTable)kilder.push(`netto lånegjeld per innbygger (KOSTRA ${META.gjeldTable})`);
+  const kilderStr=kilder.join('; ');
   const pv=document.getElementById('pdfview');
   pv.innerHTML=`
     <div class="pdf-toolbar" style="position:sticky;top:0;background:#fff;border-bottom:1px solid ${LINE};padding:12px 20px;display:flex;gap:10px;justify-content:flex-end;z-index:2">
       <button onclick="window.print()" style="background:${GREEN};color:${CREAM};border:0;border-radius:8px;padding:9px 16px;font-size:14px;font-weight:600;cursor:pointer">⎙ Skriv ut / lagre som PDF</button>
       <button onclick="closePDF()" style="background:#fff;color:#333;border:1px solid #D5DCDA;border-radius:8px;padding:9px 16px;font-size:14px;cursor:pointer">Lukk</button>
     </div>
-    <div style="background:#FBFAF5">
-    <div style="max-width:730px;margin:0 auto;font-family:'Hanken Grotesk',system-ui,sans-serif;color:${INK};line-height:1.55;font-size:14px">
+    <div style="max-width:760px;margin:0 auto;background:#FBFAF5;font-family:'Hanken Grotesk',system-ui,sans-serif;color:${INK};line-height:1.55;font-size:14px;border:1px solid ${LINE}">
       <div style="background:${GREEN};color:${CREAM};padding:34px 40px 28px">
         <div style="font-family:'Fraunces',serif;font-weight:700;font-size:20px;letter-spacing:1px;color:#fff">ALLSTAD</div>
         <div style="height:2px;width:54px;background:${GOLD};margin:18px 0 16px"></div>
@@ -740,9 +747,11 @@ function kommunePDF(navn){
       <div style="background:#F2EFE6;border-left:3px solid ${GOLD};padding:12px 16px;margin:22px 0 6px;font-size:13px;color:${INK}">Dette er et foreløpig anslag til dialog. Endelige tall og anbefalinger fastsettes i en detaljert bolig- og tjenesteanalyse tilpasset kommunen.</div>
       ${h2('Veien videre')}
       <p style="margin:0 0 22px">Allstad bistår gjerne ${d.navn} med et konkret skisseprosjekt og et finansieringsalternativ tilpasset kommunens situasjon. Ta kontakt for en uforpliktende gjennomgang.</p>
-      <div style="border-top:1px solid ${LINE};padding-top:12px;font-size:11px;color:#999">Datagrunnlag: SSB (folkemengde, befolkningsframskriving hovedalt.), KOSTRA (kapasitet og kostnadstall). Behov beregnet med aldersdifferensiert dekningsgrad (KS/Agenda Kaupang). Tallene er anslag for dialogformål. © Allstad ${new Date().getFullYear()}.</div>
+      ${h2('Slik er det regnet')}
+      <p style="margin:0 0 8px;font-size:13px">Behovet for heldøgns omsorgsplasser er beregnet ved å legge aldersdifferensierte dekningsgrader på SSBs befolkningsframskriving (hovedalternativet MMMM), etter KS/Agenda Kaupang-metoden. Besparelsen bygger på differansen i driftskostnad mellom institusjon og omsorgsbolig (substitusjon) og på mer effektiv hjemmetjeneste ved samlokalisering (effektivisering/forebygging). Alle tall er anslag for dialog – endelige tall fastsettes i detaljanalysen.</p>
+      <p style="margin:0 0 4px;font-size:12px;color:${MUT}"><b>Kilder:</b> ${kilderStr}.</p>
+      <div style="border-top:1px solid ${LINE};margin-top:10px;padding-top:8px;font-size:11px;color:#999">© Allstad ${new Date().getFullYear()} · Datagrunnlag fra Statistisk sentralbyrå (SSB) og KOSTRA.</div>
       </div>
-    </div>
     </div>`;
   document.body.classList.add('pdfmode');
   pv.scrollTop=0;
