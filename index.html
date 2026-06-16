@@ -128,6 +128,8 @@ tbody tr:hover{background:var(--sand)}
   html,body.pdfmode{height:auto!important;overflow:visible!important}
   body.pdfmode #pdfview{display:block!important;position:static!important;inset:auto!important;height:auto!important;overflow:visible!important;z-index:auto!important}
   body.pdfmode #pdfview,body.pdfmode #pdfview *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}
+  #pdfview h2,#pdfview h2+div{break-after:avoid!important;page-break-after:avoid!important}
+  #pdfview svg,#pdfview table{break-inside:avoid!important;page-break-inside:avoid!important}
   #pdfview .pdf-toolbar{display:none!important}
 }
 #pdfview{display:none}
@@ -149,7 +151,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
     </div>
     <div style="display:flex;align-items:center;gap:10px">
       <button class="btn ghost" style="padding:8px 13px;font-size:13px" onclick="openMetode()">ⓘ Slik regnes det</button>
-      <span class="tag">Internt · v32</span>
+      <span class="tag">Internt · v33</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -748,7 +750,7 @@ function kommunePDF(navn){
       ${h2('Veien videre')}
       <p style="margin:0 0 22px">Allstad bistår gjerne ${d.navn} med et konkret skisseprosjekt og et finansieringsalternativ tilpasset kommunens situasjon. Ta kontakt for en uforpliktende gjennomgang.</p>
       ${h2('Slik er det regnet')}
-      <p style="margin:0 0 8px;font-size:13px">Behovet for heldøgns omsorgsplasser er beregnet ved å legge aldersdifferensierte dekningsgrader på SSBs befolkningsframskriving (hovedalternativet MMMM), etter KS/Agenda Kaupang-metoden. Besparelsen bygger på differansen i driftskostnad mellom institusjon og omsorgsbolig (substitusjon) og på mer effektiv hjemmetjeneste ved samlokalisering (effektivisering/forebygging). Alle tall er anslag for dialog – endelige tall fastsettes i detaljanalysen.</p>
+      <p style="margin:0 0 8px;font-size:13px">Behovet for heldøgns omsorgsplasser er beregnet ved å legge aldersdifferensierte dekningsgrader på SSBs befolkningsframskriving (hovedalternativet MMMM), etter etablert metodikk for kommunal omsorgsplanlegging. Besparelsen bygger på differansen i driftskostnad mellom institusjon og omsorgsbolig (substitusjon) og på mer effektiv hjemmetjeneste ved samlokalisering (effektivisering/forebygging). Alle tall er anslag for dialog – endelige tall fastsettes i detaljanalysen.</p>
       <p style="margin:0 0 4px;font-size:12px;color:${MUT}"><b>Kilder:</b> ${kilderStr}.</p>
       <div style="border-top:1px solid ${LINE};margin-top:10px;padding-top:8px;font-size:11px;color:#999">© Allstad ${new Date().getFullYear()} · Datagrunnlag fra Statistisk sentralbyrå (SSB) og KOSTRA.</div>
       </div>
