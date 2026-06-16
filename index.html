@@ -126,6 +126,7 @@ tbody tr:hover{background:var(--sand)}
   body.pdfmode .drawer,body.pdfmode .drawer-bg{display:none!important}
   html,body.pdfmode{height:auto!important;overflow:visible!important}
   body.pdfmode #pdfview{display:block!important;position:static!important;inset:auto!important;height:auto!important;overflow:visible!important;z-index:auto!important}
+  body.pdfmode #pdfview,body.pdfmode #pdfview *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;color-adjust:exact!important}
   #pdfview .pdf-toolbar{display:none!important}
 }
 #pdfview{display:none}
@@ -147,7 +148,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
     </div>
     <div style="display:flex;align-items:center;gap:10px">
       <button class="btn ghost" style="padding:8px 13px;font-size:13px" onclick="openMetode()">ⓘ Slik regnes det</button>
-      <span class="tag">Internt · v30</span>
+      <span class="tag">Internt · v31</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
