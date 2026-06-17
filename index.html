@@ -151,7 +151,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
     </div>
     <div style="display:flex;align-items:center;gap:10px">
       <button class="btn ghost" style="padding:8px 13px;font-size:13px" onclick="openMetode()">ⓘ Slik regnes det</button>
-      <span class="tag">Internt · v34</span>
+      <span class="tag">Internt · v35</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -687,7 +687,7 @@ function kommunePDF(navn){
     ['Anslått behov for heldøgns omsorgsplasser (2035)', '~'+fmt(behovF)] ];
   if(d.behovFuture40!=null){rows.push(['Innbyggere 80+ i 2040', fmt(d.i80_40)]);rows.push(['Vekst blant 80+ mot 2040', (d.vekst40*100).toFixed(0)+'%']);rows.push(['Anslått behov heldøgns omsorgsplasser (2040)', '~'+fmt(d.behovFuture40)]);}
   if(capKnown){rows.push(['Heldøgns plasser i dag', fmt(d.plasser)]);}
-  if(d.kapDirect&&(d.kapInst!=null||d.kapBolig!=null)){rows.push(['– herav institusjon / bemannet bolig', fmt(d.kapInst||0)+' / '+fmt(d.kapBolig||0)]);}
+  if(d.kapDirect&&(d.kapInst!=null||d.kapBolig!=null)){rows.push(['– herav 80+ institusjon / bemannet bolig', fmt(d.kapInst||0)+' / '+fmt(d.kapBolig||0)]);}
   if(andelPlass!=null){rows.push(['Andel 80+ med heldøgns plass i dag', pc(andelPlass)]);}
   if(capKnown){rows.push(['Udekket behov mot 2035', '~'+fmt(gap)+' plasser']);}
   rows.push(['Yrkesaktive (20–66) per innbygger 80+, i dag', byrdeNow.toFixed(1).replace('.',',')]);
@@ -793,7 +793,7 @@ function openNote(navn){
       ${d.i80_40!=null?`<div><div class="k">Innb. 80+ 2040</div><div class="v">${d.i80_40.toLocaleString('no')} <small>+${(d.vekst40*100).toFixed(0)}%</small></div></div>`:''}
       <div><div class="k">Andel 80+ med plass i dag</div><div class="v">${pct(d.dekn)}</div></div>
       <div><div class="k">Kapasitetsgap</div><div class="v">${n>0?'+':''}${n.toLocaleString('no')} <small>plasser</small></div></div>
-      ${d.kapDirect&&(d.kapInst!=null||d.kapBolig!=null)?`<div><div class="k">Herav inst. / bemannet bolig</div><div class="v">${(d.kapInst||0).toLocaleString('no')} / ${(d.kapBolig||0).toLocaleString('no')}</div></div>`:''}
+      ${d.kapDirect&&(d.kapInst!=null||d.kapBolig!=null)?`<div><div class="k">Herav 80+ inst. / bemannet bolig</div><div class="v">${(d.kapInst||0).toLocaleString('no')} / ${(d.kapBolig||0).toLocaleString('no')}</div></div>`:''}
     </div>
     <h3>Behov for heldøgns omsorgsplasser (HDO)</h3>
     <p>«Behov» betyr her <b>heldøgns omsorgsplasser</b> – langtids institusjonsplasser pluss omsorgsboliger med heldøgns bemanning – etter KS/Agenda Kaupang-metoden (samme definisjon som KS' verktøy «Omsorg 2050»). Vanlige omsorgsboliger uten bemanning teller ikke; Allstads boliger teller når de har heldøgns bemanning. Behovet beregnes ved å legge en antatt dekningsgrad på hver aldersgruppe i den framskrevne befolkningen (67–79: ${r1.value}%, 80–89: ${r2.value}%, 90+: ${r3.value}%).</p>
@@ -873,7 +873,7 @@ function openMetode(){
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.popTable||'07459'}</td><td style="padding:5px 8px">Folkemengde og aldersfordeling i dag (67–79, 80–89, 90+, 20–66)</td><td style="padding:5px 8px">${META.popYear||'–'}</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.framTable||'13600'}</td><td style="padding:5px 8px">Befolkningsframskriving mot 2035 (hovedalt. MMMM)</td><td style="padding:5px 8px">${META.framYear||'–'}</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.fram40Table||'13600'}</td><td style="padding:5px 8px">Befolkningsframskriving mot 2040 (hovedalt. MMMM)</td><td style="padding:5px 8px">${META.fram40Year||'–'}</td></tr>
-        <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.hdoTable||'12292'}</td><td style="padding:5px 8px">Heldøgns plasser: beboere institusjon (langtid) + bolig m/ heldøgns bemanning</td><td style="padding:5px 8px">${META.hdoYear||'–'}</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.hdoTable||'12292'}</td><td style="padding:5px 8px">Heldøgns plasser (80+): beboere institusjon (langtid) + bolig m/ heldøgns bemanning</td><td style="padding:5px 8px">${META.hdoYear||'–'}</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.econTable||'12143'}</td><td style="padding:5px 8px">KOSTRA: netto driftsresultat og disposisjonsfond (% av brutto driftsinntekter)</td><td style="padding:5px 8px">${META.econYear||'–'}</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.kapTable||'12293'}</td><td style="padding:5px 8px">KOSTRA: dekningsgrad institusjon + bemannet bolig, hjemmetjeneste høy timeinnsats, enerom, driftskostnad per plass</td><td style="padding:5px 8px">${META.kapYear||'–'}</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.gjeldTable||'12137'}</td><td style="padding:5px 8px">KOSTRA: netto lånegjeld per innbygger</td><td style="padding:5px 8px">${META.gjeldYear||'–'}</td></tr>
@@ -890,7 +890,7 @@ function openMetode(){
     <p>Dette regnes både for befolkningen <b>i dag</b> og <b>framskrevet til 2035</b>. Veksten = (behov 2035 − behov i dag) / behov i dag. Ratene tilsvarer en samlet dekningsgrad på rundt 17–20% av innbyggere 80+ – nær det historiske politiske målet på 25%. Hver kommune kan ha egne tall, så ratene bør kalibreres mot kommunens faktiske dekningsgrad før møtet.</p>
 
     <h3>3. Kapasitet og gap</h3>
-    <p>Dagens kapasitet hentes som <b>antall beboere på institusjon med langtidsopphold</b> pluss <b>antall beboere i bolig med fast bemanning hele døgnet</b> (KOSTRA, tabell 12292) – summen utgjør heldøgns omsorgsplasser. Der disse tallene mangler for en kommune, anslås kapasiteten i stedet fra dekningsgrad × antall innbyggere 80+. Gapet = framskrevet behov − dagens kapasitet.</p>
+    <p>Dagens kapasitet hentes som <b>antall beboere 80 år og over på institusjon (langtidsopphold)</b> pluss <b>antall beboere 80 år og over i bolig med heldøgns bemanning</b> (KOSTRA, tabell 12292) – summen utgjør heldøgns omsorgsplasser for eldre. Vi bruker 80+-tall for å unngå å telle med ikke-eldre i bemannet bolig (f.eks. bofellesskap for utviklingshemmede). Der 80+-tall mangler, brukes totaltall, eventuelt et anslag fra dekningsgrad × antall innbyggere 80+. Gapet = framskrevet behov − dagens kapasitet.</p>
 
     <h3>4. Behovsscore (vekst vs. volum)</h3>
     <p>Behovsscoren blander to perspektiver, styrt av «Behovsprofil»-bryteren (nå: <b>${blt}</b>, ${blv}/100): hvor raskt behovet <b>vokser</b> (vektes ${blv}%) og hvor stort <b>gapet i antall</b> er (vektes ${100-blv}%). Begge skaleres 0–100 mot alle kommuner, så en liten kommune med sterk vekst kan rangere over en storby.</p>
@@ -1241,8 +1241,8 @@ async function fetchSSB(){
     const e=econ[p.nr]||{}; const fr=fram[p.nr]||{}; const fr40=fram40[p.nr]||{}; const k=kap[p.nr]||{}; const hd=hdo[p.nr]||{}; const gj=gjeld[p.nr]||{}; const pl=pol[p.nr]||null;
     const hasE=e.ndr!=null||e.disp!=null;
     const i80=Math.round(p.plus80);
-    const instBeb=hd.instTot!=null?hd.instTot:(hd.inst80!=null?hd.inst80:null);
-    const boligBeb=hd.boligTot!=null?hd.boligTot:(hd.bolig80!=null?hd.bolig80:null);
+    const instBeb=hd.inst80!=null?hd.inst80:(hd.instTot!=null?hd.instTot:null);
+    const boligBeb=hd.bolig80!=null?hd.bolig80:(hd.boligTot!=null?hd.boligTot:null);
     const kapDirect=(instBeb!=null||boligBeb!=null);
     const plasserDir=Math.round((instBeb||0)+(boligBeb||0));
     const kpct=((k.inst||0)+(k.bolig||0))/100;
