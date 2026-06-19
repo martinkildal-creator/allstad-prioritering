@@ -151,7 +151,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
     </div>
     <div style="display:flex;align-items:center;gap:10px">
       <button class="btn ghost" style="padding:8px 13px;font-size:13px" onclick="openMetode()">ⓘ Slik regnes det</button>
-      <span class="tag">Internt · v35</span>
+      <span class="tag">Internt · v36</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -294,6 +294,7 @@ const DEMO=[
  {nr:"—",navn:"Eksempelkommune E",folketall:4300,i80:260,i80_35:300,plasser:55,ndr:.015,disp:.05,robek:false,intens:1,tomt:2,regulert:false},
 ];
 let DATA=DEMO.map(d=>({...d})), isDemo=true, sortKey="total", sortDir=-1, searchTerm="";
+let NAT={};
 const META={};
 let OVR={}; try{OVR=JSON.parse(localStorage.getItem("allstadOverrides")||"{}");}catch(_){OVR={};}
 function applyOverrides(){DATA.forEach(d=>{const o=OVR[d.nr];if(o)for(const k in o)d[k]=o[k];});}
@@ -351,6 +352,8 @@ function compute(){
     d.dekn=d.i80? d.plasser/d.i80 : 0;
     d.andel80=d.folketall? d.i80/d.folketall : 0;
     d.vekst80=d.i80? (d.i80_35-d.i80)/d.i80 : 0;
+    d.instDek=(d.i80&&d.kapInst!=null)? d.kapInst/d.i80 : null;
+    d.boligDek=(d.i80&&d.kapBolig!=null)? d.kapBolig/d.i80 : null;
     d.hasEcon=(d.econLoaded===true)||isDemo||d.robek;
     if(d.hasEcon){
       const wNdr=d.ndr<p.tndr, wDisp=d.disp<p.tdf, weak=(wNdr?1:0)+(wDisp?1:0);
@@ -377,6 +380,31 @@ function compute(){
   });
   const byTot=[...DATA].sort((a,b)=>b.total-a.total);
   byTot.forEach((d,i)=>d.rang=i+1);
+  const valN=DATA.filter(d=>d.i80>0);
+  const sP=valN.reduce((s,d)=>s+(d.folketall||0),0), s80=valN.reduce((s,d)=>s+(d.i80||0),0);
+  const iArr=valN.filter(d=>d.kapInst!=null), bArr=valN.filter(d=>d.kapBolig!=null);
+  const s80i=iArr.reduce((s,d)=>s+(d.i80||0),0), sInst=iArr.reduce((s,d)=>s+(d.kapInst||0),0);
+  const s80b=bArr.reduce((s,d)=>s+(d.i80||0),0), sBol=bArr.reduce((s,d)=>s+(d.kapBolig||0),0);
+  NAT.andel80=sP?s80/sP:0;
+  NAT.instDek=s80i?sInst/s80i:null;
+  NAT.boligDek=s80b?sBol/s80b:null;
+  DATA.forEach(d=>{
+    d.andel80VsNat=NAT.andel80?d.andel80-NAT.andel80:null;
+    d.instVsNat=(d.instDek!=null&&NAT.instDek!=null)?d.instDek-NAT.instDek:null;
+    d.boligVsNat=(d.boligDek!=null&&NAT.boligDek!=null)?d.boligDek-NAT.boligDek:null;
+    d.boligUnder=(d.boligDek!=null&&NAT.boligDek!=null&&d.i80)?Math.round(NAT.boligDek*d.i80-d.kapBolig):null;
+    let pr=null;
+    if(d.instDek!=null&&d.boligDek!=null&&NAT.instDek&&NAT.boligDek){
+      const iHi=d.instDek>NAT.instDek*1.1, iLo=d.instDek<NAT.instDek*0.9;
+      const bLo=d.boligDek<NAT.boligDek*0.9, bHi=d.boligDek>NAT.boligDek*1.1;
+      if(iHi&&bLo)pr={k:'substitusjon',t:'Overdekket institusjon, underdekket omsorgsbolig'};
+      else if(bLo)pr={k:'utbygging',t:'Underdekket omsorgsbolig'};
+      else if(iHi)pr={k:'substitusjon',t:'Overdekket institusjon'};
+      else if(bHi&&iLo)pr={k:'naer',t:'Vridd mot omsorgsbolig (lavt institusjonsnivå)'};
+      else pr={k:'naer',t:'Nær landssnitt'};
+    }
+    d.profil=pr;
+  });
   render();
 }
 function render(){
@@ -458,12 +486,35 @@ function omsorgsbyrdeChart(d){
     g+=`<text x="${cx.toFixed(1)}" y="${mT+ph+18}" text-anchor="middle" font-size="11" fill="var(--ink)">${it[0]}</text>`;});
   return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-family:'Hanken Grotesk'">${g}<line x1="${mL}" y1="${mT+ph}" x2="${W-mR}" y2="${mT+ph}" stroke="var(--muted)"/></svg>`;
 }
+function profilTekst(d){
+  const pp=v=>(v>=0?'+':'\u2212')+Math.abs(v*100).toFixed(1).replace('.',',')+' pp';
+  const pc1=v=>(v*100).toFixed(1).replace('.',',')+'%';
+  let parts=[];
+  if(d.andel80VsNat!=null)parts.push(`Andel 80+ av befolkningen er <b>${pct(d.andel80)}</b> mot landssnittet <b>${pct(NAT.andel80)}</b> (${pp(d.andel80VsNat)}).`);
+  if(d.instDek!=null&&NAT.instDek!=null)parts.push(`Institusjonsdekning <b>${pc1(d.instDek)}</b> av 80+ mot landssnitt <b>${pc1(NAT.instDek)}</b>.`);
+  if(d.boligDek!=null&&NAT.boligDek!=null)parts.push(`Omsorgsbolig-dekning <b>${pc1(d.boligDek)}</b> av 80+ mot landssnitt <b>${pc1(NAT.boligDek)}</b>.`);
+  let flag='';
+  if(d.profil){
+    const col=d.profil.k==='substitusjon'?'#B5701F':(d.profil.k==='utbygging'?'#2E6F62':'var(--muted)');
+    flag=`<div style="margin-top:6px"><b style="color:${col}">${d.profil.t}.</b> `;
+    if(d.profil.k==='substitusjon')flag+=`Kommunen har relativt mange institusjonsplasser og få bemannede omsorgsboliger sammenlignet med landet. Caset er <b>substitusjon</b>: omsorgsbolig som lar kommunen vri ned fra dyr institusjon \u2013 i tråd med etablert fagmetodikk.`;
+    else if(d.profil.k==='utbygging')flag+=`Kommunen ligger under landssnittet på bemannet omsorgsbolig. Caset er <b>utbygging</b> av omsorgsboliger.`;
+    else flag+=`Se vekst og samlet behov for prioritering.`;
+    flag+=`</div>`;
+  }
+  let und='';
+  if(d.boligUnder!=null&&d.boligUnder>0)und=`<div style="margin-top:4px">For å nå landssnittets omsorgsbolig-dekning mangler kommunen ca. <b>${d.boligUnder.toLocaleString('no')} bemannede omsorgsboliger</b> (ved dagens antall 80+).</div>`;
+  return parts.join(' ')+flag+und;
+}
 function snittChart(d){
   const sameFy=DATA.filter(x=>fylkeAv(x.nr)===fylkeAv(d.nr));
   const avg=(arr,f)=>{const v=arr.map(f).filter(x=>x!=null&&isFinite(x));return v.length?v.reduce((a,b)=>a+b,0)/v.length:0;};
-  const metrics=[{label:'Vekst i antall eldre (80+) mot 2035',vals:[['Kommune',d.vekst80],['Fylke',avg(sameFy.filter(x=>x.i80>0),x=>x.vekst80)],['Land',avg(DATA.filter(x=>x.i80>0),x=>x.vekst80)]]}];
+  const metrics=[{label:'Andel 80+ av befolkningen',vals:[['Kommune',d.andel80],['Fylke',avg(sameFy.filter(x=>x.i80>0),x=>x.andel80)],['Land',avg(DATA.filter(x=>x.i80>0),x=>x.andel80)]]},
+    {label:'Vekst i antall eldre (80+) mot 2035',vals:[['Kommune',d.vekst80],['Fylke',avg(sameFy.filter(x=>x.i80>0),x=>x.vekst80)],['Land',avg(DATA.filter(x=>x.i80>0),x=>x.vekst80)]]}];
   if(d.vekst40!=null)metrics.push({label:'Vekst i antall eldre (80+) mot 2040',vals:[['Kommune',d.vekst40],['Fylke',avg(sameFy.filter(x=>x.vekst40!=null),x=>x.vekst40)],['Land',avg(DATA.filter(x=>x.vekst40!=null),x=>x.vekst40)]]});
   if(d.plasser>0)metrics.push({label:'Andel 80+ med plass i dag',ref:0.25,vals:[['Kommune',d.dekn],['Fylke',avg(sameFy.filter(x=>x.plasser>0),x=>x.dekn)],['Land',avg(DATA.filter(x=>x.plasser>0),x=>x.dekn)]]});
+  if(d.instDek!=null)metrics.push({label:'Andel 80+ på institusjon',vals:[['Kommune',d.instDek],['Fylke',avg(sameFy.filter(x=>x.instDek!=null),x=>x.instDek)],['Land',avg(DATA.filter(x=>x.instDek!=null),x=>x.instDek)]]});
+  if(d.boligDek!=null)metrics.push({label:'Andel 80+ i omsorgsbolig m/ bemanning',vals:[['Kommune',d.boligDek],['Fylke',avg(sameFy.filter(x=>x.boligDek!=null),x=>x.boligDek)],['Land',avg(DATA.filter(x=>x.boligDek!=null),x=>x.boligDek)]]});
   const W=560,rowH=24,mL=78,barW=W-mL-72;let y=6,g='';
   metrics.forEach(m=>{
     const max=Math.max(...m.vals.map(v=>v[1]),m.ref||0,0.0001)*1.16;
@@ -808,10 +859,12 @@ function openNote(navn){
     <div class="recco">I dag er det <b>${(d.i80?d.yrk/d.i80:0).toFixed(1)}</b> personer i arbeidsfør alder (20–66) per innbygger 80+; i 2035 er det <b>${(d.i80_35?d.yrk35/d.i80_35:0).toFixed(1)}</b>. Færre hender skal dekke flere eldre – kommunen kan ikke bemanne seg ut av behovet, og må planlegge tilbudet i tide. (Helsepersonellkommisjonen, 2023.)</div>
     <h3>Sammenlignet med fylke og land</h3>
     <div>${snittChart(d)}</div>
-    <div class="recco">«Andel 80+ med plass» = hvor stor del av de eldste (80+) som har en heldøgnsplass i dag. Et vanlig politisk mål er <b>25 %</b> (stiplet linje). Ligger kommunen under linja, eller høyere på vekst enn snittet i ${fylkeAv(d.nr)} og landet, er behovet mer påtrengende her enn for gjennomsnittskommunen.</div>
+    <div class="recco">«Andel 80+ av befolkningen» viser om kommunen er eldre enn landet. «Andel 80+ med plass» = hvor stor del av de eldste som har en heldøgnsplass i dag (mål <b>25 %</b>, stiplet linje). Ligger kommunen under linja, eller høyere på vekst/andel eldre enn snittet i ${fylkeAv(d.nr)} og landet, er behovet mer påtrengende her enn for gjennomsnittskommunen.</div>
+    ${d.profil||d.boligUnder!=null?`<h3>Dekningsprofil mot landssnitt</h3>
+    <div class="recco">${profilTekst(d)}</div>`:''}
     <h3>Flere nøkkeltall</h3>
     <div class="kv">
-      <div><div class="k">Dagens HDO-plasser</div><div class="v">${(d.plasser||0).toLocaleString('no')}${(d.instP||d.boligP)?` <small>inst. ${Math.round((d.instP||0)/100*d.i80)} · bolig ${Math.round((d.boligP||0)/100*d.i80)}</small>`:''}</div></div>
+      <div><div class="k">Dagens HDO-plasser</div><div class="v">${(d.plasser||0).toLocaleString('no')}${(d.kapInst!=null||d.kapBolig!=null)?` <small>inst. ${(d.kapInst||0).toLocaleString('no')} · bolig ${(d.kapBolig||0).toLocaleString('no')}</small>`:((d.instP||d.boligP)?` <small>inst. ${Math.round((d.instP||0)/100*d.i80)} · bolig ${Math.round((d.boligP||0)/100*d.i80)}</small>`:'')}</div></div>
       ${d.hjemHoy?`<div><div class="k">Hjemmetj. med høy timeinnsats</div><div class="v">${d.hjemHoy.toFixed(1).replace('.',',')}%</div></div>`:''}
       ${d.enerom?`<div><div class="k">Plasser i enerom m/ bad-WC</div><div class="v">${d.enerom.toFixed(0)}%</div></div>`:''}
       ${d.kostpr?`<div><div class="k">Driftskostnad pr plass</div><div class="v">${(d.kostpr/1e6).toFixed(1).replace('.',',')} <small>mill. kr/år</small></div></div>`:''}
