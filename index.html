@@ -151,7 +151,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
     </div>
     <div style="display:flex;align-items:center;gap:10px">
       <button class="btn ghost" style="padding:8px 13px;font-size:13px" onclick="openMetode()">ⓘ Slik regnes det</button>
-      <span class="tag">Internt · v37</span>
+      <span class="tag">Internt · v39</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -335,20 +335,24 @@ function compute(){
   const p=P(); const ws=p.wb+p.wf||1;
   const wB=p.wb/ws, wF=p.wf/ws;
   const sa=Math.pow(1-p.sunn,11);
+  const DR=[0.05,0.22,0.48];
   DATA.forEach(d=>{
     const a1=d.a1!=null?d.a1:(d.i80||0)*2.4, a2=d.a2!=null?d.a2:(d.i80||0)*0.82, a3=d.a3!=null?d.a3:(d.i80||0)*0.18;
     const f1=d.f1!=null?d.f1:(d.i80_35||0)*2.4, f2=d.f2!=null?d.f2:(d.i80_35||0)*0.82, f3=d.f3!=null?d.f3:(d.i80_35||0)*0.18;
     d.behovNow=a1*p.r1+a2*p.r2+a3*p.r3;
     d.behovFuture=(f1*p.r1+f2*p.r2+f3*p.r3)*sa;
     d.behovVekst=d.behovNow>0?(d.behovFuture/d.behovNow-1):0;
+    d.demNow=a1*DR[0]+a2*DR[1]+a3*DR[2];
+    d.dem35=f1*DR[0]+f2*DR[1]+f3*DR[2];
     d.gap=d.behovFuture-(d.plasser||0);
     const has40=d.g1!=null||d.i80_40!=null;
     if(has40){const sa40=Math.pow(1-p.sunn,16);
       const g1=d.g1!=null?d.g1:(d.i80_40||0)*2.4, g2=d.g2!=null?d.g2:(d.i80_40||0)*0.82, g3=d.g3!=null?d.g3:(d.i80_40||0)*0.18;
       d.behovFuture40=(g1*p.r1+g2*p.r2+g3*p.r3)*sa40;
+      d.dem40=g1*DR[0]+g2*DR[1]+g3*DR[2];
       d.vekst40=d.i80?(d.i80_40-d.i80)/d.i80:0;
       d.gap40=d.behovFuture40-(d.plasser||0);
-    }else{d.behovFuture40=null;d.vekst40=null;d.gap40=null;}
+    }else{d.behovFuture40=null;d.vekst40=null;d.gap40=null;d.dem40=null;}
     d.dekn=d.i80? d.plasser/d.i80 : 0;
     d.andel80=d.folketall? d.i80/d.folketall : 0;
     d.vekst80=d.i80? (d.i80_35-d.i80)/d.i80 : 0;
@@ -475,8 +479,12 @@ function omsorgsbyrdeChart(d){
   const rNow=d.i80?d.yrk/d.i80:0, r35=d.i80_35?d.yrk35/d.i80_35:0;
   const items=[['I dag',rNow,'#9AA6A3'],['2035',r35,'#D98C3F']];
   if(d.i80_40&&d.yrk40!=null)items.push(['2040',d.yrk40/d.i80_40,'#B5701F']);
-  const W=560,H=210,mL=42,mR=16,mT=22,mB=36,pw=W-mL-mR,ph=H-mT-mB;
-  const max=Math.max(1,rNow,r35),niceMax=Math.max(2,Math.ceil(max/2)*2);
+  const allArr=DATA.filter(x=>x.i80>0&&x.yrk!=null), fyArr=allArr.filter(x=>fylkeAv(x.nr)===fylkeAv(d.nr));
+  const sY=arr=>arr.reduce((s,x)=>s+(x.yrk||0),0), s8=arr=>arr.reduce((s,x)=>s+(x.i80||0),0);
+  const landAvg=s8(allArr)?sY(allArr)/s8(allArr):null;
+  const fyAvg=s8(fyArr)?sY(fyArr)/s8(fyArr):null;
+  const W=560,H=210,mL=42,mR=16,mT=26,mB=36,pw=W-mL-mR,ph=H-mT-mB;
+  const max=Math.max(1,rNow,r35,landAvg||0,fyAvg||0),niceMax=Math.max(2,Math.ceil(max/2)*2);
   const Y=v=>mT+ph-(v/niceMax)*ph, bw=pw/items.length*0.4;
   let g='';
   for(let i=0;i<=niceMax;i+=2){const y=Y(i);g+=`<line x1="${mL}" y1="${y}" x2="${W-mR}" y2="${y}" stroke="var(--line)"/><text x="${mL-8}" y="${y+4}" text-anchor="end" font-size="10" fill="var(--muted)">${i}</text>`;}
@@ -484,6 +492,9 @@ function omsorgsbyrdeChart(d){
     g+=`<rect x="${(cx-bw/2).toFixed(1)}" y="${yv.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(0,h).toFixed(1)}" rx="4" fill="${it[2]}"/>`;
     g+=`<text x="${cx.toFixed(1)}" y="${(yv-7).toFixed(1)}" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink)">${it[1].toFixed(1)}</text>`;
     g+=`<text x="${cx.toFixed(1)}" y="${mT+ph+18}" text-anchor="middle" font-size="11" fill="var(--ink)">${it[0]}</text>`;});
+  const refLine=(val,col,lab)=>{if(val==null)return'';const y=Y(val);return `<line x1="${mL}" y1="${y.toFixed(1)}" x2="${W-mR}" y2="${y.toFixed(1)}" stroke="${col}" stroke-width="1.5" stroke-dasharray="5 3"/><text x="${W-mR}" y="${(y-4).toFixed(1)}" text-anchor="end" font-size="10" font-weight="600" fill="${col}">${lab} ${val.toFixed(1)}</text>`;};
+  g+=refLine(fyAvg,'#2E6F62','Fylke');
+  g+=refLine(landAvg,'#5A6B8C','Land');
   return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-family:'Hanken Grotesk'">${g}<line x1="${mL}" y1="${mT+ph}" x2="${W-mR}" y2="${mT+ph}" stroke="var(--muted)"/></svg>`;
 }
 function profilTekst(d){
@@ -509,18 +520,18 @@ function profilTekst(d){
 function snittChart(d){
   const sameFy=DATA.filter(x=>fylkeAv(x.nr)===fylkeAv(d.nr));
   const avg=(arr,f)=>{const v=arr.map(f).filter(x=>x!=null&&isFinite(x));return v.length?v.reduce((a,b)=>a+b,0)/v.length:0;};
-  const metrics=[{label:'Andel 80+ av befolkningen',vals:[['Kommune',d.andel80],['Fylke',avg(sameFy.filter(x=>x.i80>0),x=>x.andel80)],['Land',avg(DATA.filter(x=>x.i80>0),x=>x.andel80)]]},
-    {label:'Vekst i antall eldre (80+) mot 2035',vals:[['Kommune',d.vekst80],['Fylke',avg(sameFy.filter(x=>x.i80>0),x=>x.vekst80)],['Land',avg(DATA.filter(x=>x.i80>0),x=>x.vekst80)]]}];
-  if(d.vekst40!=null)metrics.push({label:'Vekst i antall eldre (80+) mot 2040',vals:[['Kommune',d.vekst40],['Fylke',avg(sameFy.filter(x=>x.vekst40!=null),x=>x.vekst40)],['Land',avg(DATA.filter(x=>x.vekst40!=null),x=>x.vekst40)]]});
-  if(d.plasser>0)metrics.push({label:'Andel 80+ med plass i dag',ref:0.25,vals:[['Kommune',d.dekn],['Fylke',avg(sameFy.filter(x=>x.plasser>0),x=>x.dekn)],['Land',avg(DATA.filter(x=>x.plasser>0),x=>x.dekn)]]});
-  if(d.instDek!=null)metrics.push({label:'Andel 80+ på institusjon',vals:[['Kommune',d.instDek],['Fylke',avg(sameFy.filter(x=>x.instDek!=null),x=>x.instDek)],['Land',avg(DATA.filter(x=>x.instDek!=null),x=>x.instDek)]]});
-  if(d.boligDek!=null)metrics.push({label:'Andel 80+ i omsorgsbolig m/ bemanning',vals:[['Kommune',d.boligDek],['Fylke',avg(sameFy.filter(x=>x.boligDek!=null),x=>x.boligDek)],['Land',avg(DATA.filter(x=>x.boligDek!=null),x=>x.boligDek)]]});
+  const metrics=[{label:'Andel 80+ av befolkningen',vals:[['Kommune',d.andel80],['Land',avg(DATA.filter(x=>x.i80>0),x=>x.andel80)]]},
+    {label:'Vekst i antall eldre (80+) mot 2035',vals:[['Kommune',d.vekst80],['Land',avg(DATA.filter(x=>x.i80>0),x=>x.vekst80)]]}];
+  if(d.vekst40!=null)metrics.push({label:'Vekst i antall eldre (80+) mot 2040',vals:[['Kommune',d.vekst40],['Land',avg(DATA.filter(x=>x.vekst40!=null),x=>x.vekst40)]]});
+  if(d.plasser>0)metrics.push({label:'Andel 80+ med plass i dag',ref:0.25,vals:[['Kommune',d.dekn],['Land',avg(DATA.filter(x=>x.plasser>0),x=>x.dekn)]]});
+  if(d.instDek!=null)metrics.push({label:'Andel 80+ på institusjon',vals:[['Kommune',d.instDek],['Land',avg(DATA.filter(x=>x.instDek!=null),x=>x.instDek)]]});
+  if(d.boligDek!=null)metrics.push({label:'Andel 80+ i omsorgsbolig m/ bemanning',vals:[['Kommune',d.boligDek],['Land',avg(DATA.filter(x=>x.boligDek!=null),x=>x.boligDek)]]});
   const W=560,rowH=24,mL=78,barW=W-mL-72;let y=6,g='';
   metrics.forEach(m=>{
     const max=Math.max(...m.vals.map(v=>v[1]),m.ref||0,0.0001)*1.16;
     g+=`<text x="0" y="${y+12}" font-size="12.5" font-weight="600" fill="var(--ink)">${m.label}</text>`; y+=20;
     const yTop=y;
-    m.vals.forEach((v,i)=>{const w=Math.max(2,v[1]/max*barW),col=i===0?'#2E6F62':(i===1?'#7FB3A8':'#9AA6A3');
+    m.vals.forEach((v,i)=>{const w=Math.max(2,v[1]/max*barW),col=i===0?'#2E6F62':'#9AA6A3';
       g+=`<text x="0" y="${y+14}" font-size="11" fill="var(--muted)">${v[0]}</text>`;
       g+=`<rect x="${mL}" y="${y+3}" width="${w.toFixed(1)}" height="15" rx="3" fill="${col}"/>`;
       g+=`<text x="${(mL+w+6).toFixed(1)}" y="${y+15}" font-size="11" fill="var(--ink)">${(v[1]*100).toFixed(0)}%</text>`; y+=rowH;});
@@ -823,7 +834,7 @@ function openNote(navn){
   const vekstP=(d.vekst80*100).toFixed(0);
   const modelltxt=d.hasEcon?(d.lease?'svak kommuneøkonomi gjør Samfond-leiemodellen særlig aktuell':'solid økonomi – kommunen kan eie selv'):'økonomi ikke vurdert';
   const tomttxt=d.tomt===1?'Allstad eier egnet tomt':d.tomt===2?'Allstad har tomt for makebytte':'tomt må skaffes';
-  const kildelinje=`Kilder: SSB folkemengde (tab. ${META.popTable||'07459'}, ${META.popYear||'–'}), framskriving (${META.framTable||'13600'}, ${META.framYear||'–'}, alt. MMMM)${META.econTable?`, KOSTRA økonomi (${META.econTable}, ${META.econYear||''})`:''}${META.kapTable?`, kapasitet (${META.kapTable}, ${META.kapYear||''})`:''}${META.hdoTable?`, plasser (${META.hdoTable}, ${META.hdoYear||''})`:''}${META.polTable?`, kommunestyre (${META.polTable}, ${META.polYear||''})`:''}. Behov beregnet med aldersdifferensiert dekningsgrad (Agenda Kaupang/KS-metode).${META.date?' Hentet '+META.date+'.':''}`;
+  const kildelinje=`Kilder: SSB folkemengde (tab. ${META.popTable||'07459'}, ${META.popYear||'–'}), framskriving (${META.framTable||'13600'}, ${META.framYear||'–'}, alt. MMMM)${META.econTable?`, KOSTRA økonomi (${META.econTable}, ${META.econYear||''})`:''}${META.kapTable?`, kapasitet (${META.kapTable}, ${META.kapYear||''})`:''}${META.hdoTable?`, plasser (${META.hdoTable}, ${META.hdoYear||''})`:''}${META.demensTable?`, demensplasser (${META.demensTable}, ${META.demensYear||''})`:''}${META.polTable?`, kommunestyre (${META.polTable}, ${META.polYear||''})`:''}. Behov beregnet med aldersdifferensiert dekningsgrad (Agenda Kaupang/KS-metode).${META.date?' Hentet '+META.date+'.':''}`;
   noteBody.innerHTML=`
     <button class="x" onclick="closeDrawer()">×</button>
     <div class="eyebrow">Behovsnotat${d.won?' · eksisterende prosjekt':''}</div>
@@ -852,14 +863,15 @@ function openNote(navn){
     <h3>Behov mot kapasitet</h3>
     <div>${behovChart(d)}</div>
     <h3>Konsekvens uten utbygging</h3>
-    <div>${konsekvensChart(d)}</div>
     <div class="recco">${capKnown?`Holdes kapasiteten uendret, mangler kommunen <b>~${Math.max(0,Math.round(d.behovFuture-d.plasser)).toLocaleString('no')} heldøgnsplasser i 2035</b>. `:'Dagens kapasitet er ikke lastet, så udekket behov kan ikke tallfestes presist – men behovet vokser uansett mot 2035. '}Udekket behov må håndteres i dyrere kanaler. Hvert døgn en utskrivningsklar pasient blir liggende på sykehus i påvente av kommunalt tilbud koster kommunen <b>6 172 kr</b> (2026, Helsedirektoratet) – om lag 2,25 mill. kr/år per pasient. Drift av én sykehjemsplass koster typisk 1,2–1,5 mill. kr/år (KOSTRA). Dokumenterte konsekvenser av underkapasitet: korridorpasienter og overliggere på sykehus, flere reinnleggelser, og økt press på hjemmetjenester og pårørende.</div>
+    <h3>Demens – den viktigste driveren</h3>
+    <div class="recco">Anslått antall personer med demens i ${d.navn}: <b>${Math.round(d.demNow).toLocaleString('no')} i dag</b>, ~${Math.round(d.dem35).toLocaleString('no')} i 2035${d.dem40!=null?`, ~${Math.round(d.dem40).toLocaleString('no')} i 2040`:''}. Demens er hoveddriveren bak heldøgnsbehovet – om lag <b>84 %</b> av beboerne på langtids sykehjem har en demenssykdom (Selbæk m.fl.). Anslaget bygger på aldersspesifikk forekomst fra HUNT4 70+ (Aldring og helse) lagt på SSBs befolkning og framskriving. Offisielle tall per kommune finnes på <b>demenskartet.no</b>.${d.demensPlasser!=null?` Kommunen har i dag <b>${d.demensPlasser.toLocaleString('no')}</b> demens-tilrettelagte institusjonsplasser (skjermet enhet${d.kapInst?`, ${Math.round(d.demensPlasser/Math.max(1,d.kapInst)*100)} % av institusjonsplassene`:''}; KOSTRA ${META.demensYear||''}).`:''}</div>
     <h3>Omsorgsbyrde – arbeidsføre (20–66) per eldre (80+)</h3>
     <div>${omsorgsbyrdeChart(d)}</div>
     <div class="recco">I dag er det <b>${(d.i80?d.yrk/d.i80:0).toFixed(1)}</b> personer i arbeidsfør alder (20–66) per innbygger 80+; i 2035 er det <b>${(d.i80_35?d.yrk35/d.i80_35:0).toFixed(1)}</b>. Færre hender skal dekke flere eldre – kommunen kan ikke bemanne seg ut av behovet, og må planlegge tilbudet i tide. (Helsepersonellkommisjonen, 2023.)</div>
-    <h3>Sammenlignet med fylke og land</h3>
+    <h3>Sammenlignet med landssnittet</h3>
     <div>${snittChart(d)}</div>
-    <div class="recco">«Andel 80+ av befolkningen» viser om kommunen er eldre enn landet. «Andel 80+ med plass» = hvor stor del av de eldste som har en heldøgnsplass i dag (mål <b>25 %</b>, stiplet linje). Ligger kommunen under linja, eller høyere på vekst/andel eldre enn snittet i ${fylkeAv(d.nr)} og landet, er behovet mer påtrengende her enn for gjennomsnittskommunen.</div>
+    <div class="recco">«Andel 80+ av befolkningen» viser om kommunen er eldre enn landet. «Andel 80+ med plass» = hvor stor del av de eldste som har en heldøgnsplass i dag (mål <b>25 %</b>, stiplet linje). Ligger kommunen under linja, eller høyere på vekst/andel eldre enn landssnittet, er behovet mer påtrengende her enn for gjennomsnittskommunen.</div>
     ${d.profil||d.boligUnder!=null?`<h3>Dekningsprofil mot landssnitt</h3>
     <div class="recco">${profilTekst(d)}</div>`:''}
     <h3>Flere nøkkeltall</h3>
@@ -927,6 +939,7 @@ function openMetode(){
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.framTable||'13600'}</td><td style="padding:5px 8px">Befolkningsframskriving mot 2035 (hovedalt. MMMM)</td><td style="padding:5px 8px">${META.framYear||'–'}</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.fram40Table||'13600'}</td><td style="padding:5px 8px">Befolkningsframskriving mot 2040 (hovedalt. MMMM)</td><td style="padding:5px 8px">${META.fram40Year||'–'}</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.hdoTable||'12292'}</td><td style="padding:5px 8px">Heldøgns plasser (80+): beboere institusjon (langtid) + bolig m/ heldøgns bemanning</td><td style="padding:5px 8px">${META.hdoYear||'–'}</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.demensTable||'13232'}</td><td style="padding:5px 8px">Demens-tilrettelagte institusjonsplasser (skjermet enhet)</td><td style="padding:5px 8px">${META.demensYear||'–'}</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.econTable||'12143'}</td><td style="padding:5px 8px">KOSTRA: netto driftsresultat og disposisjonsfond (% av brutto driftsinntekter)</td><td style="padding:5px 8px">${META.econYear||'–'}</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.kapTable||'12293'}</td><td style="padding:5px 8px">KOSTRA: dekningsgrad institusjon + bemannet bolig, hjemmetjeneste høy timeinnsats, enerom, driftskostnad per plass</td><td style="padding:5px 8px">${META.kapYear||'–'}</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.gjeldTable||'12137'}</td><td style="padding:5px 8px">KOSTRA: netto lånegjeld per innbygger</td><td style="padding:5px 8px">${META.gjeldYear||'–'}</td></tr>
@@ -1219,6 +1232,34 @@ async function fetchHDO(id){
   META.hdoTable=id; if(tid)META.hdoYear=tid.values[tid.values.length-1];
   return out;
 }
+async function fetchDemens(id){
+  const meta=await ssbGet(id),vars=meta.variables;
+  const reg=vars.find(v=>/region/i.test(v.code)||/region|kommune/i.test(v.text||""));
+  const tid=vars.find(v=>v.time)||vars.find(v=>/(^|[^a-z])(tid|år|year)([^a-z]|$)/i.test(v.code+" "+(v.text||"")));
+  if(!reg)throw new Error(id+": ingen region");
+  const test=t=>/demensplass/i.test(t)||(/institusjon/i.test(t)&&/demens/i.test(t)&&/antall/i.test(t));
+  let ind=null,iv=null;
+  for(const v of vars){if(v===reg||v===tid)continue;const vt=v.valueTexts||[];const i=vt.findIndex(test);if(i>=0){ind=v;iv=v.values[i];break;}}
+  if(!ind)throw new Error(id+": fant ikke demensplasser");
+  const q=[{code:reg.code,selection:{filter:"all",values:["*"]}},{code:ind.code,selection:{filter:"item",values:[iv]}}];
+  const used=new Set([reg.code,ind.code,tid&&tid.code].filter(Boolean));
+  vars.forEach(v=>{if(used.has(v.code))return;const vt=v.valueTexts||[];let pi=vt.findIndex(t=>/konsern/i.test(t));if(pi<0)pi=0;q.push({code:v.code,selection:{filter:"item",values:[v.values[pi]]}});});
+  if(tid)q.push({code:tid.code,selection:{filter:"item",values:tid.values.slice(-2)}});
+  const js=await ssbPost(id,{query:q,response:{format:"json-stat2"}});
+  const ids=js.id,size=js.size,value=js.value,strides=size.map((_,i)=>size.slice(i+1).reduce((a,b)=>a*b,1));
+  const ri=ids.indexOf(reg.code),ti=tid?ids.indexOf(tid.code):-1;
+  const rI=js.dimension[reg.code].category.index,rPos={};for(const c in rI)rPos[rI[c]]=c;
+  const N=size.reduce((a,b)=>a*b,1);const tmp={};let any=0;
+  for(let idx=0;idx<N;idx++){const v=value[idx];if(v==null)continue;
+    let rem=idx,p=[];for(let i=0;i<size.length;i++){p[i]=Math.floor(rem/strides[i])%size[i];}
+    const mm=(""+rPos[p[ri]]).match(/\d{4}/);if(!mm)continue;const rc=mm[0];
+    const tp=ti>=0?p[ti]:0;
+    if(tmp["_"+rc]==null||tp>=tmp["_"+rc]){tmp[rc]=v;tmp["_"+rc]=tp;any++;}}
+  if(!any)throw new Error(id+": ingen demens-tall");
+  META.demensTable=id; if(tid)META.demensYear=tid.values[tid.values.length-1];
+  const out={};for(const k in tmp)if(!k.startsWith("_"))out[k]=tmp[k];
+  return out;
+}
 async function fetchGjeld(id){
   const meta=await ssbGet(id),vars=meta.variables;
   const reg=vars.find(v=>/region/i.test(v.code)||/region|kommune/i.test(v.text||""));
@@ -1288,6 +1329,7 @@ async function fetchSSB(){
   await ssbSleep(350);
   for(const t of ["12209","12293"]){try{const r=await fetchKapasitet(t);if(Object.keys(r).length){kap=r;kapErr="";break;}}catch(e){kapErr=e.message;console.warn("Kapasitet "+t+":",e);}}
   let hdo={};await ssbSleep(350);try{const r=await fetchHDO("12292");if(Object.keys(r).length)hdo=r;}catch(e){console.warn("HDO 12292:",e);}
+  let demp={};await ssbSleep(350);try{const r=await fetchDemens("13232");if(Object.keys(r).length)demp=r;}catch(e){console.warn("Demensplasser 13232:",e);}
   let gjeld={};await ssbSleep(350);try{const r=await fetchGjeld("12137");if(Object.keys(r).length)gjeld=r;}catch(e){console.warn("Gjeld:",e);}
   let pol={};await ssbSleep(350);try{const r=await fetchPolitikk("04813");if(Object.keys(r).length)pol=r;}catch(e){console.warn("Politikk:",e);}
   const rows=Object.values(pop).filter(p=>!cur||cur.has(p.nr)).map(p=>{
@@ -1308,6 +1350,7 @@ async function fetchSSB(){
       g1:fr40.b6779!=null?fr40.b6779:null, g2:fr40.b8089!=null?fr40.b8089:null, g3:fr40.b90!=null?fr40.b90:null,
       plasser:kapDirect?plasserDir:(kpct>0?Math.round(kpct*i80):0), kapLoaded:kapDirect||kpct>0, kapDirect:kapDirect,
       kapInst:instBeb!=null?Math.round(instBeb):null, kapBolig:boligBeb!=null?Math.round(boligBeb):null,
+      demensPlasser:(demp[p.nr]!=null?Math.round(demp[p.nr]):null),
       instP:k.inst||0, boligP:k.bolig||0, hjemHoy:k.hjem||0, enerom:k.enerom||0, kostpr:k.kostpr||0, overligger:0,
       ndr:e.ndr!=null?e.ndr:0,disp:e.disp!=null?e.disp:0,gjeld:gj.g!=null?gj.g:0,
       robek:false,tomt:3,won:false,econLoaded:hasE,politikk:pl};});
@@ -1319,9 +1362,10 @@ async function fetchSSB(){
   const kapMsg=kapN>0?("kapasitet "+kapN+" ✓"):("kapasitet ikke hentet"+(kapErr?" ("+kapErr+")":""));
   const polN=rows.filter(r=>r.politikk&&r.politikk.length).length; const polMsg=polN>0?("politikk "+polN+" ✓"):"politikk ikke hentet";
   const hdoN=rows.filter(r=>r.kapDirect).length; const hdoMsg=hdoN>0?("plasser "+hdoN+" ✓"):"plasser anslått fra dekningsgrad";
+  const dempN=rows.filter(r=>r.demensPlasser!=null).length;
   applyRobek();
   const robekN=rows.filter(r=>r.robek).length;
-  setBanner((econN>0&&kapN>0)?"ok":"","✓","<b>"+rows.length+" kommuner hentet fra SSB.</b> Befolkning + framskriving OK · "+econMsg+" · "+kapMsg+" · "+hdoMsg+" · "+polMsg+" · ROBEK forhåndsutfylt ("+robekN+", mars 2026). Sett tomt per kommune.");
+  setBanner((econN>0&&kapN>0)?"ok":"","✓","<b>"+rows.length+" kommuner hentet fra SSB.</b> Befolkning + framskriving OK · "+econMsg+" · "+kapMsg+" · "+hdoMsg+(dempN>0?" · demensplasser "+dempN+" ✓":"")+" · "+polMsg+" · ROBEK forhåndsutfylt ("+robekN+", mars 2026). Sett tomt per kommune.");
   compute();
 }
 async function autoLoad(){try{await fetchSSB();}catch(e){setBanner("","⚠︎","<b>Kunne ikke hente fra SSB nå.</b> Viser demo-data. Prøv «Hent fra SSB» igjen, eller last opp data. (Detalj: "+e.message+")");}}
