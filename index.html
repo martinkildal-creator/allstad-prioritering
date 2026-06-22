@@ -151,7 +151,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
     </div>
     <div style="display:flex;align-items:center;gap:10px">
       <button class="btn ghost" style="padding:8px 13px;font-size:13px" onclick="openMetode()">ⓘ Slik regnes det</button>
-      <span class="tag">Internt · v36</span>
+      <span class="tag">Internt · v37</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -490,7 +490,7 @@ function profilTekst(d){
   const pp=v=>(v>=0?'+':'\u2212')+Math.abs(v*100).toFixed(1).replace('.',',')+' pp';
   const pc1=v=>(v*100).toFixed(1).replace('.',',')+'%';
   let parts=[];
-  if(d.andel80VsNat!=null)parts.push(`Andel 80+ av befolkningen er <b>${pct(d.andel80)}</b> mot landssnittet <b>${pct(NAT.andel80)}</b> (${pp(d.andel80VsNat)}).`);
+  if(d.andel80VsNat!=null)parts.push(`Andel 80+ av befolkningen er <b>${pc1(d.andel80)}</b> mot landssnittet <b>${pc1(NAT.andel80)}</b> (${pp(d.andel80VsNat)}).`);
   if(d.instDek!=null&&NAT.instDek!=null)parts.push(`Institusjonsdekning <b>${pc1(d.instDek)}</b> av 80+ mot landssnitt <b>${pc1(NAT.instDek)}</b>.`);
   if(d.boligDek!=null&&NAT.boligDek!=null)parts.push(`Omsorgsbolig-dekning <b>${pc1(d.boligDek)}</b> av 80+ mot landssnitt <b>${pc1(NAT.boligDek)}</b>.`);
   let flag='';
