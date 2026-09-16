@@ -151,7 +151,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
     </div>
     <div style="display:flex;align-items:center;gap:10px">
       <button class="btn ghost" style="padding:8px 13px;font-size:13px" onclick="openMetode()">ⓘ Slik regnes det</button>
-      <span class="tag">Internt · v39</span>
+      <span class="tag">Internt · v40</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -943,39 +943,79 @@ function doffinKort(t){
   </li>`;
 }
 // ---- Markedssignaler: blokk i behovsnotatet for én kommune ----
+function husbankChart(serie){
+  if(!serie||serie.length<2)return'';
+  const W=560,H=190,mL=52,mR=54,mT=18,mB=34,pw=W-mL-mR,ph=H-mT-mB;
+  const maxB=Math.max(...serie.map(s=>s.belop||0))||1;
+  const maxS=Math.max(...serie.map(s=>s.saker||0))||1;
+  const X=i=>mL+(serie.length===1?pw/2:pw*i/(serie.length-1));
+  const YB=v=>mT+ph-(v/maxB)*ph, YS=v=>mT+ph-(v/maxS)*ph;
+  let g='';
+  for(let i=0;i<=2;i++){const y=mT+ph-(ph*i/2);g+=`<line x1="${mL}" y1="${y}" x2="${W-mR}" y2="${y}" stroke="var(--line)"/>`;
+    g+=`<text x="${mL-8}" y="${y+4}" text-anchor="end" font-size="10" fill="#B8742A">${Math.round(maxB*i/2/1e6)}</text>`;
+    g+=`<text x="${W-mR+8}" y="${y+4}" font-size="10" fill="#2E6F62">${Math.round(maxS*i/2)}</text>`;}
+  const linje=(acc,Y,col)=>serie.map((s,i)=>`${i?'L':'M'}${X(i).toFixed(1)},${Y(s[acc]||0).toFixed(1)}`).join(' ');
+  g+=`<path d="${linje('belop',YB,'')}" fill="none" stroke="#B8742A" stroke-width="2.5"/>`;
+  g+=`<path d="${linje('saker',YS,'')}" fill="none" stroke="#2E6F62" stroke-width="2" stroke-dasharray="5 3"/>`;
+  serie.forEach((s,i)=>{
+    g+=`<circle cx="${X(i).toFixed(1)}" cy="${YB(s.belop||0).toFixed(1)}" r="3.5" fill="#B8742A"/>`;
+    g+=`<circle cx="${X(i).toFixed(1)}" cy="${YS(s.saker||0).toFixed(1)}" r="3" fill="#2E6F62"/>`;
+    g+=`<text x="${X(i).toFixed(1)}" y="${mT+ph+17}" text-anchor="middle" font-size="11" fill="var(--ink)">${s.aar}</text>`;});
+  return `<div style="margin-top:10px">
+    <div style="font-size:12px;color:var(--muted);margin-bottom:2px">
+      <span style="color:#B8742A;font-weight:700">— Tilskuddsbeløp (mill. kr, venstre)</span> &nbsp;
+      <span style="color:#2E6F62;font-weight:700">- - Antall saker (høyre)</span></div>
+    <svg viewBox="0 0 ${W} ${H}" width="100%" style="font-family:'Hanken Grotesk'">${g}
+      <line x1="${mL}" y1="${mT+ph}" x2="${W-mR}" y2="${mT+ph}" stroke="var(--muted)"/></svg></div>`;
+}
 function signalNoteBlokk(d){
   const doffin=(d.doffinScore||0), husbank=(d.husbankScore||0), sig=doffin+husbank;
   const treff=(d.doffinTreff&&d.doffinTreff.length)?d.doffinTreff:[];
   const hb=d.husbankDetalj||null;
   const tilsagn=d.husbankTilsagn||0;
   if(sig<=0 && !treff.length && !tilsagn && !hb){
-    return `<h3>Markedssignaler nå (Doffin + Husbanken)</h3>
-      <div class="recco" style="color:var(--muted)">Ingen aktive signaler registrert for ${d.navn} i <b>signaler.json</b> ennå.
-      Når roboten finner en Doffin-kunngjøring eller et Husbank-tilsagn, vises tallene her.</div>`;
+    return `<h3>Skjer det noe i kommunen nå?</h3>
+      <div class="recco" style="color:var(--muted)"><b>Ingen signaler funnet.</b> Vi ser ingen byggeprosjekter
+      utlyst på Doffin og ingen Husbank-tilskudd registrert på ${d.navn}. Det betyr ikke at behovet mangler –
+      bare at kommunen ikke har satt noe i gang som vi kan se utenfra.</div>`;
   }
-  // Husbank-detaljer: bruk objekt om det finnes, ellers fall tilbake på antall tilsagn
-  const hbPlasser = hb&&hb.plasser!=null?hb.plasser:null;
-  const hbBelop   = hb&&hb.belop?hb.belop:null;
+  const antKonk=treff.filter(t=>/aktiv konkurranse/i.test(t.type||'')).length;
+  const antDial=treff.filter(t=>/markedsdialog/i.test(t.type||'')).length;
+  const hbBelop = hb&&hb.belop?hb.belop:null;
   const hbTilsagn = hb&&hb.tilsagn!=null?hb.tilsagn:tilsagn;
-  const hbStatus  = hb&&hb.status?hb.status:null;
+  const hbPlasser = hb&&hb.plasser!=null?hb.plasser:null;
+
+  // Kort konklusjon i klartekst
+  let dom, domFarge;
+  if(antKonk>0){ dom=`${d.navn} har <b>en konkurranse ute akkurat nå</b>. Dette haster – frist er satt.`; domFarge='#B8742A'; }
+  else if(antDial>0){ dom=`${d.navn} er i <b>tidlig dialog med markedet</b>. Perfekt tidspunkt å ta kontakt på.`; domFarge='#3A6FA8'; }
+  else if(treff.length){ dom=`${d.navn} har <b>hatt byggeprosjekter ute</b> den siste tiden.`; domFarge='#5C6B68'; }
+  else { dom=`${d.navn} har <b>fått penger fra Husbanken</b> til omsorgsplasser, men har ingen konkurranse ute nå.`; domFarge='#2E6F62'; }
+
   const rows=[];
-  rows.push(`<tr><td>Signalscore (lagt til totalen)</td><td class="num"><b style="color:#B8742A">+${sig.toFixed(0)}</b></td></tr>`);
-  rows.push(`<tr><td>– herav Doffin</td><td class="num">${doffin>0?'+'+doffin:'–'}</td></tr>`);
-  rows.push(`<tr><td>– herav Husbanken</td><td class="num">${husbank>0?'+'+husbank:'–'}</td></tr>`);
-  rows.push(`<tr><td>Husbanken – tilsagn (investeringstilskudd)${hbStatus?` <span style="color:var(--muted);font-size:12px">(${hbStatus})</span>`:''}</td><td class="num">${hbTilsagn||'–'}</td></tr>`);
+  rows.push(`<tr><td>Byggeprosjekter ute på Doffin</td><td class="num"><b>${treff.length||'–'}</b>${antKonk?` <span style="color:#B8742A">(${antKonk} aktiv${antKonk>1?'e':''})</span>`:''}</td></tr>`);
+  rows.push(`<tr><td>Husbanken – antall saker</td><td class="num">${hbTilsagn||'–'}</td></tr>`);
+  if(hbBelop) rows.push(`<tr><td>Husbanken – tilskudd utbetalt/tilsagt</td><td class="num"><b>${hbBelop}</b></td></tr>`);
   if(hbPlasser!=null) rows.push(`<tr><td>Husbanken – omsorgsplasser i saken(e)</td><td class="num">${hbPlasser}</td></tr>`);
-  if(hbBelop)         rows.push(`<tr><td>Husbanken – tilskuddsbeløp</td><td class="num">${hbBelop}</td></tr>`);
+  rows.push(`<tr><td style="color:var(--muted)">Signalpoeng lagt til totalscoren</td><td class="num" style="color:var(--muted)">+${sig.toFixed(0)}</td></tr>`);
+
+  const graf = hb&&hb.serie ? husbankChart(hb.serie) : '';
   const treffHtml = treff.length
-    ? `<div style="margin-top:10px"><b>Aktive Doffin-kunngjøringer:</b><ul style="margin:6px 0 0;padding:0">${treff.map(doffinKort).join('')}</ul></div>`
+    ? `<div style="margin-top:12px"><b>Dette har kommunen lyst ut:</b><ul style="margin:6px 0 0;padding:0">${treff.map(doffinKort).join('')}</ul></div>`
     : '';
-  return `<h3>Markedssignaler nå (Doffin + Husbanken)</h3>
-    <table style="width:100%;border-collapse:collapse;font-size:13.5px;margin:6px 0">
+  return `<h3>Skjer det noe i kommunen nå?</h3>
+    <div class="recco" style="border-left:3px solid ${domFarge};font-size:13.5px">${dom}</div>
+    <table style="width:100%;border-collapse:collapse;font-size:13.5px;margin:8px 0">
       <tbody>${rows.join('')}</tbody>
     </table>
+    ${graf}
     ${treffHtml}
-    <div class="recco" style="font-size:12px;margin-top:8px">Signalene forteller at kommunen er i <b>bevegelse akkurat nå</b> (marked/finansiering), og legges oppå behovsscoren. Kilde: Doffin (offentlige kunngjøringer) og Husbanken (investeringstilskudd).</div>`;
+    <div class="recco" style="font-size:12px;margin-top:8px"><b>Slik leser du dette:</b> «Aktiv konkurranse» betyr at
+    kommunen kjøper nå og har en frist – da er det som regel for sent å påvirke, men det viser at de bygger.
+    «Markedsdialog» er det beste tidspunktet: kommunen sonderer og har ikke bestemt seg.
+    Husbank-tilskudd viser at kommunen har finansiering på plass.
+    Kilder: Doffin og Husbanken.</div>`;
 }
-
 // ---- Hjelper: har kommunen en AKTIV KONKURRANSE på Doffin? ----
 function harAktivKonkurranse(d){
   const t=d.doffinTreff||[];
@@ -1007,9 +1047,11 @@ function openSignaler(){
   const oppdatert=(window.__signalerOppdatert)||'–';
   const filterKnapp=`<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:4px 0 12px">
     <button onclick="toggleKonkurranseFilter()" style="cursor:pointer;font:inherit;font-size:13px;font-weight:600;padding:7px 12px;border-radius:8px;border:1px solid ${signalerKunKonkurranse?'#B8742A':'var(--line)'};background:${signalerKunKonkurranse?'#B8742A':'#fff'};color:${signalerKunKonkurranse?'#fff':'var(--ink)'}">
-      ${signalerKunKonkurranse?'✓ ':''}Kun aktiv konkurranse på Doffin (${antallKonk})</button>
-    <span style="font-size:12px;color:var(--muted)">${signalerKunKonkurranse?'Viser bare kommuner med konkurranse ute nå.':'Viser alle kommuner med signaler.'}</span>
-  </div>`;
+      ${signalerKunKonkurranse?'✓ ':''}Vis bare de som bygger nå (${antallKonk})</button>
+    <span style="font-size:12px;color:var(--muted)">${signalerKunKonkurranse?'Kommuner med en konkurranse ute akkurat nå.':'Alle kommuner der noe skjer – konkurranse, dialog eller Husbank-tilskudd.'}</span>
+  </div>
+  <div class="recco" style="font-size:12.5px;margin:0 0 12px">Her ser du hvilke kommuner som er <b>i bevegelse akkurat nå</b>.
+  Øverst ligger de med sterkest signal. <b>Markedsdialog</b> er det beste tidspunktet å ta kontakt på – da har kommunen ikke bestemt seg ennå.</div>`;
   let body;
   if(!medSignal.length){
     body=filterKnapp+(signalerKunKonkurranse
