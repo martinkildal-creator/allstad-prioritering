@@ -59,6 +59,30 @@ async function hent(url, metode = 'GET') {
 }
 
 /** Hent kommuneliste fra SSBs KLASS (samme kilde som appen) */
+/** Offisielle nettadresser fra Enhetsregisteret (Brønnøysund) – slår gjetting */
+async function hentNettsteder() {
+  const kart = {};
+  for (let side = 0; side < 5; side++) {
+    const u = 'https://data.brreg.no/enhetsregisteret/api/enheter'
+            + `?organisasjonsform=KOMM&size=200&page=${side}`;
+    const r = await hent(u);
+    if (!r.ok) { console.warn('  ! Brreg svarte ' + r.status); break; }
+    let j; try { j = JSON.parse(r.tekst); } catch { break; }
+    const liste = (j._embedded && j._embedded.enheter) || [];
+    if (!liste.length) break;
+    liste.forEach(e => {
+      const navn = (e.navn || '').replace(/\s+KOMMUNE$/i, '').trim();
+      let hj = (e.hjemmeside || '').trim();
+      if (!hj) return;
+      if (!/^https?:\/\//i.test(hj)) hj = 'https://' + hj;
+      kart[slug(navn)] = hj;
+    });
+    await new Promise(res => setTimeout(res, 200));
+  }
+  console.log(`  ${Object.keys(kart).length} nettadresser fra Enhetsregisteret.`);
+  return kart;
+}
+
 async function hentKommuner() {
   const r = await hent('https://data.ssb.no/api/klass/v1/classifications/131/codesAt?date=' +
                        new Date().toISOString().slice(0, 10));
@@ -106,6 +130,7 @@ function finnMoteLenker(html, basis) {
   console.log('Kartlegger kommunale møteportaler ...');
   let kommuner = await hentKommuner();
   console.log(`  ${kommuner.length} kommuner hentet fra SSB KLASS.`);
+  const nettsteder = await hentNettsteder();
   if (ANTALL) kommuner = kommuner.slice(0, ANTALL);
 
   const resultat = {};
@@ -116,9 +141,11 @@ function finnMoteLenker(html, basis) {
     const k = kommuner[i];
     const s = slug(k.navn);
     const kandidater = [
+      nettsteder[s],                          // offisiell adresse fra Enhetsregisteret
       `https://www.${s}.kommune.no/`,
-      `https://${s}.kommune.no/`
-    ];
+      `https://${s}.kommune.no/`,
+      `https://www.${s}.no/`
+    ].filter(Boolean);
 
     let forside = null;
     for (const u of kandidater) {
