@@ -1,0 +1,36 @@
+name: Oppdater signaler
+
+# Kjører automatisk hver mandag kl. 06:00 norsk tid,
+# og kan startes manuelt fra Actions-fanen.
+on:
+  schedule:
+    - cron: '0 5 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  signaler:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hent repoet
+        uses: actions/checkout@v4
+
+      - name: Sett opp Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Lag signaler.json
+        env:
+          DOFFIN_API_KEY: ${{ secrets.DOFFIN_API_KEY }}
+        run: node lag-signaler.js
+
+      - name: Lagre endringer
+        run: |
+          git config user.name "signal-robot"
+          git config user.email "actions@github.com"
+          git add signaler.json
+          git diff --staged --quiet || git commit -m "Oppdaterte signaler $(date +%F)"
+          git push
