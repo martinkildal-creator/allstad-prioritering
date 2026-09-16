@@ -37,14 +37,37 @@ const DOFFIN_KEY  = process.env.DOFFIN_API_KEY || '';   // settes som hemmelighe
 // ---------------------------------------------------------------
 const norm = s => (s || '').toString().toLowerCase().trim();
 
+/** Doffin leverer ofte felt som objekt ({no:"..."}) eller liste. Gjør om til ren tekst. */
+function tekstAv(v, dybde = 0) {
+  if (v == null) return '';
+  if (typeof v === 'string') return v;
+  if (typeof v === 'number' || typeof v === 'boolean') return String(v);
+  if (dybde > 3) return '';
+  if (Array.isArray(v)) return v.map(x => tekstAv(x, dybde + 1)).filter(Boolean).join(' ');
+  if (typeof v === 'object') {
+    // foretrekk norsk/engelsk tekstfelt hvis de finnes
+    for (const k of ['no', 'nb', 'nn', 'nor', 'en', 'value', 'text', 'name', 'label']) {
+      if (v[k] != null) return tekstAv(v[k], dybde + 1);
+    }
+    return Object.values(v).map(x => tekstAv(x, dybde + 1)).filter(Boolean).join(' ');
+  }
+  return '';
+}
+
 /** Finner "Elverum kommune" -> "elverum" i en tekst */
-function finnKommune(tekst) {
+function finnKommune(raa) {
+  const tekst = tekstAv(raa);
   if (!tekst) return null;
   const m = tekst.match(/([A-Za-zÆØÅæøåÄÖäö\-\s]{2,40}?)\s+kommune/i);
   if (!m) return null;
   let navn = m[1].trim();
   // fjern ord som ofte henger foran
   navn = navn.replace(/^(i|for|til|hos|av|fra|ved|og)\s+/i, '').trim();
+  // hvis flere ord, ta det siste (f.eks. "Innkjøpstjenesten Elverum" -> "Elverum")
+  if (/\s/.test(navn)) {
+    const deler = navn.split(/\s+/);
+    navn = deler[deler.length - 1];
+  }
   if (navn.length < 2 || navn.length > 30) return null;
   return norm(navn);
 }
@@ -66,7 +89,12 @@ function datoKort(d) {
 
 function belopKort(v) {
   if (v == null || v === '') return null;
-  const n = Number(v);
+  // kan komme som {amount: 185000000, currency:"NOK"} eller som tekst
+  if (typeof v === 'object') v = v.amount ?? v.value ?? tekstAv(v);
+  let s = v.toString().replace(/[^\d.,]/g, '').trim();
+  if (s.includes(',') && s.includes('.')) s = s.replace(/\./g, '').replace(',', '.');
+  else if ((s.match(/,/g) || []).length === 1) s = s.replace(',', '.');
+  const n = Number(s);
   if (!isFinite(n) || n <= 0) return null;
   if (n >= 1e6) return (n / 1e6).toFixed(1).replace('.', ',') + ' mill. kr';
   return Math.round(n).toLocaleString('no') + ' kr';
@@ -98,18 +126,26 @@ async function hentDoffin() {
       const liste = j.hits || j.results || j.notices || j.items || j.value || [];
       if (!Array.isArray(liste)) { console.warn(`  ! Uventet svarformat for "${ord}"`); continue; }
 
+      // Diagnose: skriv ut feltnavnene fra første kunngjøring vi ser (bare én gang)
+      if (!global.__visteFelt && liste.length) {
+        global.__visteFelt = true;
+        console.log('  [diagnose] felt i kunngjøring:', Object.keys(liste[0]).join(', '));
+        console.log('  [diagnose] eksempel:', JSON.stringify(liste[0]).slice(0, 400));
+      }
+
       liste.forEach(n => {
-        const tittel  = n.heading || n.title || n.noticeTitle || '';
-        const kjoper  = n.buyerName || n.buyer || n.organisationName || n.contractingAuthority || '';
-        const typeRaa = n.noticeType || n.type || n.formType || '';
+       try {
+        const tittel  = tekstAv(n.heading || n.title || n.noticeTitle || n.name);
+        const kjoper  = tekstAv(n.buyerName || n.buyer || n.organisationName || n.contractingAuthority || n.organization);
+        const typeRaa = tekstAv(n.noticeType || n.type || n.formType);
         const frist   = n.deadline || n.submissionDeadline || n.tenderDeadline || null;
-        const publ    = n.publicationDate || n.published || null;
-        const verdi   = n.estimatedValue || n.value || null;
-        const id      = n.id || n.noticeId || n.doffinId || '';
+        const publ    = n.publicationDate || n.published || n.publishedDate || null;
+        const verdi   = n.estimatedValue || n.value || n.estimatedValueAmount || null;
+        const id      = tekstAv(n.id || n.noticeId || n.doffinId || n.identifier);
 
         // bare nyere kunngjøringer (siste 18 mnd)
         if (publ) {
-          const p = new Date(publ);
+          const p = new Date(tekstAv(publ));
           const grense = new Date(); grense.setMonth(grense.getMonth() - 18);
           if (isFinite(p) && p < grense) return;
         }
@@ -118,13 +154,13 @@ async function hentDoffin() {
         if (!kommune) return;
 
         // relevanssjekk: søkeordet skal faktisk finnes i tittel/tekst
-        const tekst = norm(tittel + ' ' + (n.description || ''));
+        const tekst = norm(tittel + ' ' + tekstAv(n.description || n.shortDescription));
         if (!SOKEORD.some(o => tekst.includes(norm(o)))) return;
 
         const type = typeAvKunngjoring(typeRaa || tittel);
         if (!treffPerKommune[kommune]) treffPerKommune[kommune] = [];
         // unngå duplikater
-        if (treffPerKommune[kommune].some(x => x._id === id && id)) return;
+        if (id && treffPerKommune[kommune].some(x => x._id === id)) return;
 
         treffPerKommune[kommune].push({
           _id: id,
@@ -132,11 +168,12 @@ async function hentDoffin() {
               : type === 'veiledende'  ? 'Veiledende kunngjøring'
               : type === 'tildeling'   ? 'Tildeling' : 'Kunngjøring',
           tittel: tittel.slice(0, 160),
-          frist: datoKort(frist),
+          frist: datoKort(tekstAv(frist)),
           verdi: belopKort(verdi),
           url: id ? `https://www.doffin.no/notices/${id}` : null
         });
         totalt++;
+       } catch (e) { /* hopp over kunngjøringer vi ikke klarer å tolke */ }
       });
 
       await new Promise(res => setTimeout(res, 400)); // vær grei mot API-et
