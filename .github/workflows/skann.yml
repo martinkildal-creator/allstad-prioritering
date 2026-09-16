@@ -1,0 +1,40 @@
+name: Skann saksdokumenter
+
+# Kjøres manuelt, og automatisk den 1. i hver måned.
+# Krever at portaler.json finnes (lag den med "Kartlegg møteportaler").
+on:
+  schedule:
+    - cron: '0 4 1 * *'
+  workflow_dispatch:
+    inputs:
+      antall:
+        description: 'Hvor mange kommuner? (0 = alle)'
+        required: false
+        default: '15'
+
+permissions:
+  contents: write
+
+jobs:
+  skann:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Skann saksdokumenter
+        env:
+          ANTALL: ${{ github.event.inputs.antall }}
+        run: node skann.js
+
+      - name: Lagre politikk.json
+        run: |
+          git config user.name "signal-robot"
+          git config user.email "actions@github.com"
+          git add politikk.json
+          git diff --staged --quiet || git commit -m "Skannet saksdokumenter $(date +%F)"
+          git push
