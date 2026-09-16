@@ -29,7 +29,7 @@ const MAKS_DOFFIN = 20;      // tak på doffinScore per kommune
 const POENG_PER_TILSAGN = 6; // Husbanken
 const MAKS_HUSBANK = 15;
 
-const DOFFIN_BASE = process.env.DOFFIN_BASE || 'https://betaapi.doffin.no/public/v2';
+const DOFFIN_BASE = process.env.DOFFIN_BASE || 'https://api.doffin.no/public/v2';
 const DOFFIN_KEY  = process.env.DOFFIN_API_KEY || '';   // settes som hemmelighet, se guiden
 
 // ---------------------------------------------------------------
