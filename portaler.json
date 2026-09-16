@@ -1,0 +1,288 @@
+{
+ "_oppdatert": "2026-09-16",
+ "kommuner": {
+  "oslo": {
+   "navn": "Oslo",
+   "nr": "0301",
+   "nettsted": "https://www.oslo.kommune.no/",
+   "portal": "https://www.oslo.kommune.no/politikk/",
+   "plattform": "eInnsyn",
+   "alternativer": [],
+   "status": "ok"
+  },
+  "eigersund": {
+   "navn": "Eigersund",
+   "nr": "1101",
+   "nettsted": "https://www.eigersund.kommune.no/",
+   "portal": null,
+   "plattform": "ukjent",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
+  },
+  "stavanger": {
+   "navn": "Stavanger",
+   "nr": "1103",
+   "nettsted": "https://www.stavanger.kommune.no/",
+   "portal": "https://stavanger-elm.digdem.no/motekalender/cmc22y3ww1n9z0pyrfugkgviq",
+   "plattform": "ukjent",
+   "alternativer": [
+    "https://stavanger-elm.digdem.no/motekalender/cmc22y42t1nbd0pyr9pti1itu",
+    "https://stavanger-elm.digdem.no/motekalender",
+    "https://www.stavanger.kommune.no/politikk/"
+   ],
+   "status": "ok"
+  },
+  "haugesund": {
+   "navn": "Haugesund",
+   "nr": "1106",
+   "nettsted": "https://www.haugesund.kommune.no/",
+   "portal": "https://innsynpluss.onacos.no/haugesund-byggesaker/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.haugesund.kommune.no/organisasjonen/innsyn/moteoversikt/",
+    "https://www.haugesund.kommune.no/organisasjonen/innsyn/postliste/",
+    "https://www.haugesund.kommune.no/organisasjonen/innsyn/"
+   ],
+   "status": "ok"
+  },
+  "sandnes": {
+   "navn": "Sandnes",
+   "nr": "1108",
+   "nettsted": "https://www.sandnes.kommune.no/",
+   "portal": "https://www.sandnes.kommune.no/sti/om-sandnes-kommune/offentlig-journal/",
+   "plattform": "Public 360 (opengov)",
+   "alternativer": [],
+   "status": "ok"
+  },
+  "sokndal": {
+   "navn": "Sokndal",
+   "nr": "1111",
+   "nettsted": "https://www.sokndal.kommune.no/",
+   "portal": "https://www.sokndal.kommune.no/innsyn/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.sokndal.kommune.no/tjenester/politikk/"
+   ],
+   "status": "ok"
+  },
+  "lund": {
+   "navn": "Lund",
+   "nr": "1112",
+   "nettsted": "https://www.lund.kommune.no/",
+   "portal": "https://www.lund.kommune.no/moeteplan.567937.no.html",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.lund.kommune.no/innsyn.564333.no.html",
+    "https://www.lund.kommune.no/politikk.532776.no.html",
+    "https://uustatus.no/nb/erklaringer/publisert/401f707d-de20-4574-a710-eacf327a68b9"
+   ],
+   "status": "ok"
+  },
+  "bjerkreim": {
+   "navn": "Bjerkreim",
+   "nr": "1114",
+   "nettsted": "https://www.bjerkreim.kommune.no/",
+   "portal": "https://www.bjerkreim.kommune.no/politikk/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.bjerkreim.kommune.no/innsyn/",
+    "https://www.bjerkreim.kommune.no/politikk/kommunestyret-pa-nett-tv/"
+   ],
+   "status": "ok"
+  },
+  "ha": {
+   "navn": "Hå",
+   "nr": "1119",
+   "nettsted": "https://www.ha.no/",
+   "portal": "https://www.ha.no/politikk-og-planar/politikk/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.ha.no/politikk-og-planar/",
+    "https://www.ha.no/politikk-og-planar/kunngjeringar-og-hoyringar/",
+    "https://www.ha.no/innsyn/postliste/"
+   ],
+   "status": "ok"
+  },
+  "klepp": {
+   "navn": "Klepp",
+   "nr": "1120",
+   "nettsted": "https://www.klepp.kommune.no/",
+   "portal": null,
+   "plattform": "Prokom",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
+  },
+  "time": {
+   "navn": "Time",
+   "nr": "1121",
+   "nettsted": "https://www.time.kommune.no/",
+   "portal": "https://www.time.kommune.no/politikk/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.time.kommune.no/politikk/innsyn-i-dokument/"
+   ],
+   "status": "ok"
+  },
+  "gjesdal": {
+   "navn": "Gjesdal",
+   "nr": "1122",
+   "nettsted": "https://www.gjesdal.kommune.no/",
+   "portal": "https://www.gjesdal.kommune.no/tjenester/politikk-og-administrasjon/administrasjon/kontakt-oss/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.gjesdal.kommune.no/tjenester/politikk-og-administrasjon/",
+    "https://www.gjesdal.kommune.no/tjenester/politikk-og-administrasjon/larende-organisasjon/",
+    "https://www.gjesdal.kommune.no/tjenester/politikk-og-administrasjon/innsyn-i-post-og-saker/"
+   ],
+   "status": "ok"
+  },
+  "sola": {
+   "navn": "Sola",
+   "nr": "1124",
+   "nettsted": "https://www.sola.kommune.no/",
+   "portal": "https://www.sola.kommune.no/politikk-og-valg/moter-og-sakspapirer/moteplan-med-saker-og-vedtak/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.sola.kommune.no/politikk-og-valg/",
+    "https://www.sola.kommune.no/politikk-og-valg/horinger-kunngjoringer-og-innbyggerforslag/",
+    "https://www.sola.kommune.no/innsyn/"
+   ],
+   "status": "ok"
+  },
+  "randaberg": {
+   "navn": "Randaberg",
+   "nr": "1127",
+   "nettsted": "https://www.randaberg.kommune.no/",
+   "portal": null,
+   "plattform": "Prokom",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
+  },
+  "strand": {
+   "navn": "Strand",
+   "nr": "1130",
+   "nettsted": "https://www.strand.kommune.no/",
+   "portal": "https://www.strand.kommune.no/tjenester/politikk-innsyn-og-medvirkning/postliste-dokumenter-og-vedtak/politiske-moter-og-sakspapirer/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.strand.kommune.no/tjenester/politikk-innsyn-og-medvirkning/",
+    "https://www.strand.kommune.no/tjenester/politikk-innsyn-og-medvirkning/postliste-dokumenter-og-vedtak/",
+    "https://www.strand.kommune.no/tjenester/politikk-innsyn-og-medvirkning/horinger-og-kunngjoringer/"
+   ],
+   "status": "ok"
+  },
+  "hjelmeland": {
+   "navn": "Hjelmeland",
+   "nr": "1133",
+   "nettsted": "https://www.hjelmeland.kommune.no/",
+   "portal": "https://www.hjelmeland.kommune.no/politikk/moteplan-og-sakspapir/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.hjelmeland.kommune.no/innsyn/",
+    "https://www.hjelmeland.kommune.no/politikk/",
+    "https://www.hjelmeland.kommune.no/politikk/ordforaren/"
+   ],
+   "status": "ok"
+  },
+  "suldal": {
+   "navn": "Suldal",
+   "nr": "1134",
+   "nettsted": "https://www.suldal.kommune.no/",
+   "portal": "https://www.suldal.kommune.no/demokrati-og-politikk/moteplan-og-sakspapir/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.suldal.kommune.no/om-kommunen/innsyn/",
+    "https://www.suldal.kommune.no/demokrati-og-politikk/dette-onskjer-me-tilbakemelding-pa-no/innspel-og-hoyringar/",
+    "https://www.suldal.kommune.no/demokrati-og-politikk/"
+   ],
+   "status": "ok"
+  },
+  "sauda": {
+   "navn": "Sauda",
+   "nr": "1135",
+   "nettsted": "https://www.sauda.kommune.no/",
+   "portal": "https://www.sauda.kommune.no/innsyn/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.sauda.kommune.no/politikk/",
+    "https://www.sauda.kommune.no/politikk/ordforer/",
+    "https://www.sauda.kommune.no/politikk/utvalg-styrer-og-rad-2023-2027/"
+   ],
+   "status": "ok"
+  },
+  "kvitsoy": {
+   "navn": "Kvitsøy",
+   "nr": "1144",
+   "nettsted": "https://www.kvitsoy.kommune.no/",
+   "portal": null,
+   "plattform": "Public 360 (opengov)",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
+  },
+  "bokn": {
+   "navn": "Bokn",
+   "nr": "1145",
+   "nettsted": "https://www.bokn.kommune.no/",
+   "portal": "https://www.bokn.kommune.no/politikk-og-demokrati/moteplan-styre-rad-og-utval/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.bokn.kommune.no/politikk-og-demokrati/innsyn-2/",
+    "https://www.bokn.kommune.no/politikk-og-demokrati/",
+    "https://www.bokn.kommune.no/politikk-og-demokrati/ordforar/"
+   ],
+   "status": "ok"
+  },
+  "tysvaer": {
+   "navn": "Tysvær",
+   "nr": "1146",
+   "status": "fant ikke nettside"
+  },
+  "karmoy": {
+   "navn": "Karmøy",
+   "nr": "1149",
+   "nettsted": "https://www.karmoy.kommune.no/",
+   "portal": "https://www.karmoy.kommune.no/demokratioginnflytelse/innsyn-i-postliste-og-politiske-moter/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [],
+   "status": "ok"
+  },
+  "utsira": {
+   "navn": "Utsira",
+   "nr": "1151",
+   "nettsted": "https://utsira.kommune.no/",
+   "portal": "https://opengov.360online.com/Meetings/utsira",
+   "plattform": "Public 360 (opengov)",
+   "alternativer": [
+    "https://utsira.kommune.no/sakspapirer-og-motekalender/",
+    "https://utsira.kommune.no/politikk/"
+   ],
+   "status": "ok"
+  },
+  "vindafjord": {
+   "navn": "Vindafjord",
+   "nr": "1160",
+   "nettsted": "https://www.vindafjord.kommune.no/",
+   "portal": "https://www.vindafjord.kommune.no/innsyn/moteoversikt/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.vindafjord.kommune.no/politikk/",
+    "https://www.vindafjord.kommune.no/politikk/planar-og-styringsdokument/framdrift-og-status/vindkraft/",
+    "https://www.vindafjord.kommune.no/politikk/planar-og-styringsdokument/"
+   ],
+   "status": "ok"
+  },
+  "kristiansund": {
+   "navn": "Kristiansund",
+   "nr": "1505",
+   "nettsted": "https://www.kristiansund.kommune.no/",
+   "portal": "https://www.kristiansund.kommune.no/tjenester/politikk/politiske-moter/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.kristiansund.kommune.no/innsyn/",
+    "https://www.kristiansund.kommune.no/tjenester/politikk/",
+    "https://geoinnsyn.no/?application=orkide&amp;project=kristiansund&amp;zoom=11&amp;lat=6997238.42&amp;lon=437759.18"
+   ],
+   "status": "ok"
+  }
+ }
+}
