@@ -15,7 +15,8 @@ const fs = require('fs');
 const ANTALL  = Number(process.env.ANTALL || 0);   // 0 = alle
 const PAUSE   = Number(process.env.PAUSE || 250);
 const TIMEOUT = 12000;
-const MAKS_SIDER = 4;      // hvor mange sider vi åpner per kommune
+const MAKS_SIDER = Number(process.env.SIDER || 8);  // hvor mange sider vi åpner per kommune
+const DIAG = process.env.DIAG === '1';              // DIAG=1 gir detaljert logg
 
 // Saker vi leter etter
 const NOKKELORD = [
@@ -73,9 +74,15 @@ const stripp = html => html
   .replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&')
   .replace(/\s+/g, ' ');
 
+function moteordTreff(tekst) {
+  const t = norm(tekst);
+  return MOTEORD.filter(o => t.includes(o));
+}
 function erMoteside(tekst) {
   const t = norm(tekst);
-  return MOTEORD.filter(o => t.includes(o)).length >= 2;
+  // sterke enkeltord holder alene
+  if (/saksliste|m(ø|o)teinnkalling|m(ø|o)tebok|saksframlegg|saksfremlegg/.test(t)) return true;
+  return moteordTreff(tekst).length >= 2;
 }
 
 /** Finn lenker verdt å følge */
@@ -135,12 +142,13 @@ function finnTreff(tekst) {
   if (ANTALL) liste = liste.slice(0, ANTALL);
 
   const resultat = {};
-  let medTreff = 0, sider = 0, feilet = 0;
+  let medTreff = 0, sider = 0, feilet = 0, medMoteside = 0, komMoteside = 0;
 
   for (let i = 0; i < liste.length; i++) {
     const [nokkel, k] = liste[i];
     const besokt = new Set();
     const treff = [];
+    let sattMote = false;
     let ko = [{ url: k.portal, vekt: 0 }];
 
     for (let s = 0; s < MAKS_SIDER && ko.length; s++) {
@@ -153,9 +161,19 @@ function finnTreff(tekst) {
       if (!side) { feilet++; continue; }
 
       const tekst = stripp(side.html);
+      const mo = moteordTreff(tekst);
+      const funnetHer = finnTreff(tekst);
+
+      if (DIAG) {
+        console.log(`  [${k.navn}] ${side.url.slice(0, 95)}`);
+        console.log(`      tegn=${tekst.length} møteord=${mo.length}[${mo.slice(0,4).join(',')}] `
+                  + `nøkkelord=${funnetHer.length} møteside=${erMoteside(tekst) ? 'JA' : 'nei'}`);
+        if (tekst.length < 400) console.log(`      tekst: ${tekst.slice(0, 200)}`);
+      }
 
       if (erMoteside(tekst)) {
-        finnTreff(tekst).forEach(f => {
+        medMoteside++; if (!sattMote) { sattMote = true; komMoteside++; }
+        funnetHer.forEach(f => {
           if (treff.some(x => x.utdrag.slice(0, 50) === f.utdrag.slice(0, 50))) return;
           treff.push({ ...f, url: side.url });
         });
@@ -191,6 +209,14 @@ function finnTreff(tekst) {
   console.log('\n===== RESULTAT =====');
   console.log(`Kommuner med treff:  ${medTreff} av ${liste.length}`);
   console.log(`Sider lest:          ${sider}  (${feilet} feilet)`);
+  console.log(`Sider som var møtesider: ${medMoteside}`);
+  console.log(`Kommuner med minst én møteside: ${komMoteside}`);
+  if (!medTreff) {
+    console.log('\nIngen treff. Sannsynlig årsak:');
+    if (!medMoteside) console.log('  - Vi når ikke fram til sakslistene (de ligger dypere, eller lastes med JavaScript).');
+    else console.log('  - Vi finner møtesider, men de nevner ikke omsorgsbygg (kan være riktig!), eller titlene lastes separat.');
+    console.log('  Kjør på nytt med DIAG=1 for detaljert logg per side.');
+  }
   const topp = Object.values(resultat).sort((a, b) => b.poeng - a.poeng).slice(0, 8);
   console.log('\nSterkeste treff:');
   topp.forEach(t => console.log(`  ${t.poeng.toString().padStart(2)}  ${t.navn}: ${(t.treff[0] || {}).utdrag || ''}`.slice(0, 150)));
