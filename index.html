@@ -158,6 +158,8 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
 
   <div id="metodeBg" class="modalbg" onclick="closeMetode()"></div>
   <aside id="metodeModal" class="modal"><button class="x" onclick="closeMetode()">×</button><div id="metodeBody"></div></aside>
+  <div id="signalerBg" class="modalbg" onclick="closeSignaler()"></div>
+  <aside id="signalerModal" class="modal"><button class="x" onclick="closeSignaler()">×</button><div id="signalerBody"></div></aside>
 
   <div class="steps">
     <span><b>1.</b>&nbsp; Trykk «↻ Hent fra SSB» til venstre</span>
@@ -211,6 +213,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
       <div class="section-h">Data</div>
       <div class="btnrow">
         <button class="btn" onclick="autoLoad()">↻ Hent fra SSB</button>
+        <button class="btn" style="background:#B8742A" onclick="openSignaler()">📡 Signaler (Doffin/Husbanken)</button>
         <button class="btn ghost" onclick="document.getElementById('file').click()">⬆ Last opp data</button>
         <button class="btn ghost" onclick="loadDemo()">Demo-data</button>
         <button class="btn ghost" onclick="downloadTemplate()">Last ned mal</button>
@@ -242,6 +245,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
           <th class="num" data-k="tomter">Tomter</th>
           <th data-k="behovSc">Behov</th>
           <th data-k="modell">Finansiering</th>
+          <th class="num" data-k="signalScore">Signal</th>
           <th class="num" data-k="total">Total</th>
         </tr></thead>
         <tbody id="rows"></tbody>
@@ -380,7 +384,8 @@ function compute(){
     d.behovComp = d.hasEcon ? d.behovSc*wB : d.behovSc;
     d.finComp = d.hasEcon ? d.finfit*wF : 0;
     d.tomtBonus=d.tomt===1?p.n1:d.tomt===2?p.n2:0;
-    d.total=Math.min(100,d.grunn+d.tomtBonus);
+    d.signalScore=(d.doffinScore||0)+(d.husbankScore||0);
+    d.total=Math.min(120,d.grunn+d.tomtBonus+d.signalScore);
   });
   const byTot=[...DATA].sort((a,b)=>b.total-a.total);
   byTot.forEach((d,i)=>d.rang=i+1);
@@ -428,6 +433,7 @@ function render(){
       <td class="num">${d.tomter?('<b>'+d.tomter.toLocaleString('no')+'</b>'):'<span style="color:var(--line)">–</span>'}</td>
       <td><div class="bar"><i style="width:${d.behovSc.toFixed(0)}%"></i></div></td>
       <td>${d.hasEcon?`<span class="pill ${d.lease?'lease':'buy'}">${d.modell}</span>`:`<span class="pill" style="background:var(--line);color:var(--muted)">– ikke lastet</span>`}</td>
+      <td class="num">${(d.signalScore||0)>0?`<b style="color:#B8742A" title="${(d.doffinTreff&&d.doffinTreff.length?d.doffinTreff.join('; ')+' · ':'')}Husbanken: ${d.husbankTilsagn||0} tilsagn">+${(d.signalScore||0).toFixed(0)}</b>`:'<span style="color:var(--line)">–</span>'}</td>
       <td class="num tot">${d.total.toFixed(1)}</td>
     </tr>`).join("");
   count.textContent="· "+(searchTerm?arr.length+" av "+DATA.length:DATA.length+" kommuner")+(isDemo?" (demo)":"");
@@ -895,6 +901,7 @@ function openNote(navn){
     <div class="recco" style="font-size:12px">Anslag for møteforberedelse. Forutsetningene (kostnad uten plass / drift egen plass) justeres under «Avanserte innstillinger». I tillegg kommer investeringstilskudd fra Husbanken og Allstads leiemodell (ingen kommunal investeringsutgift) – be om eget regnestykke for disse.</div>
     <h3>Finansiering</h3>
     <div class="recco">${finForklaring(d)}</div>
+    ${signalNoteBlokk(d)}
     <h3>Tomt</h3>
     <p>${d.tomter?`Allstad eier <b>${d.tomter.toLocaleString('no')} tomter</b> i ${d.navn} – et reelt fortrinn for å etablere prosjekt raskt. `:'Allstad eier ingen registrerte tomter i denne kommunen. '}${d.tomt===1?'Vurdert som egnet/sentral tomt – bygg direkte (+'+P().n1+' poeng).':d.tomt===2?'Vurdert som makebytte-potensial – byttekort, ofte mot kommunen selv (+'+P().n2+' poeng).':'Ingen egnet tomt vurdert – markedserverv eller makebytte må vurderes.'} Tomtenivå og egnethet justeres per kommune under «Sett egne data».</p>
 
@@ -921,6 +928,73 @@ function openNote(navn){
   drawer.classList.add("open"); dbg.classList.add("open");
 }
 function closeDrawer(){drawer.classList.remove("open");dbg.classList.remove("open");}
+
+// ---- Markedssignaler: blokk i behovsnotatet for én kommune ----
+function signalNoteBlokk(d){
+  const doffin=(d.doffinScore||0), husbank=(d.husbankScore||0), sig=doffin+husbank;
+  const treff=(d.doffinTreff&&d.doffinTreff.length)?d.doffinTreff:[];
+  const tilsagn=d.husbankTilsagn||0;
+  if(sig<=0 && !treff.length && !tilsagn){
+    return `<h3>Markedssignaler nå (Doffin + Husbanken)</h3>
+      <div class="recco" style="color:var(--muted)">Ingen aktive signaler registrert for ${d.navn} i <b>signaler.json</b> ennå.
+      Når roboten finner en Doffin-kunngjøring eller et Husbank-tilsagn, vises tallene her.</div>`;
+  }
+  const rows=[];
+  rows.push(`<tr><td>Signalscore (lagt til totalen)</td><td class="num"><b style="color:#B8742A">+${sig.toFixed(0)}</b></td></tr>`);
+  rows.push(`<tr><td>– herav Doffin</td><td class="num">${doffin>0?'+'+doffin:'–'}</td></tr>`);
+  rows.push(`<tr><td>– herav Husbanken</td><td class="num">${husbank>0?'+'+husbank:'–'}</td></tr>`);
+  rows.push(`<tr><td>Husbanken – antall tilsagn (investeringstilskudd)</td><td class="num">${tilsagn||'–'}</td></tr>`);
+  const treffHtml = treff.length
+    ? `<div style="margin-top:8px"><b>Aktive Doffin-kunngjøringer:</b><ul style="margin:6px 0 0 18px;padding:0">${treff.map(t=>`<li style="margin:2px 0">${t}</li>`).join('')}</ul></div>`
+    : '';
+  return `<h3>Markedssignaler nå (Doffin + Husbanken)</h3>
+    <table style="width:100%;border-collapse:collapse;font-size:13.5px;margin:6px 0">
+      <tbody>${rows.join('')}</tbody>
+    </table>
+    ${treffHtml}
+    <div class="recco" style="font-size:12px;margin-top:8px">Signalene forteller at kommunen er i <b>bevegelse akkurat nå</b> (marked/finansiering), og legges oppå behovsscoren. Kilde: Doffin (offentlige kunngjøringer) og Husbanken (investeringstilskudd).</div>`;
+}
+
+// ---- Signaler-oversikt: egen knapp som viser alt relevant fra Doffin + Husbanken ----
+function openSignaler(){
+  const medSignal=DATA.filter(d=>(d.doffinScore||0)+(d.husbankScore||0)>0
+    || (d.doffinTreff&&d.doffinTreff.length) || (d.husbankTilsagn||0)>0)
+    .sort((a,b)=>((b.doffinScore||0)+(b.husbankScore||0))-((a.doffinScore||0)+(a.husbankScore||0)));
+  const oppdatert=(window.__signalerOppdatert)||'–';
+  let body;
+  if(!medSignal.length){
+    body=`<p style="color:var(--muted)">Ingen aktive signaler er lastet ennå.</p>
+      <p>Legg fila <b>signaler.json</b> ved siden av nettsiden. Da fylles denne oversikten automatisk med kommuner som har
+      aktive <b>Doffin</b>-kunngjøringer eller <b>Husbank</b>-tilsagn.</p>`;
+  } else {
+    const rows=medSignal.map(d=>{
+      const doffin=d.doffinScore||0, husbank=d.husbankScore||0, sig=doffin+husbank;
+      const treff=(d.doffinTreff&&d.doffinTreff.length)?d.doffinTreff.join('<br>'):'–';
+      return `<tr style="border-top:1px solid var(--line)">
+        <td style="padding:8px 6px"><b>${d.navn}</b></td>
+        <td class="num" style="padding:8px 6px;color:#B8742A"><b>+${sig.toFixed(0)}</b></td>
+        <td class="num" style="padding:8px 6px">${doffin>0?'+'+doffin:'–'}</td>
+        <td class="num" style="padding:8px 6px">${husbank>0?'+'+husbank:'–'}</td>
+        <td class="num" style="padding:8px 6px">${d.husbankTilsagn||'–'}</td>
+        <td style="padding:8px 6px;font-size:12.5px">${treff}</td>
+      </tr>`;
+    }).join('');
+    body=`<p style="color:var(--muted);margin-top:0">Kommuner som er <b>i bevegelse nå</b> – aktive Doffin-kunngjøringer og/eller Husbank-tilsagn. Sist oppdatert: <b>${oppdatert}</b>.</p>
+      <table style="width:100%;border-collapse:collapse;font-size:13.5px">
+        <thead><tr style="text-align:left;color:var(--teal-d)">
+          <th style="padding:6px">Kommune</th><th class="num" style="padding:6px">Signal</th>
+          <th class="num" style="padding:6px">Doffin</th><th class="num" style="padding:6px">Husbank</th>
+          <th class="num" style="padding:6px">Tilsagn</th><th style="padding:6px">Doffin-kunngjøringer</th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+      </table>`;
+  }
+  signalerBody.innerHTML=`<h2>Markedssignaler – Doffin &amp; Husbanken</h2>${body}
+    <p style="font-size:11.5px;color:var(--muted);margin-top:18px">Doffin = offentlige anbud/kunngjøringer. Husbanken = investeringstilskudd til omsorgsplasser. Signalscore legges oppå behovsscoren i prioriteringslisten.</p>`;
+  signalerBg.classList.add('open');signalerModal.classList.add('open');
+}
+function closeSignaler(){signalerBg.classList.remove('open');signalerModal.classList.remove('open');}
+
 function openMetode(){
   const wbv=+wb.value, wfv=+wf.value, ws=wbv+wfv||1, wB=Math.round(wbv/ws*100), wF=100-wB;
   const blv=+blend.value, blt=blv>=60?'Vekst':(blv<=40?'Volum':'Balansert');
@@ -1367,6 +1441,7 @@ async function fetchSSB(){
   const robekN=rows.filter(r=>r.robek).length;
   setBanner((econN>0&&kapN>0)?"ok":"","✓","<b>"+rows.length+" kommuner hentet fra SSB.</b> Befolkning + framskriving OK · "+econMsg+" · "+kapMsg+" · "+hdoMsg+(dempN>0?" · demensplasser "+dempN+" ✓":"")+" · "+polMsg+" · ROBEK forhåndsutfylt ("+robekN+", mars 2026). Sett tomt per kommune.");
   compute();
+  if(typeof lastSignaler==='function')lastSignaler();
 }
 async function autoLoad(){try{await fetchSSB();}catch(e){setBanner("","⚠︎","<b>Kunne ikke hente fra SSB nå.</b> Viser demo-data. Prøv «Hent fra SSB» igjen, eller last opp data. (Detalj: "+e.message+")");}}
 function mergeData(up){
@@ -1381,6 +1456,30 @@ function mergeData(up){
 }
 syncLabels();
 autoLoad();
+
+// ---- Sanntidssignaler (Doffin + Husbanken) ----
+async function lastSignaler(){
+  try{
+    const r=await fetch('signaler.json?v='+Date.now());
+    if(!r.ok)return;
+    const j=await r.json();
+    const idx=j.kommuner||{};
+    const norm=s=>(s||'').toString().toLowerCase().trim();
+    let traff=0;
+    DATA.forEach(d=>{
+      const s=idx[norm(d.navn)];
+      if(s){d.doffinScore=s.doffinScore||0;
+            d.husbankScore=s.husbankScore||0;
+            d.doffinTreff=s.doffinTreff||[];
+            d.husbankTilsagn=s.husbankTilsagn||0;
+            traff++;}
+    });
+    window.__signalerOppdatert=j._oppdatert||'–';
+    compute();
+    console.log('Signaler lastet ('+(j._oppdatert||'?')+'): '+traff+' kommuner beriket.');
+  }catch(e){console.warn('Signaler ikke lastet:',e.message);}
+}
+lastSignaler();
 
 // ---- søk ----
 search.addEventListener("input",e=>{searchTerm=e.target.value.trim();render();});
