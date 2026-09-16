@@ -13,7 +13,11 @@
   "eigersund": {
    "navn": "Eigersund",
    "nr": "1101",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.eigersund.kommune.no/",
+   "portal": null,
+   "plattform": "ukjent",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "stavanger": {
    "navn": "Stavanger",
@@ -231,7 +235,15 @@
   "tysvaer": {
    "navn": "Tysvær",
    "nr": "1146",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.tysver.kommune.no/",
+   "portal": "https://www.tysver.kommune.no/organisasjon/innsyn/politisk-moteplan/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.tysver.kommune.no/organisasjon/innsyn/postliste-og-innsyn/",
+    "https://www.tysver.kommune.no/organisasjon/innsyn/",
+    "https://www.tysver.kommune.no/organisasjon/innsyn/utvalg/"
+   ],
+   "status": "ok"
   },
   "karmoy": {
    "navn": "Karmøy",
@@ -471,12 +483,12 @@
    "navn": "Tingvoll",
    "nr": "1560",
    "nettsted": "https://www.tingvoll.kommune.no/",
-   "portal": "https://www.tingvoll.kommune.no/administrasjon/innsyn/",
+   "portal": "http://www.tingvoll.kommune.no/administrasjon/innsyn/",
    "plattform": "ACOS Innsyn",
    "alternativer": [
-    "https://www.tingvoll.kommune.no/administrasjon/innsyn/planer-og-horingsdokumenter/",
-    "https://www.tingvoll.kommune.no/politikk/planer-okonomi-og-styringsdokumenter/",
-    "https://www.tingvoll.kommune.no/politikk/planer-okonomi-og-styringsdokumenter/nyhetsbrev/"
+    "http://www.tingvoll.kommune.no/administrasjon/innsyn/planer-og-horingsdokumenter/",
+    "http://www.tingvoll.kommune.no/politikk/planer-okonomi-og-styringsdokumenter/",
+    "http://www.tingvoll.kommune.no/politikk/planer-okonomi-og-styringsdokumenter/nyhetsbrev/"
    ],
    "status": "ok"
   },
@@ -670,17 +682,29 @@
   "alstahaug": {
    "navn": "Alstahaug",
    "nr": "1820",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.alstahaug.kommune.no/",
+   "portal": null,
+   "plattform": "Elements (Sikri)",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "leirfjord": {
    "navn": "Leirfjord",
    "nr": "1822",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.leirfjord.kommune.no/",
+   "portal": null,
+   "plattform": "ukjent",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "vefsn": {
    "navn": "Vefsn",
    "nr": "1824",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.vefsn.kommune.no/",
+   "portal": "https://www.vefsn.kommune.no/politikk",
+   "plattform": "ukjent",
+   "alternativer": [],
+   "status": "ok"
   },
   "grane": {
    "navn": "Grane",
@@ -701,7 +725,11 @@
   "donna": {
    "navn": "Dønna",
    "nr": "1827",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.donna.kommune.no/",
+   "portal": "https://www.donna.kommune.no/tjenester/politikk/innsyn",
+   "plattform": "Elements (Sikri)",
+   "alternativer": [],
+   "status": "ok"
   },
   "nesna": {
    "navn": "Nesna",
@@ -755,7 +783,15 @@
   "traena": {
    "navn": "Træna",
    "nr": "1835",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.trana.kommune.no/",
+   "portal": "https://www.trana.kommune.no/politikk/moteplan",
+   "plattform": "Elements (Sikri)",
+   "alternativer": [
+    "https://www.trana.kommune.no/politikk/politisk-organisering",
+    "https://www.trana.kommune.no/politikk/innvandrerrad",
+    "https://www.trana.kommune.no/politikk/reglementer-og-styringsdokumenter"
+   ],
+   "status": "ok"
   },
   "rodoy": {
    "navn": "Rødøy",
@@ -785,27 +821,47 @@
   "gildeskal": {
    "navn": "Gildeskål",
    "nr": "1838",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.gildeskal.kommune.no/",
+   "portal": null,
+   "plattform": "Elements (Sikri)",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "beiarn": {
    "navn": "Beiarn",
    "nr": "1839",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.beiarn.kommune.no/",
+   "portal": null,
+   "plattform": "ACOS Innsyn",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "saltdal": {
    "navn": "Saltdal",
    "nr": "1840",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.saltdal.kommune.no/",
+   "portal": null,
+   "plattform": "Elements (Sikri)",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "fauske": {
    "navn": "Fauske",
    "nr": "1841",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.fauske.kommune.no/",
+   "portal": null,
+   "plattform": "ACOS Innsyn",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "sorfold": {
    "navn": "Sørfold",
    "nr": "1845",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.sorfold.kommune.no/",
+   "portal": "https://www.sorfold.kommune.no/footer-meny/innsynsrett",
+   "plattform": "Elements (Sikri)",
+   "alternativer": [],
+   "status": "ok"
   },
   "steigen": {
    "navn": "Steigen",
@@ -858,7 +914,15 @@
   "vaeroy": {
    "navn": "Værøy",
    "nr": "1857",
-   "status": "fant ikke nettside"
+   "nettsted": "https://varoy.kommune.no/",
+   "portal": "https://varoy.kommune.no/politikk/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://varoy.kommune.no/politikk/valg/",
+    "https://varoy.kommune.no/politikk/horinger/",
+    "https://varoy.kommune.no/politikk/ordforerens-spalte/"
+   ],
+   "status": "ok"
   },
   "flakstad": {
    "navn": "Flakstad",
@@ -913,7 +977,11 @@
   "bo": {
    "navn": "Bø",
    "nr": "1867",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.boe.kommune.no/",
+   "portal": null,
+   "plattform": "Elements (Sikri)",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "oksnes": {
    "navn": "Øksnes",
@@ -1001,7 +1069,15 @@
   "sarpsborg": {
    "navn": "Sarpsborg",
    "nr": "3105",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.sarpsborg.com/",
+   "portal": "https://www.sarpsborg.com/politikk-og-planer/politiske-moter/",
+   "plattform": "Prokom",
+   "alternativer": [
+    "https://www.sarpsborg.com/politikk-og-planer/nett-tv/",
+    "https://www.sarpsborg.com/byggesak-og-teknisk/innsyn-i-byggesaker/",
+    "https://www.sarpsborg.com/politikk-og-planer/boligstatistikk/"
+   ],
+   "status": "ok"
   },
   "fredrikstad": {
    "navn": "Fredrikstad",
@@ -1050,27 +1126,56 @@
   "skiptvet": {
    "navn": "Skiptvet",
    "nr": "3116",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.skiptvet.kommune.no/",
+   "portal": "https://innsynpluss.onacos.no/skiptvet/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [],
+   "status": "ok"
   },
   "indreostfold": {
    "navn": "Indre Østfold",
    "nr": "3118",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.io.kommune.no/",
+   "portal": "https://www.io.kommune.no/aktuelt/politiske-moter-i-september.40374.aspx",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.io.kommune.no/tjenester/politikk/",
+    "https://www.io.kommune.no/tjenester/administrasjon/innsyn/"
+   ],
+   "status": "ok"
   },
   "rakkestad": {
    "navn": "Rakkestad",
    "nr": "3120",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.rakkestad.kommune.no/",
+   "portal": null,
+   "plattform": "Elements (Sikri)",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "marker": {
    "navn": "Marker",
    "nr": "3122",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.marker.kommune.no/",
+   "portal": "https://www.marker.kommune.no/politikk-planer-og-organisasjon/organisasjon/om-marker",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.marker.kommune.no/politikk-planer-og-organisasjon/organisasjon/selvbetjening",
+    "https://www.marker.kommune.no/politikk-planer-og-organisasjon/organisasjon/personvern-i-kommunen"
+   ],
+   "status": "ok"
   },
   "aremark": {
    "navn": "Aremark",
    "nr": "3124",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.aremark.kommune.no/",
+   "portal": "https://www.aremark.kommune.no/politikk-og-administrasjon/administrasjon/for-ansatte",
+   "plattform": "Elements (Sikri)",
+   "alternativer": [
+    "https://www.aremark.kommune.no/politikk-og-administrasjon/administrasjon/selvbetjening",
+    "https://www.aremark.kommune.no/politikk-og-administrasjon/administrasjon/personvernerklaeing"
+   ],
+   "status": "ok"
   },
   "baerum": {
    "navn": "Bærum",
@@ -1158,12 +1263,24 @@
   "vestby": {
    "navn": "Vestby",
    "nr": "3216",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.vestby.kommune.no/",
+   "portal": "https://www.vestby.kommune.no/innsyn",
+   "plattform": "Public 360 (opengov)",
+   "alternativer": [
+    "https://www.vestby.kommune.no/politikk"
+   ],
+   "status": "ok"
   },
   "as": {
    "navn": "Ås",
    "nr": "3218",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.as.kommune.no/",
+   "portal": "https://www.as.kommune.no/politikk",
+   "plattform": "ukjent",
+   "alternativer": [
+    "https://www.as.kommune.no/innsyn"
+   ],
+   "status": "ok"
   },
   "enebakk": {
    "navn": "Enebakk",
@@ -1190,12 +1307,20 @@
   "raelingen": {
    "navn": "Rælingen",
    "nr": "3224",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.ralingen.kommune.no/",
+   "portal": null,
+   "plattform": "Prokom",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "aurskogholand": {
    "navn": "Aurskog-Høland",
    "nr": "3226",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.ahk.no/",
+   "portal": null,
+   "plattform": "Prokom",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "nes": {
    "navn": "Nes",
@@ -1233,12 +1358,23 @@
   "lunner": {
    "navn": "Lunner",
    "nr": "3234",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.lunner.kommune.no/",
+   "portal": "https://www.lunner.kommune.no/politikk",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [],
+   "status": "ok"
   },
   "jevnaker": {
    "navn": "Jevnaker",
    "nr": "3236",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.jevnaker.kommune.no/",
+   "portal": "https://geoinnsyn.no/?application=glt&amp;project=jevnaker&amp;zoom=10&amp;lat=6679094.00&amp;lon=576686.00",
+   "plattform": "ukjent",
+   "alternativer": [
+    "https://www.jevnaker.kommune.no/politikk",
+    "https://www.jevnaker.kommune.no/organisasjon/om-kommunen/personvern"
+   ],
+   "status": "ok"
   },
   "nannestad": {
    "navn": "Nannestad",
@@ -1317,7 +1453,14 @@
   "hole": {
    "navn": "Hole",
    "nr": "3310",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.hole.kommune.no/",
+   "portal": "https://innsynpluss.onacos.no/hole/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://map.isy.no/?application=hole&amp;project=GeoInnsyn&amp;zoom=10&amp;lat=6657781.00&amp;lon=571371.00",
+    "https://www.hole.kommune.no/politikk"
+   ],
+   "status": "ok"
   },
   "lier": {
    "navn": "Lier",
@@ -1335,12 +1478,24 @@
   "ovreeiker": {
    "navn": "Øvre Eiker",
    "nr": "3314",
-   "status": "fant ikke nettside"
+   "nettsted": "https://ovre-eiker.kommune.no/",
+   "portal": "https://prod01.elementscloud.no/publikum/954597482_PROD-954597482/Dmb",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://ovre-eiker.kommune.no/om-kommunen/innsyn.2927.aspx",
+    "https://ovre-eiker.kommune.no/tjenester/politikk-og-medvirkning/vil-du-vare-med-a-pavirke/",
+    "https://ovre-eiker.kommune.no/tjenester/politikk-og-medvirkning/"
+   ],
+   "status": "ok"
   },
   "modum": {
    "navn": "Modum",
    "nr": "3316",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.modum.kommune.no/",
+   "portal": null,
+   "plattform": "ACOS Innsyn",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "krodsherad": {
    "navn": "Krødsherad",
@@ -1358,7 +1513,11 @@
   "fla": {
    "navn": "Flå",
    "nr": "3320",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.flaa.kommune.no/",
+   "portal": "https://www.flaa.kommune.no/postlister-og-innsyn-i-dokumenter/",
+   "plattform": "Prokom",
+   "alternativer": [],
+   "status": "ok"
   },
   "nesbyen": {
    "navn": "Nesbyen",
@@ -1398,7 +1557,13 @@
   "al": {
    "navn": "Ål",
    "nr": "3328",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.aal.kommune.no/",
+   "portal": "https://prod01.elementscloud.no/publikum/864952992",
+   "plattform": "Elements (Sikri)",
+   "alternativer": [
+    "https://www.aal.kommune.no/meny/politikk-og-innsyn/politikk/ordforar-og-varaordforar/"
+   ],
+   "status": "ok"
   },
   "hol": {
    "navn": "Hol",
@@ -1443,7 +1608,11 @@
   "noreoguvdal": {
    "navn": "Nore og Uvdal",
    "nr": "3338",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.nore-og-uvdal.kommune.no/",
+   "portal": null,
+   "plattform": "Elements (Sikri)",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "kongsvinger": {
    "navn": "Kongsvinger",
@@ -1500,7 +1669,11 @@
   "ringsaker": {
    "navn": "Ringsaker",
    "nr": "3411",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.ringsaker.kommune.no/",
+   "portal": "https://www.ringsaker.kommune.no/politikk",
+   "plattform": "ukjent",
+   "alternativer": [],
+   "status": "ok"
   },
   "loten": {
    "navn": "Løten",
@@ -1531,12 +1704,28 @@
   "nordodal": {
    "navn": "Nord-Odal",
    "nr": "3414",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.nord-odal.kommune.no/",
+   "portal": "https://innsyn.onacos.no/nordodal/mote/wfinnsyn.ashx?response=moteplan&amp;",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://innsyn.onacos.no/nordodal/pluss/wfinnsyn.ashx?response=journalpost_postliste&",
+    "https://www.nord-odal.kommune.no/politikk-organisasjon/postliste/innsyn/innsyn",
+    "https://www.nord-odal.kommune.no/politikk-organisasjon/selvbetjening/"
+   ],
+   "status": "ok"
   },
   "sorodal": {
    "navn": "Sør-Odal",
    "nr": "3415",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.sor-odal.kommune.no/",
+   "portal": "https://innsyn.onacos.no/sorodal/wfinnsyn.ashx?response=moteplan&amp;",
+   "plattform": "Public 360 (opengov)",
+   "alternativer": [
+    "https://innsyn.onacos.no/sorodal/",
+    "https://www.sor-odal.kommune.no/politikk-og-organisasjon/politikk/direktesending-og-opptak-av-politiske-moter/",
+    "https://www.sor-odal.kommune.no/politikk-og-organisasjon/innsyn/innsyn"
+   ],
+   "status": "ok"
   },
   "eidskog": {
    "navn": "Eidskog",
@@ -1622,7 +1811,15 @@
   "storelvdal": {
    "navn": "Stor-Elvdal",
    "nr": "3423",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.stor-elvdal.kommune.no/",
+   "portal": "https://prod01.elementscloud.no/publikum/964948887_PROD-964948887/Dmb",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://prod01.elementscloud.no/publikum/964948887_PROD-964948887/",
+    "https://www.stor-elvdal.kommune.no/politikk-medvirkning-og-innsyn/",
+    "https://www.stor-elvdal.kommune.no/politikk-medvirkning-og-innsyn/horinger-og-planvedtak/"
+   ],
+   "status": "ok"
   },
   "rendalen": {
    "navn": "Rendalen",
@@ -1740,7 +1937,14 @@
   "skjak": {
    "navn": "Skjåk",
    "nr": "3433",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.skjaak.kommune.no/",
+   "portal": "https://prod01.elementscloud.no/publikum/961381096_PROD-961381096/Dmb",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.skjaak.kommune.no/politikk-og-samfunnsutvikling/politikk/",
+    "https://www.skjaak.kommune.no/politikk-og-samfunnsutvikling/kommunen-sine-planar/ny-samfunnsplan/"
+   ],
+   "status": "ok"
   },
   "lom": {
    "navn": "Lom",
@@ -1763,7 +1967,14 @@
   "nordfron": {
    "navn": "Nord-Fron",
    "nr": "3436",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.nord-fron.kommune.no/",
+   "portal": "https://www.nord-fron.kommune.no/innsyn/moteplan/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.nord-fron.kommune.no/innsyn/postliste/",
+    "https://www.nord-fron.kommune.no/politikk-og-organisering/"
+   ],
+   "status": "ok"
   },
   "sel": {
    "navn": "Sel",
@@ -1772,7 +1983,7 @@
    "portal": "https://prod01.elementscloud.no/publikum/939617671_PROD-939617671-SEL/Dmb",
    "plattform": "ACOS Innsyn",
    "alternativer": [
-    "https://www.sel.kommune.no/$menyid?5322&amp;MId1=13247",
+    "https://www.sel.kommune.no/$menyid?5322&amp;MId1=1865",
     "https://www.sel.kommune.no/tjenester/politikk-og-demokrati/",
     "https://www.sel.kommune.no/tjenester/politikk-og-demokrati/ordforer/"
    ],
@@ -1781,7 +1992,14 @@
   "sorfron": {
    "navn": "Sør-Fron",
    "nr": "3438",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.sor-fron.kommune.no/",
+   "portal": "https://www.sor-fron.kommune.no/innsyn-post-og-saker/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.sor-fron.kommune.no/innsyn-post-og-saker/moteoversikt/",
+    "https://www.sor-fron.kommune.no/politikk/slik-kan-du-medvirke/"
+   ],
+   "status": "ok"
   },
   "ringebu": {
    "navn": "Ringebu",
@@ -1824,32 +2042,74 @@
   "ostretoten": {
    "navn": "Østre Toten",
    "nr": "3442",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.ototen.no/",
+   "portal": "https://www.ototen.no/innsyn/moteplan/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.ototen.no/innsyn/postliste/",
+    "https://www.ototen.no/innsyn/",
+    "https://www.ototen.no/politikk-og-organisasjon/politikk/"
+   ],
+   "status": "ok"
   },
   "vestretoten": {
    "navn": "Vestre Toten",
    "nr": "3443",
-   "status": "fant ikke nettside"
+   "nettsted": "https://vestre-toten.kommune.no/",
+   "portal": "https://prod01.elementscloud.no/publikum/971028300/Dmb",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://vestre-toten.kommune.no/politikk-innsyn-planverk-og-samfunn/",
+    "https://vestre-toten.kommune.no/politikk-innsyn-planverk-og-samfunn/samfunn/horinger-og-kunngjoringer/"
+   ],
+   "status": "ok"
   },
   "gran": {
    "navn": "Gran",
    "nr": "3446",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.gran.kommune.no/",
+   "portal": "https://www.gran.kommune.no/politikk-og-innsyn/politisk-motekalender-og-kommunetv",
+   "plattform": "Prokom",
+   "alternativer": [
+    "https://www.gran.kommune.no/politikk-og-innsyn",
+    "https://www.gran.kommune.no/politikk-og-innsyn/politikk",
+    "https://www.gran.kommune.no/politikk-og-innsyn/postliste-og-innsyn"
+   ],
+   "status": "ok"
   },
   "sondreland": {
    "navn": "Søndre Land",
    "nr": "3447",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.sondre-land.kommune.no/",
+   "portal": "https://innsynpluss.onacos.no/sondre-land/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://innsynpluss.onacos.no/sondre-land/moteoversikt/",
+    "https://innsyn.acossky.no/sondreland/wfinnsyn.ashx?response=moteplan_utvalg&amp;fradato=2021-01-01T00:00:00&amp;utvalg=2&amp;",
+    "https://innsynpluss.onacos.no/sondre-land/utvalg/#/details/u-8a4dae64__8ed3__44b4__b724__d2625fd4f20b-2!sHGJr0"
+   ],
+   "status": "ok"
   },
   "nordreland": {
    "navn": "Nordre Land",
    "nr": "3448",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.nordre-land.kommune.no/",
+   "portal": null,
+   "plattform": "ACOS Innsyn",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "soraurdal": {
    "navn": "Sør-Aurdal",
    "nr": "3449",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.sor-aurdal.kommune.no/",
+   "portal": "https://www.sor-aurdal.kommune.no/undermeny/postliste/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.sor-aurdal.kommune.no/undermeny/politikk/",
+    "https://www.sor-aurdal.kommune.no/toppmeny-header/om-kommunen/postliste-innsyn-og-personvern/personvernerklaring-gdpr/"
+   ],
+   "status": "ok"
   },
   "etnedal": {
    "navn": "Etnedal",
@@ -1863,17 +2123,37 @@
   "nordaurdal": {
    "navn": "Nord-Aurdal",
    "nr": "3451",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.nord-aurdal.kommune.no/",
+   "portal": "https://www.nord-aurdal.kommune.no/ofte-brukt-lenker/politikk/valg-2025/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.nord-aurdal.kommune.no/ofte-brukt-lenker/politikk/",
+    "https://www.nord-aurdal.kommune.no/ofte-brukt-lenker/innsyn-postliste/"
+   ],
+   "status": "ok"
   },
   "vestreslidre": {
    "navn": "Vestre Slidre",
    "nr": "3452",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.vestre-slidre.kommune.no/",
+   "portal": "https://www.vestre-slidre.kommune.no/administrasjon/politikk-rad-og-utval/videostromming/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.vestre-slidre.kommune.no/administrasjon/politikk-rad-og-utval/",
+    "https://www.vestre-slidre.kommune.no/administrasjon/innsyn/"
+   ],
+   "status": "ok"
   },
   "oystreslidre": {
    "navn": "Øystre Slidre",
    "nr": "3453",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.oystre-slidre.kommune.no/",
+   "portal": "https://www.oystre-slidre.kommune.no/oystre-slidre/politikk-val/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.oystre-slidre.kommune.no/oystre-slidre/innsyn-i-post-saker/"
+   ],
+   "status": "ok"
   },
   "vang": {
    "navn": "Vang",
@@ -2059,7 +2339,11 @@
   "seljord": {
    "navn": "Seljord",
    "nr": "4022",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.seljord.kommune.no/",
+   "portal": null,
+   "plattform": "ukjent",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "hjartdal": {
    "navn": "Hjartdal",
@@ -2082,27 +2366,50 @@
   "kviteseid": {
    "navn": "Kviteseid",
    "nr": "4028",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.kviteseid.kommune.no/",
+   "portal": "https://www.kviteseid.kommune.no/tenester/politikk-organisasjon-og-planar/tilgjengelegheitserklaeringar",
+   "plattform": "ukjent",
+   "alternativer": [],
+   "status": "ok"
   },
   "nissedal": {
    "navn": "Nissedal",
    "nr": "4030",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.nissedal.kommune.no/",
+   "portal": null,
+   "plattform": "ukjent",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "fyresdal": {
    "navn": "Fyresdal",
    "nr": "4032",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.fyresdal.kommune.no/",
+   "portal": "https://www.fyresdal.kommune.no/tenester/politikk-innsyn-og-organisasjon/interkommunale-samarbeid",
+   "plattform": "ukjent",
+   "alternativer": [],
+   "status": "ok"
   },
   "tokke": {
    "navn": "Tokke",
    "nr": "4034",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.tokke.kommune.no/",
+   "portal": null,
+   "plattform": "ukjent",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "vinje": {
    "navn": "Vinje",
    "nr": "4036",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.vinje.kommune.no/",
+   "portal": "https://www.vinje.kommune.no/tenester/politikk-innsyn-og-organisasjon/postliste",
+   "plattform": "Elements (Sikri)",
+   "alternativer": [
+    "https://www.vinje.kommune.no/tenester/politikk-innsyn-og-organisasjon/personvern/informasjonskapslar",
+    "https://www.vinje.kommune.no/tenester/politikk-innsyn-og-organisasjon/eksterne-tilgjengeleghetserklaeringar"
+   ],
+   "status": "ok"
   },
   "risor": {
    "navn": "Risør",
@@ -2244,7 +2551,13 @@
   "lillesand": {
    "navn": "Lillesand",
    "nr": "4215",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.lillesand.kommune.no/",
+   "portal": "https://innsynpluss.onacos.no/lillesand/postliste/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.lillesand.kommune.no/2283.html"
+   ],
+   "status": "ok"
   },
   "birkenes": {
    "navn": "Birkenes",
@@ -2288,7 +2601,15 @@
   "evjeoghornnes": {
    "navn": "Evje og Hornnes",
    "nr": "4219",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.e-h.kommune.no/",
+   "portal": "https://prod01.elementscloud.no/publikum/964966109_PROD-964966109/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://prod01.elementscloud.no/publikum/964966109_PROD-964966109/Dmb",
+    "https://www.e-h.kommune.no/politikk/",
+    "https://www.e-h.kommune.no/politikk/kunngjoringer-og-horinger/"
+   ],
+   "status": "ok"
   },
   "bygland": {
    "navn": "Bygland",
@@ -2389,7 +2710,11 @@
   "sirdal": {
    "navn": "Sirdal",
    "nr": "4228",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.sirdal.kommune.no/",
+   "portal": "https://innsynpluss.onacos.no/sirdal/innsyn/sok-etter-saker-og-dokumenter/#/?Dato=AllCases&amp;Type=dt-0938552f__675b__497c__993a__8e144299e04c-I%21ekjD1g",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [],
+   "status": "ok"
   },
   "bergen": {
    "navn": "Bergen",
@@ -2451,12 +2776,20 @@
   "stord": {
    "navn": "Stord",
    "nr": "4614",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.stord.kommune.no/",
+   "portal": null,
+   "plattform": "ukjent",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "fitjar": {
    "navn": "Fitjar",
    "nr": "4615",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.fitjar.kommune.no/",
+   "portal": null,
+   "plattform": "ukjent",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "tysnes": {
    "navn": "Tysnes",
@@ -2470,7 +2803,11 @@
   "kvinnherad": {
    "navn": "Kvinnherad",
    "nr": "4617",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.kvinnherad.kommune.no/",
+   "portal": "https://www.kvinnherad.kommune.no/innsyn",
+   "plattform": "Elements (Sikri)",
+   "alternativer": [],
+   "status": "ok"
   },
   "ullensvang": {
    "navn": "Ullensvang",
@@ -2525,7 +2862,13 @@
   "kvam": {
    "navn": "Kvam",
    "nr": "4622",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.kvam.no/",
+   "portal": "https://www.kvam.no/politikk-og-organisasjon/politikk/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.kvam.no/innsyn/postliste/"
+   ],
+   "status": "ok"
   },
   "samnanger": {
    "navn": "Samnanger",
@@ -2705,7 +3048,11 @@
   "sogndal": {
    "navn": "Sogndal",
    "nr": "4640",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.sogndal.kommune.no/",
+   "portal": "https://www.sogndal.kommune.no/politikk",
+   "plattform": "ukjent",
+   "alternativer": [],
+   "status": "ok"
   },
   "aurland": {
    "navn": "Aurland",
@@ -2957,17 +3304,31 @@
   "midtregauldal": {
    "navn": "Midtre Gauldal",
    "nr": "5027",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.mgk.no/",
+   "portal": "https://www.mgk.no/politikk",
+   "plattform": "Elements (Sikri)",
+   "alternativer": [],
+   "status": "ok"
   },
   "melhus": {
    "navn": "Melhus",
    "nr": "5028",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.melhus.kommune.no/",
+   "portal": "https://www.melhus.kommune.no/postlister-og-innsyn",
+   "plattform": "Elements (Sikri)",
+   "alternativer": [
+    "https://www.melhus.kommune.no/politikk-og-demokrati"
+   ],
+   "status": "ok"
   },
   "skaun": {
    "navn": "Skaun",
    "nr": "5029",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.skaun.kommune.no/",
+   "portal": null,
+   "plattform": "ukjent",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "malvik": {
    "navn": "Malvik",
@@ -3123,12 +3484,20 @@
   "overhalla": {
    "navn": "Overhalla",
    "nr": "5047",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.overhalla.kommune.no/",
+   "portal": null,
+   "plattform": "Elements (Sikri)",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "flatanger": {
    "navn": "Flatanger",
    "nr": "5049",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.flatanger.kommune.no/",
+   "portal": null,
+   "plattform": "Elements (Sikri)",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "leka": {
    "navn": "Leka",
@@ -3171,7 +3540,11 @@
   "heim": {
    "navn": "Heim",
    "nr": "5055",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.heim.kommune.no/",
+   "portal": null,
+   "plattform": "Public 360 (opengov)",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "hitra": {
    "navn": "Hitra",
@@ -3215,12 +3588,24 @@
   "orkland": {
    "navn": "Orkland",
    "nr": "5059",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.orkland.kommune.no/",
+   "portal": "https://www.orkland.kommune.no/politikk",
+   "plattform": "Elements (Sikri)",
+   "alternativer": [],
+   "status": "ok"
   },
   "naeroysund": {
    "navn": "Nærøysund",
    "nr": "5060",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.naroysund.kommune.no/",
+   "portal": "https://www.naroysund.kommune.no/tjenester/politikk-og-organisasjon/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.naroysund.kommune.no/tjenester/politikk-og-organisasjon/politikk/",
+    "https://www.naroysund.kommune.no/tjenester/politikk-og-organisasjon/barekraftig-omstilling-i-naroysund-kommune/",
+    "https://www.naroysund.kommune.no/tjenester/politikk-og-organisasjon/organisasjon/edialog/"
+   ],
+   "status": "ok"
   },
   "rindal": {
    "navn": "Rindal",
@@ -3251,12 +3636,22 @@
   "harstad": {
    "navn": "Harstad",
    "nr": "5503",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.harstad.kommune.no/",
+   "portal": "https://www.harstad.kommune.no/politikk-og-medvirkning",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://www.harstad.kommune.no/politikk-og-medvirkning/politisk-kalender"
+   ],
+   "status": "ok"
   },
   "kvaefjord": {
    "navn": "Kvæfjord",
    "nr": "5510",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.kvafjord.kommune.no/",
+   "portal": "https://www.kvafjord.kommune.no/politisk-moteplan",
+   "plattform": "ukjent",
+   "alternativer": [],
+   "status": "ok"
   },
   "dielddanuorri": {
    "navn": "Dielddanuorri",
@@ -3266,12 +3661,20 @@
   "ibestad": {
    "navn": "Ibestad",
    "nr": "5514",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.ibestad.kommune.no/",
+   "portal": null,
+   "plattform": "ukjent",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "gratangen": {
    "navn": "Gratangen",
    "nr": "5516",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.gratangen.kommune.no/",
+   "portal": null,
+   "plattform": "Public 360 (opengov)",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "loabk": {
    "navn": "Loabák",
@@ -3294,7 +3697,11 @@
   "salangen": {
    "navn": "Salangen",
    "nr": "5522",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.salangen.kommune.no/",
+   "portal": "https://www.salangen.kommune.no/tjenester/politikk-og-administrasjon/innsynsretten",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [],
+   "status": "ok"
   },
   "malselv": {
    "navn": "Målselv",
@@ -3308,12 +3715,23 @@
   "sorreisa": {
    "navn": "Sørreisa",
    "nr": "5526",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.sorreisa.kommune.no/",
+   "portal": "https://innsynpluss.onacos.no/sorreisa/sok/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://innsynpluss.onacos.no/sorreisa/",
+    "https://www.sorreisa.kommune.no/politikk"
+   ],
+   "status": "ok"
   },
   "dyroy": {
    "navn": "Dyrøy",
    "nr": "5528",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.dyroy.kommune.no/",
+   "portal": null,
+   "plattform": "Elements (Sikri)",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "senja": {
    "navn": "Senja",
@@ -3331,17 +3749,29 @@
   "balsfjord": {
    "navn": "Balsfjord",
    "nr": "5532",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.balsfjord.kommune.no/",
+   "portal": null,
+   "plattform": "Prokom",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "karlsoy": {
    "navn": "Karlsøy",
    "nr": "5534",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.karlsoy.kommune.no/",
+   "portal": "https://www.karlsoy.kommune.no/politikk",
+   "plattform": "Elements (Sikri)",
+   "alternativer": [],
+   "status": "ok"
   },
   "lyngen": {
    "navn": "Lyngen",
    "nr": "5536",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.lyngen.kommune.no/",
+   "portal": null,
+   "plattform": "Prokom",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "storfjord": {
    "navn": "Storfjord",
@@ -3362,7 +3792,11 @@
   "skjervoy": {
    "navn": "Skjervøy",
    "nr": "5542",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.skjervoy.kommune.no/",
+   "portal": null,
+   "plattform": "ACOS Innsyn",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "nordreisa": {
    "navn": "Nordreisa",
@@ -3378,12 +3812,22 @@
   "kvaenangen": {
    "navn": "Kvænangen",
    "nr": "5546",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.kvanangen.kommune.no/",
+   "portal": null,
+   "plattform": "ukjent",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "alta": {
    "navn": "Alta",
    "nr": "5601",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.alta.kommune.no/",
+   "portal": "https://www.alta.kommune.no/innsyn",
+   "plattform": "Elements (Sikri)",
+   "alternativer": [
+    "https://www.alta.kommune.no/politikk"
+   ],
+   "status": "ok"
   },
   "hammerfest": {
    "navn": "Hammerfest",
@@ -3401,7 +3845,15 @@
   "sorvaranger": {
    "navn": "Sør-Varanger",
    "nr": "5605",
-   "status": "fant ikke nettside"
+   "nettsted": "https://sor-varanger.kommune.no/",
+   "portal": "https://sor-varanger.kommune.no/politikk-planer-og-organisasjon/politikk/motekalender-og-saker-innsyn/postliste/",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [
+    "https://sor-varanger.kommune.no/politikk-planer-og-organisasjon/politikk/motekalender-og-saker-innsyn/",
+    "https://sor-varanger.kommune.no/politikk-planer-og-organisasjon/politikk/",
+    "https://sor-varanger.kommune.no/politikk-planer-og-organisasjon/"
+   ],
+   "status": "ok"
   },
   "vadso": {
    "navn": "Vadsø",
@@ -3416,7 +3868,11 @@
   "guovdageaidnu": {
    "navn": "Guovdageaidnu",
    "nr": "5612",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.guovdageainnu.suohkan.no/",
+   "portal": null,
+   "plattform": "ACOS Innsyn",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "loppa": {
    "navn": "Loppa",
@@ -3430,7 +3886,11 @@
   "hasvik": {
    "navn": "Hasvik",
    "nr": "5616",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.hasvik.kommune.no/",
+   "portal": "https://www.hasvik.kommune.no/tjenester/politikk-og-valg/kommunetv",
+   "plattform": "Elements (Sikri)",
+   "alternativer": [],
+   "status": "ok"
   },
   "masoy": {
    "navn": "Måsøy",
@@ -3459,12 +3919,20 @@
   "porsanger": {
    "navn": "Porsanger",
    "nr": "5622",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.porsanger.kommune.no/",
+   "portal": null,
+   "plattform": "ACOS Innsyn",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "lebesby": {
    "navn": "Lebesby",
    "nr": "5624",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.lebesby.kommune.no/",
+   "portal": "https://www.lebesby.kommune.no/innsyn",
+   "plattform": "ACOS Innsyn",
+   "alternativer": [],
+   "status": "ok"
   },
   "gamvik": {
    "navn": "Gamvik",
@@ -3487,17 +3955,29 @@
   "berlevag": {
    "navn": "Berlevåg",
    "nr": "5630",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.berlevag.kommune.no/",
+   "portal": "https://www.berlevag.kommune.no/politikk",
+   "plattform": "ukjent",
+   "alternativer": [],
+   "status": "ok"
   },
   "batsfjord": {
    "navn": "Båtsfjord",
    "nr": "5632",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.batsfjord.kommune.no/",
+   "portal": null,
+   "plattform": "Elements (Sikri)",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "vardo": {
    "navn": "Vardø",
    "nr": "5634",
-   "status": "fant ikke nettside"
+   "nettsted": "https://www.vardo.kommune.no/",
+   "portal": null,
+   "plattform": "Public 360 (opengov)",
+   "alternativer": [],
+   "status": "ingen møtelenke funnet"
   },
   "unjrga": {
    "navn": "Unjárga",
