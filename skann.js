@@ -15,7 +15,7 @@ const fs = require('fs');
 const ANTALL  = Number(process.env.ANTALL || 0);   // 0 = alle
 const PAUSE   = Number(process.env.PAUSE || 250);
 const TIMEOUT = 12000;
-const MAKS_SIDER = Number(process.env.SIDER || 14);  // hvor mange sider vi åpner per kommune
+const MAKS_SIDER = Number(process.env.SIDER || 18);  // hvor mange sider vi åpner per kommune
 const DIAG = process.env.DIAG === '1';              // DIAG=1 gir detaljert logg
 
 // Saker vi leter etter
@@ -110,11 +110,12 @@ function lenker(html, basis) {
     sett.add(full);
     // prioriter tydelige møtesider
     let vekt = 2;
-    if (/saksliste|sakskart|m(ø|o)teinnkalling|m(ø|o)tedokument/.test(samlet)) vekt = 0;
+    if (/mote_sakliste|moteid=|meetingid|sakskart|saksliste/i.test(samlet)) vekt = -2;
+    else if (/m(ø|o)teinnkalling|m(ø|o)tedokument/.test(samlet)) vekt = 0;
     else if (/m(ø|o)teplan|m(ø|o)tekalender|m(ø|o)teoversikt|kommunestyre|formannskap|utvalg/.test(samlet)) vekt = 1;
     ut.push({ url: full, vekt });
   }
-  return ut.sort((a, b) => a.vekt - b.vekt).slice(0, 6);
+  return ut.sort((a, b) => a.vekt - b.vekt).slice(0, 14);
 }
 
 /** Innhold ligger ofte i en iframe (typisk ACOS) - følg den */
@@ -145,13 +146,27 @@ function opengovSpor(html, basis) {
   return ut;
 }
 
+/** På en ACOS-møteplan: følg lenkene til de enkelte møtene */
+function acosMoter(html, basis) {
+  if (!/onacos\.no|wfinnsyn\.ashx/i.test(basis)) return [];
+  const ut = []; const sett = new Set();
+  const re = /href=["']([^"']*(?:mote_sakliste|moteid=|response=mote)[^"'#]*)["']/gi;
+  let m;
+  while ((m = re.exec(html)) && ut.length < 10) {
+    let full; try { full = new URL(m[1].replace(/&amp;/g, '&'), basis).href; } catch { continue; }
+    if (sett.has(full)) continue;
+    sett.add(full); ut.push({ url: full, vekt: -2 });
+  }
+  return ut;
+}
+
 function acosSpor(url) {
   if (!/wfinnsyn\.ashx|onacos\.no/i.test(url)) return [];
   const ut = [];
   try {
     const u = new URL(url);
     const basis = u.origin + u.pathname.replace(/\/[^/]*$/, '/wfinnsyn.ashx');
-    ['moteplan', 'mote_sakliste'].forEach(r =>
+    ['moteplan', 'mote_sakliste', 'moteplan_utvalg'].forEach(r =>
       ut.push({ url: `${basis}?response=${r}`, vekt: -1 }));
   } catch {}
   return ut;
@@ -222,7 +237,7 @@ function finnTreff(tekst) {
   if (ANTALL) liste = liste.slice(0, ANTALL);
 
   const resultat = {};
-  let medTreff = 0, sider = 0, feilet = 0, medMoteside = 0, komMoteside = 0, jsTeller = 0;
+  let medTreff = 0, sider = 0, feilet = 0, medMoteside = 0, komMoteside = 0, jsTeller = 0, sakerLest = 0;
 
   for (let i = 0; i < liste.length; i++) {
     const [nokkel, k] = liste[i];
@@ -230,7 +245,12 @@ function finnTreff(tekst) {
     const treff = [];
     let sattMote = false;
     let jsPortal = false;
-    let ko = [{ url: k.portal, vekt: 0 }];
+    // Kjente ACOS-adresser: prøv dem FØRST (sparer hele letejobben)
+    let ko = [];
+    ['innsyn.onacos.no', 'innsynpluss.onacos.no'].forEach(vert => {
+      ko.push({ url: `https://${vert}/${nokkel}/wfinnsyn.ashx?response=moteplan`, vekt: -3 });
+    });
+    ko.push({ url: k.portal, vekt: 0 });
     // speideren kan ha valgt feil startside - ta med alternativene også
     (k.alternativer || []).forEach(a => {
       if (UNNGA.some(o => norm(a).includes(o))) return;
@@ -268,6 +288,7 @@ function finnTreff(tekst) {
       }
 
       if (saker.length) {
+        sakerLest += saker.length;
         medMoteside++; if (!sattMote) { sattMote = true; komMoteside++; }
         funnetHer.forEach(f => {
           if (treff.some(x => x.utdrag.slice(0, 50) === f.utdrag.slice(0, 50))) return;
@@ -275,10 +296,11 @@ function finnTreff(tekst) {
         });
       }
       // følg videre bare hvis vi ikke har nok treff
-      if (treff.length < 4) {
+      if (treff.length < 8) {
         const nye = [
           ...iframer(side.html, side.url),
           ...acosSpor(side.url),
+          ...acosMoter(side.html, side.url),
           ...opengovSpor(side.html, side.url),
           ...lenker(side.html, side.url)
         ];
@@ -314,6 +336,7 @@ function finnTreff(tekst) {
   console.log(`Sider lest:          ${sider}  (${feilet} feilet)`);
   console.log(`Sider med ekte saksliste: ${medMoteside}`);
   console.log(`Kommuner med saksliste funnet: ${komMoteside}`);
+  console.log(`Politiske saker lest:    ${sakerLest}`);
   console.log(`Portaler som krever JavaScript: ${jsTeller}`);
   if (!medTreff) {
     console.log('\nIngen treff. Sannsynlig årsak:');
