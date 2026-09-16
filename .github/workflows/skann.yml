@@ -11,6 +11,10 @@ on:
         description: 'Hvor mange kommuner? (0 = alle)'
         required: false
         default: '15'
+      diag:
+        description: 'Detaljert logg? (1 = ja)'
+        required: false
+        default: '1'
 
 permissions:
   contents: write
@@ -29,6 +33,7 @@ jobs:
       - name: Skann saksdokumenter
         env:
           ANTALL: ${{ github.event.inputs.antall }}
+          DIAG: ${{ github.event.inputs.diag }}
         run: node skann.js
 
       - name: Lagre politikk.json
