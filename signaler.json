@@ -1,9 +1,0 @@
-{
-  "_om": "Genereres automatisk av GitHub Action (build-signaler.mjs). Kan ogsa redigeres manuelt. Nokler = kommunenavn i sma bokstaver. Score legges oppa behovsscoren i Agenda Kildal.",
-  "_oppdatert": "2026-09-15",
-  "kommuner": {
-    "froland":          { "doffinScore": 50, "husbankScore": 25, "doffinTreff": ["Konkurranse: omsorgsboliger (aktiv)"], "husbankTilsagn": 1 },
-    "habmer - hamaroy": { "doffinScore": 10, "husbankScore": 0,  "doffinTreff": ["Markedsdialog omsorg"], "husbankTilsagn": 0 },
-    "eidskog":          { "doffinScore": 0,  "husbankScore": 25, "doffinTreff": [], "husbankTilsagn": 1 }
-  }
-}
