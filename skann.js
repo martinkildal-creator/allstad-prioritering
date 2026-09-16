@@ -55,7 +55,7 @@ const UNNGA = [
   'opplysninger om deg', 'innsynskrav', 'planregister', 'kart', 'tilsyn',
   'skatt', 'faktura', 'ledig stilling', 'personvern',
   'pj.360online', 'basket', 'postjournal', 'offentlig-journal', 'offentlig journal',
-  'historisk', 'deg selv'
+  'historisk', 'deg selv', 'kontrollutvalgene.no'
 ];
 
 const norm = s => (s || '').toString().toLowerCase();
@@ -157,6 +157,34 @@ function acosSpor(url) {
   return ut;
 }
 
+/** En ekte saksliste har saksnummer: "PS 14/26", "RS 8/2026", "Sak 45/26" */
+const SAKSNR = /\b(?:PS|RS|DS|FO|SAK|PS-|SAKSNR\.?)\s*(\d{1,4}\s*\/\s*\d{2,4})\b/gi;
+
+function erSaksliste(tekst) {
+  SAKSNR.lastIndex = 0;
+  let n = 0, m;
+  while ((m = SAKSNR.exec(tekst)) && n < 3) n++;
+  return n >= 1;
+}
+
+/** Plukk ut sakene: saksnummer + tittelen som følger */
+function finnSaker(tekst) {
+  SAKSNR.lastIndex = 0;
+  const poser = [];
+  let m;
+  while ((m = SAKSNR.exec(tekst)) && poser.length < 400) {
+    poser.push({ nr: m[1].replace(/\s+/g, ''), start: m.index, etter: m.index + m[0].length });
+  }
+  const saker = [];
+  for (let i = 0; i < poser.length; i++) {
+    const slutt = i + 1 < poser.length ? poser[i + 1].start : Math.min(tekst.length, poser[i].etter + 180);
+    let tittel = tekst.slice(poser[i].etter, slutt).trim().replace(/\s+/g, ' ');
+    tittel = tittel.replace(/^[-–:.\s]+/, '').slice(0, 180);
+    if (tittel.length >= 8) saker.push({ nr: poser[i].nr, tittel });
+  }
+  return saker;
+}
+
 /** Finn setninger som nevner nøkkelordene */
 function finnTreff(tekst) {
   const t = norm(tekst);
@@ -224,16 +252,22 @@ function finnTreff(tekst) {
       const tekst = stripp(side.html);
       if (/enable javascript|you need to enable/i.test(tekst) && tekst.length < 300) jsPortal = true;
       const mo = moteordTreff(tekst);
-      const funnetHer = finnTreff(tekst);
+      const saker = erSaksliste(tekst) ? finnSaker(tekst) : [];
+      const funnetHer = saker
+        .filter(sk => NOKKELORD.some(o => norm(sk.tittel).includes(o)))
+        .map(sk => ({
+          ord: NOKKELORD.find(o => norm(sk.tittel).includes(o)),
+          utdrag: `${sk.nr} ${sk.tittel}`
+        }));
 
       if (DIAG) {
         console.log(`  [${k.navn}] ${side.url.slice(0, 95)}`);
         console.log(`      tegn=${tekst.length} møteord=${mo.length}[${mo.slice(0,4).join(',')}] `
-                  + `nøkkelord=${funnetHer.length} møteside=${erMoteside(tekst) ? 'JA' : 'nei'}`);
+                  + `saker=${saker.length} treff=${funnetHer.length} saksliste=${saker.length ? 'JA' : 'nei'}`);
         if (tekst.length < 400) console.log(`      tekst: ${tekst.slice(0, 200)}`);
       }
 
-      if (erMoteside(tekst)) {
+      if (saker.length) {
         medMoteside++; if (!sattMote) { sattMote = true; komMoteside++; }
         funnetHer.forEach(f => {
           if (treff.some(x => x.utdrag.slice(0, 50) === f.utdrag.slice(0, 50))) return;
@@ -278,13 +312,13 @@ function finnTreff(tekst) {
   console.log('\n===== RESULTAT =====');
   console.log(`Kommuner med treff:  ${medTreff} av ${liste.length}`);
   console.log(`Sider lest:          ${sider}  (${feilet} feilet)`);
-  console.log(`Sider som var møtesider: ${medMoteside}`);
-  console.log(`Kommuner med minst én møteside: ${komMoteside}`);
+  console.log(`Sider med ekte saksliste: ${medMoteside}`);
+  console.log(`Kommuner med saksliste funnet: ${komMoteside}`);
   console.log(`Portaler som krever JavaScript: ${jsTeller}`);
   if (!medTreff) {
     console.log('\nIngen treff. Sannsynlig årsak:');
     if (!medMoteside) console.log('  - Vi når ikke fram til sakslistene (de ligger dypere, eller lastes med JavaScript).');
-    else console.log('  - Vi finner møtesider, men de nevner ikke omsorgsbygg (kan være riktig!), eller titlene lastes separat.');
+    else console.log('  - Vi leser ekte sakslister, men ingen saker handler om omsorgsbygg akkurat nå (kan godt være riktig).');
     console.log('  Kjør på nytt med DIAG=1 for detaljert logg per side.');
   }
   const topp = Object.values(resultat).sort((a, b) => b.poeng - a.poeng).slice(0, 8);
