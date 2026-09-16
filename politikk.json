@@ -1,5 +1,19 @@
 {
  "_oppdatert": "2026-09-16",
  "_kilde": "Kommunale møtekalendere og sakslister (offentlige dokumenter)",
- "kommuner": {}
+ "kommuner": {
+  "sauda": {
+   "navn": "Sauda",
+   "nr": "1135",
+   "plattform": "ACOS Innsyn",
+   "poeng": 1,
+   "treff": [
+    {
+     "ord": "boligsosial",
+     "utdrag": "…kspapirer Protokoll Årsmelding 2025: 2024 Rapporter: Rapport &#8211; psykisk helse rus og boligsosialt arbeid &#8211; Karmøy kommune 2025 2024: 07.02.24 – Sakspapirer – Protokoll 13.03.24 – Sakspapirer – Protoko…",
+     "url": "https://kontrollutvalgene.no/karmoy/"
+    }
+   ]
+  }
+ }
 }
