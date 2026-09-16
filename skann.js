@@ -53,7 +53,9 @@ const FOLGORD = [
 const UNNGA = [
   'postliste', 'journal', 'byggesak', 'byggesaker', 'arkiv', 'eiendom',
   'opplysninger om deg', 'innsynskrav', 'planregister', 'kart', 'tilsyn',
-  'skatt', 'faktura', 'ledig stilling', 'personvern'
+  'skatt', 'faktura', 'ledig stilling', 'personvern',
+  'pj.360online', 'basket', 'postjournal', 'offentlig-journal', 'offentlig journal',
+  'historisk', 'deg selv'
 ];
 
 const norm = s => (s || '').toString().toLowerCase();
@@ -128,6 +130,21 @@ function iframer(html, basis) {
 }
 
 /** ACOS-portaler kan spørres direkte etter møteplan */
+/** Public 360 (opengov): møtene ligger under /Meetings/<tenant>/... */
+function opengovSpor(html, basis) {
+  if (!/360online\.com\/Meetings/i.test(basis)) return [];
+  const ut = []; const sett = new Set();
+  const re = /href=["']([^"']*\/Meetings\/[^"'#]+)["']/gi;
+  let m;
+  while ((m = re.exec(html)) && ut.length < 8) {
+    let full; try { full = new URL(m[1], basis).href; } catch { continue; }
+    if (sett.has(full) || full === basis) continue;
+    sett.add(full);
+    ut.push({ url: full, vekt: /agenda|saksliste|meeting\/\d|details/i.test(full) ? -1 : 0 });
+  }
+  return ut;
+}
+
 function acosSpor(url) {
   if (!/wfinnsyn\.ashx|onacos\.no/i.test(url)) return [];
   const ut = [];
@@ -186,6 +203,14 @@ function finnTreff(tekst) {
     let sattMote = false;
     let jsPortal = false;
     let ko = [{ url: k.portal, vekt: 0 }];
+    // speideren kan ha valgt feil startside - ta med alternativene også
+    (k.alternativer || []).forEach(a => {
+      if (UNNGA.some(o => norm(a).includes(o))) return;
+      ko.push({ url: a, vekt: /m(ø|o)te|politikk|utvalg|innsyn/i.test(a) ? 0 : 1 });
+    });
+    // åpenbart feil startpunkt? nedprioriter det
+    if (UNNGA.some(o => norm(k.portal).includes(o))) ko[0].vekt = 3;
+    ko.sort((a, b) => a.vekt - b.vekt);
 
     for (let s = 0; s < MAKS_SIDER && ko.length; s++) {
       const neste = ko.shift();
@@ -220,6 +245,7 @@ function finnTreff(tekst) {
         const nye = [
           ...iframer(side.html, side.url),
           ...acosSpor(side.url),
+          ...opengovSpor(side.html, side.url),
           ...lenker(side.html, side.url)
         ];
         nye.forEach(l => { if (!besokt.has(l.url)) ko.push(l); });
