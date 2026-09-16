@@ -1,0 +1,31 @@
+{
+  "_om": "Auto-genereres av GitHub Action (build-signaler.mjs) eller redigeres manuelt. Nokler = kommunenavn i sma bokstaver. doffinTreff kan vaere tekst ELLER objekt {type,tittel,frist,verdi,url}. husbankDetalj gir plasser og belop.",
+  "_oppdatert": "2026-09-15",
+  "kommuner": {
+    "froland": {
+      "doffinScore": 50,
+      "husbankScore": 25,
+      "husbankTilsagn": 1,
+      "doffinTreff": [
+        { "type": "Konkurranse", "tittel": "Omsorgsboliger Froland – totalentreprise", "frist": "15.11.2026", "verdi": "ca. 120 mill. kr", "url": "https://www.doffin.no/" }
+      ],
+      "husbankDetalj": { "tilsagn": 1, "plasser": 24, "belop": "30,2 mill. kr", "status": "Tilsagn gitt" }
+    },
+    "alstahaug": {
+      "doffinScore": 15,
+      "husbankScore": 0,
+      "husbankTilsagn": 0,
+      "doffinTreff": [
+        { "type": "Veiledende kunngjøring", "tittel": "Planlagt anskaffelse – omsorgsboliger", "frist": "01.12.2026", "url": "https://www.doffin.no/" }
+      ],
+      "husbankDetalj": null
+    },
+    "eidskog": {
+      "doffinScore": 0,
+      "husbankScore": 25,
+      "husbankTilsagn": 1,
+      "doffinTreff": [],
+      "husbankDetalj": { "tilsagn": 1, "plasser": 16, "belop": "19,8 mill. kr", "status": "Søknad innvilget" }
+    }
+  }
+}

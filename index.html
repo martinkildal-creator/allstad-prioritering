@@ -929,23 +929,44 @@ function openNote(navn){
 }
 function closeDrawer(){drawer.classList.remove("open");dbg.classList.remove("open");}
 
+// ---- Hjelper: formater et Doffin-treff (både gammelt string-format og nytt objekt-format) ----
+function doffinKort(t){
+  if(typeof t==='string') return `<li style="margin:4px 0">${t}</li>`;
+  const type=t.type||'Kunngjøring';
+  const typeFarge=/konkurranse/i.test(type)?'#B8742A':(/veiled/i.test(type)?'#3A6FA8':'#5C6B68');
+  const frist=t.frist?` · frist <b>${t.frist}</b>`:'';
+  const verdi=t.verdi?` · anslått verdi <b>${t.verdi}</b>`:'';
+  const lenke=t.url?` · <a href="${t.url}" target="_blank" rel="noopener" style="color:#2E6F62;font-weight:600">Åpne i Doffin ↗</a>`:'';
+  return `<li style="margin:6px 0;list-style:none;border-left:3px solid ${typeFarge};padding-left:10px">
+    <span style="display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:${typeFarge}">${type}</span><br>
+    <b>${t.tittel||'(uten tittel)'}</b><span style="color:var(--muted);font-size:12.5px">${frist}${verdi}</span>${lenke?`<br><span style="font-size:12.5px">${lenke}</span>`:''}
+  </li>`;
+}
 // ---- Markedssignaler: blokk i behovsnotatet for én kommune ----
 function signalNoteBlokk(d){
   const doffin=(d.doffinScore||0), husbank=(d.husbankScore||0), sig=doffin+husbank;
   const treff=(d.doffinTreff&&d.doffinTreff.length)?d.doffinTreff:[];
+  const hb=d.husbankDetalj||null;
   const tilsagn=d.husbankTilsagn||0;
-  if(sig<=0 && !treff.length && !tilsagn){
+  if(sig<=0 && !treff.length && !tilsagn && !hb){
     return `<h3>Markedssignaler nå (Doffin + Husbanken)</h3>
       <div class="recco" style="color:var(--muted)">Ingen aktive signaler registrert for ${d.navn} i <b>signaler.json</b> ennå.
       Når roboten finner en Doffin-kunngjøring eller et Husbank-tilsagn, vises tallene her.</div>`;
   }
+  // Husbank-detaljer: bruk objekt om det finnes, ellers fall tilbake på antall tilsagn
+  const hbPlasser = hb&&hb.plasser!=null?hb.plasser:null;
+  const hbBelop   = hb&&hb.belop?hb.belop:null;
+  const hbTilsagn = hb&&hb.tilsagn!=null?hb.tilsagn:tilsagn;
+  const hbStatus  = hb&&hb.status?hb.status:null;
   const rows=[];
   rows.push(`<tr><td>Signalscore (lagt til totalen)</td><td class="num"><b style="color:#B8742A">+${sig.toFixed(0)}</b></td></tr>`);
   rows.push(`<tr><td>– herav Doffin</td><td class="num">${doffin>0?'+'+doffin:'–'}</td></tr>`);
   rows.push(`<tr><td>– herav Husbanken</td><td class="num">${husbank>0?'+'+husbank:'–'}</td></tr>`);
-  rows.push(`<tr><td>Husbanken – antall tilsagn (investeringstilskudd)</td><td class="num">${tilsagn||'–'}</td></tr>`);
+  rows.push(`<tr><td>Husbanken – tilsagn (investeringstilskudd)${hbStatus?` <span style="color:var(--muted);font-size:12px">(${hbStatus})</span>`:''}</td><td class="num">${hbTilsagn||'–'}</td></tr>`);
+  if(hbPlasser!=null) rows.push(`<tr><td>Husbanken – omsorgsplasser i saken(e)</td><td class="num">${hbPlasser}</td></tr>`);
+  if(hbBelop)         rows.push(`<tr><td>Husbanken – tilskuddsbeløp</td><td class="num">${hbBelop}</td></tr>`);
   const treffHtml = treff.length
-    ? `<div style="margin-top:8px"><b>Aktive Doffin-kunngjøringer:</b><ul style="margin:6px 0 0 18px;padding:0">${treff.map(t=>`<li style="margin:2px 0">${t}</li>`).join('')}</ul></div>`
+    ? `<div style="margin-top:10px"><b>Aktive Doffin-kunngjøringer:</b><ul style="margin:6px 0 0;padding:0">${treff.map(doffinKort).join('')}</ul></div>`
     : '';
   return `<h3>Markedssignaler nå (Doffin + Husbanken)</h3>
     <table style="width:100%;border-collapse:collapse;font-size:13.5px;margin:6px 0">
@@ -955,36 +976,68 @@ function signalNoteBlokk(d){
     <div class="recco" style="font-size:12px;margin-top:8px">Signalene forteller at kommunen er i <b>bevegelse akkurat nå</b> (marked/finansiering), og legges oppå behovsscoren. Kilde: Doffin (offentlige kunngjøringer) og Husbanken (investeringstilskudd).</div>`;
 }
 
+// ---- Hjelper: har kommunen en AKTIV KONKURRANSE på Doffin? ----
+function harAktivKonkurranse(d){
+  const t=d.doffinTreff||[];
+  return t.some(x=>{
+    if(typeof x==='string') return /konkurranse/i.test(x);
+    return /konkurranse/i.test(x.type||'');
+  });
+}
+function doffinCelle(d){
+  const t=d.doffinTreff||[];
+  if(!t.length) return '–';
+  return t.map(x=>{
+    if(typeof x==='string') return x;
+    const konk=/konkurranse/i.test(x.type||'');
+    const frist=x.frist?` <span style="color:var(--muted)">(frist ${x.frist})</span>`:'';
+    const lenke=x.url?` <a href="${x.url}" target="_blank" rel="noopener" style="color:#2E6F62">↗</a>`:'';
+    return `<span style="${konk?'color:#B8742A;font-weight:600':''}">${x.type||'Kunngjøring'}: ${x.tittel||''}</span>${frist}${lenke}`;
+  }).join('<br>');
+}
 // ---- Signaler-oversikt: egen knapp som viser alt relevant fra Doffin + Husbanken ----
+let signalerKunKonkurranse=false;
+function toggleKonkurranseFilter(){ signalerKunKonkurranse=!signalerKunKonkurranse; openSignaler(); }
 function openSignaler(){
-  const medSignal=DATA.filter(d=>(d.doffinScore||0)+(d.husbankScore||0)>0
-    || (d.doffinTreff&&d.doffinTreff.length) || (d.husbankTilsagn||0)>0)
-    .sort((a,b)=>((b.doffinScore||0)+(b.husbankScore||0))-((a.doffinScore||0)+(a.husbankScore||0)));
+  let medSignal=DATA.filter(d=>(d.doffinScore||0)+(d.husbankScore||0)>0
+    || (d.doffinTreff&&d.doffinTreff.length) || (d.husbankTilsagn||0)>0);
+  const antallKonk=medSignal.filter(harAktivKonkurranse).length;
+  if(signalerKunKonkurranse) medSignal=medSignal.filter(harAktivKonkurranse);
+  medSignal.sort((a,b)=>((b.doffinScore||0)+(b.husbankScore||0))-((a.doffinScore||0)+(a.husbankScore||0)));
   const oppdatert=(window.__signalerOppdatert)||'–';
+  const filterKnapp=`<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:4px 0 12px">
+    <button onclick="toggleKonkurranseFilter()" style="cursor:pointer;font:inherit;font-size:13px;font-weight:600;padding:7px 12px;border-radius:8px;border:1px solid ${signalerKunKonkurranse?'#B8742A':'var(--line)'};background:${signalerKunKonkurranse?'#B8742A':'#fff'};color:${signalerKunKonkurranse?'#fff':'var(--ink)'}">
+      ${signalerKunKonkurranse?'✓ ':''}Kun aktiv konkurranse på Doffin (${antallKonk})</button>
+    <span style="font-size:12px;color:var(--muted)">${signalerKunKonkurranse?'Viser bare kommuner med konkurranse ute nå.':'Viser alle kommuner med signaler.'}</span>
+  </div>`;
   let body;
   if(!medSignal.length){
-    body=`<p style="color:var(--muted)">Ingen aktive signaler er lastet ennå.</p>
+    body=filterKnapp+(signalerKunKonkurranse
+      ? `<p style="color:var(--muted)">Ingen kommuner har en aktiv konkurranse på Doffin akkurat nå.</p>`
+      : `<p style="color:var(--muted)">Ingen aktive signaler er lastet ennå.</p>
       <p>Legg fila <b>signaler.json</b> ved siden av nettsiden. Da fylles denne oversikten automatisk med kommuner som har
-      aktive <b>Doffin</b>-kunngjøringer eller <b>Husbank</b>-tilsagn.</p>`;
+      aktive <b>Doffin</b>-kunngjøringer eller <b>Husbank</b>-tilsagn.</p>`);
   } else {
     const rows=medSignal.map(d=>{
       const doffin=d.doffinScore||0, husbank=d.husbankScore||0, sig=doffin+husbank;
-      const treff=(d.doffinTreff&&d.doffinTreff.length)?d.doffinTreff.join('<br>'):'–';
-      return `<tr style="border-top:1px solid var(--line)">
-        <td style="padding:8px 6px"><b>${d.navn}</b></td>
+      const konk=harAktivKonkurranse(d);
+      const hb=d.husbankDetalj||null;
+      const hbTxt=hb?`${hb.tilsagn!=null?hb.tilsagn+' tilsagn':''}${hb.plasser!=null?' · '+hb.plasser+' plasser':''}${hb.belop?' · '+hb.belop:''}`:(d.husbankTilsagn||'–');
+      return `<tr style="border-top:1px solid var(--line);cursor:pointer" onclick='closeSignaler();openNote(${JSON.stringify(d.navn)})'>
+        <td style="padding:8px 6px"><b>${d.navn}</b>${konk?' <span title="Aktiv konkurranse" style="color:#B8742A">●</span>':''}</td>
         <td class="num" style="padding:8px 6px;color:#B8742A"><b>+${sig.toFixed(0)}</b></td>
         <td class="num" style="padding:8px 6px">${doffin>0?'+'+doffin:'–'}</td>
         <td class="num" style="padding:8px 6px">${husbank>0?'+'+husbank:'–'}</td>
-        <td class="num" style="padding:8px 6px">${d.husbankTilsagn||'–'}</td>
-        <td style="padding:8px 6px;font-size:12.5px">${treff}</td>
+        <td style="padding:8px 6px;font-size:12px">${hbTxt||'–'}</td>
+        <td style="padding:8px 6px;font-size:12.5px">${doffinCelle(d)}</td>
       </tr>`;
     }).join('');
-    body=`<p style="color:var(--muted);margin-top:0">Kommuner som er <b>i bevegelse nå</b> – aktive Doffin-kunngjøringer og/eller Husbank-tilsagn. Sist oppdatert: <b>${oppdatert}</b>.</p>
+    body=filterKnapp+`<p style="color:var(--muted);margin-top:0">Kommuner som er <b>i bevegelse nå</b>. Klikk en rad for behovsnotatet. <span style="color:#B8742A">●</span> = aktiv konkurranse. Sist oppdatert: <b>${oppdatert}</b>.</p>
       <table style="width:100%;border-collapse:collapse;font-size:13.5px">
         <thead><tr style="text-align:left;color:var(--teal-d)">
           <th style="padding:6px">Kommune</th><th class="num" style="padding:6px">Signal</th>
           <th class="num" style="padding:6px">Doffin</th><th class="num" style="padding:6px">Husbank</th>
-          <th class="num" style="padding:6px">Tilsagn</th><th style="padding:6px">Doffin-kunngjøringer</th>
+          <th style="padding:6px">Husbank-detalj</th><th style="padding:6px">Doffin-kunngjøringer</th>
         </tr></thead>
         <tbody>${rows}</tbody>
       </table>`;
@@ -1472,6 +1525,7 @@ async function lastSignaler(){
             d.husbankScore=s.husbankScore||0;
             d.doffinTreff=s.doffinTreff||[];
             d.husbankTilsagn=s.husbankTilsagn||0;
+            d.husbankDetalj=s.husbankDetalj||null;
             traff++;}
     });
     window.__signalerOppdatert=j._oppdatert||'–';
