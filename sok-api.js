@@ -106,7 +106,10 @@ const DRIFT = [
   'svar på spørsmål', 'svar på tillatelse', 'endret bruk', 'kostholds', 'ernæring',
   'orienteringsbesøk', 'høring - endring i forskrift', 'forskrift om tilskudd',
   'egenandel', 'vederlag', 'matlevering', 'akuttleilighet', 'borettslag',
-  'melding om vedtak', 'vedtak om', 'forvaltning kommunal'
+  'melding om vedtak', 'vedtak om', 'forvaltning kommunal',
+  'innvilget søknad', 'avtale om leie', 'leie av omsorgsbolig', 'midlertidig bruk',
+  'tildeling omsorgsbolig', 'utleie av kommunale', 'ledige omsorgsboliger',
+  'tilstandskartlegging', 'tilstandsrapport', 'ombygging av omsorgsboliger'
 ];
 
 // Ren støy fra postjournalen
@@ -115,7 +118,11 @@ const STOY = [
   'ansettelse', 'lønn', 'permisjon', 'sykmeld', 'oppsigelse', 'attest', 'cv',
   'ferdigattest', 'brukstillatelse', 'igangsettingstillatelse', 'ansiennitet',
   'taushetserklæring', 'politiattest', 'arbeidsforhold', 'turnus', 'time- og',
-  'faktura', 'purring', 'egenandel', 'klage på vedtak', 'pasientjournal'
+  'faktura', 'purring', 'egenandel', 'klage på vedtak', 'pasientjournal',
+  'eltilsyn', 'vernerunde', 'branntilsyn', 'internkontroll', 'spørreundersøkelse',
+  'tilkallingsvikar', 'innsynskrav', 'innsynsbegjæring', 'innsyn -', 'innsyn –',
+  'tjenesteavtale', 'sittegruppe', 'bocciabane', 'serviceerklæring', 'avviksmelding',
+  'skjenkebevilling', 'smittevern', 'influensavaksine', 'matombringing'
 ];
 
 // Ord som gjør en sak interessant selv om typen er et vanlig dokument
@@ -141,7 +148,11 @@ function hentTreff(data, ord) {
       if (!relevantType && !STERKT_SIGNAL.test(tittel)) return;        // krev politisk type ELLER sterkt signal
       if (ut.some(x => x.tittel === tittel)) return;
       const pr = it.properties || {};
+      const politiskType = /saksframlegg|sakskart|møteprotokoll|moteprotokoll/i.test(type);
+      const sterk = STERKT_SIGNAL.test(tittel);
+      const vekt = (sterk && politiskType) ? 3 : (sterk ? 2 : (politiskType ? 1 : 0));
       ut.push({
+        vekt,
         tittel: tittel.slice(0, 200),
         type: it.type || null,
         dato: pr.dato || null,
@@ -149,6 +160,7 @@ function hentTreff(data, ord) {
         id: it.identifier ? String(it.identifier).slice(0, 80) : null
       });
     });
+    ut.sort((a, b) => b.vekt - a.vekt);
     return ut.slice(0, 20);
   }
 
@@ -240,16 +252,17 @@ function hentTreff(data, ord) {
       if (r.feil) { feilet++; break; }
       r.treff.forEach(t => {
         if (samlet.some(x => x.tittel === t.tittel)) return;
-        samlet.push({ ord, tittel: t.tittel, type: t.type, dato: t.dato, saksnr: t.saksnr,
+        samlet.push({ ord, vekt: t.vekt || 0, tittel: t.tittel, type: t.type, dato: t.dato, saksnr: t.saksnr,
           url: `${VERT}/${k.slug}/sok/#/?searchTerm=${encodeURIComponent(ord)}` });
       });
       await new Promise(s => setTimeout(s, PAUSE));
     }
     if (samlet.length) {
-      const sterke = samlet.filter(t => STERKE.includes(t.ord)).length;
+      samlet.sort((a, b) => (b.vekt || 0) - (a.vekt || 0));
+      const sterke = samlet.filter(t => (t.vekt || 0) >= 2).length;
       resultat[nokkel] = {
         navn: k.navn, nr: k.nr, plattform: 'ACOS Innsyn',
-        poeng: Math.min(10, sterke * 2 + samlet.length),
+        poeng: Math.min(10, sterke * 3 + Math.min(4, samlet.length)),
         treff: samlet.slice(0, 8)
       };
       medTreff++; totalt += samlet.length;
