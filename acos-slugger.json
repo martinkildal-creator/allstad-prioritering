@@ -11,15 +11,45 @@
    "nr": "1112",
    "slug": "lund"
   },
+  "sande": {
+   "navn": "Sande",
+   "nr": "1514",
+   "slug": "vestkontroll"
+  },
+  "haram": {
+   "navn": "Haram",
+   "nr": "1580",
+   "slug": "haram"
+  },
   "meloy": {
    "navn": "Meløy",
    "nr": "1837",
    "slug": "meloy"
   },
+  "beiarn": {
+   "navn": "Beiarn",
+   "nr": "1839",
+   "slug": "beiarn"
+  },
+  "fauske": {
+   "navn": "Fauske",
+   "nr": "1841",
+   "slug": "fauske"
+  },
+  "oksnes": {
+   "navn": "Øksnes",
+   "nr": "1868",
+   "slug": "oksnes-historisk"
+  },
   "skiptvet": {
    "navn": "Skiptvet",
    "nr": "3116",
    "slug": "skiptvet"
+  },
+  "marker": {
+   "navn": "Marker",
+   "nr": "3122",
+   "slug": "marker"
   },
   "baerum": {
    "navn": "Bærum",
@@ -40,6 +70,11 @@
    "navn": "Gjerdrum",
    "nr": "3230",
    "slug": "gjerdrum"
+  },
+  "lunner": {
+   "navn": "Lunner",
+   "nr": "3234",
+   "slug": "lunner"
   },
   "nannestad": {
    "navn": "Nannestad",
@@ -66,6 +101,11 @@
    "nr": "3310",
    "slug": "hole"
   },
+  "modum": {
+   "navn": "Modum",
+   "nr": "3316",
+   "slug": "modum"
+  },
   "os": {
    "navn": "Os",
    "nr": "3430",
@@ -76,15 +116,55 @@
    "nr": "3447",
    "slug": "sondre-land"
   },
+  "nordreland": {
+   "navn": "Nordre Land",
+   "nr": "3448",
+   "slug": "nordre-land"
+  },
+  "etnedal": {
+   "navn": "Etnedal",
+   "nr": "3450",
+   "slug": "valdres-regionrad"
+  },
+  "nordaurdal": {
+   "navn": "Nord-Aurdal",
+   "nr": "3451",
+   "slug": "valdres-regionrad"
+  },
   "larvik": {
    "navn": "Larvik",
    "nr": "3909",
    "slug": "larvik"
   },
+  "faerder": {
+   "navn": "Færder",
+   "nr": "3911",
+   "slug": "notteroy-historisk"
+  },
   "porsgrunn": {
    "navn": "Porsgrunn",
    "nr": "4001",
    "slug": "porsgrunn"
+  },
+  "skien": {
+   "navn": "Skien",
+   "nr": "4003",
+   "slug": "skien"
+  },
+  "siljan": {
+   "navn": "Siljan",
+   "nr": "4010",
+   "slug": "siljan"
+  },
+  "bamble": {
+   "navn": "Bamble",
+   "nr": "4012",
+   "slug": "bamble"
+  },
+  "drangedal": {
+   "navn": "Drangedal",
+   "nr": "4016",
+   "slug": "drangedal"
   },
   "lillesand": {
    "navn": "Lillesand",
@@ -106,20 +186,65 @@
    "nr": "4627",
    "slug": "askoy"
   },
+  "laerdal": {
+   "navn": "Lærdal",
+   "nr": "4642",
+   "slug": "lardal"
+  },
+  "ardal": {
+   "navn": "Årdal",
+   "nr": "4643",
+   "slug": "ardal-historisk"
+  },
+  "luster": {
+   "navn": "Luster",
+   "nr": "4644",
+   "slug": "luster-historisk"
+  },
   "roros": {
    "navn": "Røros",
    "nr": "5025",
    "slug": "roros"
+  },
+  "harstad": {
+   "navn": "Harstad",
+   "nr": "5503",
+   "slug": "harstad"
+  },
+  "salangen": {
+   "navn": "Salangen",
+   "nr": "5522",
+   "slug": "salangen"
+  },
+  "malselv": {
+   "navn": "Målselv",
+   "nr": "5524",
+   "slug": "malselv"
   },
   "sorreisa": {
    "navn": "Sørreisa",
    "nr": "5526",
    "slug": "sorreisa"
   },
+  "balsfjord": {
+   "navn": "Balsfjord",
+   "nr": "5532",
+   "slug": "balsfjord"
+  },
+  "lyngen": {
+   "navn": "Lyngen",
+   "nr": "5536",
+   "slug": "lyngen"
+  },
   "storfjord": {
    "navn": "Storfjord",
    "nr": "5538",
    "slug": "storfjord"
+  },
+  "skjervoy": {
+   "navn": "Skjervøy",
+   "nr": "5542",
+   "slug": "skjervoy"
   },
   "nordreisa": {
    "navn": "Nordreisa",
@@ -130,6 +255,21 @@
    "navn": "Måsøy",
    "nr": "5618",
    "slug": "masoy"
+  },
+  "nordkapp": {
+   "navn": "Nordkapp",
+   "nr": "5620",
+   "slug": "nordkapp"
+  },
+  "porsanger": {
+   "navn": "Porsanger",
+   "nr": "5622",
+   "slug": "porsanger"
+  },
+  "lebesby": {
+   "navn": "Lebesby",
+   "nr": "5624",
+   "slug": "lebesby"
   }
  }
 }
