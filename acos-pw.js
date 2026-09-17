@@ -35,7 +35,9 @@ async function hent(url, opsjoner = {}) {
         ...(opsjoner.headers || {})
       }
     });
-    return { ok: r.ok, status: r.status, url: r.url, html: (await r.text()).slice(0, 900000) };
+    const satt = (r.headers.getSetCookie ? r.headers.getSetCookie() : [r.headers.get('set-cookie')].filter(Boolean));
+    const cookies = satt.map(c => c.split(';')[0]).join('; ');
+    return { ok: r.ok, status: r.status, url: r.url, cookies, html: (await r.text()).slice(0, 900000) };
   } catch (e) {
     return { ok: false, status: 0, url, html: '', feil: e.name === 'AbortError' ? 'timeout' : e.message };
   } finally { clearTimeout(t); }
@@ -93,23 +95,43 @@ async function sok(slug, ord, diag = false) {
   const { txt, btn } = sokeFelt(forside.html);
   if (!txt) return { feil: 'fant ikke søkefeltet' };
 
-  const krop = new URLSearchParams();
-  Object.entries(felt).forEach(([k, v]) => krop.append(k, v));
-  krop.set('__EVENTTARGET', '');
-  krop.set('__EVENTARGUMENT', '');
-  krop.set(txt, ord);
-  if (btn) krop.set(btn, 'Søk');
+  // ASP.NET krever ofte økt-cookien fra GET-en
+  const cookie = forside.cookies || '';
 
-  const svar = await hent(base(slug), {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Referer': base(slug),
-      'Origin': 'https://innsynpluss.onacos.no'
-    },
-    body: krop.toString()
-  });
-  if (!svar.ok) return { feil: `POST ga ${svar.status}` };
+  const lagKropp = variant => {
+    const kr = new URLSearchParams();
+    Object.entries(felt).forEach(([k, v]) => kr.append(k, v));
+    kr.set(txt, ord);
+    if (variant === 'knapp') {
+      kr.set('__EVENTTARGET', '');
+      kr.set('__EVENTARGUMENT', '');
+      if (btn) kr.set(btn, 'Søk');
+    } else {           // variant 'event': knappen som hendelse
+      kr.set('__EVENTTARGET', (btn || txt).replace(/\$/g, '$'));
+      kr.set('__EVENTARGUMENT', '');
+      if (btn) kr.delete(btn);
+    }
+    return kr.toString();
+  };
+
+  let svar = null;
+  for (const variant of ['knapp', 'event']) {
+    svar = await hent(base(slug), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Referer': base(slug),
+        'Origin': 'https://innsynpluss.onacos.no',
+        'Accept-Language': 'nb-NO,nb;q=0.9,no;q=0.8',
+        ...(cookie ? { 'Cookie': cookie } : {})
+      },
+      body: lagKropp(variant)
+    });
+    if (diag) console.log(`    variant "${variant}": status ${svar.status}, ${svar.html.length} tegn${cookie ? ', cookie sendt' : ', INGEN cookie'}`);
+    if (svar.ok) break;
+    if (diag && svar.html) console.log(`      serverfeil: ${stripp(svar.html).slice(0, 180)}`);
+  }
+  if (!svar || !svar.ok) return { feil: `POST ga ${svar ? svar.status : '?'}` };
 
   const tekst = stripp(svar.html);
   const treff = trekkTreff(svar.html, ord);
