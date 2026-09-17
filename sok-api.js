@@ -215,23 +215,38 @@ function hentTreff(data, ord) {
         if (m) { slug = m[1]; break; }
       }
       if (!slug) {
-        // let på forsiden OG på innsyn-/politikk-sidene vi allerede kjenner
-        const sider = [k.nettsted, k.portal, ...(k.alternativer || [])].filter(Boolean);
-        for (const side of sider.slice(0, 4)) {
+        // let på forsiden, på sidene vi kjenner, OG på typiske innsyn-undersider
+        const rot = (k.nettsted || '').replace(/\/+$/, '');
+        const ekstra = rot ? [
+          rot + '/innsyn/', rot + '/politikk/', rot + '/innsyn',
+          rot + '/politikk-og-administrasjon/', rot + '/politikk-og-organisasjon/',
+          rot + '/om-kommunen/politikk/', rot + '/motekalender/'
+        ] : [];
+        const sider = [k.nettsted, k.portal, ...(k.alternativer || []), ...ekstra].filter(Boolean);
+        for (const side of sider.slice(0, 10)) {
           const r = await kall(side);
           if (r.ok) {
             const m = r.tekst.match(/innsynpluss\.onacos\.no\/([a-z0-9\-]+)/i);
             if (m) { slug = m[1]; break; }
           }
-          await new Promise(s => setTimeout(s, 120));
+          await new Promise(s => setTimeout(s, 110));
         }
       }
-      // siste utvei: prøv kommunenavnet som adresse og sjekk om portalen er ekte
+      // siste utvei: prøv flere skrivemåter av kommunenavnet som adresse
       if (!slug) {
-        const gjett = norm(k.navn).replace(/æ/g,'ae').replace(/ø/g,'o').replace(/å/g,'a').replace(/[^a-z0-9]/g,'');
-        const r = await kall(`${VERT}/${gjett}/sok/`);
-        if (r.ok && r.tekst.length > 20000 && !/brukernavn eller e-post/i.test(r.tekst)) slug = gjett;
-        await new Promise(s => setTimeout(s, 120));
+        const rensk = t => norm(t).replace(/æ/g,'ae').replace(/ø/g,'o').replace(/å/g,'a');
+        const grunn = rensk(k.navn);
+        const varianter = [
+          grunn.replace(/[^a-z0-9]/g,''),          // nordreland
+          grunn.replace(/\s+/g,'-'),               // nordre-land
+          grunn.replace(/[^a-z0-9]/g,'') + 'kommune',
+          norm(k.navn).replace(/å/g,'aa').replace(/ø/g,'oe').replace(/æ/g,'ae').replace(/[^a-z0-9]/g,'')
+        ].filter((v,i,a) => v && a.indexOf(v) === i);
+        for (const v of varianter) {
+          const r = await kall(`${VERT}/${v}/sok/`);
+          if (r.ok && r.tekst.length > 20000 && !/brukernavn eller e-post/i.test(r.tekst)) { slug = v; break; }
+          await new Promise(s => setTimeout(s, 110));
+        }
       }
       if (slug) { kart[nokkel] = { navn: k.navn, nr: k.nr, slug }; funnet++; }
       if (i % 50 === 0) console.log(`  ... ${i} (funnet ${funnet})`);
