@@ -99,6 +99,32 @@ async function moteLenker(page) {
   } catch { return []; }
 }
 
+/** Søk i Innsyn Pluss: skriv i søkefeltet og les treffene */
+async function sokPortal(page, slug, ord) {
+  const url = `https://innsynpluss.onacos.no/${slug}/sok/`;
+  try {
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 25000 });
+    await page.waitForTimeout(1500);
+    const tekst = await page.evaluate(() => document.body ? document.body.innerText : '');
+    if (/logg inn|brukernavn eller e-post/i.test(tekst) && tekst.length < 400) return { feil: 'innlogging' };
+    if (tekst.length < 300) return { feil: 'tom side' };
+
+    // finn søkefeltet
+    const felt = await page.$('input[type="search"], input[placeholder*="øk" i], input[name*="sok" i], input[type="text"]');
+    if (!felt) return { feil: 'fant ikke søkefelt', tekst: tekst.slice(0, 160) };
+
+    await felt.fill(ord);
+    await felt.press('Enter');
+    await page.waitForTimeout(3000);
+
+    const etter = await page.evaluate(() => document.body ? document.body.innerText.replace(/\s+/g, ' ') : '');
+    const lenker = await page.evaluate(() => Array.from(document.querySelectorAll('a'))
+      .map(a => ({ t: (a.innerText || '').trim(), h: a.href }))
+      .filter(x => x.t.length > 15).slice(0, 40));
+    return { url: page.url(), tekst: etter, lenker };
+  } catch (e) { return { feil: e.message.slice(0, 80) }; }
+}
+
 (async () => {
   if (!fs.existsSync('portaler.json')) { console.error('Mangler portaler.json'); process.exit(1); }
   const alle = JSON.parse(fs.readFileSync('portaler.json', 'utf8')).kommuner || {};
@@ -118,6 +144,22 @@ async function moteLenker(page) {
 
   const resultat = {};
   let medTreff = 0, sakerLest = 0, medMoteplan = 0, sider = 0;
+
+  if (MODUS === 'sok') {
+    for (const k of liste) {
+      const r = await sokPortal(page, k.slug, 'omsorgsbolig');
+      sider++;
+      if (r.feil) { console.log(`  [${k.navn}] – ${r.feil}`); continue; }
+      const antall = (r.tekst.match(/treff/gi) || []).length;
+      console.log(`  [${k.navn}] SØK OK  tegn=${r.tekst.length} lenker=${r.lenker.length}`);
+      console.log(`      url etter søk: ${r.url}`);
+      console.log(`      tekst: ${r.tekst.slice(0, 220)}`);
+      r.lenker.slice(0, 3).forEach(l => console.log(`      • ${l.t.slice(0, 90)}`));
+    }
+    await nettleser.close();
+    console.log(`\nSider lest: ${sider}`);
+    return;
+  }
 
   for (let i = 0; i < liste.length; i++) {
     const k = liste[i];
