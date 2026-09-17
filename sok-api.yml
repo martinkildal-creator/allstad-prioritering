@@ -1,0 +1,43 @@
+name: SOK API
+
+on:
+  schedule:
+    - cron: '0 5 * * 1'      # hver mandag kl. 06 norsk tid (skann)
+  workflow_dispatch:
+    inputs:
+      modus:
+        description: 'Velg: lab / slug / skann'
+        required: true
+        default: 'lab'
+        type: choice
+        options:
+          - lab
+          - slug
+          - skann
+
+permissions:
+  contents: write
+
+jobs:
+  sokapi:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Kjør søk
+        env:
+          MODUS: ${{ inputs.modus || 'skann' }}
+        run: node sok-api.js
+
+      - name: Lagre resultat
+        if: ${{ (inputs.modus || 'skann') != 'lab' }}
+        run: |
+          git config user.name "signal-robot"
+          git config user.email "actions@github.com"
+          git add acos-slugger.json politikk-acos.json 2>/dev/null || true
+          git diff --staged --quiet || git commit -m "ACOS-søk $(date +%F)"
+          git push
