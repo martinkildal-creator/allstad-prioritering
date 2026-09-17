@@ -12,8 +12,8 @@
 
 const fs = require('fs');
 
-const MODUS  = process.env.MODUS || 'lab';
-const SLUG   = process.env.SLUG || 'lund';
+const MODUS  = (process.env.MODUS || '').trim() || 'fang';
+const SLUG   = (process.env.SLUG || '').trim() || 'lund';
 const ANTALL = Number(process.env.ANTALL || 0);
 const PAUSE  = Number(process.env.PAUSE || 400);
 
