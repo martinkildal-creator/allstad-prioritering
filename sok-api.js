@@ -98,6 +98,17 @@ async function sok(slug, ord, diag = false) {
 // Dokumenttyper som er politisk relevante
 const GODE_TYPER = ['saksframlegg', 'sakskart', 'møteprotokoll', 'moteprotokoll', 'sak', 'utgående dokument'];
 
+// Forvaltning/drift av EKSISTERENDE boliger - ikke planer om nye
+const DRIFT = [
+  'tildeling av', 'klage på', 'klage over', 'tilsvar', 'avslagsbrev', 'avslag på',
+  'søknad om omsorgsbolig', 'bekreftelse', 'husleie', 'leiekontrakt', 'leiesats',
+  'leieforhold', 'oppsigelse', 'tildelingsrett', 'tildelingsordning', 'innsynsbegjæring',
+  'svar på spørsmål', 'svar på tillatelse', 'endret bruk', 'kostholds', 'ernæring',
+  'orienteringsbesøk', 'høring - endring i forskrift', 'forskrift om tilskudd',
+  'egenandel', 'vederlag', 'matlevering', 'akuttleilighet', 'borettslag',
+  'melding om vedtak', 'vedtak om', 'forvaltning kommunal'
+];
+
 // Ren støy fra postjournalen
 const STOY = [
   'st. ref', 'søknad og cv', 'arbeidsavtale', 'vikariat', 'stilling', 'tilsetting',
@@ -108,7 +119,7 @@ const STOY = [
 ];
 
 // Ord som gjør en sak interessant selv om typen er et vanlig dokument
-const STERKT_SIGNAL = /utredning|utbygging|planlegging|prosjekt|byggetrinn|detaljregulering|reguleringsplan|forprosjekt|mulighetsstudie|investering|helse- ?og ?omsorgsplan|boligplan|boligbehov|sykehjemsstruktur|nytt sykehjem|nye omsorgsbolig|bygging av/i;
+const STERKT_SIGNAL = /utredning|utbygging|utbyggings|planlegging|prosjekt|byggetrinn|detaljregulering|reguleringsplan|forprosjekt|mulighetsstudie|investering|helse- ?og ?omsorgsplan|boligplan|boligbehov|boligstrategi|sykehjemsstruktur|nytt sykehjem|nye omsorgsbolig|nye sykehjemsplasser|bygging av|etablering av|strategi|interpellasjon|romprogram|konseptvalg|behovsanalyse|kapasitet|struktur|handlingsplan|økonomiplan|budsjett/i;
 
 /** Finn titler i svaret, uansett hvordan det er bygget opp */
 function hentTreff(data, ord) {
@@ -122,7 +133,9 @@ function hentTreff(data, ord) {
       if (tittel.length < 10) return;
       if (!norm(tittel).includes(norm(ord))) return;
       const t = norm(tittel);
-      if (STOY.some(o => t.includes(o))) return;                       // fjern personal- og byggesakstøy
+      if (STOY.some(o => t.includes(o))) return;                       // personal- og byggesakstøy
+      // drift av eksisterende boliger ut - med mindre tittelen røper et prosjekt
+      if (DRIFT.some(o => t.includes(o)) && !STERKT_SIGNAL.test(tittel)) return;
       const type = norm(it.type || '');
       const relevantType = GODE_TYPER.some(g => type.includes(g));
       if (!relevantType && !STERKT_SIGNAL.test(tittel)) return;        // krev politisk type ELLER sterkt signal
