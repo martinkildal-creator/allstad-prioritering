@@ -1,0 +1,52 @@
+name: ACOS med nettleser
+
+on:
+  workflow_dispatch:
+    inputs:
+      modus:
+        description: 'lab, sonde, sok eller skann'
+        required: false
+        default: 'lab'
+      slug:
+        description: 'Kommune for lab-modus'
+        required: false
+        default: 'lund'
+      antall:
+        description: 'Antall kommuner (0 = alle)'
+        required: false
+        default: '10'
+
+permissions:
+  contents: write
+
+jobs:
+  acospw:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Installer nettleser
+        run: |
+          npm init -y >/dev/null 2>&1 || true
+          npm install playwright@1.47.0
+          npx playwright install --with-deps chromium
+
+      - name: Kjør ACOS med nettleser
+        env:
+          MODUS:  ${{ github.event.inputs.modus }}
+          ANTALL: ${{ github.event.inputs.antall }}
+          SLUG:   ${{ github.event.inputs.slug }}
+        run: node acos-pw.js
+
+      - name: Lagre resultat
+        if: ${{ github.event.inputs.modus == 'skann' }}
+        run: |
+          git config user.name "signal-robot"
+          git config user.email "actions@github.com"
+          git add politikk-acos.json
+          git diff --staged --quiet || git commit -m "ACOS saksdokumenter $(date +%F)"
+          git push
