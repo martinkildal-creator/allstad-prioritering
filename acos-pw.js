@@ -66,6 +66,13 @@ function acosKommuner(alle) {
 }
 
 const URL_MOTEPLAN = s => `https://innsynpluss.onacos.no/${s}/wfinnsyn.ashx?response=moteplan`;
+const INNGANGER = s => [
+  `https://innsynpluss.onacos.no/${s}/sok/`,
+  `https://innsynpluss.onacos.no/${s}/moter/`,
+  `https://innsynpluss.onacos.no/${s}/motekalender/`,
+  `https://innsynpluss.onacos.no/${s}/politiskemoter/`,
+  `https://innsynpluss.onacos.no/${s}/wfinnsyn.ashx?response=moteplan`
+];
 
 async function sideTekst(page, url, ventTekst) {
   try {
@@ -124,13 +131,31 @@ async function moteLenker(page) {
     if (DIAG) console.log(`  [${k.navn}] tegn=${tekst.length} møteplan=${harMoteplan ? 'JA' : 'nei'} møtelenker=${lenker.length}${k.gjettet ? ' (gjettet)' : ''}`);
 
     if (MODUS === 'sonde') {
-      if (harMoteplan && lenker.length) console.log(`      eksempel: ${lenker[0]}`);
-      if (harMoteplan && tekst.length) console.log(`      tekst: ${tekst.slice(0, 160)}`);
+      console.log(`      [moteplan] tekst: ${tekst.slice(0, 150) || '(tom)'}`);
+      for (const u of INNGANGER(k.slug)) {
+        if (u === url) continue;
+        const t2 = await sideTekst(page, u, true);
+        sider++;
+        const l2 = await moteLenker(page);
+        console.log(`      ${u.replace('https://innsynpluss.onacos.no/' + k.slug, '…')}`);
+        console.log(`         tegn=${t2.length} lenker=${l2.length} :: ${t2.slice(0, 130) || '(tom)'}`);
+        if (l2.length) console.log(`         eksempel: ${l2[0]}`);
+      }
       continue;
     }
 
+    let brukteLenker = lenker;
+    if (!brukteLenker.length) {
+      for (const u of INNGANGER(k.slug)) {
+        if (u === url) continue;
+        await sideTekst(page, u, true); sider++;
+        const l2 = await moteLenker(page);
+        if (l2.length) { brukteLenker = l2; break; }
+      }
+    }
+
     const treff = [];
-    for (const l of lenker.slice(0, MOTER_PER_KOMMUNE)) {
+    for (const l of brukteLenker.slice(0, MOTER_PER_KOMMUNE)) {
       const t = await sideTekst(page, l, true);
       sider++;
       const saker = finnSaker(t);
