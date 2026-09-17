@@ -145,6 +145,64 @@ async function sokPortal(page, slug, ord) {
   const resultat = {};
   let medTreff = 0, sakerLest = 0, medMoteplan = 0, sider = 0;
 
+  // LAB: undersøk én kommune grundig (SLUG=lund MODUS=lab)
+  if (MODUS === 'lab') {
+    const slug = process.env.SLUG || 'lund';
+    const ord = process.env.ORD || 'omsorgsbolig';
+    console.log(`\n=== LAB: ${slug} ===\n`);
+
+    // 1) prøv søk via adressen direkte
+    const params = ['q', 'query', 'sok', 'search', 'searchTerm', 'sokestreng', 'fritekst'];
+    for (const pnavn of params) {
+      const u = `https://innsynpluss.onacos.no/${slug}/sok/?${pnavn}=${encodeURIComponent(ord)}`;
+      try {
+        await page.goto(u, { waitUntil: 'domcontentloaded', timeout: 25000 });
+        await page.waitForTimeout(2500);
+        const t = await page.evaluate(() => document.body ? document.body.innerText.replace(/\s+/g,' ') : '');
+        const traff = norm(t).includes(norm(ord));
+        console.log(`  ?${pnavn}=  tegn=${t.length}  inneholder søkeordet: ${traff ? 'JA' : 'nei'}`);
+        if (traff) console.log(`      ${t.slice(0, 260)}`);
+      } catch (e) { console.log(`  ?${pnavn}=  feil: ${e.message.slice(0,60)}`); }
+      sider++;
+    }
+
+    // 2) se på selve søkeskjemaet
+    await page.goto(`https://innsynpluss.onacos.no/${slug}/sok/`, { waitUntil: 'domcontentloaded', timeout: 25000 });
+    await page.waitForTimeout(2500);
+    const felter = await page.evaluate(() => Array.from(document.querySelectorAll('input, textarea, select')).map(e => {
+      const r = e.getBoundingClientRect();
+      return { tag: e.tagName, type: e.type || '', name: e.name || '', id: e.id || '',
+               ph: e.placeholder || '', synlig: r.width > 0 && r.height > 0 };
+    }));
+    console.log(`\n  Felter på siden (${felter.length}):`);
+    felter.forEach(f => console.log(`    ${f.synlig ? 'SYNLIG' : 'skjult'} <${f.tag} type=${f.type} name="${f.name}" id="${f.id}" placeholder="${f.ph}">`));
+
+    const skjema = await page.evaluate(() => Array.from(document.querySelectorAll('form'))
+      .map(f => ({ action: f.action || '', method: f.method || '' })));
+    console.log(`\n  Skjema (${skjema.length}):`);
+    skjema.forEach(f => console.log(`    ${f.method.toUpperCase()} ${f.action}`));
+
+    // 3) hvilke kall gjør siden selv? (API-et bak)
+    const kall = [];
+    page.on('response', r => {
+      const u = r.url();
+      if (/api|json|search|sok/i.test(u) && !/\.(png|jpg|css|woff|js)(\?|$)/i.test(u)) kall.push(`${r.status()} ${u.slice(0,150)}`);
+    });
+    const synlig = await page.$('input:visible, input[type="text"]:not([type="hidden"])');
+    if (synlig) {
+      try { await synlig.click({ timeout: 5000 }); await synlig.type(ord, { delay: 60 }); await synlig.press('Enter'); } catch (e) { console.log('  klarte ikke skrive: ' + e.message.slice(0,60)); }
+      await page.waitForTimeout(4000);
+      const etter = await page.evaluate(() => document.body.innerText.replace(/\s+/g,' '));
+      console.log(`\n  Etter søk: url=${page.url()}`);
+      console.log(`  tekst: ${etter.slice(0, 300)}`);
+    }
+    console.log(`\n  Nettverkskall som ser ut som API (${kall.length}):`);
+    [...new Set(kall)].slice(0, 12).forEach(u => console.log(`    ${u}`));
+
+    await nettleser.close();
+    return;
+  }
+
   if (MODUS === 'sok') {
     for (const k of liste) {
       const r = await sokPortal(page, k.slug, 'omsorgsbolig');
