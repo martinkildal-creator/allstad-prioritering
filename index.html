@@ -158,7 +158,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
     </div>
     <div style="display:flex;align-items:center;gap:10px">
       <button class="btn ghost" style="padding:8px 13px;font-size:13px" onclick="openMetode()">ⓘ Slik regnes det</button>
-      <span class="tag">Internt · v42</span>
+      <span class="tag">Internt · v43</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -594,7 +594,7 @@ function regnestykke(d){
     d.tomt===1?'Egen tomt i kommunen':'Mulig makebytte', d.tomtBonus||0,'#D98C3F');
   if((d.signalScore||0)>0){
     const deler=[];
-    if(d.politikkScore) deler.push(`saksdokumenter ${d.politikkScore}`);
+    if(d.politikkScore) deler.push(`kommunens saker ${d.politikkScore}`);
     if(d.doffinScore) deler.push(`Doffin ${d.doffinScore}`);
     if(d.husbankScore) deler.push(`Husbanken ${d.husbankScore}`);
     rader+=rad('Signaler om at noe skjer nå', deler.join(' · '), d.signalScore||0,'#B8742A');
@@ -1057,11 +1057,11 @@ function signalNoteBlokk(d){
   if(antKonk>0){ dom=`${d.navn} har <b>en konkurranse ute akkurat nå</b>. Dette haster – frist er satt.`; domFarge='#B8742A'; }
   else if(antDial>0){ dom=`${d.navn} er i <b>tidlig dialog med markedet</b>. Perfekt tidspunkt å ta kontakt på.`; domFarge='#3A6FA8'; }
   else if(treff.length){ dom=`${d.navn} har <b>hatt byggeprosjekter ute</b> den siste tiden.`; domFarge='#5C6B68'; }
-  else if(antPol){ dom=`${d.navn} har <b>saker om omsorgsbygg til politisk behandling</b>. Dette er det tidligste signalet vi kan se – ingen konkurranse er lyst ut ennå.`; domFarge='#3A6FA8'; }
+  else if(antPol){ dom=`${d.navn} har <b>saker om omsorgsbygg liggende på egen nettside</b>. Dette er det tidligste signalet vi kan se – ingen konkurranse er lyst ut ennå.`; domFarge='#3A6FA8'; }
   else { dom=`${d.navn} har <b>fått penger fra Husbanken</b> til omsorgsplasser, men har ingen konkurranse ute nå.`; domFarge='#2E6F62'; }
 
   const rows=[];
-  if(antPol) rows.push(`<tr><td>Politiske saker om omsorgsbygg</td><td class="num"><b style="color:#3A6FA8">${antPol}</b></td></tr>`);
+  if(antPol) rows.push(`<tr><td>Saker på kommunens nettside</td><td class="num"><b style="color:#3A6FA8">${antPol}</b></td></tr>`);
   rows.push(`<tr><td>Byggeprosjekter ute på Doffin</td><td class="num"><b>${treff.length||'–'}</b>${antKonk?` <span style="color:#B8742A">(${antKonk} aktiv${antKonk>1?'e':''})</span>`:''}</td></tr>`);
   rows.push(`<tr><td>Husbanken – antall saker</td><td class="num">${hbTilsagn||'–'}</td></tr>`);
   if(hbBelop) rows.push(`<tr><td>Husbanken – tilskudd utbetalt/tilsagt</td><td class="num"><b>${hbBelop}</b></td></tr>`);
@@ -1071,8 +1071,8 @@ function signalNoteBlokk(d){
   const graf = hb&&hb.serie ? husbankChart(hb.serie) : '';
   const pt = d.politikkTreff||[];
   const polHtml = pt.length ? `<div style="margin-top:12px">
-      <b>Politiske saker i kommunen:</b>
-      <div style="font-size:12px;color:var(--muted);margin-bottom:4px">Fra kommunens egen innsynsportal – dette er saker som er til behandling, ofte lenge før noe lyses ut.</div>
+      <b>Saker funnet på kommunens nettside:</b>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:4px">Hentet fra kommunens egen innsynsportal – saker som er til behandling, ofte lenge før noe lyses ut på Doffin.</div>
       <ul style="margin:0;padding:0;list-style:none">${pt.slice(0,6).map(t=>`
         <li style="border-left:3px solid #3A6FA8;padding:5px 0 5px 9px;margin-bottom:6px">
           <div style="font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)">${t.type||'Sak'}${t.dato?' · '+t.dato:''}${t.saksnr?' · '+t.saksnr:''}</div>
@@ -1181,9 +1181,9 @@ function openSignaler(){
       <table style="width:100%;border-collapse:collapse;font-size:13.5px">
         <thead><tr style="text-align:left;color:var(--teal-d);border-bottom:2px solid var(--line)">
           <th style="padding:8px">Kommune</th><th class="num" style="padding:8px">Sum</th>
-          <th style="padding:8px;color:#3A6FA8">1 · Planlegger</th>
-          <th style="padding:8px;color:#2E6F62">2 · Finansierer</th>
-          <th style="padding:8px;color:#B8742A">3 · Kjøper</th>
+          <th style="padding:8px;color:#3A6FA8">Saker fra kommunens nettside</th>
+          <th style="padding:8px;color:#2E6F62">Husbank-tilskudd</th>
+          <th style="padding:8px;color:#B8742A">Doffin</th>
         </tr></thead>
         <tbody>${rows}</tbody>
       </table>`;
@@ -1659,14 +1659,18 @@ autoLoad();
 // ---- Sanntidssignaler (Doffin + Husbanken) ----
 async function lastSignaler(){
   const norm=s=>(s||'').toString().toLowerCase().trim();
+  const slug=s=>norm(s).replace(/æ/g,'ae').replace(/ø/g,'o').replace(/å/g,'a').replace(/[^a-z0-9]/g,'');
+  // bygg oppslag som tåler begge skrivemåter
+  const lagIndeks=obj=>{const ut={};for(const k in obj){ut[norm(k)]=obj[k];ut[slug(k)]=obj[k];}return ut;};
+  const finn=(idx,navn)=>idx[norm(navn)]||idx[slug(navn)]||null;
   let oppdatert='–', traff=0;
   try{
     const r=await fetch('signaler.json?v='+Date.now());
     if(r.ok){
       const j=await r.json();
-      const idx=j.kommuner||{};
+      const idx=lagIndeks(j.kommuner||{});
       DATA.forEach(d=>{
-        const s=idx[norm(d.navn)];
+        const s=finn(idx,d.navn);
         if(s){d.doffinScore=s.doffinScore||0;
               d.husbankScore=s.husbankScore||0;
               d.doffinTreff=s.doffinTreff||[];
@@ -1684,9 +1688,9 @@ async function lastSignaler(){
     const r2=await fetch('politikk-acos.json?v='+Date.now());
     if(r2.ok){
       const j2=await r2.json();
-      const idx2=j2.kommuner||{};
+      const idx2=lagIndeks(j2.kommuner||{});
       DATA.forEach(d=>{
-        const p=idx2[norm(d.navn)];
+        const p=finn(idx2,d.navn);
         if(p){d.politikkScore=p.poeng||0;
               d.politikkTreff=p.treff||[];
               pol++;}
