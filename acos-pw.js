@@ -1,307 +1,217 @@
 /**
- * acos-pw.js – ACOS Innsyn med EKTE NETTLESER (Playwright)
+ * acos-pw.js – søker i ACOS Innsyn Pluss (uten nettleser, via ASP.NET-postback).
  *
- * Forskjellen fra tidligere forsøk: her kjøres JavaScript, så vi ser det
- * samme som et menneske ser. Det var dette som manglet.
+ * Portalen er en ASP.NET-side: søket sendes som POST tilbake til samme side,
+ * med de skjulte feltene (__VIEWSTATE osv.) som siden selv la ut.
+ * Vi henter siden, plukker feltene, og sender søket.
  *
- * Sonde:  node acos-pw.js               (tester 10 kommuner, viser hva som finnes)
- * Skann:  MODUS=skann ANTALL=0 node acos-pw.js
+ * Test én kommune:  MODUS=lab SLUG=lund node acos-post.js
+ * Finn slug-er:     MODUS=slug node acos-post.js
+ * Skann alle:       MODUS=skann node acos-post.js
  */
 
 const fs = require('fs');
-const { chromium } = require('playwright');
 
-const MODUS  = process.env.MODUS || 'sonde';
-const ANTALL = Number(process.env.ANTALL || (MODUS === 'sonde' ? 10 : 0));
-const MOTER_PER_KOMMUNE = Number(process.env.MOTER || 8);
-const DIAG = process.env.DIAG !== '0';
+const MODUS  = process.env.MODUS || 'lab';
+const SLUG   = process.env.SLUG || 'lund';
+const ANTALL = Number(process.env.ANTALL || 0);
+const PAUSE  = Number(process.env.PAUSE || 400);
 
-const NOKKELORD = [
-  'omsorgsbolig', 'omsorgsboliger', 'sykehjem', 'helsehus', 'bofellesskap',
-  'heldøgns', 'heldogns', 'omsorgssenter', 'eldrebolig', 'eldreboliger',
-  'demenslandsby', 'bo- og behandlingssenter', 'bo- og servicesenter',
-  'helse- og omsorgsplan', 'omsorgsplan', 'boligbehov', 'boligsosial',
-  'sykehjemsstruktur', 'eldreomsorg', 'institusjonsplasser'
-];
-const STERKE = ['omsorgsbolig', 'omsorgsboliger', 'sykehjem', 'helsehus',
-                'helse- og omsorgsplan', 'boligbehov', 'sykehjemsstruktur', 'omsorgssenter'];
+const SOKEORD = (process.env.ORD || 'omsorgsbolig,sykehjem,omsorgssenter,helsehus,boligbehov').split(',');
+const STERKE = ['omsorgsbolig', 'omsorgsboliger', 'sykehjem', 'helsehus', 'omsorgssenter', 'boligbehov'];
 
 const norm = s => (s || '').toString().toLowerCase();
-const SAKSNR = /\b(?:PS|RS|DS|FO|SAK)\s*(\d{1,4}\s*\/\s*\d{2,4})\b/gi;
+const base = s => `https://innsynpluss.onacos.no/${s}/sok/`;
 
-const slugAv = navn => norm(navn)
-  .replace(/æ/g, 'ae').replace(/ø/g, 'o').replace(/å/g, 'a')
-  .replace(/[^a-z0-9]/g, '');
+async function hent(url, opsjoner = {}) {
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), 20000);
+  try {
+    const r = await fetch(url, {
+      ...opsjoner, redirect: 'follow', signal: ctrl.signal,
+      headers: {
+        'User-Agent': 'Allstad-analyse/1.0 (offentlige moetedokumenter)',
+        'Accept': 'text/html,application/xhtml+xml',
+        ...(opsjoner.headers || {})
+      }
+    });
+    return { ok: r.ok, status: r.status, url: r.url, html: (await r.text()).slice(0, 900000) };
+  } catch (e) {
+    return { ok: false, status: 0, url, html: '', feil: e.name === 'AbortError' ? 'timeout' : e.message };
+  } finally { clearTimeout(t); }
+}
 
-function finnSaker(tekst) {
-  SAKSNR.lastIndex = 0;
-  const pos = []; let m;
-  while ((m = SAKSNR.exec(tekst)) && pos.length < 600)
-    pos.push({ nr: m[1].replace(/\s+/g, ''), start: m.index, etter: m.index + m[0].length });
+/** Plukk ut alle skjulte felt ASP.NET krever */
+function skjulteFelt(html) {
+  const felt = {};
+  const re = /<input[^>]+type=["']hidden["'][^>]*>/gi;
+  let m;
+  while ((m = re.exec(html))) {
+    const tag = m[0];
+    const n = (tag.match(/name=["']([^"']+)["']/i) || [])[1];
+    const v = (tag.match(/value=["']([^"']*)["']/i) || [])[1] || '';
+    if (n) felt[n] = v.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+  }
+  return felt;
+}
+
+/** Finn navnet på søkefeltet og søkeknappen */
+function sokeFelt(html) {
+  const txt = (html.match(/name=["']([^"']*txtSearch[^"']*)["']/i) || [])[1];
+  const btn = (html.match(/name=["']([^"']*btnSearch[^"']*)["']/i) || [])[1];
+  return { txt, btn };
+}
+
+const stripp = h => h
+  .replace(/<script[\s\S]*?<\/script>/gi, ' ').replace(/<style[\s\S]*?<\/style>/gi, ' ')
+  .replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ');
+
+/** Treffene står som lenker til sak/dokument */
+function trekkTreff(html, ord) {
   const ut = [];
-  for (let i = 0; i < pos.length; i++) {
-    const slutt = i + 1 < pos.length ? pos[i + 1].start : Math.min(tekst.length, pos[i].etter + 200);
-    const tittel = tekst.slice(pos[i].etter, slutt).trim().replace(/^[-–:.\s]+/, '').slice(0, 200);
-    if (tittel.length >= 8) ut.push({ nr: pos[i].nr, tittel });
+  const re = /<a[^>]+href=["']([^"']+)["'][^>]*>([\s\S]{5,200}?)<\/a>/gi;
+  let m;
+  while ((m = re.exec(html)) && ut.length < 60) {
+    const tittel = m[2].replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
+    if (tittel.length < 12) continue;
+    if (!norm(tittel).includes(norm(ord))) continue;
+    let url; try { url = new URL(m[1].replace(/&amp;/g, '&'), 'https://innsynpluss.onacos.no').href; } catch { continue; }
+    if (ut.some(x => x.tittel === tittel)) continue;
+    ut.push({ tittel: tittel.slice(0, 200), url });
   }
   return ut;
 }
 
-/** Hent ACOS-kommuner: bruk slug fra lenke hvis den finnes, ellers gjett fra navnet */
-function acosKommuner(alle) {
-  const ut = [];
-  for (const [nokkel, k] of Object.entries(alle)) {
-    const kilder = [k.portal, ...(k.alternativer || [])].filter(Boolean);
-    const medSlug = kilder.find(u => /onacos\.no\/[^/?#]+/i.test(u));
-    let slug = null;
-    if (medSlug) {
-      const m = medSlug.match(/onacos\.no\/([^/?#]+)/i);
-      if (m) slug = m[1].replace(/-(byggesaker|planer|postliste)$/i, '');
-    }
-    const erAcos = /ACOS/i.test(k.plattform || '') || medSlug;
-    if (!erAcos) continue;
-    ut.push({ nokkel, navn: k.navn, nr: k.nr, slug: slug || slugAv(k.navn), gjettet: !slug });
+/** Utfør ett søk mot én kommune */
+async function sok(slug, ord, diag = false) {
+  const forside = await hent(base(slug));
+  if (!forside.ok) return { feil: `status ${forside.status}` };
+  if (/brukernavn eller e-post|acos cms/i.test(stripp(forside.html)) && forside.html.length < 20000)
+    return { feil: 'ikke innsynsportal (feil slug?)' };
+
+  const felt = skjulteFelt(forside.html);
+  const { txt, btn } = sokeFelt(forside.html);
+  if (!txt) return { feil: 'fant ikke søkefeltet' };
+
+  const krop = new URLSearchParams();
+  Object.entries(felt).forEach(([k, v]) => krop.append(k, v));
+  krop.set('__EVENTTARGET', '');
+  krop.set('__EVENTARGUMENT', '');
+  krop.set(txt, ord);
+  if (btn) krop.set(btn, 'Søk');
+
+  const svar = await hent(base(slug), {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Referer': base(slug),
+      'Origin': 'https://innsynpluss.onacos.no'
+    },
+    body: krop.toString()
+  });
+  if (!svar.ok) return { feil: `POST ga ${svar.status}` };
+
+  const tekst = stripp(svar.html);
+  const treff = trekkTreff(svar.html, ord);
+  if (diag) {
+    console.log(`    skjulte felt: ${Object.keys(felt).length}, søkefelt: ${txt ? 'ja' : 'nei'}, knapp: ${btn ? 'ja' : 'nei'}`);
+    console.log(`    svar: ${svar.html.length} tegn, tekst nevner søkeordet: ${norm(tekst).includes(norm(ord)) ? 'JA' : 'nei'}`);
+    console.log(`    utdrag: ${tekst.slice(0, 260)}`);
   }
-  return ut;
-}
-
-const URL_MOTEPLAN = s => `https://innsynpluss.onacos.no/${s}/wfinnsyn.ashx?response=moteplan`;
-const INNGANGER = s => [
-  `https://innsynpluss.onacos.no/${s}/sok/`,
-  `https://innsynpluss.onacos.no/${s}/moter/`,
-  `https://innsynpluss.onacos.no/${s}/motekalender/`,
-  `https://innsynpluss.onacos.no/${s}/politiskemoter/`,
-  `https://innsynpluss.onacos.no/${s}/wfinnsyn.ashx?response=moteplan`
-];
-
-async function sideTekst(page, url, ventTekst) {
-  try {
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 25000 });
-    // vent til JavaScript har lagt inn innholdet
-    try {
-      await page.waitForFunction(
-        () => document.body && document.body.innerText.replace(/\s+/g, ' ').length > 400,
-        { timeout: 12000 });
-    } catch { /* fortsett med det vi har */ }
-    if (ventTekst) { try { await page.waitForTimeout(1200); } catch {} }
-    return await page.evaluate(() => document.body ? document.body.innerText.replace(/\s+/g, ' ') : '');
-  } catch (e) { return ''; }
-}
-
-/** Finn lenker til enkeltmøter (sakslister) på møteplan-siden */
-async function moteLenker(page) {
-  try {
-    return await page.evaluate(() => Array.from(document.querySelectorAll('a'))
-      .map(a => a.href)
-      .filter(h => /sakliste|saksliste|mote_?detalj|moteid|mid=/i.test(h))
-      .filter((v, i, arr) => arr.indexOf(v) === i)
-      .slice(0, 40));
-  } catch { return []; }
-}
-
-/** Søk i Innsyn Pluss: skriv i søkefeltet og les treffene */
-async function sokPortal(page, slug, ord) {
-  const url = `https://innsynpluss.onacos.no/${slug}/sok/`;
-  try {
-    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 25000 });
-    await page.waitForTimeout(1500);
-    const tekst = await page.evaluate(() => document.body ? document.body.innerText : '');
-    if (/logg inn|brukernavn eller e-post/i.test(tekst) && tekst.length < 400) return { feil: 'innlogging' };
-    if (tekst.length < 300) return { feil: 'tom side' };
-
-    // finn søkefeltet
-    const felt = await page.$('input[type="search"], input[placeholder*="øk" i], input[name*="sok" i], input[type="text"]');
-    if (!felt) return { feil: 'fant ikke søkefelt', tekst: tekst.slice(0, 160) };
-
-    await felt.fill(ord);
-    await felt.press('Enter');
-    await page.waitForTimeout(3000);
-
-    const etter = await page.evaluate(() => document.body ? document.body.innerText.replace(/\s+/g, ' ') : '');
-    const lenker = await page.evaluate(() => Array.from(document.querySelectorAll('a'))
-      .map(a => ({ t: (a.innerText || '').trim(), h: a.href }))
-      .filter(x => x.t.length > 15).slice(0, 40));
-    return { url: page.url(), tekst: etter, lenker };
-  } catch (e) { return { feil: e.message.slice(0, 80) }; }
+  return { treff, nevner: norm(tekst).includes(norm(ord)), lengde: svar.html.length };
 }
 
 (async () => {
-  if (!fs.existsSync('portaler.json')) { console.error('Mangler portaler.json'); process.exit(1); }
-  const alle = JSON.parse(fs.readFileSync('portaler.json', 'utf8')).kommuner || {};
-  let liste = acosKommuner(alle);
-  console.log(`ACOS-kommuner: ${liste.length} (${liste.filter(k => k.gjettet).length} med gjettet adresse)`);
-  if (ANTALL) liste = liste.slice(0, ANTALL);
-
-  const nettleser = await chromium.launch({ args: ['--no-sandbox', '--disable-dev-shm-usage'] });
-  const ctx = await nettleser.newContext({
-    userAgent: 'Mozilla/5.0 (compatible; Allstad-analyse/1.0; offentlige moetedokumenter)',
-    viewport: { width: 1280, height: 900 }
-  });
-  const page = await ctx.newPage();
-  // ikke last bilder/fonter - raskere og snillere
-  await page.route('**/*', r => ['image', 'font', 'media'].includes(r.request().resourceType())
-    ? r.abort() : r.continue());
-
-  const resultat = {};
-  let medTreff = 0, sakerLest = 0, medMoteplan = 0, sider = 0;
-
-  // LAB: undersøk én kommune grundig (SLUG=lund MODUS=lab)
+  // ---------- LAB ----------
   if (MODUS === 'lab') {
-    const slug = process.env.SLUG || 'lund';
-    const ord = process.env.ORD || 'omsorgsbolig';
-    console.log(`\n=== LAB: ${slug} ===\n`);
-
-    // 1) prøv søk via adressen direkte
-    const params = ['q', 'query', 'sok', 'search', 'searchTerm', 'sokestreng', 'fritekst'];
-    for (const pnavn of params) {
-      const u = `https://innsynpluss.onacos.no/${slug}/sok/?${pnavn}=${encodeURIComponent(ord)}`;
-      try {
-        await page.goto(u, { waitUntil: 'domcontentloaded', timeout: 25000 });
-        await page.waitForTimeout(2500);
-        const t = await page.evaluate(() => document.body ? document.body.innerText.replace(/\s+/g,' ') : '');
-        const traff = norm(t).includes(norm(ord));
-        console.log(`  ?${pnavn}=  tegn=${t.length}  inneholder søkeordet: ${traff ? 'JA' : 'nei'}`);
-        if (traff) console.log(`      ${t.slice(0, 260)}`);
-      } catch (e) { console.log(`  ?${pnavn}=  feil: ${e.message.slice(0,60)}`); }
-      sider++;
+    console.log(`=== LAB (uten nettleser): ${SLUG} ===\n`);
+    for (const ord of SOKEORD.slice(0, 2)) {
+      console.log(`  Søker etter "${ord}":`);
+      const r = await sok(SLUG, ord, true);
+      if (r.feil) { console.log(`    FEIL: ${r.feil}\n`); continue; }
+      console.log(`    treff funnet: ${r.treff.length}`);
+      r.treff.slice(0, 6).forEach(t => console.log(`      • ${t.tittel.slice(0, 110)}`));
+      console.log('');
+      await new Promise(r2 => setTimeout(r2, PAUSE));
     }
-
-    // 2) se på selve søkeskjemaet
-    await page.goto(`https://innsynpluss.onacos.no/${slug}/sok/`, { waitUntil: 'domcontentloaded', timeout: 25000 });
-    await page.waitForTimeout(2500);
-    const felter = await page.evaluate(() => Array.from(document.querySelectorAll('input, textarea, select')).map(e => {
-      const r = e.getBoundingClientRect();
-      return { tag: e.tagName, type: e.type || '', name: e.name || '', id: e.id || '',
-               ph: e.placeholder || '', synlig: r.width > 0 && r.height > 0 };
-    }));
-    console.log(`\n  Felter på siden (${felter.length}):`);
-    felter.forEach(f => console.log(`    ${f.synlig ? 'SYNLIG' : 'skjult'} <${f.tag} type=${f.type} name="${f.name}" id="${f.id}" placeholder="${f.ph}">`));
-
-    const skjema = await page.evaluate(() => Array.from(document.querySelectorAll('form'))
-      .map(f => ({ action: f.action || '', method: f.method || '' })));
-    console.log(`\n  Skjema (${skjema.length}):`);
-    skjema.forEach(f => console.log(`    ${f.method.toUpperCase()} ${f.action}`));
-
-    // 3) hvilke kall gjør siden selv? (API-et bak)
-    const kall = [];
-    page.on('response', r => {
-      const u = r.url();
-      if (/api|json|search|sok/i.test(u) && !/\.(png|jpg|css|woff|js)(\?|$)/i.test(u)) kall.push(`${r.status()} ${u.slice(0,150)}`);
-    });
-    const synlig = await page.$('input:visible, input[type="text"]:not([type="hidden"])');
-    if (synlig) {
-      try { await synlig.click({ timeout: 5000 }); await synlig.type(ord, { delay: 60 }); await synlig.press('Enter'); } catch (e) { console.log('  klarte ikke skrive: ' + e.message.slice(0,60)); }
-      await page.waitForTimeout(4000);
-      const etter = await page.evaluate(() => document.body.innerText.replace(/\s+/g,' '));
-      console.log(`\n  Etter søk: url=${page.url()}`);
-      console.log(`  tekst: ${etter.slice(0, 300)}`);
-    }
-    console.log(`\n  Nettverkskall som ser ut som API (${kall.length}):`);
-    [...new Set(kall)].slice(0, 12).forEach(u => console.log(`    ${u}`));
-
-    await nettleser.close();
     return;
   }
 
-  if (MODUS === 'sok') {
-    for (const k of liste) {
-      const r = await sokPortal(page, k.slug, 'omsorgsbolig');
-      sider++;
-      if (r.feil) { console.log(`  [${k.navn}] – ${r.feil}`); continue; }
-      const antall = (r.tekst.match(/treff/gi) || []).length;
-      console.log(`  [${k.navn}] SØK OK  tegn=${r.tekst.length} lenker=${r.lenker.length}`);
-      console.log(`      url etter søk: ${r.url}`);
-      console.log(`      tekst: ${r.tekst.slice(0, 220)}`);
-      r.lenker.slice(0, 3).forEach(l => console.log(`      • ${l.t.slice(0, 90)}`));
+  // ---------- FINN SLUG-ER ----------
+  if (MODUS === 'slug') {
+    const alle = JSON.parse(fs.readFileSync('portaler.json', 'utf8')).kommuner || {};
+    const kart = {}; let funnet = 0, i = 0;
+    const liste = Object.entries(alle);
+    for (const [nokkel, k] of liste) {
+      i++;
+      // 1) står slug-en allerede i en kjent lenke?
+      const kilder = [k.portal, ...(k.alternativer || []), k.nettsted].filter(Boolean);
+      let slug = null;
+      for (const u of kilder) {
+        const m = u.match(/innsynpluss\.onacos\.no\/([^/?#]+)/i);
+        if (m) { slug = m[1]; break; }
+      }
+      // 2) ellers: let etter lenken på kommunens nettsted
+      if (!slug && k.nettsted) {
+        const r = await hent(k.nettsted);
+        if (r.ok) {
+          const m = r.html.match(/innsynpluss\.onacos\.no\/([a-z0-9\-]+)/i);
+          if (m) slug = m[1];
+        }
+        await new Promise(r2 => setTimeout(r2, 150));
+      }
+      if (slug) { kart[nokkel] = { navn: k.navn, nr: k.nr, slug }; funnet++; }
+      if (i % 50 === 0) console.log(`  ... ${i}/${liste.length} (slug funnet: ${funnet})`);
     }
-    await nettleser.close();
-    console.log(`\nSider lest: ${sider}`);
+    fs.writeFileSync('acos-slugger.json', JSON.stringify({ _oppdatert: new Date().toISOString().slice(0, 10), kommuner: kart }, null, 1));
+    console.log(`\nSlug funnet for ${funnet} kommuner. Skrevet: acos-slugger.json`);
     return;
   }
 
+  // ---------- SKANN ----------
+  const kilde = fs.existsSync('acos-slugger.json')
+    ? JSON.parse(fs.readFileSync('acos-slugger.json', 'utf8')).kommuner
+    : {};
+  let liste = Object.entries(kilde);
+  if (!liste.length) { console.error('Mangler acos-slugger.json – kjør MODUS=slug først.'); process.exit(1); }
+  if (ANTALL) liste = liste.slice(0, ANTALL);
+  console.log(`Søker i ${liste.length} ACOS-kommuner ...`);
+
+  const resultat = {}; let medTreff = 0, totalt = 0, feil = 0;
   for (let i = 0; i < liste.length; i++) {
-    const k = liste[i];
-    const url = URL_MOTEPLAN(k.slug);
-    const tekst = await sideTekst(page, url, true);
-    sider++;
-    const harMoteplan = /m(ø|o)te|utvalg|dato/i.test(tekst) && tekst.length > 300;
-    if (harMoteplan) medMoteplan++;
-
-    const lenker = harMoteplan ? await moteLenker(page) : [];
-    if (DIAG) console.log(`  [${k.navn}] tegn=${tekst.length} møteplan=${harMoteplan ? 'JA' : 'nei'} møtelenker=${lenker.length}${k.gjettet ? ' (gjettet)' : ''}`);
-
-    if (MODUS === 'sonde') {
-      console.log(`      [moteplan] tekst: ${tekst.slice(0, 150) || '(tom)'}`);
-      for (const u of INNGANGER(k.slug)) {
-        if (u === url) continue;
-        const t2 = await sideTekst(page, u, true);
-        sider++;
-        const l2 = await moteLenker(page);
-        console.log(`      ${u.replace('https://innsynpluss.onacos.no/' + k.slug, '…')}`);
-        console.log(`         tegn=${t2.length} lenker=${l2.length} :: ${t2.slice(0, 130) || '(tom)'}`);
-        if (l2.length) console.log(`         eksempel: ${l2[0]}`);
-      }
-      continue;
-    }
-
-    let brukteLenker = lenker;
-    if (!brukteLenker.length) {
-      for (const u of INNGANGER(k.slug)) {
-        if (u === url) continue;
-        await sideTekst(page, u, true); sider++;
-        const l2 = await moteLenker(page);
-        if (l2.length) { brukteLenker = l2; break; }
-      }
-    }
-
-    const treff = [];
-    for (const l of brukteLenker.slice(0, MOTER_PER_KOMMUNE)) {
-      const t = await sideTekst(page, l, true);
-      sider++;
-      const saker = finnSaker(t);
-      if (!saker.length) continue;
-      sakerLest += saker.length;
-      saker.forEach(sk => {
-        const ord = NOKKELORD.find(o => norm(sk.tittel).includes(o));
-        if (!ord) return;
-        const u = `${sk.nr} ${sk.tittel}`;
-        if (treff.some(x => x.utdrag.slice(0, 40) === u.slice(0, 40))) return;
-        treff.push({ ord, utdrag: u, url: l });
+    const [nokkel, k] = liste[i];
+    const samlet = [];
+    for (const ord of SOKEORD) {
+      const r = await sok(k.slug, ord);
+      if (r.feil) { feil++; break; }
+      r.treff.forEach(t => {
+        if (samlet.some(x => x.tittel === t.tittel)) return;
+        samlet.push({ ord, tittel: t.tittel, url: t.url });
       });
-      if (treff.length >= 6) break;
+      await new Promise(r2 => setTimeout(r2, PAUSE));
     }
-
-    if (treff.length) {
-      const sterke = treff.filter(t => STERKE.includes(t.ord)).length;
-      resultat[k.nokkel] = {
+    if (samlet.length) {
+      const sterke = samlet.filter(t => STERKE.includes(t.ord)).length;
+      resultat[nokkel] = {
         navn: k.navn, nr: k.nr, plattform: 'ACOS Innsyn',
-        poeng: Math.min(10, sterke * 3 + (treff.length - sterke)),
-        treff: treff.slice(0, 6)
+        poeng: Math.min(10, sterke * 2 + samlet.length),
+        treff: samlet.slice(0, 8)
       };
-      medTreff++;
-      console.log(`  ✓ ${k.navn}: ${treff[0].utdrag.slice(0, 90)}`);
+      medTreff++; totalt += samlet.length;
+      console.log(`  ✓ ${k.navn}: ${samlet.length} treff – ${samlet[0].tittel.slice(0, 80)}`);
     }
     if ((i + 1) % 25 === 0) console.log(`  ... ${i + 1}/${liste.length} (treff i ${medTreff})`);
   }
 
-  await nettleser.close();
-
-  if (MODUS === 'skann') {
-    fs.writeFileSync('politikk-acos.json', JSON.stringify({
-      _oppdatert: new Date().toISOString().slice(0, 10),
-      _kilde: 'ACOS Innsyn – kommunale møteplaner og sakslister',
-      kommuner: resultat
-    }, null, 1), 'utf8');
-  }
+  fs.writeFileSync('politikk-acos.json', JSON.stringify({
+    _oppdatert: new Date().toISOString().slice(0, 10),
+    _kilde: 'ACOS Innsyn Pluss – søk i saker og dokumenter',
+    kommuner: resultat
+  }, null, 1), 'utf8');
 
   console.log('\n===== RESULTAT =====');
-  console.log(`Kommuner med møteplan: ${medMoteplan} av ${liste.length}`);
-  if (MODUS === 'skann') {
-    console.log(`Kommuner med treff:    ${medTreff}`);
-    console.log(`Politiske saker lest:  ${sakerLest}`);
-    console.log('Skrevet: politikk-acos.json');
-  } else {
-    console.log('Sonde ferdig. Gir dette møtelenker, kjør MODUS=skann.');
-  }
-  console.log(`Sider lest: ${sider}`);
+  console.log(`Kommuner med treff: ${medTreff} av ${liste.length}`);
+  console.log(`Treff totalt:       ${totalt}`);
+  console.log(`Feilet:             ${feil}`);
+  console.log('Skrevet: politikk-acos.json');
 })();
