@@ -1,0 +1,41 @@
+name: ACOS saksdokumenter
+
+on:
+  workflow_dispatch:
+    inputs:
+      modus:
+        description: 'sonde (test mønstre) eller skann (hent saker)'
+        required: false
+        default: 'sonde'
+      antall:
+        description: 'Antall kommuner (0 = alle)'
+        required: false
+        default: '12'
+
+permissions:
+  contents: write
+
+jobs:
+  acos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Kjør ACOS
+        env:
+          MODUS:  ${{ github.event.inputs.modus }}
+          ANTALL: ${{ github.event.inputs.antall }}
+        run: node acos.js
+
+      - name: Lagre resultat
+        if: ${{ github.event.inputs.modus == 'skann' }}
+        run: |
+          git config user.name "signal-robot"
+          git config user.email "actions@github.com"
+          git add politikk-acos.json
+          git diff --staged --quiet || git commit -m "ACOS saksdokumenter $(date +%F)"
+          git push
