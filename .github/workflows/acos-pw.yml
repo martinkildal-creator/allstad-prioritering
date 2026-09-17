@@ -4,9 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       modus:
-        description: 'sonde, sok eller skann'
+        description: 'lab, sonde, sok eller skann'
         required: false
-        default: 'sok'
+        default: 'lab'
+      slug:
+        description: 'Kommune for lab-modus'
+        required: false
+        default: 'lund'
       antall:
         description: 'Antall kommuner (0 = alle)'
         required: false
@@ -35,6 +39,7 @@ jobs:
         env:
           MODUS:  ${{ github.event.inputs.modus }}
           ANTALL: ${{ github.event.inputs.antall }}
+          SLUG:   ${{ github.event.inputs.slug }}
         run: node acos-pw.js
 
       - name: Lagre resultat
