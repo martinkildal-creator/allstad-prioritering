@@ -1,0 +1,135 @@
+{
+ "_oppdatert": "2026-09-17",
+ "kommuner": {
+  "haugesund": {
+   "navn": "Haugesund",
+   "nr": "1106",
+   "slug": "haugesund-byggesaker"
+  },
+  "lund": {
+   "navn": "Lund",
+   "nr": "1112",
+   "slug": "lund"
+  },
+  "meloy": {
+   "navn": "Meløy",
+   "nr": "1837",
+   "slug": "meloy"
+  },
+  "skiptvet": {
+   "navn": "Skiptvet",
+   "nr": "3116",
+   "slug": "skiptvet"
+  },
+  "baerum": {
+   "navn": "Bærum",
+   "nr": "3201",
+   "slug": "baerum"
+  },
+  "ullensaker": {
+   "navn": "Ullensaker",
+   "nr": "3209",
+   "slug": "ullensaker"
+  },
+  "nes": {
+   "navn": "Nes",
+   "nr": "3228",
+   "slug": "nes"
+  },
+  "gjerdrum": {
+   "navn": "Gjerdrum",
+   "nr": "3230",
+   "slug": "gjerdrum"
+  },
+  "nannestad": {
+   "navn": "Nannestad",
+   "nr": "3238",
+   "slug": "nannestad"
+  },
+  "eidsvoll": {
+   "navn": "Eidsvoll",
+   "nr": "3240",
+   "slug": "eidsvoll"
+  },
+  "hurdal": {
+   "navn": "Hurdal",
+   "nr": "3242",
+   "slug": "hurdal"
+  },
+  "ringerike": {
+   "navn": "Ringerike",
+   "nr": "3305",
+   "slug": "ringerike"
+  },
+  "hole": {
+   "navn": "Hole",
+   "nr": "3310",
+   "slug": "hole"
+  },
+  "os": {
+   "navn": "Os",
+   "nr": "3430",
+   "slug": "os"
+  },
+  "sondreland": {
+   "navn": "Søndre Land",
+   "nr": "3447",
+   "slug": "sondre-land"
+  },
+  "larvik": {
+   "navn": "Larvik",
+   "nr": "3909",
+   "slug": "larvik"
+  },
+  "porsgrunn": {
+   "navn": "Porsgrunn",
+   "nr": "4001",
+   "slug": "porsgrunn"
+  },
+  "lillesand": {
+   "navn": "Lillesand",
+   "nr": "4215",
+   "slug": "lillesand"
+  },
+  "birkenes": {
+   "navn": "Birkenes",
+   "nr": "4216",
+   "slug": "birkenes"
+  },
+  "sirdal": {
+   "navn": "Sirdal",
+   "nr": "4228",
+   "slug": "sirdal"
+  },
+  "askoy": {
+   "navn": "Askøy",
+   "nr": "4627",
+   "slug": "askoy"
+  },
+  "roros": {
+   "navn": "Røros",
+   "nr": "5025",
+   "slug": "roros"
+  },
+  "sorreisa": {
+   "navn": "Sørreisa",
+   "nr": "5526",
+   "slug": "sorreisa"
+  },
+  "storfjord": {
+   "navn": "Storfjord",
+   "nr": "5538",
+   "slug": "storfjord"
+  },
+  "nordreisa": {
+   "navn": "Nordreisa",
+   "nr": "5544",
+   "slug": "nordreisa"
+  },
+  "masoy": {
+   "navn": "Måsøy",
+   "nr": "5618",
+   "slug": "masoy"
+  }
+ }
+}
