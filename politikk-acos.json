@@ -6,7 +6,7 @@
    "navn": "Lund",
    "nr": "1112",
    "plattform": "ACOS Innsyn",
-   "poeng": 5,
+   "poeng": 4,
    "treff": [
     {
      "ord": "omsorgsbolig",
@@ -16,32 +16,6 @@
      "dato": "06.08.2024",
      "saksnr": "2024/7485",
      "url": "https://innsynpluss.onacos.no/lund/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "omsorgssenter",
-     "vekt": 0,
-     "tittel": "Fotstell Lund Omsorgssenter",
-     "type": "Generell sak",
-     "dato": "18.08.2026",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/lund/sok/#/?searchTerm=omsorgssenter"
-    }
-   ]
-  },
-  "haram": {
-   "navn": "Haram",
-   "nr": "1580",
-   "plattform": "ACOS Innsyn",
-   "poeng": 1,
-   "treff": [
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Prevalensundersøkelse av helsetjenesteassosierte infeksjoner og antibiotikabruk i sykehjem",
-     "type": "Generell sak",
-     "dato": "21.05.2024",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/haram/sok/#/?searchTerm=sykehjem"
     }
    ]
   },
@@ -49,7 +23,7 @@
    "navn": "Meløy",
    "nr": "1837",
    "plattform": "ACOS Innsyn",
-   "poeng": 7,
+   "poeng": 4,
    "treff": [
     {
      "ord": "boligbehov",
@@ -59,104 +33,6 @@
      "dato": "13.03.2025",
      "saksnr": "2025/5186",
      "url": "https://innsynpluss.onacos.no/meloy/sok/#/?searchTerm=boligbehov"
-    },
-    {
-     "ord": "omsorgsbolig",
-     "vekt": 0,
-     "tittel": "Tilbud om heldøgns omsorgsbolig (HDO)",
-     "type": "Utgående dokument",
-     "dato": "18.08.2026",
-     "saksnr": "2026/27295",
-     "url": "https://innsynpluss.onacos.no/meloy/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "omsorgsbolig",
-     "vekt": 0,
-     "tittel": "Svar på søknad om kommunal omsorgsbolig",
-     "type": "Utgående dokument",
-     "dato": "06.08.2026",
-     "saksnr": "2026/26341",
-     "url": "https://innsynpluss.onacos.no/meloy/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "omsorgsbolig",
-     "vekt": 0,
-     "tittel": "Svar på din søknad om praktisk bistand, ledsagerbevis og omsorgsbolig",
-     "type": "Utgående dokument",
-     "dato": "04.08.2026",
-     "saksnr": "2026/26014",
-     "url": "https://innsynpluss.onacos.no/meloy/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "omsorgsbolig",
-     "vekt": 0,
-     "tittel": "Svar på søknad om kommunal omsorgsbolig og middagslevering",
-     "type": "Utgående dokument",
-     "dato": "03.08.2026",
-     "saksnr": "2026/25760",
-     "url": "https://innsynpluss.onacos.no/meloy/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "omsorgssenter",
-     "vekt": 0,
-     "tittel": "Tilbud om leie av korttidsleilighet ved Glomfjord Bo- og omsorgssenter",
-     "type": "Utgående dokument",
-     "dato": "15.08.2025",
-     "saksnr": "2025/15239",
-     "url": "https://innsynpluss.onacos.no/meloy/sok/#/?searchTerm=omsorgssenter"
-    },
-    {
-     "ord": "omsorgssenter",
-     "vekt": 0,
-     "tittel": "Tilbud om leie av korttidsleilighet ved Glomfjord bo - og omsorgssenter",
-     "type": "Utgående dokument",
-     "dato": "03.04.2025",
-     "saksnr": "2025/6798",
-     "url": "https://innsynpluss.onacos.no/meloy/sok/#/?searchTerm=omsorgssenter"
-    }
-   ]
-  },
-  "beiarn": {
-   "navn": "Beiarn",
-   "nr": "1839",
-   "plattform": "ACOS Innsyn",
-   "poeng": 4,
-   "treff": [
-    {
-     "ord": "sykehjem",
-     "vekt": 1,
-     "tittel": "Valg av representant til brukerutvalg - Beiarn sykehjem",
-     "type": "Saksframlegg",
-     "dato": "10.10.2023",
-     "saksnr": "2023/5203",
-     "url": "https://innsynpluss.onacos.no/beiarn/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Sykehjemmet",
-     "type": "Generell sak",
-     "dato": "23.09.2025",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/beiarn/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Valg av brukerutvalg - Beiarn Sykehjem",
-     "type": "Valgsak",
-     "dato": "06.10.2023",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/beiarn/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Tilsyn ved Beiarn sykehjem",
-     "type": "Generell sak",
-     "dato": "11.07.2023",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/beiarn/sok/#/?searchTerm=sykehjem"
     }
    ]
   },
@@ -164,7 +40,7 @@
    "navn": "Øksnes",
    "nr": "1868",
    "plattform": "ACOS Innsyn",
-   "poeng": 6,
+   "poeng": 4,
    "treff": [
     {
      "ord": "sykehjem",
@@ -173,24 +49,6 @@
      "type": "Saksframlegg",
      "dato": "11.01.2022",
      "saksnr": "2022/357",
-     "url": "https://innsynpluss.onacos.no/oksnes-historisk/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 1,
-     "tittel": "Orientering Morgendagens helse og omsorg i Øksnes sykehjem/helsehus",
-     "type": "Saksframlegg",
-     "dato": "13.02.2023",
-     "saksnr": "2023/1133",
-     "url": "https://innsynpluss.onacos.no/oksnes-historisk/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 1,
-     "tittel": "Orientering om status fagbemanning på sykehjemmene, versus leie av sykehjemsplasser utenfor kommunen og overliggere på sykehus",
-     "type": "Saksframlegg",
-     "dato": "23.08.2022",
-     "saksnr": "2022/7654",
      "url": "https://innsynpluss.onacos.no/oksnes-historisk/sok/#/?searchTerm=sykehjem"
     }
    ]
@@ -227,131 +85,6 @@
      "dato": "06.09.2024",
      "saksnr": "2024/6711",
      "url": "https://innsynpluss.onacos.no/skiptvet/sok/#/?searchTerm=omsorgssenter"
-    },
-    {
-     "ord": "omsorgsbolig",
-     "vekt": 1,
-     "tittel": "Reviderte tildelingskriterier for omsorgsboligene i Torggården",
-     "type": "Saksframlegg",
-     "dato": "07.08.2023",
-     "saksnr": "2023/5766",
-     "url": "https://innsynpluss.onacos.no/skiptvet/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "helsehus",
-     "vekt": 1,
-     "tittel": "Helsehuset - avtaleforhold 2018-2021",
-     "type": "Saksframlegg",
-     "dato": "28.01.2020",
-     "saksnr": "2020/713",
-     "url": "https://innsynpluss.onacos.no/skiptvet/sok/#/?searchTerm=helsehus"
-    },
-    {
-     "ord": "helsehus",
-     "vekt": 1,
-     "tittel": "Statistikk Helsehuset desember 2019",
-     "type": "Saksframlegg",
-     "dato": "20.01.2020",
-     "saksnr": "2020/412",
-     "url": "https://innsynpluss.onacos.no/skiptvet/sok/#/?searchTerm=helsehus"
-    },
-    {
-     "ord": "helsehus",
-     "vekt": 1,
-     "tittel": "Statistikk Helsehuset juni 2019",
-     "type": "Saksframlegg",
-     "dato": "07.08.2019",
-     "saksnr": "2019/5323",
-     "url": "https://innsynpluss.onacos.no/skiptvet/sok/#/?searchTerm=helsehus"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Videresendelse av klage vedrørende vedtak/avslag beregning sykehjemsplass",
-     "type": "Utgående dokument",
-     "dato": "22.07.2026",
-     "saksnr": "2026/7480",
-     "url": "https://innsynpluss.onacos.no/skiptvet/sok/#/?searchTerm=sykehjem"
-    }
-   ]
-  },
-  "marker": {
-   "navn": "Marker",
-   "nr": "3122",
-   "plattform": "ACOS Innsyn",
-   "poeng": 7,
-   "treff": [
-    {
-     "ord": "sykehjem",
-     "vekt": 2,
-     "tittel": "Innkalling - Regionalt planforum Østfold - 17.12.2024 - Rakkestad kommune - Nytt sykehjem og Marker kommune - Kommuneplan Marker 2020-2030",
-     "type": "Inngående dokument",
-     "dato": "05.12.2024",
-     "saksnr": "2024/7865",
-     "url": "https://innsynpluss.onacos.no/marker/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 1,
-     "tittel": "Intensjonsavtale - Kjøp av sykehjemsplasser",
-     "type": "Saksframlegg",
-     "dato": "14.02.2020",
-     "saksnr": "2020/79",
-     "url": "https://innsynpluss.onacos.no/marker/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 1,
-     "tittel": "Kommunal forskrift om rett til opphold i sykehjem",
-     "type": "Saksframlegg",
-     "dato": "07.06.2017",
-     "saksnr": "2017/1688",
-     "url": "https://innsynpluss.onacos.no/marker/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 1,
-     "tittel": "Orientering om ny forskrift \"Rett til opphold i sykehjem\"",
-     "type": "Saksframlegg",
-     "dato": "16.05.2017",
-     "saksnr": "2017/2490",
-     "url": "https://innsynpluss.onacos.no/marker/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 1,
-     "tittel": "Informasjon vedrørende uteie av sykehjemsplasser",
-     "type": "Saksframlegg",
-     "dato": "07.03.2017",
-     "saksnr": "2017/1222",
-     "url": "https://innsynpluss.onacos.no/marker/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "helsehus",
-     "vekt": 1,
-     "tittel": "Helsehuset 2019 - selskapsavtale og finansieringsmodell",
-     "type": "Saksframlegg",
-     "dato": "23.11.2018",
-     "saksnr": "2018/6263",
-     "url": "https://innsynpluss.onacos.no/marker/sok/#/?searchTerm=helsehus"
-    },
-    {
-     "ord": "omsorgsbolig",
-     "vekt": 0,
-     "tittel": "Bemannet omsorgsbolig (Sone 13)",
-     "type": "Standard sak",
-     "dato": "03.02.2026",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/marker/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Utleie av sykehjemsplasser",
-     "type": "Standard sak",
-     "dato": "07.03.2017",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/marker/sok/#/?searchTerm=sykehjem"
     }
    ]
   },
@@ -359,7 +92,7 @@
    "navn": "Nes",
    "nr": "3228",
    "plattform": "ACOS Innsyn",
-   "poeng": 9,
+   "poeng": 8,
    "treff": [
     {
      "ord": "boligbehov",
@@ -378,15 +111,6 @@
      "dato": "26.11.2025",
      "saksnr": "2025/69606",
      "url": "https://innsynpluss.onacos.no/nes/sok/#/?searchTerm=boligbehov"
-    },
-    {
-     "ord": "helsehus",
-     "vekt": 0,
-     "tittel": "Svar på - Brannteknisk dokumentasjon - Nes Helsehus AS",
-     "type": "Utgående dokument",
-     "dato": "05.12.2024",
-     "saksnr": "2024/69486",
-     "url": "https://innsynpluss.onacos.no/nes/sok/#/?searchTerm=helsehus"
     }
    ]
   },
@@ -394,24 +118,15 @@
    "navn": "Gjerdrum",
    "nr": "3230",
    "plattform": "ACOS Innsyn",
-   "poeng": 2,
+   "poeng": 4,
    "treff": [
     {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Klage fra pårørende - Sykehjem",
-     "type": "Generell sak",
-     "dato": "17.08.2026",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/gjerdrum/sok/#/?searchTerm=sykehjem"
-    },
-    {
      "ord": "helsehus",
-     "vekt": 0,
-     "tittel": "Åpen søknad - Pleieassistent ved Gjerdrum Helsehus",
-     "type": "Utgående dokument",
-     "dato": "11.03.2026",
-     "saksnr": "2026/17522",
+     "vekt": 2,
+     "tittel": "FDV Helsehuset solceller og fasade rehabilitering 06.01.2026",
+     "type": "Inngående dokument",
+     "dato": "30.06.2026",
+     "saksnr": "2026/288",
      "url": "https://innsynpluss.onacos.no/gjerdrum/sok/#/?searchTerm=helsehus"
     }
    ]
@@ -468,6 +183,15 @@
      "url": "https://innsynpluss.onacos.no/nannestad/sok/#/?searchTerm=omsorgsbolig"
     },
     {
+     "ord": "omsorgssenter",
+     "vekt": 2,
+     "tittel": "Rehabilitering og utvidelse Nannestad pleie- og omsorgssenter",
+     "type": "Generell sak",
+     "dato": "21.10.2024",
+     "saksnr": null,
+     "url": "https://innsynpluss.onacos.no/nannestad/sok/#/?searchTerm=omsorgssenter"
+    },
+    {
      "ord": "boligbehov",
      "vekt": 2,
      "tittel": "Endring i boligbehov ved bosetting",
@@ -475,24 +199,6 @@
      "dato": "09.07.2026",
      "saksnr": "2026/29697",
      "url": "https://innsynpluss.onacos.no/nannestad/sok/#/?searchTerm=boligbehov"
-    },
-    {
-     "ord": "omsorgssenter",
-     "vekt": 1,
-     "tittel": "Evaluering kafèdrift Nannestad pleie- og omsorgssenter",
-     "type": "Saksframlegg",
-     "dato": "29.09.2025",
-     "saksnr": "2025/25607",
-     "url": "https://innsynpluss.onacos.no/nannestad/sok/#/?searchTerm=omsorgssenter"
-    },
-    {
-     "ord": "omsorgssenter",
-     "vekt": 1,
-     "tittel": "Drift av kafè på Nannestad pleie- og omsorgssenter etter modell «Lambertseterhjemmet /Oslo kollega\"",
-     "type": "Saksframlegg",
-     "dato": "07.11.2024",
-     "saksnr": "2024/38498",
-     "url": "https://innsynpluss.onacos.no/nannestad/sok/#/?searchTerm=omsorgssenter"
     }
    ]
   },
@@ -500,7 +206,7 @@
    "navn": "Modum",
    "nr": "3316",
    "plattform": "ACOS Innsyn",
-   "poeng": 10,
+   "poeng": 8,
    "treff": [
     {
      "ord": "omsorgsbolig",
@@ -519,42 +225,6 @@
      "dato": "27.05.2025",
      "saksnr": "2025/20259",
      "url": "https://innsynpluss.onacos.no/modum/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Melding om dokumenttilsyn - Svar på krav om opplysninger - Modumheimen sykehjem - Frist 31.08.2026",
-     "type": "Utgående dokument",
-     "dato": "03.09.2026",
-     "saksnr": "2026/30022",
-     "url": "https://innsynpluss.onacos.no/modum/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Rekrutteringssak - Sykehjemslege 0826",
-     "type": "Rekruttering sak",
-     "dato": "10.08.2026",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/modum/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Dokumenttilsyn - Modumheimen sykehjem",
-     "type": "Generell sak",
-     "dato": "03.07.2026",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/modum/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Rekrutteringssak - Sykehjemslege 0626",
-     "type": "Rekruttering sak",
-     "dato": "04.06.2026",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/modum/sok/#/?searchTerm=sykehjem"
     }
    ]
   },
@@ -562,7 +232,7 @@
    "navn": "Nordre Land",
    "nr": "3448",
    "plattform": "ACOS Innsyn",
-   "poeng": 10,
+   "poeng": 8,
    "treff": [
     {
      "ord": "omsorgsbolig",
@@ -581,51 +251,6 @@
      "dato": "02.05.2025",
      "saksnr": null,
      "url": "https://innsynpluss.onacos.no/nordre-land/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "omsorgsbolig",
-     "vekt": 1,
-     "tittel": "Omsorgsboliger/avlastningsbolig/barnebolig – ny vurdering og prioritering",
-     "type": "Saksframlegg",
-     "dato": "09.09.2025",
-     "saksnr": "2025/9439",
-     "url": "https://innsynpluss.onacos.no/nordre-land/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Svar på innsyn i utvikling i eldreomsorg, sykehjemsplasser, hjemmetjenester og utskrivningsklare pasienter",
-     "type": "Utgående dokument",
-     "dato": "12.06.2026",
-     "saksnr": "2026/18319",
-     "url": "https://innsynpluss.onacos.no/nordre-land/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Innsyn i utvikling i eldreomsorg, sykehjemsplasser, hjemmetjenester og utskrivningsklare pasienter",
-     "type": "Generell sak",
-     "dato": "06.05.2026",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/nordre-land/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Utvidet søkerliste Sykehjemslege",
-     "type": "Utgående dokument",
-     "dato": "09.03.2026",
-     "saksnr": "2026/10699",
-     "url": "https://innsynpluss.onacos.no/nordre-land/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Brev til alle kommuner - Bosetting av barn og unge personer under 50 år på sykehjem",
-     "type": "Generell sak",
-     "dato": "23.09.2025",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/nordre-land/sok/#/?searchTerm=sykehjem"
     }
    ]
   },
@@ -697,15 +322,6 @@
      "dato": "22.01.2026",
      "saksnr": "2026/7939",
      "url": "https://innsynpluss.onacos.no/larvik/sok/#/?searchTerm=omsorgssenter"
-    },
-    {
-     "ord": "omsorgssenter",
-     "vekt": 0,
-     "tittel": "Martineåsen omsorgssenter",
-     "type": "Generell sak",
-     "dato": "16.04.2026",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/larvik/sok/#/?searchTerm=omsorgssenter"
     }
    ]
   },
@@ -713,70 +329,25 @@
    "navn": "Skien",
    "nr": "4003",
    "plattform": "ACOS Innsyn",
-   "poeng": 4,
+   "poeng": 8,
    "treff": [
     {
-     "ord": "omsorgsbolig",
-     "vekt": 0,
-     "tittel": "Bekrefter mottak av supplerende dokumentasjon - Gbnr 300/5244 - Tømmerkaia 11 - Klosterøya bygg 3 - omsorgsboliger",
-     "type": "Utgående dokument",
-     "dato": "14.08.2026",
-     "saksnr": "2026/103198",
-     "url": "https://innsynpluss.onacos.no/skien/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "omsorgsbolig",
-     "vekt": 0,
-     "tittel": "Etterspør eventuelle vedlegg - Leieavtale med Steinar Moe Eiendom AS - omsorgsboliger på Tømmerkaia",
-     "type": "Utgående dokument",
-     "dato": "13.08.2026",
-     "saksnr": "2026/103738",
-     "url": "https://innsynpluss.onacos.no/skien/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Tilbud sporadisk vikar signert - Kverndalen sykehjem",
-     "type": "Utgående dokument",
-     "dato": "15.09.2026",
-     "saksnr": "2026/37047",
-     "url": "https://innsynpluss.onacos.no/skien/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Rammeavtale tilkalling Lyngbakken sykehjem",
-     "type": "Utgående dokument",
-     "dato": "15.09.2026",
-     "saksnr": "2026/118260",
-     "url": "https://innsynpluss.onacos.no/skien/sok/#/?searchTerm=sykehjem"
-    },
-    {
      "ord": "omsorgssenter",
-     "vekt": 0,
-     "tittel": "Signert - Tariffavtale etter arbeidsmiljøloven (aml) § 10-12 (4) mellom FO og Skien kommune ved Kverndalen bo- og omsorgssenter",
-     "type": "Utgående dokument",
+     "vekt": 2,
+     "tittel": "Videre branndokumentasjon for lukking av avvik Gbnr. 221/1416 - Lyngbakkvegen 47 - Nye Lyngbakken Bo- og omsorgssenter - utvidelse",
+     "type": "Inngående dokument",
      "dato": "07.11.2025",
-     "saksnr": "2025/129541",
+     "saksnr": "2025/129053",
      "url": "https://innsynpluss.onacos.no/skien/sok/#/?searchTerm=omsorgssenter"
     },
     {
-     "ord": "helsehus",
-     "vekt": 0,
-     "tittel": "Rammeavtale sporadisk tilkalling - Skien Helsehus Leger",
-     "type": "Utgående dokument",
-     "dato": "15.09.2026",
-     "saksnr": "2026/118115",
-     "url": "https://innsynpluss.onacos.no/skien/sok/#/?searchTerm=helsehus"
-    },
-    {
-     "ord": "helsehus",
-     "vekt": 0,
-     "tittel": "Rammeavtale sporadisk tilkalling - Skien Helsehus",
-     "type": "Utgående dokument",
-     "dato": "15.09.2026",
-     "saksnr": "2026/118155",
-     "url": "https://innsynpluss.onacos.no/skien/sok/#/?searchTerm=helsehus"
+     "ord": "omsorgssenter",
+     "vekt": 2,
+     "tittel": "Supplerende dokumentasjon for lukking av avvik etter inspeksjonstilsyn - Gbnr. 221/1416 - Lyngbakkvegen 47 - Nye Lyngbakken Bo- og omsorgssenter - utvidelse",
+     "type": "Inngående dokument",
+     "dato": "06.11.2025",
+     "saksnr": "2025/128328",
+     "url": "https://innsynpluss.onacos.no/skien/sok/#/?searchTerm=omsorgssenter"
     }
    ]
   },
@@ -787,15 +358,6 @@
    "poeng": 10,
    "treff": [
     {
-     "ord": "sykehjem",
-     "vekt": 2,
-     "tittel": "Ytterligere påminnelse - undersøkelse fra KS - kapasitet og fremtidig behov for sykehjems- og heldøgns plasser i pleie og omsorg - 2026",
-     "type": "Inngående dokument",
-     "dato": "28.04.2026",
-     "saksnr": "2026/10475",
-     "url": "https://innsynpluss.onacos.no/bamble/sok/#/?searchTerm=sykehjem"
-    },
-    {
      "ord": "helsehus",
      "vekt": 2,
      "tittel": "Svar på henvendelse om innsyn i kostnader oppgradering av Bamble helsehus og ombygging av Rugtvedt ungdomsskole",
@@ -803,15 +365,6 @@
      "dato": "28.08.2026",
      "saksnr": "2026/21475",
      "url": "https://innsynpluss.onacos.no/bamble/sok/#/?searchTerm=helsehus"
-    },
-    {
-     "ord": "boligbehov",
-     "vekt": 2,
-     "tittel": "Påminnelse - kartlegging av kommuenes analyser av boligbehov og boligmarked",
-     "type": "Inngående dokument",
-     "dato": "06.10.2025",
-     "saksnr": "2025/24651",
-     "url": "https://innsynpluss.onacos.no/bamble/sok/#/?searchTerm=boligbehov"
     },
     {
      "ord": "boligbehov",
@@ -830,86 +383,6 @@
      "dato": "29.09.2025",
      "saksnr": null,
      "url": "https://innsynpluss.onacos.no/bamble/sok/#/?searchTerm=boligbehov"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Svar på forespørsel om brukerråd - pårørenderåd - sykehjem og helsehus",
-     "type": "Utgående dokument",
-     "dato": "06.07.2026",
-     "saksnr": "2026/17604",
-     "url": "https://innsynpluss.onacos.no/bamble/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Brukerråd - pårørenderåd - sykehjem og helsehus",
-     "type": "Generell sak",
-     "dato": "25.06.2026",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/bamble/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Prevalensundersøkelse - helsetjenesteassosierte infeksjoner og antibiotikabruk i sykehjem",
-     "type": "Generell sak",
-     "dato": "30.04.2026",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/bamble/sok/#/?searchTerm=sykehjem"
-    }
-   ]
-  },
-  "sirdal": {
-   "navn": "Sirdal",
-   "nr": "4228",
-   "plattform": "ACOS Innsyn",
-   "poeng": 4,
-   "treff": [
-    {
-     "ord": "helsehus",
-     "vekt": 1,
-     "tittel": "Kjøleanlegg på Helsehuset på Tonstad",
-     "type": "Saksframlegg",
-     "dato": "04.09.2025",
-     "saksnr": "2025/11630",
-     "url": "https://innsynpluss.onacos.no/sirdal/sok/#/?searchTerm=helsehus"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Institusjon-sykehjem",
-     "type": "Generell sak",
-     "dato": "26.09.2025",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/sirdal/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "helsehus",
-     "vekt": 0,
-     "tittel": "Sv: Parkeringsplass Tjørhom Helsehus",
-     "type": "Utgående dokument",
-     "dato": "18.09.2025",
-     "saksnr": "2025/12097",
-     "url": "https://innsynpluss.onacos.no/sirdal/sok/#/?searchTerm=helsehus"
-    },
-    {
-     "ord": "helsehus",
-     "vekt": 0,
-     "tittel": "10/66 mfl. Sirdal kommune. Parkering Tjørhom helsehus",
-     "type": "Byggesak",
-     "dato": "16.09.2025",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/sirdal/sok/#/?searchTerm=helsehus"
-    },
-    {
-     "ord": "helsehus",
-     "vekt": 0,
-     "tittel": "Svar - Parkeringsplasser Tjørhom Helsehus",
-     "type": "Utgående dokument",
-     "dato": "19.03.2025",
-     "saksnr": "2025/3678",
-     "url": "https://innsynpluss.onacos.no/sirdal/sok/#/?searchTerm=helsehus"
     }
    ]
   },
@@ -940,33 +413,6 @@
     {
      "ord": "sykehjem",
      "vekt": 2,
-     "tittel": "Publisert avtale - 2026 - NOR - Ombygging av lokaler Ravnanger sykehjem prosjekt nr. 3400",
-     "type": "Utgående dokument",
-     "dato": "06.08.2026",
-     "saksnr": "2026/76412",
-     "url": "https://innsynpluss.onacos.no/askoy/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "omsorgsbolig",
-     "vekt": 0,
-     "tittel": "Gbnr 10/532/0/0 - Rapport etter gjennomført tilsyn - Flagget dagsenter og omsorgsbolig",
-     "type": "Utgående dokument",
-     "dato": "21.08.2026",
-     "saksnr": "2026/80652",
-     "url": "https://innsynpluss.onacos.no/askoy/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "omsorgsbolig",
-     "vekt": 0,
-     "tittel": "Gbnr 10/532/0/0 - Varsel om tilsyn - Flagget dagsenter og omsorgsbolig",
-     "type": "Utgående dokument",
-     "dato": "05.06.2026",
-     "saksnr": "2026/55270",
-     "url": "https://innsynpluss.onacos.no/askoy/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
      "tittel": "Gbnr 7/83 - Sykehjem - Bruksendring, innvendig ombygging og utvendig rehabilitering",
      "type": "Byggesak",
      "dato": "06.08.2026",
@@ -974,39 +420,13 @@
      "url": "https://innsynpluss.onacos.no/askoy/sok/#/?searchTerm=sykehjem"
     },
     {
-     "ord": "omsorgssenter",
-     "vekt": 0,
-     "tittel": "Gbnr 3/36/0/0 - Tilfredsstillende tilbakemelding Ask Omsorgssenter",
+     "ord": "sykehjem",
+     "vekt": 2,
+     "tittel": "Publisert avtale - 2026 - NOR - Ombygging av lokaler Ravnanger sykehjem prosjekt nr. 3400",
      "type": "Utgående dokument",
-     "dato": "08.06.2026",
-     "saksnr": "2026/56184",
-     "url": "https://innsynpluss.onacos.no/askoy/sok/#/?searchTerm=omsorgssenter"
-    },
-    {
-     "ord": "omsorgssenter",
-     "vekt": 0,
-     "tittel": "Gbnr 3/36/0/0 - Rapport etter gjennomført tilsyn - Ask Omsorgssenter",
-     "type": "Utgående dokument",
-     "dato": "18.05.2026",
-     "saksnr": "2026/47190",
-     "url": "https://innsynpluss.onacos.no/askoy/sok/#/?searchTerm=omsorgssenter"
-    }
-   ]
-  },
-  "ardal": {
-   "navn": "Årdal",
-   "nr": "4643",
-   "plattform": "ACOS Innsyn",
-   "poeng": 1,
-   "treff": [
-    {
-     "ord": "omsorgssenter",
-     "vekt": 0,
-     "tittel": "Ny korttidsavdeling 2015 - Årdal Bu- og omsorgssenter",
-     "type": "Arkivsak",
-     "dato": "11.11.2014",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/ardal-historisk/sok/#/?searchTerm=omsorgssenter"
+     "dato": "06.08.2026",
+     "saksnr": "2026/76412",
+     "url": "https://innsynpluss.onacos.no/askoy/sok/#/?searchTerm=sykehjem"
     }
    ]
   },
@@ -1016,6 +436,15 @@
    "plattform": "ACOS Innsyn",
    "poeng": 10,
    "treff": [
+    {
+     "ord": "omsorgssenter",
+     "vekt": 2,
+     "tittel": "Gbnr. 76/304 - Bergsodden 19 og 20 - Rammetillatelse - Utvidelse av Bergsodden omsorgssenter",
+     "type": "Utgående dokument",
+     "dato": "20.03.2026",
+     "saksnr": "2026/16305",
+     "url": "https://innsynpluss.onacos.no/harstad/sok/#/?searchTerm=omsorgssenter"
+    },
     {
      "ord": "omsorgssenter",
      "vekt": 2,
@@ -1035,58 +464,22 @@
      "url": "https://innsynpluss.onacos.no/harstad/sok/#/?searchTerm=omsorgssenter"
     },
     {
-     "ord": "omsorgsbolig",
-     "vekt": 0,
-     "tittel": "Vedlikehold - omsorgsboliger",
-     "type": "Generell sak",
-     "dato": "12.08.2026",
+     "ord": "helsehus",
+     "vekt": 2,
+     "tittel": "Rapport etter tilsyn ved Helsehuset korttids - og rehabiliteringsavdeling - miljø og helse",
+     "type": "Internt notat (N)",
+     "dato": "30.06.2026",
+     "saksnr": "2026/40895",
+     "url": "https://innsynpluss.onacos.no/harstad/sok/#/?searchTerm=helsehus"
+    },
+    {
+     "ord": "helsehus",
+     "vekt": 2,
+     "tittel": "Miljørettet helsevern - Helsehuset korttids - og rehabiliteringsavdeling 2026",
+     "type": "Miljørettet helsevern",
+     "dato": "31.03.2026",
      "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/harstad/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "omsorgsbolig",
-     "vekt": 0,
-     "tittel": "Tilbud om omsorgsbolig",
-     "type": "Utgående dokument",
-     "dato": "29.07.2026",
-     "saksnr": "2026/44607",
-     "url": "https://innsynpluss.onacos.no/harstad/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Tilbudsbrev - 2026/3257 - Bjarkøy sykehjem - Helsefagarbeider",
-     "type": "Utgående dokument",
-     "dato": "31.08.2026",
-     "saksnr": "2026/51554",
-     "url": "https://innsynpluss.onacos.no/harstad/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Tilbudsbrev - 2026/3254 - Bjarkøy sykehjem og hjemmetjenesten Øyriket - sykepleier",
-     "type": "Utgående dokument",
-     "dato": "25.08.2026",
-     "saksnr": "2026/50679",
-     "url": "https://innsynpluss.onacos.no/harstad/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Tilbudsbrev - 2026/4921 - Stangnes sykehjem - psykiatrisk vernepleier",
-     "type": "Utgående dokument",
-     "dato": "17.08.2026",
-     "saksnr": "2026/47954",
-     "url": "https://innsynpluss.onacos.no/harstad/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "omsorgssenter",
-     "vekt": 0,
-     "tittel": "Gbnr. 76/304 - Bergsodden 19 og 20 - Rammetillatelse - Utvidelse av Bergsodden omsorgssenter",
-     "type": "Utgående dokument",
-     "dato": "20.03.2026",
-     "saksnr": "2026/16305",
-     "url": "https://innsynpluss.onacos.no/harstad/sok/#/?searchTerm=omsorgssenter"
+     "url": "https://innsynpluss.onacos.no/harstad/sok/#/?searchTerm=helsehus"
     }
    ]
   },
@@ -1122,50 +515,6 @@
      "dato": "23.06.2025",
      "saksnr": "2025/3073",
      "url": "https://innsynpluss.onacos.no/salangen/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Oversendelse til rett mottaker - pasientrettighet - kommunehelsetjeneste - langtidsplass i sykehjem - ***** ***** ***** ***** *****",
-     "type": "Utgående dokument",
-     "dato": "11.02.2026",
-     "saksnr": "2026/597",
-     "url": "https://innsynpluss.onacos.no/salangen/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Tilbud om kjøp av sykehjemsplasser",
-     "type": "Generell sak",
-     "dato": "27.10.2025",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/salangen/sok/#/?searchTerm=sykehjem"
-    }
-   ]
-  },
-  "malselv": {
-   "navn": "Målselv",
-   "nr": "5524",
-   "plattform": "ACOS Innsyn",
-   "poeng": 2,
-   "treff": [
-    {
-     "ord": "sykehjem",
-     "vekt": 1,
-     "tittel": "Omklassifisering av sykehjemmet på Holt",
-     "type": "Saksframlegg",
-     "dato": "24.11.2025",
-     "saksnr": "2025/19844",
-     "url": "https://innsynpluss.onacos.no/malselv/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "omsorgssenter",
-     "vekt": 1,
-     "tittel": "Pasientvarslingssystem Øverbygd syke- og omsorgssenter",
-     "type": "Saksframlegg",
-     "dato": "18.01.2024",
-     "saksnr": "2024/339",
-     "url": "https://innsynpluss.onacos.no/malselv/sok/#/?searchTerm=omsorgssenter"
     }
    ]
   },
@@ -1173,17 +522,8 @@
    "navn": "Sørreisa",
    "nr": "5526",
    "plattform": "ACOS Innsyn",
-   "poeng": 10,
+   "poeng": 8,
    "treff": [
-    {
-     "ord": "sykehjem",
-     "vekt": 3,
-     "tittel": "Brannteknisk prosjektering Sørreisa sykehjem",
-     "type": "Saksframlegg",
-     "dato": "06.09.2026",
-     "saksnr": "2026/11167",
-     "url": "https://innsynpluss.onacos.no/sorreisa/sok/#/?searchTerm=sykehjem"
-    },
     {
      "ord": "omsorgssenter",
      "vekt": 3,
@@ -1201,51 +541,6 @@
      "dato": "11.02.2026",
      "saksnr": null,
      "url": "https://innsynpluss.onacos.no/sorreisa/sok/#/?searchTerm=omsorgssenter"
-    },
-    {
-     "ord": "omsorgsbolig",
-     "vekt": 1,
-     "tittel": "Status utleiesituasjon omsorgsboliger per 01.03.26",
-     "type": "Saksframlegg",
-     "dato": "04.02.2026",
-     "saksnr": "2026/2883",
-     "url": "https://innsynpluss.onacos.no/sorreisa/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "omsorgssenter",
-     "vekt": 1,
-     "tittel": "Kostnader tilknyttet bemanning, Sørreisa Omsorgssenter",
-     "type": "Saksframlegg",
-     "dato": "08.01.2024",
-     "saksnr": "2023/21682",
-     "url": "https://innsynpluss.onacos.no/sorreisa/sok/#/?searchTerm=omsorgssenter"
-    },
-    {
-     "ord": "omsorgssenter",
-     "vekt": 1,
-     "tittel": "Bemanningssituajon Sørreisa omsorgssenter",
-     "type": "Saksframlegg",
-     "dato": "20.04.2023",
-     "saksnr": "2023/20095",
-     "url": "https://innsynpluss.onacos.no/sorreisa/sok/#/?searchTerm=omsorgssenter"
-    },
-    {
-     "ord": "omsorgsbolig",
-     "vekt": 0,
-     "tittel": "Søknad om kommunal omsorgsbolig",
-     "type": "Generell sak",
-     "dato": "06.07.2026",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/sorreisa/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "omsorgsbolig",
-     "vekt": 0,
-     "tittel": "Søknad omsorgsbolig",
-     "type": "Generell sak",
-     "dato": "14.04.2026",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/sorreisa/sok/#/?searchTerm=omsorgsbolig"
     }
    ]
   },
@@ -1253,7 +548,7 @@
    "navn": "Balsfjord",
    "nr": "5532",
    "plattform": "ACOS Innsyn",
-   "poeng": 10,
+   "poeng": 8,
    "treff": [
     {
      "ord": "omsorgsbolig",
@@ -1271,24 +566,6 @@
      "type": "Utgående dokument",
      "dato": "26.01.2024",
      "saksnr": "2024/1747",
-     "url": "https://innsynpluss.onacos.no/balsfjord/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "omsorgsbolig",
-     "vekt": 0,
-     "tittel": "Omsorgsbolig Storsteinnes",
-     "type": "Generell sak",
-     "dato": "09.10.2024",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/balsfjord/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "omsorgsbolig",
-     "vekt": 0,
-     "tittel": "Innkjøp av Arkitekttjenester Omsorgsbolig Petersborgveien",
-     "type": "Innkjøpssak",
-     "dato": "24.05.2024",
-     "saksnr": null,
      "url": "https://innsynpluss.onacos.no/balsfjord/sok/#/?searchTerm=omsorgsbolig"
     }
    ]
@@ -1318,57 +595,12 @@
      "url": "https://innsynpluss.onacos.no/lyngen/sok/#/?searchTerm=omsorgsbolig"
     },
     {
-     "ord": "omsorgsbolig",
-     "vekt": 0,
-     "tittel": "Omsorgsboliger i Lyngen kommune",
-     "type": "Utgående dokument",
-     "dato": "31.03.2026",
-     "saksnr": "2026/3953",
-     "url": "https://innsynpluss.onacos.no/lyngen/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "omsorgsbolig",
-     "vekt": 0,
-     "tittel": "Omsorgsboliger Lyngseidet",
-     "type": "Generell sak",
-     "dato": "05.03.2026",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/lyngen/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "omsorgsbolig",
-     "vekt": 0,
-     "tittel": "Varsel om økning i kommunale avgifter og strøm - omsorgsboliger",
-     "type": "Generell sak",
-     "dato": "18.02.2026",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/lyngen/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "omsorgsbolig",
-     "vekt": 0,
-     "tittel": "Økning av kommunale avgifter og strøm 2026 - omsorgsboligene",
-     "type": "Utgående dokument",
-     "dato": "18.02.2026",
-     "saksnr": "2026/2009",
-     "url": "https://innsynpluss.onacos.no/lyngen/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
      "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "LYNGSTUNET - OMBYGGING TIL SYKEHJEMSPLASSER",
-     "type": "Generell sak",
-     "dato": "17.09.2026",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/lyngen/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Referanse fra Stangnes sykehjem",
-     "type": "Utgående dokument",
-     "dato": "26.06.2026",
-     "saksnr": "2026/7250",
+     "vekt": 2,
+     "tittel": "Tilsagn - tildeling av tilskudd til energitiltak i omsorgsboliger og sykehjem",
+     "type": "Inngående dokument",
+     "dato": "05.11.2024",
+     "saksnr": "2024/12336",
      "url": "https://innsynpluss.onacos.no/lyngen/sok/#/?searchTerm=sykehjem"
     }
    ]
@@ -1377,8 +609,17 @@
    "navn": "Storfjord",
    "nr": "5538",
    "plattform": "ACOS Innsyn",
-   "poeng": 7,
+   "poeng": 8,
    "treff": [
+    {
+     "ord": "helsehus",
+     "vekt": 3,
+     "tittel": "Salg av Næringsbygget og rehabilitering av Helsehuset",
+     "type": "Saksframlegg",
+     "dato": "10.06.2026",
+     "saksnr": "2026/7271",
+     "url": "https://innsynpluss.onacos.no/storfjord/sok/#/?searchTerm=helsehus"
+    },
     {
      "ord": "omsorgsbolig",
      "vekt": 2,
@@ -1387,50 +628,6 @@
      "dato": "25.09.2024",
      "saksnr": null,
      "url": "https://innsynpluss.onacos.no/storfjord/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "helsehus",
-     "vekt": 1,
-     "tittel": "Salg av Næringsbygget og rehabilitering av Helsehuset",
-     "type": "Saksframlegg",
-     "dato": "10.06.2026",
-     "saksnr": "2026/7271",
-     "url": "https://innsynpluss.onacos.no/storfjord/sok/#/?searchTerm=helsehus"
-    },
-    {
-     "ord": "omsorgssenter",
-     "vekt": 0,
-     "tittel": "Nabovarsel - Eiendom 52/29 - Oppføring av carport på Åsen omsorgssenter",
-     "type": "Utgående dokument",
-     "dato": "13.08.2026",
-     "saksnr": "2026/10606",
-     "url": "https://innsynpluss.onacos.no/storfjord/sok/#/?searchTerm=omsorgssenter"
-    },
-    {
-     "ord": "omsorgssenter",
-     "vekt": 0,
-     "tittel": "Svar: Skibotn Omsorgssenter",
-     "type": "Utgående dokument",
-     "dato": "12.08.2026",
-     "saksnr": "2026/10573",
-     "url": "https://innsynpluss.onacos.no/storfjord/sok/#/?searchTerm=omsorgssenter"
-    }
-   ]
-  },
-  "nordreisa": {
-   "navn": "Nordreisa",
-   "nr": "5544",
-   "plattform": "ACOS Innsyn",
-   "poeng": 1,
-   "treff": [
-    {
-     "ord": "omsorgssenter",
-     "vekt": 0,
-     "tittel": "Tilsyn - Mattilsynet - Sonjatun omsorgssenter",
-     "type": "Generell sak",
-     "dato": "14.10.2022",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/nordreisa/sok/#/?searchTerm=omsorgssenter"
     }
    ]
   },
@@ -1438,7 +635,7 @@
    "navn": "Måsøy",
    "nr": "5618",
    "plattform": "ACOS Innsyn",
-   "poeng": 7,
+   "poeng": 4,
    "treff": [
     {
      "ord": "omsorgssenter",
@@ -1448,69 +645,6 @@
      "dato": "17.06.2025",
      "saksnr": "2025/3982",
      "url": "https://innsynpluss.onacos.no/masoy/sok/#/?searchTerm=omsorgssenter"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 1,
-     "tittel": "«Nattugla» og nytt pasientvarslingssystem ved sykehjemmet",
-     "type": "Saksframlegg",
-     "dato": "19.05.2026",
-     "saksnr": "2026/3679",
-     "url": "https://innsynpluss.onacos.no/masoy/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "omsorgssenter",
-     "vekt": 1,
-     "tittel": "Tilleggsbevilgning Havøysund lege og omsorgssenter",
-     "type": "Saksframlegg",
-     "dato": "02.05.2025",
-     "saksnr": "2022/8736",
-     "url": "https://innsynpluss.onacos.no/masoy/sok/#/?searchTerm=omsorgssenter"
-    },
-    {
-     "ord": "omsorgssenter",
-     "vekt": 1,
-     "tittel": "Grunngitt spørsmål - Havøysund lege- og omsorgssenter",
-     "type": "Saksframlegg",
-     "dato": "12.09.2024",
-     "saksnr": "2024/7110",
-     "url": "https://innsynpluss.onacos.no/masoy/sok/#/?searchTerm=omsorgssenter"
-    },
-    {
-     "ord": "omsorgssenter",
-     "vekt": 1,
-     "tittel": "Status ferdigstillelse av Havøysund lege og omsorgssenter",
-     "type": "Saksframlegg",
-     "dato": "20.08.2024",
-     "saksnr": "2024/6479",
-     "url": "https://innsynpluss.onacos.no/masoy/sok/#/?searchTerm=omsorgssenter"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Bosetting av barn og unge personer under 50 år på sykehjem",
-     "type": "Standard sak",
-     "dato": "24.09.2025",
-     "saksnr": null,
-     "url": "https://innsynpluss.onacos.no/masoy/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 0,
-     "tittel": "Svar - Søknad om sommerjobb på Havøysund sykehjem",
-     "type": "Utgående dokument",
-     "dato": "07.03.2025",
-     "saksnr": "2025/1469",
-     "url": "https://innsynpluss.onacos.no/masoy/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "omsorgssenter",
-     "vekt": 0,
-     "tittel": "Søknad om utbetaling av tilskudd Havøysund Lege og omsorgssenter",
-     "type": "Utgående dokument",
-     "dato": "26.03.2025",
-     "saksnr": "2025/1999",
-     "url": "https://innsynpluss.onacos.no/masoy/sok/#/?searchTerm=omsorgssenter"
     }
    ]
   },
@@ -1518,7 +652,7 @@
    "navn": "Nordkapp",
    "nr": "5620",
    "plattform": "ACOS Innsyn",
-   "poeng": 10,
+   "poeng": 8,
    "treff": [
     {
      "ord": "omsorgsbolig",
@@ -1536,42 +670,6 @@
      "type": "Utgående dokument",
      "dato": "08.12.2025",
      "saksnr": "2025/6596",
-     "url": "https://innsynpluss.onacos.no/nordkapp/sok/#/?searchTerm=helsehus"
-    },
-    {
-     "ord": "helsehus",
-     "vekt": 1,
-     "tittel": "Valg av gjennomføringsmodell for plan/byggeprosess for nytt helsehus.",
-     "type": "Saksframlegg",
-     "dato": "17.06.2025",
-     "saksnr": "2025/4219",
-     "url": "https://innsynpluss.onacos.no/nordkapp/sok/#/?searchTerm=helsehus"
-    },
-    {
-     "ord": "omsorgsbolig",
-     "vekt": 0,
-     "tittel": "Tillatelse til fradeling av areal til omsorgsboliger",
-     "type": "Utgående dokument",
-     "dato": "22.05.2025",
-     "saksnr": "2025/3569",
-     "url": "https://innsynpluss.onacos.no/nordkapp/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "omsorgsbolig",
-     "vekt": 0,
-     "tittel": "Aksept på tilbud om festekontrakt for areal til omsorgsboliger",
-     "type": "Utgående dokument",
-     "dato": "07.05.2025",
-     "saksnr": "2025/2988",
-     "url": "https://innsynpluss.onacos.no/nordkapp/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "helsehus",
-     "vekt": 0,
-     "tittel": "Vedrørende helsehus og regulringspl..",
-     "type": "Utgående dokument",
-     "dato": "26.03.2025",
-     "saksnr": "2025/1095",
      "url": "https://innsynpluss.onacos.no/nordkapp/sok/#/?searchTerm=helsehus"
     }
    ]
