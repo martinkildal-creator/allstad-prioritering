@@ -95,9 +95,50 @@ async function sok(slug, ord, diag = false) {
   return { data, treff: hentTreff(data, ord) };
 }
 
+// Dokumenttyper som er politisk relevante
+const GODE_TYPER = ['saksframlegg', 'sakskart', 'møteprotokoll', 'moteprotokoll', 'sak', 'utgående dokument'];
+
+// Ren støy fra postjournalen
+const STOY = [
+  'st. ref', 'søknad og cv', 'arbeidsavtale', 'vikariat', 'stilling', 'tilsetting',
+  'ansettelse', 'lønn', 'permisjon', 'sykmeld', 'oppsigelse', 'attest', 'cv',
+  'ferdigattest', 'brukstillatelse', 'igangsettingstillatelse', 'ansiennitet',
+  'taushetserklæring', 'politiattest', 'arbeidsforhold', 'turnus', 'time- og',
+  'faktura', 'purring', 'egenandel', 'klage på vedtak', 'pasientjournal'
+];
+
+// Ord som gjør en sak interessant selv om typen er et vanlig dokument
+const STERKT_SIGNAL = /utredning|utbygging|planlegging|prosjekt|byggetrinn|detaljregulering|reguleringsplan|forprosjekt|mulighetsstudie|investering|helse- ?og ?omsorgsplan|boligplan|boligbehov|sykehjemsstruktur|nytt sykehjem|nye omsorgsbolig|bygging av/i;
+
 /** Finn titler i svaret, uansett hvordan det er bygget opp */
 function hentTreff(data, ord) {
   const ut = [];
+
+  // 1) Bruk den strukturerte listen hvis den finnes
+  const poster = data && data.content && data.content.searchItems && data.content.searchItems.items;
+  if (Array.isArray(poster)) {
+    poster.forEach(it => {
+      const tittel = (it.title || '').replace(/\s+/g, ' ').trim();
+      if (tittel.length < 10) return;
+      if (!norm(tittel).includes(norm(ord))) return;
+      const t = norm(tittel);
+      if (STOY.some(o => t.includes(o))) return;                       // fjern personal- og byggesakstøy
+      const type = norm(it.type || '');
+      const relevantType = GODE_TYPER.some(g => type.includes(g));
+      if (!relevantType && !STERKT_SIGNAL.test(tittel)) return;        // krev politisk type ELLER sterkt signal
+      if (ut.some(x => x.tittel === tittel)) return;
+      const pr = it.properties || {};
+      ut.push({
+        tittel: tittel.slice(0, 200),
+        type: it.type || null,
+        dato: pr.dato || null,
+        saksnr: pr.dokumentID || pr.saksID || null,
+        id: it.identifier ? String(it.identifier).slice(0, 80) : null
+      });
+    });
+    return ut.slice(0, 20);
+  }
+
   const se = (obj, dybde = 0) => {
     if (!obj || dybde > 6 || ut.length > 60) return;
     if (Array.isArray(obj)) { obj.forEach(o => se(o, dybde + 1)); return; }
@@ -126,7 +167,7 @@ function hentTreff(data, ord) {
       const r = await sok(SLUG, ord, true);
       if (r.feil) { console.log(`    FEIL: ${r.feil}`); if (r.raatekst) console.log(`    ${r.raatekst}`); console.log(''); continue; }
       console.log(`    TREFF: ${r.treff.length}`);
-      r.treff.slice(0, 8).forEach(t => console.log(`      • ${t.tittel.slice(0, 120)}`));
+      r.treff.slice(0, 8).forEach(t => console.log(`      • [${t.type || '?'}${t.dato ? ' ' + t.dato : ''}] ${t.tittel.slice(0, 110)}`));
       console.log('');
       await new Promise(s => setTimeout(s, PAUSE));
     }
@@ -173,7 +214,8 @@ function hentTreff(data, ord) {
       if (r.feil) { feilet++; break; }
       r.treff.forEach(t => {
         if (samlet.some(x => x.tittel === t.tittel)) return;
-        samlet.push({ ord, tittel: t.tittel, url: `${VERT}/${k.slug}/sok/#/?searchTerm=${encodeURIComponent(ord)}` });
+        samlet.push({ ord, tittel: t.tittel, type: t.type, dato: t.dato, saksnr: t.saksnr,
+          url: `${VERT}/${k.slug}/sok/#/?searchTerm=${encodeURIComponent(ord)}` });
       });
       await new Promise(s => setTimeout(s, PAUSE));
     }
