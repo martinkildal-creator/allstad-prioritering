@@ -65,11 +65,14 @@ table{width:100%;border-collapse:collapse;font-size:14px}
 .tablecard{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
 .tablecard .thead{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--line)}
 .tablecard .thead h2{margin:0;font-size:18px;font-weight:600}
-th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line)}
-th{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700;cursor:pointer;user-select:none;white-space:nowrap}
+th,td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line)}
+tbody tr:nth-child(even){background:rgba(0,0,0,.015)}
+tbody td{font-size:14px;line-height:1.45}
+th{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:700;cursor:pointer;user-select:none;white-space:nowrap;position:sticky;top:0;background:var(--cream);z-index:2;box-shadow:inset 0 -2px 0 var(--line)}
+th:hover{color:var(--teal-d)}
 th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
 tbody tr{cursor:pointer;transition:background .12s}
-tbody tr:hover{background:var(--sand)}
+tbody tr:hover{background:var(--sand);box-shadow:inset 3px 0 0 var(--teal)}
 .rank{font-family:"Fraunces";font-weight:600;color:var(--teal-d)}
 .komm{font-weight:600}
 .bar{height:7px;border-radius:4px;background:var(--line);position:relative;min-width:70px;overflow:hidden}
@@ -87,6 +90,10 @@ tbody tr:hover{background:var(--sand)}
 .note .eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
 .note h1{font-size:30px;margin:6px 0 2px;letter-spacing:-.01em}
 .note .lede{color:var(--muted);font-size:14px;margin-bottom:22px}
+.note h3{margin:30px 0 10px;font-size:16px;letter-spacing:.01em;padding-bottom:6px;border-bottom:2px solid var(--line)}
+.note p,.note li{line-height:1.6}
+.note .recco{line-height:1.6}
+.note .kv{gap:12px}
 .kv{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:20px}
 .kv div{background:var(--card);padding:13px 15px}
 .kv .k{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:700;margin-bottom:3px}
@@ -151,7 +158,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
     </div>
     <div style="display:flex;align-items:center;gap:10px">
       <button class="btn ghost" style="padding:8px 13px;font-size:13px" onclick="openMetode()">ⓘ Slik regnes det</button>
-      <span class="tag">Internt · v40</span>
+      <span class="tag">Internt · v42</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -228,6 +235,20 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
         <div>
           <h2>Prioriteringsliste <span id="count" style="font-size:13px;color:var(--muted);font-weight:400"></span></h2>
           <div style="font-size:12.5px;color:var(--muted);margin-top:2px">Øverst = høyest prioritet. Klikk en kommune for detaljer.</div>
+          <details style="margin-top:8px;font-size:12.5px">
+            <summary style="cursor:pointer;color:var(--teal-d);font-weight:600">Hvordan regnes rangeringen?</summary>
+            <div style="margin-top:7px;line-height:1.6;color:var(--ink)">
+              Hver kommune får <b>én totalsum</b>, satt sammen av fire ledd:
+              <div style="margin:7px 0 0;padding-left:2px">
+                <div><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:#2E6F62;margin-right:7px"></span><b>Behov</b> – hvor mange heldøgns plasser som mangler, og hvor raskt de eldste vokser. Skala 0–100, teller <b id="vektB">60</b> %.</div>
+                <div><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:#3A6FA8;margin-right:7px"></span><b>Økonomi</b> – hvor godt kommunens økonomi passer modellen vår. Skala 0–100, teller <b id="vektF">40</b> %.</div>
+                <div><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:#D98C3F;margin-right:7px"></span><b>Tomt</b> – påslag hvis vi eier tomt der (+12) eller kan makebytte (+8).</div>
+                <div><span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:#B8742A;margin-right:7px"></span><b>Signaler</b> – påslag hvis kommunen planlegger, finansierer eller kjøper akkurat nå.</div>
+              </div>
+              <div style="margin-top:7px;color:var(--muted)">Behov og økonomi er <i>relative</i>: den med størst behov i landet får 100, den med minst får 0.
+              Derfor endrer alle tallene seg hvis du drar i vektene til venstre. Åpne en kommune for å se regnestykket for akkurat den.</div>
+            </div>
+          </details>
         </div>
         <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
           <input id="search" class="search" type="text" placeholder="🔍  Søk etter kommune…">
@@ -338,6 +359,9 @@ function compute(){
   applyEiendom();
   const p=P(); const ws=p.wb+p.wf||1;
   const wB=p.wb/ws, wF=p.wf/ws;
+  window.VEKT_BEHOV=Math.round(wB*100); window.VEKT_FIN=Math.round(wF*100);
+  try{const eB=document.getElementById('vektB'),eF=document.getElementById('vektF');
+      if(eB)eB.textContent=window.VEKT_BEHOV; if(eF)eF.textContent=window.VEKT_FIN;}catch(_){}
   const sa=Math.pow(1-p.sunn,11);
   const DR=[0.05,0.22,0.48];
   DATA.forEach(d=>{
@@ -384,7 +408,7 @@ function compute(){
     d.behovComp = d.hasEcon ? d.behovSc*wB : d.behovSc;
     d.finComp = d.hasEcon ? d.finfit*wF : 0;
     d.tomtBonus=d.tomt===1?p.n1:d.tomt===2?p.n2:0;
-    d.signalScore=(d.doffinScore||0)+(d.husbankScore||0);
+    d.signalScore=(d.doffinScore||0)+(d.husbankScore||0)+(d.politikkScore||0);
     d.total=Math.min(120,d.grunn+d.tomtBonus+d.signalScore);
   });
   const byTot=[...DATA].sort((a,b)=>b.total-a.total);
@@ -547,6 +571,47 @@ function snittChart(d){
     y+=18;
   });
   return `<svg viewBox="0 0 ${W} ${y}" width="100%" style="font-family:'Hanken Grotesk'">${g}</svg>`;
+}
+function regnestykke(d){
+  const vB=window.VEKT_BEHOV||60, vF=window.VEKT_FIN||40;
+  const rad=(navn,forklaring,poeng,farge)=>`<tr>
+    <td style="padding:7px 10px 7px 0;border-bottom:1px solid var(--line)">
+      <span style="display:inline-block;width:9px;height:9px;border-radius:2px;background:${farge};margin-right:7px"></span>
+      <b>${navn}</b><div style="color:var(--muted);font-size:12px;margin-left:16px">${forklaring}</div></td>
+    <td style="padding:7px 0;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums">
+      <b style="font-size:15px">${poeng>0?'+':''}${poeng.toFixed(1)}</b></td></tr>`;
+
+  const behovRaa=(d.behovSc||0), finRaa=(d.finfit||0);
+  let rader='';
+  rader+=rad('Behov hos de eldre',
+    `Skår ${behovRaa.toFixed(0)} av 100, teller ${vB} % → ${behovRaa.toFixed(0)} × ${(vB/100).toFixed(2)}`,
+    d.behovComp||0,'#2E6F62');
+  if(d.hasEcon) rader+=rad('Kommunens økonomi',
+    `Skår ${finRaa.toFixed(0)} av 100, teller ${vF} % → ${finRaa.toFixed(0)} × ${(vF/100).toFixed(2)}`,
+    d.finComp||0,'#3A6FA8');
+  else rader+=`<tr><td colspan="2" style="padding:7px 0;border-bottom:1px solid var(--line);color:var(--muted);font-size:12.5px">Økonomi ikke lastet for denne kommunen – behov teller da alene.</td></tr>`;
+  if((d.tomtBonus||0)>0) rader+=rad('Tomt vi eier',
+    d.tomt===1?'Egen tomt i kommunen':'Mulig makebytte', d.tomtBonus||0,'#D98C3F');
+  if((d.signalScore||0)>0){
+    const deler=[];
+    if(d.politikkScore) deler.push(`saksdokumenter ${d.politikkScore}`);
+    if(d.doffinScore) deler.push(`Doffin ${d.doffinScore}`);
+    if(d.husbankScore) deler.push(`Husbanken ${d.husbankScore}`);
+    rader+=rad('Signaler om at noe skjer nå', deler.join(' · '), d.signalScore||0,'#B8742A');
+  }
+  return `<div class="recco" style="font-size:13px;margin-bottom:8px">
+      Rangeringen er <b>én sum</b>: vi gir hver kommune poeng for hvor stort behovet er, hvor godt økonomien passer,
+      om vi eier tomt der, og om noe skjer akkurat nå. Høyest sum kommer øverst.
+    </div>
+    <table style="width:100%;border-collapse:collapse;font-size:13.5px">
+      <tbody>${rader}
+        <tr><td style="padding:10px 0 0;font-weight:700">Totalsum</td>
+            <td style="padding:10px 0 0;text-align:right;font-variant-numeric:tabular-nums">
+              <b style="font-size:19px;color:var(--green)">${d.total.toFixed(1)}</b></td></tr>
+        <tr><td colspan="2" style="padding:2px 0;color:var(--muted);font-size:12.5px">
+          Det gir <b>${d.rang}. plass</b> av ${DATA.length} kommuner.
+          ${d.rang<=15?'Blant de mest aktuelle å gå videre med.':(d.rang<=50?'I øvre sjikt.':'Lenger ned på lista.')}</td></tr>
+      </tbody></table>`;
 }
 function scoreBar(d){
   const segs=[['Behov',d.behovComp||0,'#2E6F62'],['Økonomi',d.finComp||0,'#3A6FA8'],['Tomt',d.tomtComp||0,'#D98C3F']];
@@ -848,8 +913,9 @@ function openNote(navn){
     <div class="lede">Kommunenr ${d.nr} · rangert som nr. ${d.rang} av ${DATA.length} · totalscore ${d.total.toFixed(1)}</div>
     ${politikkBar(d)}
     <div class="summary"><b>${d.navn}</b> er rangert nr. ${d.rang} av ${DATA.length}. Innbyggere 80+ ventes å vokse ${vekstP}% mot 2035, og det aldersdifferensierte behovet tilsvarer ~${Math.round(d.behovFuture).toLocaleString('no')} heldøgnsplasser. ${capKnown?`Mot dagens kapasitet er udekket behov ~${Math.max(0,n).toLocaleString('no')} plasser. `:''}${modelltxt.charAt(0).toUpperCase()+modelltxt.slice(1)}. ${tomttxt}.</div>
-    <h3>Slik er totalscoren satt sammen</h3>
-    <div>${scoreBar(d)}</div>
+    <h3>Hvorfor er ${d.navn} rangert nr. ${d.rang}?</h3>
+    ${regnestykke(d)}
+    <div style="margin-top:6px">${scoreBar(d)}</div>
     <div class="kv">
       <div><div class="k">Fylke</div><div class="v" style="font-size:16px">${fylkeAv(d.nr)}</div></div>
       <div><div class="k">Kommunetype</div><div class="v" style="font-size:13.5px">${kommuneType(d.folketall||0)}</div></div>
@@ -973,7 +1039,8 @@ function signalNoteBlokk(d){
   const treff=(d.doffinTreff&&d.doffinTreff.length)?d.doffinTreff:[];
   const hb=d.husbankDetalj||null;
   const tilsagn=d.husbankTilsagn||0;
-  if(sig<=0 && !treff.length && !tilsagn && !hb){
+  const antPol=(d.politikkTreff||[]).length;
+  if(sig<=0 && !treff.length && !tilsagn && !hb && !antPol){
     return `<h3>Skjer det noe i kommunen nå?</h3>
       <div class="recco" style="color:var(--muted)"><b>Ingen signaler funnet.</b> Vi ser ingen byggeprosjekter
       utlyst på Doffin og ingen Husbank-tilskudd registrert på ${d.navn}. Det betyr ikke at behovet mangler –
@@ -990,9 +1057,11 @@ function signalNoteBlokk(d){
   if(antKonk>0){ dom=`${d.navn} har <b>en konkurranse ute akkurat nå</b>. Dette haster – frist er satt.`; domFarge='#B8742A'; }
   else if(antDial>0){ dom=`${d.navn} er i <b>tidlig dialog med markedet</b>. Perfekt tidspunkt å ta kontakt på.`; domFarge='#3A6FA8'; }
   else if(treff.length){ dom=`${d.navn} har <b>hatt byggeprosjekter ute</b> den siste tiden.`; domFarge='#5C6B68'; }
+  else if(antPol){ dom=`${d.navn} har <b>saker om omsorgsbygg til politisk behandling</b>. Dette er det tidligste signalet vi kan se – ingen konkurranse er lyst ut ennå.`; domFarge='#3A6FA8'; }
   else { dom=`${d.navn} har <b>fått penger fra Husbanken</b> til omsorgsplasser, men har ingen konkurranse ute nå.`; domFarge='#2E6F62'; }
 
   const rows=[];
+  if(antPol) rows.push(`<tr><td>Politiske saker om omsorgsbygg</td><td class="num"><b style="color:#3A6FA8">${antPol}</b></td></tr>`);
   rows.push(`<tr><td>Byggeprosjekter ute på Doffin</td><td class="num"><b>${treff.length||'–'}</b>${antKonk?` <span style="color:#B8742A">(${antKonk} aktiv${antKonk>1?'e':''})</span>`:''}</td></tr>`);
   rows.push(`<tr><td>Husbanken – antall saker</td><td class="num">${hbTilsagn||'–'}</td></tr>`);
   if(hbBelop) rows.push(`<tr><td>Husbanken – tilskudd utbetalt/tilsagt</td><td class="num"><b>${hbBelop}</b></td></tr>`);
@@ -1000,6 +1069,16 @@ function signalNoteBlokk(d){
   rows.push(`<tr><td style="color:var(--muted)">Signalpoeng lagt til totalscoren</td><td class="num" style="color:var(--muted)">+${sig.toFixed(0)}</td></tr>`);
 
   const graf = hb&&hb.serie ? husbankChart(hb.serie) : '';
+  const pt = d.politikkTreff||[];
+  const polHtml = pt.length ? `<div style="margin-top:12px">
+      <b>Politiske saker i kommunen:</b>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:4px">Fra kommunens egen innsynsportal – dette er saker som er til behandling, ofte lenge før noe lyses ut.</div>
+      <ul style="margin:0;padding:0;list-style:none">${pt.slice(0,6).map(t=>`
+        <li style="border-left:3px solid #3A6FA8;padding:5px 0 5px 9px;margin-bottom:6px">
+          <div style="font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)">${t.type||'Sak'}${t.dato?' · '+t.dato:''}${t.saksnr?' · '+t.saksnr:''}</div>
+          <div style="font-weight:600;font-size:13px">${t.tittel||''}</div>
+          ${t.url?`<a href="${t.url}" target="_blank" rel="noopener" style="font-size:12px">Søk i innsynsportalen ↗</a>`:''}
+        </li>`).join('')}</ul></div>` : '';
   const treffHtml = treff.length
     ? `<div style="margin-top:12px"><b>Dette har kommunen lyst ut:</b><ul style="margin:6px 0 0;padding:0">${treff.map(doffinKort).join('')}</ul></div>`
     : '';
@@ -1009,6 +1088,7 @@ function signalNoteBlokk(d){
       <tbody>${rows.join('')}</tbody>
     </table>
     ${graf}
+    ${polHtml}
     ${treffHtml}
     <div class="recco" style="font-size:12px;margin-top:8px"><b>Slik leser du dette:</b> «Aktiv konkurranse» betyr at
     kommunen kjøper nå og har en frist – da er det som regel for sent å påvirke, men det viser at de bygger.
@@ -1037,21 +1117,42 @@ function doffinCelle(d){
 }
 // ---- Signaler-oversikt: egen knapp som viser alt relevant fra Doffin + Husbanken ----
 let signalerKunKonkurranse=false;
+let signalKategori='alle';   // alle | politikk | doffin | husbank
 function toggleKonkurranseFilter(){ signalerKunKonkurranse=!signalerKunKonkurranse; openSignaler(); }
+function settKategori(k){ signalKategori=(signalKategori===k?'alle':k); signalerKunKonkurranse=false; openSignaler(); }
 function openSignaler(){
-  let medSignal=DATA.filter(d=>(d.doffinScore||0)+(d.husbankScore||0)>0
+  let medSignal=DATA.filter(d=>(d.doffinScore||0)+(d.husbankScore||0)+(d.politikkScore||0)>0
     || (d.doffinTreff&&d.doffinTreff.length) || (d.husbankTilsagn||0)>0);
   const antallKonk=medSignal.filter(harAktivKonkurranse).length;
+  const antPolitikk=medSignal.filter(d=>(d.politikkTreff||[]).length).length;
+  const antDoffin=medSignal.filter(d=>(d.doffinTreff||[]).length).length;
+  const antHusbank=medSignal.filter(d=>(d.husbankTilsagn||0)>0||d.husbankDetalj).length;
+  if(signalKategori==='politikk') medSignal=medSignal.filter(d=>(d.politikkTreff||[]).length);
+  if(signalKategori==='doffin')   medSignal=medSignal.filter(d=>(d.doffinTreff||[]).length);
+  if(signalKategori==='husbank')  medSignal=medSignal.filter(d=>(d.husbankTilsagn||0)>0||d.husbankDetalj);
   if(signalerKunKonkurranse) medSignal=medSignal.filter(harAktivKonkurranse);
-  medSignal.sort((a,b)=>((b.doffinScore||0)+(b.husbankScore||0))-((a.doffinScore||0)+(a.husbankScore||0)));
+  if(signalKategori==='politikk') medSignal.sort((a,b)=>(b.politikkScore||0)-(a.politikkScore||0));
+  else if(signalKategori==='husbank') medSignal.sort((a,b)=>((b.husbankDetalj&&b.husbankDetalj.belopTall)||0)-((a.husbankDetalj&&a.husbankDetalj.belopTall)||0));
+  else medSignal.sort((a,b)=>(b.signalScore||0)-(a.signalScore||0));
   const oppdatert=(window.__signalerOppdatert)||'–';
-  const filterKnapp=`<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:4px 0 12px">
-    <button onclick="toggleKonkurranseFilter()" style="cursor:pointer;font:inherit;font-size:13px;font-weight:600;padding:7px 12px;border-radius:8px;border:1px solid ${signalerKunKonkurranse?'#B8742A':'var(--line)'};background:${signalerKunKonkurranse?'#B8742A':'#fff'};color:${signalerKunKonkurranse?'#fff':'var(--ink)'}">
-      ${signalerKunKonkurranse?'✓ ':''}Vis bare de som bygger nå (${antallKonk})</button>
-    <span style="font-size:12px;color:var(--muted)">${signalerKunKonkurranse?'Kommuner med en konkurranse ute akkurat nå.':'Alle kommuner der noe skjer – konkurranse, dialog eller Husbank-tilskudd.'}</span>
+  const kb=(k,tittel,undertekst,antall,farge)=>{
+    const aktiv=(signalKategori===k);
+    return `<button onclick="settKategori('${k}')" style="flex:1;min-width:150px;text-align:left;cursor:pointer;font:inherit;padding:10px 12px;border-radius:10px;border:1.5px solid ${aktiv?farge:'var(--line)'};background:${aktiv?farge:'#fff'};color:${aktiv?'#fff':'var(--ink)'}">
+      <div style="font-size:13.5px;font-weight:700">${tittel} <span style="opacity:.75">(${antall})</span></div>
+      <div style="font-size:11.5px;opacity:${aktiv?'.9':'.65'};margin-top:1px">${undertekst}</div></button>`;
+  };
+  const filterKnapp=`
+  <div class="recco" style="font-size:12.5px;margin:0 0 10px">De tre kildene viser hvor kommunen er i l\u00f8pet: f\u00f8rst <b>planlegger</b> de, s\u00e5 <b>finansierer</b> de, til slutt <b>kj\u00f8per</b> de. Jo tidligere vi er inne, jo bedre.</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+    ${kb('politikk','1 \u00b7 Planlegger','Saker til politisk behandling',antPolitikk,'#3A6FA8')}
+    ${kb('husbank','2 \u00b7 Finansierer','Tilskudd fra Husbanken',antHusbank,'#2E6F62')}
+    ${kb('doffin','3 \u00b7 Kj\u00f8per','Kunngj\u00f8ringer p\u00e5 Doffin',antDoffin,'#B8742A')}
   </div>
-  <div class="recco" style="font-size:12.5px;margin:0 0 12px">Her ser du hvilke kommuner som er <b>i bevegelse akkurat nå</b>.
-  Øverst ligger de med sterkest signal. <b>Markedsdialog</b> er det beste tidspunktet å ta kontakt på – da har kommunen ikke bestemt seg ennå.</div>`;
+  <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 14px">
+    ${signalKategori!=='alle'?`<button onclick="settKategori('${signalKategori}')" style="cursor:pointer;font:inherit;font-size:12.5px;padding:6px 11px;border-radius:8px;border:1px solid var(--line);background:#fff">\u2190 Vis alle kilder</button>`:''}
+    <button onclick="toggleKonkurranseFilter()" style="cursor:pointer;font:inherit;font-size:12.5px;font-weight:600;padding:6px 11px;border-radius:8px;border:1px solid ${signalerKunKonkurranse?'#B8742A':'var(--line)'};background:${signalerKunKonkurranse?'#B8742A':'#fff'};color:${signalerKunKonkurranse?'#fff':'var(--ink)'}">${signalerKunKonkurranse?'\u2713 ':''}Bare aktiv konkurranse (${antallKonk})</button>
+    <span style="font-size:12px;color:var(--muted)">${medSignal.length} kommuner vises</span>
+  </div>`;
   let body;
   if(!medSignal.length){
     body=filterKnapp+(signalerKunKonkurranse
@@ -1065,26 +1166,29 @@ function openSignaler(){
       const konk=harAktivKonkurranse(d);
       const hb=d.husbankDetalj||null;
       const hbTxt=hb?`${hb.tilsagn!=null?hb.tilsagn+' tilsagn':''}${hb.plasser!=null?' · '+hb.plasser+' plasser':''}${hb.belop?' · '+hb.belop:''}`:(d.husbankTilsagn||'–');
+      const pol=(d.politikkTreff||[]);
+      const polTxt=pol.length?pol.slice(0,2).map(t=>`<div style="margin-bottom:3px"><span style="color:var(--muted);font-size:11px">${t.dato||''}</span> ${t.tittel||''}</div>`).join(''):'<span style="color:var(--line)">\u2013</span>';
       return `<tr style="border-top:1px solid var(--line);cursor:pointer" onclick='closeSignaler();openNote(${JSON.stringify(d.navn)})'>
-        <td style="padding:8px 6px"><b>${d.navn}</b>${konk?' <span title="Aktiv konkurranse" style="color:#B8742A">●</span>':''}</td>
-        <td class="num" style="padding:8px 6px;color:#B8742A"><b>+${sig.toFixed(0)}</b></td>
-        <td class="num" style="padding:8px 6px">${doffin>0?'+'+doffin:'–'}</td>
-        <td class="num" style="padding:8px 6px">${husbank>0?'+'+husbank:'–'}</td>
-        <td style="padding:8px 6px;font-size:12px">${hbTxt||'–'}</td>
-        <td style="padding:8px 6px;font-size:12.5px">${doffinCelle(d)}</td>
+        <td style="padding:11px 8px;vertical-align:top"><b style="font-size:14px">${d.navn}</b>${konk?' <span title="Aktiv konkurranse" style="color:#B8742A">\u25cf</span>':''}
+          <div style="font-size:11.5px;color:var(--muted);margin-top:2px">nr. ${d.rang} i lista</div></td>
+        <td class="num" style="padding:11px 8px;color:#B8742A;vertical-align:top"><b>+${(d.signalScore||0).toFixed(0)}</b></td>
+        <td style="padding:11px 8px;font-size:12.5px;vertical-align:top;max-width:280px">${polTxt}</td>
+        <td style="padding:11px 8px;font-size:12.5px;vertical-align:top">${hbTxt||'\u2013'}</td>
+        <td style="padding:11px 8px;font-size:12.5px;vertical-align:top;max-width:320px">${doffinCelle(d)}</td>
       </tr>`;
     }).join('');
     body=filterKnapp+`<p style="color:var(--muted);margin-top:0">Kommuner som er <b>i bevegelse nå</b>. Klikk en rad for behovsnotatet. <span style="color:#B8742A">●</span> = aktiv konkurranse. Sist oppdatert: <b>${oppdatert}</b>.</p>
       <table style="width:100%;border-collapse:collapse;font-size:13.5px">
-        <thead><tr style="text-align:left;color:var(--teal-d)">
-          <th style="padding:6px">Kommune</th><th class="num" style="padding:6px">Signal</th>
-          <th class="num" style="padding:6px">Doffin</th><th class="num" style="padding:6px">Husbank</th>
-          <th style="padding:6px">Husbank-detalj</th><th style="padding:6px">Doffin-kunngjøringer</th>
+        <thead><tr style="text-align:left;color:var(--teal-d);border-bottom:2px solid var(--line)">
+          <th style="padding:8px">Kommune</th><th class="num" style="padding:8px">Sum</th>
+          <th style="padding:8px;color:#3A6FA8">1 · Planlegger</th>
+          <th style="padding:8px;color:#2E6F62">2 · Finansierer</th>
+          <th style="padding:8px;color:#B8742A">3 · Kjøper</th>
         </tr></thead>
         <tbody>${rows}</tbody>
       </table>`;
   }
-  signalerBody.innerHTML=`<h2>Markedssignaler – Doffin &amp; Husbanken</h2>${body}
+  signalerBody.innerHTML=`<h2>Markedssignaler – saksdokumenter, Husbanken &amp; Doffin</h2>${body}
     <p style="font-size:11.5px;color:var(--muted);margin-top:18px">Doffin = offentlige anbud/kunngjøringer. Husbanken = investeringstilskudd til omsorgsplasser. Signalscore legges oppå behovsscoren i prioriteringslisten.</p>`;
   signalerBg.classList.add('open');signalerModal.classList.add('open');
 }
@@ -1554,26 +1658,46 @@ autoLoad();
 
 // ---- Sanntidssignaler (Doffin + Husbanken) ----
 async function lastSignaler(){
+  const norm=s=>(s||'').toString().toLowerCase().trim();
+  let oppdatert='–', traff=0;
   try{
     const r=await fetch('signaler.json?v='+Date.now());
-    if(!r.ok)return;
-    const j=await r.json();
-    const idx=j.kommuner||{};
-    const norm=s=>(s||'').toString().toLowerCase().trim();
-    let traff=0;
-    DATA.forEach(d=>{
-      const s=idx[norm(d.navn)];
-      if(s){d.doffinScore=s.doffinScore||0;
-            d.husbankScore=s.husbankScore||0;
-            d.doffinTreff=s.doffinTreff||[];
-            d.husbankTilsagn=s.husbankTilsagn||0;
-            d.husbankDetalj=s.husbankDetalj||null;
-            traff++;}
-    });
-    window.__signalerOppdatert=j._oppdatert||'–';
-    compute();
-    console.log('Signaler lastet ('+(j._oppdatert||'?')+'): '+traff+' kommuner beriket.');
+    if(r.ok){
+      const j=await r.json();
+      const idx=j.kommuner||{};
+      DATA.forEach(d=>{
+        const s=idx[norm(d.navn)];
+        if(s){d.doffinScore=s.doffinScore||0;
+              d.husbankScore=s.husbankScore||0;
+              d.doffinTreff=s.doffinTreff||[];
+              d.husbankTilsagn=s.husbankTilsagn||0;
+              d.husbankDetalj=s.husbankDetalj||null;
+              traff++;}
+      });
+      oppdatert=j._oppdatert||'–';
+    }
   }catch(e){console.warn('Signaler ikke lastet:',e.message);}
+
+  // Politiske saksdokumenter (ACOS Innsyn Pluss)
+  let pol=0;
+  try{
+    const r2=await fetch('politikk-acos.json?v='+Date.now());
+    if(r2.ok){
+      const j2=await r2.json();
+      const idx2=j2.kommuner||{};
+      DATA.forEach(d=>{
+        const p=idx2[norm(d.navn)];
+        if(p){d.politikkScore=p.poeng||0;
+              d.politikkTreff=p.treff||[];
+              pol++;}
+      });
+      window.__politikkOppdatert=j2._oppdatert||'–';
+    }
+  }catch(e){console.warn('Politikk ikke lastet:',e.message);}
+
+  window.__signalerOppdatert=oppdatert;
+  compute();
+  console.log('Signaler lastet ('+oppdatert+'): '+traff+' kommuner, politikk: '+pol+'.');
 }
 lastSignaler();
 
