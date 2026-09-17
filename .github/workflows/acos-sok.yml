@@ -1,0 +1,46 @@
+name: ACOS søk
+
+on:
+  workflow_dispatch:
+    inputs:
+      modus:
+        description: 'lab (test én), slug (finn adresser), skann (alle)'
+        required: false
+        default: 'lab'
+      slug:
+        description: 'Kommune for lab'
+        required: false
+        default: 'lund'
+      antall:
+        description: 'Antall kommuner ved skann (0 = alle)'
+        required: false
+        default: '0'
+
+permissions:
+  contents: write
+
+jobs:
+  acossok:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Kjør ACOS-søk
+        env:
+          MODUS:  ${{ github.event.inputs.modus }}
+          SLUG:   ${{ github.event.inputs.slug }}
+          ANTALL: ${{ github.event.inputs.antall }}
+        run: node acos-post.js
+
+      - name: Lagre resultat
+        if: ${{ github.event.inputs.modus != 'lab' }}
+        run: |
+          git config user.name "signal-robot"
+          git config user.email "actions@github.com"
+          git add acos-slugger.json politikk-acos.json 2>/dev/null || true
+          git diff --staged --quiet || git commit -m "ACOS-søk $(date +%F)"
+          git push
