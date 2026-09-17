@@ -1,0 +1,23 @@
+name: FANG
+
+on:
+  workflow_dispatch:
+
+jobs:
+  fang:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Installer nettleser
+        run: |
+          npm init -y >/dev/null 2>&1 || true
+          npm install playwright@1.47.0
+          npx playwright install --with-deps chromium
+
+      - name: Kjør fang
+        run: node fang.js
