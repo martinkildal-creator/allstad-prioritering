@@ -1,6 +1,8 @@
 name: SOK API
 
 on:
+  schedule:
+    - cron: '0 5 * * 1'      # hver mandag kl. 06 norsk tid (skann)
   workflow_dispatch:
     inputs:
       modus:
@@ -28,11 +30,11 @@ jobs:
 
       - name: Kjør søk
         env:
-          MODUS: ${{ inputs.modus }}
+          MODUS: ${{ inputs.modus || 'skann' }}
         run: node sok-api.js
 
       - name: Lagre resultat
-        if: ${{ inputs.modus != 'lab' }}
+        if: ${{ (inputs.modus || 'skann') != 'lab' }}
         run: |
           git config user.name "signal-robot"
           git config user.email "actions@github.com"
