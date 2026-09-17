@@ -144,6 +144,69 @@ async function sok(slug, ord, diag = false) {
 }
 
 (async () => {
+  // ---------- FANG: avlytt hva nettleseren sender ved søk ----------
+  if (MODUS === 'fang') {
+    const { chromium } = require('playwright');
+    const ord = process.env.ORD2 || 'omsorgsbolig';
+    console.log(`=== FANG: ${SLUG} – søker etter "${ord}" ===\n`);
+    const nb = await chromium.launch({ args: ['--no-sandbox', '--disable-dev-shm-usage'] });
+    const page = await (await nb.newContext({ viewport: { width: 1280, height: 900 } })).newPage();
+
+    const kall = [];
+    page.on('request', r => {
+      const t = r.resourceType();
+      if (t === 'xhr' || t === 'fetch' || r.method() === 'POST') {
+        kall.push({ metode: r.method(), url: r.url(), data: (r.postData() || '').slice(0, 400) });
+      }
+    });
+
+    await page.goto(base(SLUG), { waitUntil: 'domcontentloaded', timeout: 30000 });
+    await page.waitForTimeout(3000);
+
+    // finn søkefeltet, også inne i web-komponenter (shadow DOM)
+    const fantFelt = await page.evaluate((sokeord) => {
+      const finn = (rot, dybde = 0) => {
+        if (dybde > 6 || !rot) return null;
+        const direkte = rot.querySelector && rot.querySelector('input[type="search"]');
+        if (direkte) return direkte;
+        const alle = rot.querySelectorAll ? rot.querySelectorAll('*') : [];
+        for (const el of alle) {
+          if (el.shadowRoot) { const t = finn(el.shadowRoot, dybde + 1); if (t) return t; }
+        }
+        return null;
+      };
+      const felt = finn(document);
+      if (!felt) return false;
+      const setter = Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value').set;
+      setter.call(felt, sokeord);
+      felt.dispatchEvent(new Event('input', { bubbles: true, composed: true }));
+      felt.dispatchEvent(new Event('change', { bubbles: true, composed: true }));
+      felt.focus();
+      felt.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', code: 'Enter', keyCode: 13, bubbles: true, composed: true }));
+      felt.dispatchEvent(new KeyboardEvent('keyup', { key: 'Enter', code: 'Enter', keyCode: 13, bubbles: true, composed: true }));
+      const skjema = felt.closest && felt.closest('form');
+      if (skjema && skjema.requestSubmit) { try { skjema.requestSubmit(); } catch (e) {} }
+      return true;
+    }, ord);
+
+    console.log(`  søkefelt funnet: ${fantFelt ? 'JA' : 'NEI'}`);
+    await page.waitForTimeout(6000);
+
+    const tekst = await page.evaluate(() => document.body.innerText.replace(/\s+/g, ' '));
+    console.log(`  url etter søk: ${page.url()}`);
+    console.log(`  nevner søkeordet: ${norm(tekst).includes(norm(ord)) ? 'JA' : 'nei'}`);
+    console.log(`  tekst: ${tekst.slice(0, 300)}\n`);
+
+    console.log(`  Forespørsler nettleseren sendte (${kall.length}):`);
+    kall.slice(-15).forEach(k => {
+      console.log(`    ${k.metode} ${k.url.slice(0, 160)}`);
+      if (k.data) console.log(`         data: ${k.data.slice(0, 200)}`);
+    });
+
+    await nb.close();
+    return;
+  }
+
   // ---------- LAB ----------
   if (MODUS === 'lab') {
     console.log(`=== LAB (uten nettleser): ${SLUG} ===\n`);
