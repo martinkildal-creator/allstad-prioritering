@@ -185,10 +185,23 @@ function hentTreff(data, ord) {
         const m = u.match(/innsynpluss\.onacos\.no\/([a-z0-9\-]+)/i);
         if (m) { slug = m[1]; break; }
       }
-      if (!slug && k.nettsted) {
-        const r = await kall(k.nettsted);
-        const m = r.tekst.match(/innsynpluss\.onacos\.no\/([a-z0-9\-]+)/i);
-        if (m) slug = m[1];
+      if (!slug) {
+        // let på forsiden OG på innsyn-/politikk-sidene vi allerede kjenner
+        const sider = [k.nettsted, k.portal, ...(k.alternativer || [])].filter(Boolean);
+        for (const side of sider.slice(0, 4)) {
+          const r = await kall(side);
+          if (r.ok) {
+            const m = r.tekst.match(/innsynpluss\.onacos\.no\/([a-z0-9\-]+)/i);
+            if (m) { slug = m[1]; break; }
+          }
+          await new Promise(s => setTimeout(s, 120));
+        }
+      }
+      // siste utvei: prøv kommunenavnet som adresse og sjekk om portalen er ekte
+      if (!slug) {
+        const gjett = norm(k.navn).replace(/æ/g,'ae').replace(/ø/g,'o').replace(/å/g,'a').replace(/[^a-z0-9]/g,'');
+        const r = await kall(`${VERT}/${gjett}/sok/`);
+        if (r.ok && r.tekst.length > 20000 && !/brukernavn eller e-post/i.test(r.tekst)) slug = gjett;
         await new Promise(s => setTimeout(s, 120));
       }
       if (slug) { kart[nokkel] = { navn: k.navn, nr: k.nr, slug }; funnet++; }
