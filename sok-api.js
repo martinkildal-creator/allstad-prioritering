@@ -122,11 +122,15 @@ const STOY = [
   'eltilsyn', 'vernerunde', 'branntilsyn', 'internkontroll', 'spørreundersøkelse',
   'tilkallingsvikar', 'innsynskrav', 'innsynsbegjæring', 'innsyn -', 'innsyn –',
   'tjenesteavtale', 'sittegruppe', 'bocciabane', 'serviceerklæring', 'avviksmelding',
-  'skjenkebevilling', 'smittevern', 'influensavaksine', 'matombringing'
+  'skjenkebevilling', 'smittevern', 'influensavaksine', 'matombringing',
+  'prevalens', 'brukerutvalg', 'valg av representant', 'brannteknisk', 'branntilsyn',
+  'kjøleanlegg', 'ventilasjonsanlegg', 'mattilsynet', 'planforum', 'undersøkelse fra ks',
+  'påminnelse', 'klage fra', 'bekrefter mottak', 'omklassifisering', 'infeksjoner',
+  'legemiddelgjennomgang', 'sprinkleranlegg', 'nødstrøm', 'serviceavtale'
 ];
 
 // Ord som gjør en sak interessant selv om typen er et vanlig dokument
-const STERKT_SIGNAL = /utredning|utbygging|utbyggings|planlegging|prosjekt|byggetrinn|detaljregulering|reguleringsplan|forprosjekt|mulighetsstudie|investering|helse- ?og ?omsorgsplan|boligplan|boligbehov|boligstrategi|sykehjemsstruktur|nytt sykehjem|nye omsorgsbolig|nye sykehjemsplasser|bygging av|etablering av|strategi|interpellasjon|romprogram|konseptvalg|behovsanalyse|kapasitet|struktur|handlingsplan|økonomiplan|budsjett/i;
+const STERKT_SIGNAL = /utredning|utbygging|utbyggings|planlegging|prosjekt|byggetrinn|detaljregulering|reguleringsplan|forprosjekt|mulighetsstudie|investering|helse- ?og ?omsorgsplan|boligplan|boligbehov|boligstrategi|sykehjemsstruktur|nytt sykehjem|nye omsorgsbolig|nye sykehjemsplasser|bygging av|etablering av|strategi|interpellasjon|romprogram|konseptvalg|behovsanalyse|kapasitet|struktur|handlingsplan|økonomiplan|forhåndskonferanse|tilsagn|byggesøknad|oppstart|utvidelse|nybygg|rehabilitering/i;
 
 /** Finn titler i svaret, uansett hvordan det er bygget opp */
 function hentTreff(data, ord) {
@@ -144,8 +148,8 @@ function hentTreff(data, ord) {
       // drift av eksisterende boliger ut - med mindre tittelen røper et prosjekt
       if (DRIFT.some(o => t.includes(o)) && !STERKT_SIGNAL.test(tittel)) return;
       const type = norm(it.type || '');
-      const relevantType = GODE_TYPER.some(g => type.includes(g));
-      if (!relevantType && !STERKT_SIGNAL.test(tittel)) return;        // krev politisk type ELLER sterkt signal
+      if (!STERKT_SIGNAL.test(tittel)) return;                         // må handle om et prosjekt/plan
+      if (/prosjektering|prosjektleder|prosjektstilling/i.test(tittel)) return;
       if (ut.some(x => x.tittel === tittel)) return;
       const pr = it.properties || {};
       const politiskType = /saksframlegg|sakskart|møteprotokoll|moteprotokoll/i.test(type);
