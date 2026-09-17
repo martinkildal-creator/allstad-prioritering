@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       modus:
-        description: 'sonde eller skann'
+        description: 'sonde, sok eller skann'
         required: false
-        default: 'sonde'
+        default: 'sok'
       antall:
         description: 'Antall kommuner (0 = alle)'
         required: false
