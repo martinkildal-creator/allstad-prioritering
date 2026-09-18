@@ -77,6 +77,22 @@ table{width:100%;border-collapse:collapse;font-size:14px}
 th,td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line)}
 tbody tr:nth-child(even){background:rgba(0,0,0,.015)}
 tbody td{font-size:14px;line-height:1.45}
+.kilde-modal{position:fixed;inset:0;z-index:1000;display:none;flex-direction:column;background:var(--paper)}
+.kilde-modal.open{display:flex}
+.kilde-topbar{display:flex;align-items:center;gap:14px;padding:14px 24px;background:var(--card);border-bottom:1px solid var(--line);flex-shrink:0}
+.kilde-topbar h2{margin:0;font-size:18px;font-family:'Fraunces'}
+.kilde-body{flex:1;overflow-y:auto;padding:20px 24px}
+.kilde-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:10px;cursor:pointer;transition:.12s}
+.kilde-card:hover{border-color:var(--teal);box-shadow:0 2px 8px rgba(46,111,98,.12)}
+.kilde-badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.03em;margin-right:6px}
+.badge-konk{background:#FEF0E0;color:#B8742A}
+.badge-dialog{background:#E0EBF8;color:#3A6FA8}
+.badge-tildelt{background:#EEF7EE;color:#2E6F62}
+.badge-ny{background:#D4EDDA;color:#155724}
+.kilde-tittel{font-size:15px;font-weight:600;margin:3px 0}
+.kilde-meta{font-size:12.5px;color:var(--muted)}
+.kilde-frist{font-size:12.5px;font-weight:600;color:#B8742A}
+.kilde-belop{font-size:13px;font-weight:700;color:#2E6F62}
 .meny-item{display:block;width:100%;text-align:left;background:none;border:none;padding:8px 12px;font:inherit;font-size:13.5px;cursor:pointer;border-radius:7px;color:var(--ink)}
 .meny-item:hover{background:var(--sand);color:var(--teal-d)}
 .panel-settings{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:0 0 16px;overflow:hidden}
@@ -179,7 +195,9 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
     <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
       <span id="hentStatus" class="tag" style="cursor:default;font-size:11px">Laster…</span>
       <button class="btn" onclick="autoLoad()" style="font-size:13px;padding:8px 13px">↻ Hent fra SSB</button>
-      <button class="btn" style="background:#B8742A;font-size:13px;padding:8px 13px" onclick="openSignaler()">📡 Signaler</button>
+      <button class="btn" style="background:#3A6FA8;font-size:13px;padding:8px 13px" onclick="openKilde('politikk')">📋 Kommunesaker</button>
+      <button class="btn" style="background:#2E6F62;font-size:13px;padding:8px 13px" onclick="openKilde('husbank')">🏦 Husbanken</button>
+      <button class="btn" style="background:#B8742A;font-size:13px;padding:8px 13px" onclick="openKilde('doffin')">🏗 Doffin</button>
       <div style="position:relative">
         <button class="btn ghost" style="font-size:13px;padding:8px 13px" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'">⋯</button>
         <div class="meny-popup" style="display:none;position:absolute;right:0;top:110%;background:var(--card);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);min-width:190px;z-index:99;padding:5px">
@@ -192,7 +210,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
           <button class="meny-item" onclick="openMetode()">ⓘ Slik regnes det</button>
         </div>
       </div>
-      <span class="tag">Internt · v47</span>
+      <span class="tag">Internt · v48</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -200,6 +218,21 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
   <div id="metodeBg" class="modalbg" onclick="closeMetode()"></div>
   <aside id="metodeModal" class="modal"><button class="x" onclick="closeMetode()">×</button><div id="metodeBody"></div></aside>
   <div id="signalerBg" class="modalbg" onclick="closeSignaler()"></div>
+  <div id="kildeModal" class="kilde-modal">
+    <div class="kilde-topbar">
+      <button onclick="closeKilde()" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted);padding:0 8px 0 0">←</button>
+      <h2 id="kildeTittel"></h2>
+      <div style="flex:1"></div>
+      <input id="kildeSearch" type="text" placeholder="🔍 Søk…" class="search" style="width:220px" oninput="filtrKilde()">
+      <select id="kildeSort" onchange="filtrKilde()" style="font:inherit;font-size:13px;padding:7px 10px;border:1px solid var(--line);border-radius:9px;background:var(--card)">
+        <option value="score">Styrke</option>
+        <option value="dato">Nyeste</option>
+        <option value="alfa">A–Å</option>
+      </select>
+      <button class="btn ghost" style="font-size:13px" onclick="visUkesrapport()">📋 Ukesrapport</button>
+    </div>
+    <div class="kilde-body" id="kildeBody"></div>
+  </div>
   <aside id="signalerModal" class="modal"><button class="x" onclick="closeSignaler()">×</button><div id="signalerBody"></div></aside>
 
   
@@ -1159,6 +1192,133 @@ let signalerKunKonkurranse=false;
 let signalKategori='alle';   // alle | politikk | doffin | husbank
 function toggleKonkurranseFilter(){ signalerKunKonkurranse=!signalerKunKonkurranse; openSignaler(); }
 function settKategori(k){ signalKategori=(signalKategori===k?'alle':k); signalerKunKonkurranse=false; openSignaler(); }
+
+let _kildeKategori='doffin';
+
+function openKilde(kat){
+  _kildeKategori=kat;
+  document.getElementById('kildeSearch').value='';
+  document.getElementById('kildeSort').value='score';
+  const titler={doffin:'🏗 Doffin-kunngjøringer',husbank:'🏦 Husbanken-tilskudd',politikk:'📋 Saker fra kommunenes nettsider'};
+  document.getElementById('kildeTittel').textContent=titler[kat]||'';
+  filtrKilde();
+  document.getElementById('kildeModal').classList.add('open');
+}
+function closeKilde(){document.getElementById('kildeModal').classList.remove('open');}
+
+function filtrKilde(){
+  const kat=_kildeKategori;
+  const q=(document.getElementById('kildeSearch').value||'').toLowerCase().trim();
+  const srt=document.getElementById('kildeSort').value;
+  let liste=[...DATA];
+  if(kat==='doffin') liste=liste.filter(d=>(d.doffinTreff||[]).length);
+  if(kat==='husbank') liste=liste.filter(d=>(d.husbankTilsagn||0)>0||d.husbankDetalj);
+  if(kat==='politikk') liste=liste.filter(d=>(d.politikkTreff||[]).length);
+  if(q) liste=liste.filter(d=>(d.navn||'').toLowerCase().includes(q)||
+    (kat==='doffin'?(d.doffinTreff||[]).some(t=>(t.tittel||'').toLowerCase().includes(q)):
+     kat==='politikk'?(d.politikkTreff||[]).some(t=>(t.tittel||'').toLowerCase().includes(q)):
+     (d.husbankDetalj&&(d.husbankDetalj.belop||'').toLowerCase().includes(q))));
+  if(srt==='dato') liste.sort((a,b)=>(b.signalDato||0)-(a.signalDato||0));
+  else if(srt==='alfa') liste.sort((a,b)=>(a.navn||'').localeCompare(b.navn||'','no'));
+  else if(kat==='husbank') liste.sort((a,b)=>((b.husbankDetalj&&b.husbankDetalj.belopTall)||0)-((a.husbankDetalj&&a.husbankDetalj.belopTall)||0));
+  else if(kat==='doffin') liste.sort((a,b)=>(b.doffinScore||0)-(a.doffinScore||0));
+  else liste.sort((a,b)=>(b.politikkScore||0)-(a.politikkScore||0));
+
+  let html='';
+  if(kat==='doffin') html=rendDoffin(liste);
+  else if(kat==='husbank') html=rendHusbank(liste);
+  else html=rendPolitikk(liste);
+  document.getElementById('kildeBody').innerHTML=html||
+    `<div style="text-align:center;padding:60px;color:var(--muted)">Ingen treff${q?' for «'+q+'»':''}</div>`;
+}
+
+function rendDoffin(liste){
+  const antall=liste.reduce((s,d)=>s+(d.doffinTreff||[]).length,0);
+  let h=`<div style="color:var(--muted);font-size:13px;margin-bottom:16px">${antall} kunngjøringer i ${liste.length} kommuner · <a href="https://www.doffin.no" target="_blank" style="color:var(--teal)">Åpne Doffin ↗</a></div>`;
+  liste.forEach(d=>{
+    const tr=d.doffinTreff||[];
+    h+=`<div class="kilde-card" onclick="closeKilde();openNote('${d.navn.replace(/'/g,"\\'")}')">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+        <span style="font-weight:700;font-size:15px">${d.navn}</span>
+        <span style="font-size:12px;color:var(--muted)">nr. ${d.rang} i lista</span>
+      </div>
+      ${tr.map(t=>{
+        const konk=/aktiv konkurranse/i.test(t.type||'');
+        const dial=/markedsdialog/i.test(t.type||'');
+        const tild=/tildeling/i.test(t.type||'');
+        const badgeCls=konk?'badge-konk':dial?'badge-dialog':tild?'badge-tildelt':'';
+        const badgeTxt=konk?'Aktiv konkurranse':dial?'Markedsdialog':tild?'Tildeling':'Kunngjøring';
+        const ny=erSisteSyvDager(t.frist);
+        return `<div style="padding:10px 0;border-top:1px solid var(--line)">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+            ${ny?'<span class="kilde-badge badge-ny">NY</span>':''}
+            <span class="kilde-badge ${badgeCls}">${badgeTxt}</span>
+            ${t.frist?`<span class="kilde-frist">Frist ${t.frist}</span>`:''}
+            ${t.verdi?`<span style="margin-left:auto" class="kilde-belop">${t.verdi}</span>`:''}
+          </div>
+          <div class="kilde-tittel">${t.tittel||''}</div>
+          ${t.url?`<a href="${t.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:12.5px;color:var(--teal)">Åpne i Doffin ↗</a>`:''}
+        </div>`;
+      }).join('')}
+    </div>`;
+  });
+  return h;
+}
+
+function rendHusbank(liste){
+  const tot=liste.reduce((s,d)=>s+((d.husbankDetalj&&d.husbankDetalj.belopTall)||0),0);
+  let h=`<div style="color:var(--muted);font-size:13px;margin-bottom:16px">${liste.length} kommuner · Totalt tilsagn: <b style="color:var(--teal-d)">${(tot/1e6).toFixed(0)} mill. kr</b></div>`;
+  liste.forEach(d=>{
+    const hb=d.husbankDetalj||{};
+    h+=`<div class="kilde-card" onclick="closeKilde();openNote('${d.navn.replace(/'/g,"\\'")}')">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start">
+        <div>
+          <div style="font-weight:700;font-size:15px">${d.navn}</div>
+          <div class="kilde-meta" style="margin-top:2px">nr. ${d.rang} i lista</div>
+        </div>
+        <div style="text-align:right">
+          ${hb.belop?`<div class="kilde-belop" style="font-size:17px">${hb.belop}</div>`:''}
+          <div class="kilde-meta">${hb.tilsagn||d.husbankTilsagn||0} tilsagn</div>
+        </div>
+      </div>
+      ${hb.serie&&hb.serie.length?`<div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap">
+        ${hb.serie.map(y=>`<div style="flex:1;min-width:60px;background:var(--sand);border-radius:8px;padding:6px 10px;text-align:center">
+          <div style="font-size:11px;color:var(--muted)">${y.aar}</div>
+          <div style="font-size:13px;font-weight:700;color:var(--teal-d)">${y.saker} sak${y.saker!==1?'er':''}</div>
+          ${y.belop?`<div style="font-size:11px;color:var(--muted)">${(y.belop/1e6).toFixed(0)}m</div>`:''}
+        </div>`).join('')}
+      </div>`:''}
+    </div>`;
+  });
+  return h;
+}
+
+function rendPolitikk(liste){
+  const antall=liste.reduce((s,d)=>s+(d.politikkTreff||[]).length,0);
+  let h=`<div style="color:var(--muted);font-size:13px;margin-bottom:16px">${antall} saker i ${liste.length} kommuner · Kilde: ACOS Innsyn Pluss</div>`;
+  liste.forEach(d=>{
+    const tr=d.politikkTreff||[];
+    h+=`<div class="kilde-card" onclick="closeKilde();openNote('${d.navn.replace(/'/g,"\\'")}')">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+        <span style="font-weight:700;font-size:15px">${d.navn}</span>
+        <span style="font-size:12px;color:var(--muted)">nr. ${d.rang} i lista</span>
+      </div>
+      ${tr.map(t=>{
+        const ny=erSisteSyvDager(t.dato);
+        return `<div style="padding:10px 0;border-top:1px solid var(--line)">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">
+            ${ny?'<span class="kilde-badge badge-ny">NY</span>':''}
+            <span style="font-size:11.5px;color:var(--muted)">${t.type||'Sak'}${t.dato?' · '+t.dato:''}</span>
+          </div>
+          <div class="kilde-tittel">${t.tittel||''}</div>
+          ${t.url?`<a href="${t.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:12.5px;color:var(--teal)">Søk i kommunens portal ↗</a>`:''}
+        </div>`;
+      }).join('')}
+    </div>`;
+  });
+  return h;
+}
+
 function openSignaler(){
   let medSignal=DATA.filter(d=>(d.doffinScore||0)+(d.husbankScore||0)+(d.politikkScore||0)>0
     || (d.doffinTreff&&d.doffinTreff.length) || (d.husbankTilsagn||0)>0);
