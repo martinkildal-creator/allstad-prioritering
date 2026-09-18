@@ -192,7 +192,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
           <button class="meny-item" onclick="openMetode()">ⓘ Slik regnes det</button>
         </div>
       </div>
-      <span class="tag">Internt · v46</span>
+      <span class="tag">Internt · v47</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -263,7 +263,12 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
         </div>
         <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
           <input id="search" class="search" type="text" placeholder="🔍  Søk etter kommune…">
-          <button class="btn ghost" onclick="window.print()">⎙ Skriv ut</button>
+          <select id="sortMain" onchange="sortKey=this.value==='signalDato'?'signalDato':(sortKey==='signalDato'?'total':sortKey);render()" style="font:inherit;font-size:13px;padding:7px 11px;border:1px solid var(--line);border-radius:9px;background:var(--card);cursor:pointer">
+            <option value="">Sortér: Standard (total)</option>
+            <option value="signalDato">Sortér: Nyeste signal</option>
+          </select>
+          <button class="btn ghost" style="font-size:13px;white-space:nowrap" onclick="visUkesrapport()">📋 Ukesrapport</button>
+          <button class="btn ghost" onclick="window.print()" style="font-size:13px">⎙ Skriv ut</button>
         </div>
       </div>
       <div style="overflow-x:auto">
@@ -278,6 +283,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
           <th data-k="behovSc">Behov</th>
           <th data-k="modell">Finansiering</th>
           <th class="num" data-k="signalScore">Signal</th>
+          <th class="num" data-k="signalDato">Sist nytt</th>
           <th class="num" data-k="total">Total</th>
         </tr></thead>
         <tbody id="rows"></tbody>
@@ -420,6 +426,7 @@ function compute(){
     d.finComp = d.hasEcon ? d.finfit*wF : 0;
     d.tomtBonus=d.tomt===1?p.n1:d.tomt===2?p.n2:0;
     d.signalScore=(d.doffinScore||0)+(d.husbankScore||0)+(d.politikkScore||0);
+    d.signalDato=sisteSignalDato(d);
     d.total=Math.min(120,d.grunn+d.tomtBonus+d.signalScore);
   });
   const byTot=[...DATA].sort((a,b)=>b.total-a.total);
