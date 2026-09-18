@@ -1,5 +1,5 @@
 {
- "_oppdatert": "2026-09-17",
+ "_oppdatert": "2026-09-18",
  "_kilde": "ACOS Innsyn Pluss – søk i saker og dokumenter",
  "kommuner": {
   "lund": {
@@ -140,6 +140,15 @@
     {
      "ord": "omsorgsbolig",
      "vekt": 2,
+     "tittel": "Omsorgsboligprosjekt på Algarheim - vedrørende miljørettet helsevern - funksjons- og kravspesifikajson",
+     "type": "Inngående dokument",
+     "dato": "03.09.2026",
+     "saksnr": "2026/21590",
+     "url": "https://innsynpluss.onacos.no/nannestad/sok/#/?searchTerm=omsorgsbolig"
+    },
+    {
+     "ord": "omsorgsbolig",
+     "vekt": 2,
      "tittel": "Omsorgsboligprosjekt på Algarheim - vedrørende miljørettet helsevern - tegninger",
      "type": "Inngående dokument",
      "dato": "03.09.2026",
@@ -153,15 +162,6 @@
      "type": "Inngående dokument",
      "dato": "03.09.2026",
      "saksnr": "2026/21589",
-     "url": "https://innsynpluss.onacos.no/nannestad/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "omsorgsbolig",
-     "vekt": 2,
-     "tittel": "Omsorgsboligprosjekt på Algarheim - vedrørende miljørettet helsevern - funksjons- og kravspesifikajson",
-     "type": "Inngående dokument",
-     "dato": "03.09.2026",
-     "saksnr": "2026/21590",
      "url": "https://innsynpluss.onacos.no/nannestad/sok/#/?searchTerm=omsorgsbolig"
     },
     {
@@ -317,10 +317,10 @@
     {
      "ord": "omsorgssenter",
      "vekt": 2,
-     "tittel": "Dialog om revidering av planprogram - Detaljreguleringsplan for Martineåsen omsorgssenter - gbnr. 4064/36 m.fl.",
+     "tittel": "Dialog om krav til utredning av vannmiljø i planprogram - Detaljreguleringsplan for Martineåsen omsorgssenter - gbnr. 4064/36 m.fl.",
      "type": "Utgående dokument",
      "dato": "22.01.2026",
-     "saksnr": "2026/7939",
+     "saksnr": "2026/7940",
      "url": "https://innsynpluss.onacos.no/larvik/sok/#/?searchTerm=omsorgssenter"
     }
    ]
@@ -396,9 +396,9 @@
      "ord": "omsorgsbolig",
      "vekt": 2,
      "tittel": "Interpellasjon v/Åge Rosnes (SV) - Tempo og rammevilkår bygging av omsorgsboliger",
-     "type": "Inngående dokument",
+     "type": "Interpellasjon",
      "dato": "11.09.2026",
-     "saksnr": "2026/87660",
+     "saksnr": null,
      "url": "https://innsynpluss.onacos.no/askoy/sok/#/?searchTerm=omsorgsbolig"
     },
     {
@@ -413,19 +413,19 @@
     {
      "ord": "sykehjem",
      "vekt": 2,
-     "tittel": "Gbnr 7/83 - Sykehjem - Bruksendring, innvendig ombygging og utvendig rehabilitering",
-     "type": "Byggesak",
+     "tittel": "Publisert avtale - 2026 - NOR - Ombygging av lokaler Ravnanger sykehjem prosjekt nr. 3400",
+     "type": "Utgående dokument",
      "dato": "06.08.2026",
-     "saksnr": null,
+     "saksnr": "2026/76412",
      "url": "https://innsynpluss.onacos.no/askoy/sok/#/?searchTerm=sykehjem"
     },
     {
      "ord": "sykehjem",
      "vekt": 2,
-     "tittel": "Publisert avtale - 2026 - NOR - Ombygging av lokaler Ravnanger sykehjem prosjekt nr. 3400",
-     "type": "Utgående dokument",
+     "tittel": "Gbnr 7/83 - Sykehjem - Bruksendring, innvendig ombygging og utvendig rehabilitering",
+     "type": "Byggesak",
      "dato": "06.08.2026",
-     "saksnr": "2026/76412",
+     "saksnr": null,
      "url": "https://innsynpluss.onacos.no/askoy/sok/#/?searchTerm=sykehjem"
     }
    ]
@@ -469,7 +469,7 @@
      "tittel": "Rapport etter tilsyn ved Helsehuset korttids - og rehabiliteringsavdeling - miljø og helse",
      "type": "Internt notat (N)",
      "dato": "30.06.2026",
-     "saksnr": "2026/19254",
+     "saksnr": "2026/40895",
      "url": "https://innsynpluss.onacos.no/harstad/sok/#/?searchTerm=helsehus"
     },
     {
