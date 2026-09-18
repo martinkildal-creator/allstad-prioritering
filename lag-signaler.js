@@ -28,26 +28,43 @@ const SOKEORD = [
 const BYGGTYPE = [
   'omsorgsbolig', 'omsorgsboliger', 'sykehjem', 'helsehus', 'bofellesskap',
   'omsorgssenter', 'bokollektiv', 'demenslandsby', 'eldrebolig', 'eldreboliger',
-  'heldøgns', 'aldershjem', 'bo- og behandlingssenter', 'bo- og servicesenter'
+  'aldershjem', 'bo- og behandlingssenter', 'bo- og servicesenter'
+  // NB: 'heldøgns' er fjernet – det fanger for mye tjenestekjøp
 ];
 
 // 2) ... OG det må dreie seg om å bygge/planlegge noe
 const BYGGESIGNAL = [
   'totalentreprise', 'entreprise', 'nybygg', 'tilbygg', 'oppføring', 'utvidelse',
-  'bygging', 'byggeprosjekt', 'rehabilitering', 'ombygging', 'prosjektering',
-  'arkitekt', 'rådgiver', 'markedsdialog', 'markedskonferanse', 'dialogkonferanse',
-  'samspillsentreprise', 'utbygging', 'nytt ', 'nye ', 'etablering', 'oppgradering'
+  'bygging', 'byggeprosjekt', 'rehabilitering av', 'ombygging av',
+  'prosjektering', 'arkitekt', 'rådgiver bygg', 'markedsdialog',
+  'markedskonferanse', 'dialogkonferanse', 'samspillsentreprise',
+  'utbygging', 'etablering av', 'oppgradering av bygg', 'forprosjekt',
+  'mulighetsstudie', 'reguleringsplan', 'rammetillatelse',
+  'anskaffelse av sykehjem', 'anskaffelse av omsorgsbolig', 'anskaffelse av helsehus',
+  'anskaffelse av bofellesskap', 'prekvalifisering', 'totalprosjekt'
 ];
 
-// 3) ... og disse skal ALLTID ut (tjenestekjøp, varer, fagentrepriser)
+// 3) Alltid ut – tjenestekjøp, varer og fagentrepriser som ikke er bygg
 const UTELUKK = [
-  'matvarer', 'mat og drikke', 'kjøkken', 'catering', 'psykolog', 'legetjenest',
-  'vikar', 'bemanningstjenest', 'renhold', 'vaskeri', 'legemid', 'hjelpemid',
-  'transport', 'forsikring', 'revisjon', 'bank', 'ikt', 'programvare',
-  'konsulentbistand', 'tolketjenest', 'sengetøy', 'inkontinens', 'mur-', 'puss',
-  'flisarbeid', 'maler', 'blikkenslager', 'heis', 'ventilasjon', 'elektroarbeid',
-  'rørlegger', 'brøyting', 'møbler', 'inventar', 'senger', 'drift av',
-  'omsorgstjenester', 'avlastningstjenest', 'bpa', 'brukerstyrt'
+  // Rammeavtaler (nesten alltid innkjøp/tjenester, ikke bygg)
+  'rammeavtale',
+  // Kjøp av varer
+  'matvarer', 'mat og drikke', 'sengetøy', 'inkontinens', 'møbler', 'inventar',
+  'senger', 'frotté', 'vask av', 'leie og vask', 'produkter til',
+  // Kjøp av tjenester
+  'catering', 'psykolog', 'legetjenest', 'vikar', 'bemanningstjenest',
+  'renhold', 'vaskeri', 'legemid', 'hjelpemid', 'transport', 'forsikring',
+  'revisjon', 'bank', 'ikt', 'programvare', 'konsulentbistand', 'tolketjenest',
+  'omsorgstjenester', 'avlastningstjenest', 'bpa', 'brukerstyrt',
+  'tjenestetilbud', 'tjenestekjøp', 'driftstjenest', 'pleieplass', 'kjøp av plass',
+  'heldøgns helse', 'heldøgns omsorg', 'heldøgns rehabilit',
+  // Fagentrepriser (er del av bygg, men ikke signal om ny bygning)
+  'mur-', 'puss', 'flisarbeid', 'maler', 'blikkenslager', 'heis',
+  'ventilasjon', 'elektroarbeid', 'rørlegger', 'gulvlegging', 'takarbeid',
+  'sprinkler', 'brannteknisk', 'stillasentreprise', 'stillastjenest',
+  // Konkurranse om drift (ikke bygg)
+  'konkurranseutsetting', 'drift av sykehjem', 'drift av omsorgs',
+  'kjøkken', 'mat til', 'brøyting'
 ];
 
 // CPV-koder: 45 = bygge- og anleggsarbeid, 71 = arkitekt/prosjektering
@@ -196,8 +213,11 @@ async function hentDoffin() {
         // c) tjenestekjøp/varer/fagentrepriser ut – med mindre CPV sier bygg
         if (!cpvBygg && UTELUKK.some(o => tekst.includes(norm(o)))) return;
         // ekstra vakt: "omsorgstjenester" uten byggeord er tjenestekjøp
-        if (/omsorgstjenest|helsetjenest/.test(tekst) && !cpvBygg
+        if (/omsorgstjenest|helsetjenest|tjenestetilbud|rehabiliteringstjenest/.test(tekst) && !cpvBygg
             && !/entreprise|nybygg|tilbygg|oppføring|bygging|prosjektering/.test(tekst)) return;
+        // rammeavtaler med REF-koder (IK-EØS, EST-EØS, R00...) er nesten alltid varekjøp
+        if (/^(r0|ik-|est-|eph)/i.test(tittel.trim()) && !cpvBygg
+            && !BYGGESIGNAL.some(o => tekst.includes(o))) return;
 
         // --- TYPE: bruk frist/status til å se om det er en aktiv konkurranse ---
         const statusTxt = norm(tekstAv(n.status));
