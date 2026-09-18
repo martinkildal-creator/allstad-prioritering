@@ -2,13 +2,14 @@ name: SOK API
 
 on:
   schedule:
-    - cron: '0 5 * * 1'      # hver mandag kl. 06 norsk tid (skann)
+    - cron: '0 4 1 * *'      # 1. i måneden kl. 05: oppdater adresser (slug)
+    - cron: '0 5 * * 1'      # hver mandag kl. 06: søk etter nye saker (skann)
   workflow_dispatch:
     inputs:
       modus:
         description: 'Velg: lab / slug / skann'
         required: true
-        default: 'lab'
+        default: 'skann'
         type: choice
         options:
           - lab
