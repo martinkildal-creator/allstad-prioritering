@@ -21,8 +21,9 @@ body{margin:0;background:
   var(--paper);
   color:var(--ink);font-family:"Hanken Grotesk",sans-serif;font-size:15px;line-height:1.5}
 h1,h2,h3,.disp{font-family:"Fraunces",serif}
-.wrap{max-width:1240px;margin:0 auto;padding:28px 24px 80px}
-header.top{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:6px}
+.wrap{max-width:1360px;margin:0 auto;padding:20px 28px 80px}
+header.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:16px;
+  padding:14px 0;border-bottom:1px solid var(--line)}
 .brand{font-family:"Fraunces";font-weight:800;font-size:30px;letter-spacing:-.01em;line-height:1.05}
 .brand small{display:block;font-family:"Hanken Grotesk";font-weight:500;font-size:13px;color:var(--muted);letter-spacing:.02em;margin-top:6px}
 .tag{font-size:12px;color:var(--teal-d);background:var(--sand);border:1px solid var(--line);padding:4px 10px;border-radius:999px;font-weight:600}
@@ -38,16 +39,24 @@ header.top{display:flex;justify-content:space-between;align-items:flex-end;gap:2
 .steps b{color:var(--teal-d)}
 .search{width:260px;max-width:48vw;padding:9px 12px;border:1px solid var(--line);border-radius:9px;font:inherit;font-size:14px;background:var(--card)}
 .search:focus{outline:2px solid var(--teal);border-color:var(--teal)}
-.banner{margin:16px 0 22px;background:var(--amber-bg);border:1px solid #EBD3AE;border-left:4px solid var(--amber);
-  padding:11px 14px;border-radius:8px;font-size:13.5px;color:#6B4413;display:flex;gap:10px;align-items:flex-start}
+.banner{margin:0 0 14px;background:var(--amber-bg);border:1px solid #EBD3AE;border-left:4px solid var(--amber);
+  padding:9px 14px;border-radius:8px;font-size:13px;color:#6B4413;display:flex;gap:10px;align-items:center}
 .banner.ok{background:#E9F1EC;border-color:#CADFCF;border-left-color:var(--teal);color:var(--teal-d)}
-.grid{display:grid;grid-template-columns:300px 1fr;gap:22px;align-items:start}
-@media(max-width:900px){.grid{grid-template-columns:1fr}}
-.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:18px}
+.grid{display:grid;grid-template-columns:1fr;gap:0}
+.panel{background:transparent;border:none;border-radius:0;box-shadow:none;padding:0}
 .panel h2{font-size:15px;font-weight:600;margin:0 0 4px;letter-spacing:.01em}
 .panel .sub{font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.45}
 .hint{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.4}
-details.adv{margin-top:10px;border-top:1px solid var(--line);padding-top:6px}
+details.adv{margin-top:0}
+.settings-bar{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:0 0 18px;overflow:hidden}
+.settings-bar-toggle{width:100%;display:flex;justify-content:space-between;align-items:center;padding:12px 18px;
+  background:none;border:none;font:inherit;font-size:13.5px;font-weight:600;color:var(--teal-d);cursor:pointer;text-align:left}
+.settings-bar-toggle:hover{background:var(--sand)}
+.settings-bar-body{padding:16px 18px 18px;border-top:1px solid var(--line);display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px 28px}
+.setting-group{display:flex;flex-direction:column;gap:4px}
+.setting-group label{font-size:12.5px;color:var(--muted);font-weight:600}
+.setting-group .val{font-size:13px;font-weight:700;color:var(--teal-d)}
 details.adv summary{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--teal-d);cursor:pointer;padding:6px 0;list-style:revert}
 .ctl{margin-bottom:16px}
 .ctl label{display:flex;justify-content:space-between;font-size:13px;font-weight:600;margin-bottom:6px}
@@ -68,6 +77,18 @@ table{width:100%;border-collapse:collapse;font-size:14px}
 th,td{padding:13px 15px;text-align:left;border-bottom:1px solid var(--line)}
 tbody tr:nth-child(even){background:rgba(0,0,0,.015)}
 tbody td{font-size:14px;line-height:1.45}
+.meny-item{display:block;width:100%;text-align:left;background:none;border:none;padding:8px 12px;font:inherit;font-size:13.5px;cursor:pointer;border-radius:7px;color:var(--ink)}
+.meny-item:hover{background:var(--sand);color:var(--teal-d)}
+.panel-settings{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:0 0 16px;overflow:hidden}
+.settings-toggle{width:100%;display:flex;justify-content:space-between;align-items:center;padding:11px 18px;
+  background:none;border:none;font:inherit;font-size:13.5px;font-weight:600;color:var(--teal-d);cursor:pointer;text-align:left}
+.settings-toggle:hover{background:var(--sand)}
+.settings-toggle .arr{transition:transform .2s}
+.settings-body{display:none;padding:14px 18px 18px;border-top:1px solid var(--line)}
+.settings-body.open{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px 28px}
+.s-group{display:flex;flex-direction:column;gap:5px}
+.s-group .s-lbl{font-size:12px;color:var(--muted);font-weight:600;line-height:1.3}
+.s-group input[type=range]{margin:0}
 th{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:700;cursor:pointer;user-select:none;white-space:nowrap;position:sticky;top:0;background:var(--cream);z-index:2;box-shadow:inset 0 -2px 0 var(--line)}
 th:hover{color:var(--teal-d)}
 th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
@@ -146,33 +167,42 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
 <body>
 <div class="wrap">
   <header class="top">
-    <div class="brandrow">
-      <div id="logoSlot" class="logoSlot" onclick="logoFile.click()" title="Klikk for å sette inn deres egen logo">
-        <img id="logoImg" alt="Allstad logo">
-        <span id="logoText">ALLSTAD</span>
+    <div style="display:flex;align-items:center;gap:14px">
+      <div id="logoSlot" class="logoSlot" onclick="logoFile.click()" title="Klikk for å sette inn logo">
+        <img id="logoImg" alt="Allstad logo"><span id="logoText">ALLSTAD</span>
       </div>
       <div>
         <div class="apptitle">Kommuneprioritering</div>
         <div class="appsub">Datadrevet innsalgsverktøy for omsorgsboliger</div>
       </div>
     </div>
-    <div style="display:flex;align-items:center;gap:10px">
-      <button class="btn ghost" style="padding:8px 13px;font-size:13px" onclick="openMetode()">ⓘ Slik regnes det</button>
-      <span class="tag">Internt · v44</span>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span id="hentStatus" class="tag" style="cursor:default;font-size:11px">Laster…</span>
+      <button class="btn" onclick="autoLoad()" style="font-size:13px;padding:8px 13px">↻ Hent fra SSB</button>
+      <button class="btn" style="background:#B8742A;font-size:13px;padding:8px 13px" onclick="openSignaler()">📡 Signaler</button>
+      <div style="position:relative">
+        <button class="btn ghost" style="font-size:13px;padding:8px 13px" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='block'?'none':'block'">⋯</button>
+        <div class="meny-popup" style="display:none;position:absolute;right:0;top:110%;background:var(--card);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);min-width:190px;z-index:99;padding:5px">
+          <button class="meny-item" onclick="document.getElementById('file').click()">⬆ Last opp data</button>
+          <button class="meny-item" onclick="loadDemo()">Demo-data</button>
+          <button class="meny-item" onclick="downloadTemplate()">Last ned mal</button>
+          <button class="meny-item" onclick="exportVurderinger()">⬇ Eksporter</button>
+          <button class="meny-item" onclick="window.print()">⎙ Skriv ut</button>
+          <div style="border-top:1px solid var(--line);margin:4px 0"></div>
+          <button class="meny-item" onclick="openMetode()">ⓘ Slik regnes det</button>
+        </div>
+      </div>
+      <span class="tag">Internt · v46</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
-
+  <input id="file" type="file" accept=".csv,.xlsx,.xls" class="hidden">
   <div id="metodeBg" class="modalbg" onclick="closeMetode()"></div>
   <aside id="metodeModal" class="modal"><button class="x" onclick="closeMetode()">×</button><div id="metodeBody"></div></aside>
   <div id="signalerBg" class="modalbg" onclick="closeSignaler()"></div>
   <aside id="signalerModal" class="modal"><button class="x" onclick="closeSignaler()">×</button><div id="signalerBody"></div></aside>
 
-  <div class="steps">
-    <span><b>1.</b>&nbsp; Trykk «↻ Hent fra SSB» til venstre</span>
-    <span><b>2.</b>&nbsp; Les lista – <b>øverst = høyest prioritet</b></span>
-    <span><b>3.</b>&nbsp; Klikk en kommune for detaljer og utskrift</span>
-  </div>
+  
 
   <div id="banner" class="banner">
     <span>⚠︎</span>
@@ -181,54 +211,35 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
 
   <div class="grid">
     <!-- CONTROLS -->
-    <aside class="panel">
-      <h2>Forutsetninger <span style="font-family:'Fraunces',serif;font-style:italic;font-size:13px;font-weight:600;color:#2E6F62;letter-spacing:.2px;margin-left:6px">· Agenda Kildal</span></h2>
-      <div class="sub">Dra i glidebryterne – lista oppdateres med en gang. Du trenger bare de fire øverste til daglig.</div>
-
-      <div class="section-h">Hvor mye skal hvert kriterium telle?</div>
-      <div class="ctl"><label>Behov (eldre) <b id="vWb">60%</b></label><input type="range" id="wb" min="0" max="100" value="60"></div>
-      <div class="ctl"><label>Økonomi / finansiering <b id="vWf">40%</b></label><input type="range" id="wf" min="0" max="100" value="40"></div>
-      <div id="sum" class="sumchk sumok">Vektene justeres til 100% automatisk – du trenger ikke regne.</div>
-
-      <div class="ctl" style="margin-top:16px">
-        <label>Behovsprofil <b id="vBlend">Vekst</b></label>
-        <input type="range" id="blend" min="0" max="100" value="60">
-        <div class="hint">Venstre = vektlegg <b>stort volum</b> (byer). Høyre = vektlegg <b>rask eldrevekst</b> (distrikt med økende behov).</div>
+    <div class="panel-settings">
+      <button class="settings-toggle" onclick="var b=document.getElementById('sBody'),a=this.querySelector('.arr'),o=b.classList.toggle('open');a.style.transform=o?'rotate(180deg)':''">
+        <span>⚙ Innstillinger og vekter</span>
+        <span class="arr" style="font-size:11px;color:var(--muted)">▼</span>
+      </button>
+      <div class="settings-body" id="sBody">
+        <div class="s-group"><div class="s-lbl">Behov (eldre) teller <b id="vWb">60</b>%</div><input type="range" id="wb" min="0" max="100" value="60"></div>
+        <div class="s-group"><div class="s-lbl">Økonomi teller <b id="vWf">40</b>%</div><input type="range" id="wf" min="0" max="100" value="40"></div>
+        <div class="s-group"><div class="s-lbl">Behovsprofil: <b id="vBlend">Vekst</b></div><input type="range" id="blend" min="0" max="100" value="60"><div style="font-size:11px;color:var(--muted)">← Volum · Vekst →</div></div>
+        <div class="s-group" style="align-self:end"><div id="sum" class="sumchk sumok" style="font-size:12px;padding:5px 9px;border-radius:7px"></div></div>
+        <details style="grid-column:1/-1;border-top:1px solid var(--line);padding-top:12px;margin-top:4px">
+          <summary style="font-size:12px;font-weight:700;color:var(--teal-d);cursor:pointer;list-style:revert">Avanserte innstillinger</summary>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px 28px;margin-top:12px">
+            <div class="s-group"><div class="s-lbl">67–79 år trenger plass <b id="vR1">2</b>%</div><input type="range" id="r1" min="0" max="10" step="0.5" value="2"></div>
+            <div class="s-group"><div class="s-lbl">80–89 år trenger plass <b id="vR2">12</b>%</div><input type="range" id="r2" min="0" max="30" step="1" value="12"></div>
+            <div class="s-group"><div class="s-lbl">90+ år trenger plass <b id="vR3">38</b>%</div><input type="range" id="r3" min="0" max="60" step="1" value="38"></div>
+            <div class="s-group"><div class="s-lbl">Sunn aldring −<b id="vSunn">0</b>%/år</div><input type="range" id="sunn" min="0" max="1" step="0.1" value="0"></div>
+            <div class="s-group"><div class="s-lbl">Leie: driftsres. under <b id="vTndr">1,80</b>%</div><input type="range" id="tndr" min="0" max="40" value="18"></div>
+            <div class="s-group"><div class="s-lbl">Leie: disp.fond under <b id="vTdf">5</b>%</div><input type="range" id="tdf" min="0" max="20" value="5"></div>
+            <div class="s-group"><div class="s-lbl">Egen tomt +<b id="vN1">12</b> p.</div><input type="range" id="n1" min="0" max="25" value="12"></div>
+            <div class="s-group"><div class="s-lbl">Makebytte +<b id="vN2">8</b> p.</div><input type="range" id="n2" min="0" max="25" value="8"></div>
+            <div class="s-group"><div class="s-lbl">Enhetspris <b id="vPris">3,1</b> mill.</div><input type="range" id="pris" min="1" max="8" step="0.1" value="3.1"></div>
+            <div class="s-group"><div class="s-lbl">Institusjon (erstattes) <b id="vInst">1,30</b> mill./år</div><input type="range" id="instkost" min="0.8" max="2" step="0.05" value="1.3"></div>
+            <div class="s-group"><div class="s-lbl">Ny omsorgsbolig <b id="vBolig">0,85</b> mill./år</div><input type="range" id="boligkost" min="0.4" max="1.5" step="0.05" value="0.85"></div>
+            <div class="s-group"><div class="s-lbl">Effektivisering <b id="vEff">0,27</b> mill./plass/år</div><input type="range" id="effgev" min="0" max="0.6" step="0.01" value="0.27"></div>
+          </div>
+        </details>
       </div>
-
-      <details class="adv">
-        <summary>Avanserte innstillinger</summary>
-        <div class="section-h">Behovsrater per aldersgruppe (Agenda Kaupang-metode)</div>
-        <div class="ctl"><label>67–79 år trenger plass <b id="vR1">2%</b></label><input type="range" id="r1" min="0" max="10" step="0.5" value="2"></div>
-        <div class="ctl"><label>80–89 år trenger plass <b id="vR2">12%</b></label><input type="range" id="r2" min="0" max="30" step="1" value="12"></div>
-        <div class="ctl"><label>90+ år trenger plass <b id="vR3">38%</b></label><input type="range" id="r3" min="0" max="60" step="1" value="38"><div class="hint">Aldersdifferensiert dekningsgrad × framskrevet befolkning per aldersgruppe – mer presist enn flat 25%-norm.</div></div>
-        <div class="ctl"><label>Sunn aldring: behov −<b id="vSunn">0%</b>/år</label><input type="range" id="sunn" min="0" max="1" step="0.1" value="0"><div class="hint">Antar friskere eldre i framtiden. 0 = behovsrater holdes konstant.</div></div>
-        <div class="section-h">Når foreslås leie (Samfond) vs. kjøp?</div>
-        <div class="ctl"><label>Svak økonomi: driftsres. under <b id="vTndr">1,80%</b></label><input type="range" id="tndr" min="0" max="40" value="18"><div class="hint">Et av to økonomisignaler. Lav netto lånegjeld kan overstyre ett enkelt svakt signal.</div></div>
-        <div class="ctl"><label>Svak økonomi: disp.fond under <b id="vTdf">5%</b></label><input type="range" id="tdf" min="0" max="20" value="5"></div>
-        <div class="section-h">Tomtefordel (ekstrapoeng)</div>
-        <div class="ctl"><label>Egen egnet tomt <b id="vN1">12</b></label><input type="range" id="n1" min="0" max="25" value="12"></div>
-        <div class="ctl"><label>Tomt for makebytte <b id="vN2">8</b></label><input type="range" id="n2" min="0" max="25" value="8"></div>
-        <div class="section-h">Indikativ kostnad</div>
-        <div class="ctl"><label>Enhetspris <b id="vPris">3,1</b> mill. kr</label><input type="range" id="pris" min="1" max="8" step="0.1" value="3.1"><div class="hint">Grov byggekostnad per omsorgsbolig (eks. mva). Sett mot Norsk Prisbok / egne enhetspriser.</div></div>
-        <div class="section-h">Besparelse (drift per år) – Agenda Kaupang-metodikk</div>
-        <div class="ctl"><label>Institusjonsplass (erstattes) <b id="vInst">1,30</b> mill. kr/år</label><input type="range" id="instkost" min="0.8" max="2" step="0.05" value="1.3"><div class="hint">Driften som unngås når behovet dekkes på et lavere trinn. Kommunens egen KOSTRA-kostnad brukes om den er lastet.</div></div>
-        <div class="ctl"><label>Omsorgsbolig m/døgntjenester (ny) <b id="vBolig">0,85</b> mill. kr/år</label><input type="range" id="boligkost" min="0.4" max="1.5" step="0.05" value="0.85"><div class="hint">Drift av den nye omsorgsboligen (trinn 5). Differansen mot institusjon = substitusjonsgevinst (øvre anslag).</div></div>
-        <div class="ctl"><label>Effektivisering/forebygging <b id="vEff">0,27</b> mill. kr/plass/år</label><input type="range" id="effgev" min="0" max="0.6" step="0.01" value="0.27"><div class="hint">Nedre anslag: samlokalisert hjemmetjeneste + utsatt behov (Agenda Kaupang).</div></div>
-      </details>
-
-      <div class="section-h">Data</div>
-      <div class="btnrow">
-        <button class="btn" onclick="autoLoad()">↻ Hent fra SSB</button>
-        <button class="btn" style="background:#B8742A" onclick="openSignaler()">📡 Signaler (Doffin/Husbanken)</button>
-        <button class="btn ghost" onclick="document.getElementById('file').click()">⬆ Last opp data</button>
-        <button class="btn ghost" onclick="loadDemo()">Demo-data</button>
-        <button class="btn ghost" onclick="downloadTemplate()">Last ned mal</button>
-        <button class="btn ghost" onclick="exportVurderinger()">⬇ Eksporter våre vurderinger</button>
-      </div>
-      <input id="file" type="file" accept=".csv,.xlsx,.xls" class="hidden">
-    </aside>
-
+    </div>
     <!-- TABLE -->
     <main class="tablecard">
       <div class="thead">
@@ -1009,6 +1020,27 @@ function doffinKort(t){
   </li>`;
 }
 // ---- Markedssignaler: blokk i behovsnotatet for én kommune ----
+function parseDato(t){
+  if(!t)return null;
+  // dd.mm.yyyy eller yyyy-mm-dd
+  const d1=t.match(/^(\d{2})\.(\d{2})\.(\d{4})$/);
+  if(d1)return new Date(+d1[3],+d1[2]-1,+d1[1]);
+  const d2=t.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if(d2)return new Date(+d2[1],+d2[2]-1,+d2[3]);
+  return null;
+}
+function sisteSignalDato(d){
+  const datoer=[];
+  (d.doffinTreff||[]).forEach(t=>{if(t.frist){const p=parseDato(t.frist);if(p)datoer.push(p);}});
+  (d.politikkTreff||[]).forEach(t=>{if(t.dato){const p=parseDato(t.dato);if(p)datoer.push(p);}});
+  return datoer.length?Math.max(...datoer.map(d=>d.getTime())):0;
+}
+function erSisteSyvDager(dato){
+  if(!dato)return false;
+  const p=parseDato(dato); if(!p)return false;
+  return (Date.now()-p.getTime())<7*24*3600*1000;
+}
+
 function husbankChart(serie){
   if(!serie||serie.length<2)return'';
   const W=560,H=190,mL=52,mR=54,mT=18,mB=34,pw=W-mL-mR,ph=H-mT-mB;
@@ -1131,7 +1163,9 @@ function openSignaler(){
   if(signalKategori==='doffin')   medSignal=medSignal.filter(d=>(d.doffinTreff||[]).length);
   if(signalKategori==='husbank')  medSignal=medSignal.filter(d=>(d.husbankTilsagn||0)>0||d.husbankDetalj);
   if(signalerKunKonkurranse) medSignal=medSignal.filter(harAktivKonkurranse);
-  if(signalKategori==='politikk') medSignal.sort((a,b)=>(b.politikkScore||0)-(a.politikkScore||0));
+  const sortSignal=document.getElementById('sortSignal')?document.getElementById('sortSignal').value:'score';
+  if(sortSignal==='dato') medSignal.sort((a,b)=>sisteSignalDato(b)-sisteSignalDato(a));
+  else if(signalKategori==='politikk') medSignal.sort((a,b)=>(b.politikkScore||0)-(a.politikkScore||0));
   else if(signalKategori==='husbank') medSignal.sort((a,b)=>((b.husbankDetalj&&b.husbankDetalj.belopTall)||0)-((a.husbankDetalj&&a.husbankDetalj.belopTall)||0));
   else medSignal.sort((a,b)=>(b.signalScore||0)-(a.signalScore||0));
   const oppdatert=(window.__signalerOppdatert)||'–';
@@ -1151,7 +1185,12 @@ function openSignaler(){
   <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 14px">
     ${signalKategori!=='alle'?`<button onclick="settKategori('${signalKategori}')" style="cursor:pointer;font:inherit;font-size:12.5px;padding:6px 11px;border-radius:8px;border:1px solid var(--line);background:#fff">\u2190 Vis alle kilder</button>`:''}
     <button onclick="toggleKonkurranseFilter()" style="cursor:pointer;font:inherit;font-size:12.5px;font-weight:600;padding:6px 11px;border-radius:8px;border:1px solid ${signalerKunKonkurranse?'#B8742A':'var(--line)'};background:${signalerKunKonkurranse?'#B8742A':'#fff'};color:${signalerKunKonkurranse?'#fff':'var(--ink)'}">${signalerKunKonkurranse?'\u2713 ':''}Bare aktiv konkurranse (${antallKonk})</button>
-    <span style="font-size:12px;color:var(--muted)">${medSignal.length} kommuner vises</span>
+    <span style="font-size:12px;color:var(--muted)">${medSignal.length} kommuner</span>
+    <select id="sortSignal" onchange="openSignaler()" style="font:inherit;font-size:12.5px;padding:5px 9px;border:1px solid var(--line);border-radius:8px;background:var(--card);cursor:pointer">
+      <option value="score">Sortér: Styrke</option>
+      <option value="dato">Sortér: Nyeste dato</option>
+    </select>
+    <button class="btn ghost" style="font-size:12.5px;padding:6px 11px" onclick="visUkesrapport()">📋 Ukesrapport</button>
   </div>`;
   let body;
   if(!medSignal.length){
@@ -1657,6 +1696,47 @@ syncLabels();
 autoLoad();
 
 // ---- Sanntidssignaler (Doffin + Husbanken) ----
+async function visUkesrapport(){
+  const idag=new Date(), ukeStart=new Date(idag-7*24*3600*1000);
+  const fmtDato=d=>`${d.getDate()}.${d.getMonth()+1}.${d.getFullYear()}`;
+  const nyeDoffin=[], nyePol=[];
+  DATA.forEach(d=>{
+    (d.doffinTreff||[]).forEach(t=>{
+      if(erSisteSyvDager(t.frist)||erSisteSyvDager(t.dato))
+        nyeDoffin.push({kommune:d.navn,rang:d.rang,...t});
+    });
+    (d.politikkTreff||[]).forEach(t=>{
+      if(erSisteSyvDager(t.dato))
+        nyePol.push({kommune:d.navn,rang:d.rang,...t});
+    });
+  });
+  const rad=(k,tittel,dato,type,url)=>`<tr style="border-bottom:1px solid #eee">
+    <td style="padding:8px 12px;font-weight:600">${k}</td>
+    <td style="padding:8px 12px;color:#555;font-size:13px">${type||''}</td>
+    <td style="padding:8px 12px;font-size:13px">${tittel||''}${url?` <a href="${url}" target="_blank" rel="noopener" style="color:#2E6F62">↗</a>`:''}</td>
+    <td style="padding:8px 12px;color:#888;font-size:12px;white-space:nowrap">${dato||''}</td>
+  </tr>`;
+  const tblHode=`<tr style="background:#f5f5f5"><th style="padding:8px 12px;text-align:left;font-size:12px">Kommune</th><th style="padding:8px 12px;text-align:left;font-size:12px">Type</th><th style="padding:8px 12px;text-align:left;font-size:12px">Sak/kunngjøring</th><th style="padding:8px 12px;text-align:left;font-size:12px">Dato</th></tr>`;
+  let html=`<div style="font-family:sans-serif;max-width:900px;margin:0 auto;padding:32px 24px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px">
+    <div>
+      <h1 style="margin:0;font-size:24px;color:#1F4E45">Ukesrapport – Signaler</h1>
+      <div style="color:#666;margin-top:4px;font-size:14px">${fmtDato(ukeStart)} – ${fmtDato(idag)}</div>
+    </div>
+    <button onclick="window.print()" style="padding:8px 16px;background:#2E6F62;color:#fff;border:none;border-radius:8px;font:inherit;font-size:14px;cursor:pointer">Skriv ut / lagre PDF</button>
+  </div>`;
+  if(nyePol.length){html+=`<h2 style="font-size:16px;color:#3A6FA8;margin:20px 0 8px">📋 Nye saker fra kommunenes nettsider (${nyePol.length})</h2>
+    <table style="width:100%;border-collapse:collapse;margin-bottom:24px">${tblHode}${nyePol.map(t=>rad(t.kommune,t.tittel,t.dato,t.type,t.url)).join('')}</table>`;}
+  if(nyeDoffin.length){html+=`<h2 style="font-size:16px;color:#B8742A;margin:20px 0 8px">🏗 Nye Doffin-kunngjøringer med frist denne uken (${nyeDoffin.length})</h2>
+    <table style="width:100%;border-collapse:collapse;margin-bottom:24px">${tblHode}${nyeDoffin.map(t=>rad(t.kommune,t.tittel,t.frist||t.dato,t.type,t.url)).join('')}</table>`;}
+  if(!nyePol.length&&!nyeDoffin.length) html+=`<div style="padding:40px;text-align:center;color:#888;font-size:15px">Ingen nye signaler den siste uken.<br><span style="font-size:13px">Signalene oppdateres hver mandag morgen automatisk.</span></div>`;
+  html+=`<div style="margin-top:32px;padding-top:16px;border-top:1px solid #eee;color:#aaa;font-size:12px">Generert ${new Date().toLocaleString('no')} · Allstad kommuneprioritering · Intern bruk</div></div>`;
+  const w=window.open('','_blank','width=1000,height=800');
+  w.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>Ukesrapport</title>
+    <style>@media print{button{display:none}body{margin:0}}</style></head><body>${html}</body></html>`);
+  w.document.close();
+}
+
 async function lastSignaler(){
   const norm=s=>(s||'').toString().toLowerCase().trim();
   const slug=s=>norm(s).replace(/æ/g,'ae').replace(/ø/g,'o').replace(/å/g,'a').replace(/[^a-z0-9]/g,'');
