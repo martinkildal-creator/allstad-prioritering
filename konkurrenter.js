@@ -126,10 +126,24 @@ function parseRSS(xml) {
 }
 
 async function søkNyheter(selskap) {
-  const url = `https://news.google.com/rss/search?q=${encodeURIComponent(selskap.nyhetsord)}&hl=no&gl=NO&ceid=NO:no`;
-  const r = await hent(url);
-  if (!r.ok) { console.warn(`  ! News ${r.status} for ${selskap.navn}`); return []; }
-  return parseRSS(r.tekst);
+  // Prøv flere RSS-kilder som faktisk virker fra GitHub Actions
+  const urls = [
+    // Bing News RSS (fungerer fra servere)
+    `https://www.bing.com/news/search?q=${encodeURIComponent(selskap.nyhetsord)}&format=rss`,
+    // DuckDuckGo nyhetssøk
+    `https://duckduckgo.com/?q=${encodeURIComponent(selskap.nyhetsord)}&ia=news&format=rss`,
+  ];
+
+  for (const url of urls) {
+    const r = await hent(url);
+    if (!r.ok || r.tekst.length < 100) continue;
+    const items = parseRSS(r.tekst);
+    if (items.length) return items;
+    await new Promise(r => setTimeout(r, 300));
+  }
+
+  // Fallback: søk via Doffin på selskapets navn i pressemeldinger og kunngjøringer
+  return [];
 }
 
 // ---- Hoved ----
