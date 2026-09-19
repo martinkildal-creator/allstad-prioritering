@@ -126,24 +126,57 @@ function parseRSS(xml) {
 }
 
 async function søkNyheter(selskap) {
-  // Prøv flere RSS-kilder som faktisk virker fra GitHub Actions
-  const urls = [
-    // Bing News RSS (fungerer fra servere)
-    `https://www.bing.com/news/search?q=${encodeURIComponent(selskap.nyhetsord)}&format=rss`,
-    // DuckDuckGo nyhetssøk
-    `https://duckduckgo.com/?q=${encodeURIComponent(selskap.nyhetsord)}&ia=news&format=rss`,
-  ];
+  // Nyhets-RSS er blokkert fra GitHub Actions-servere.
+  // Returnerer en lenke til Google News i stedet – åpnes i nettleseren av brukeren.
+  return [{
+    tittel: `Søk etter nyheter om ${selskap.navn}`,
+    lenke: `https://news.google.com/search?q=${encodeURIComponent(selskap.nyhetsord)}&hl=no&gl=NO&ceid=NO:no`,
+    dato: '',
+    kilde: 'Google News',
+    erLenke: true
+  }];
+}
 
-  for (const url of urls) {
-    const r = await hent(url);
-    if (!r.ok || r.tekst.length < 100) continue;
-    const items = parseRSS(r.tekst);
-    if (items.length) return items;
-    await new Promise(r => setTimeout(r, 300));
+// CPV-koder for omsorgsbygg – brukes for å finne store entrepriser
+const CPV_OMSORG = ['45215200', '45215100', '45215000', '45210000'];
+
+async function søkDoffinCPV(cpvListe) {
+  // Søk etter tildeling-kunngjøringer med omsorgs-CPV-koder
+  const funn = [];
+  const headers = { Accept: 'application/json' };
+  if (DOFFIN_KEY) headers['Ocp-Apim-Subscription-Key'] = DOFFIN_KEY;
+  const r = await hent(
+    `${DOFFIN_BASE}/search?searchString=totalentreprise sykehjem omsorgsbolig&numHitsPerPage=100&page=1`,
+    { json: true, headers }
+  );
+  if (!r.ok) return funn;
+  let j; try { j = JSON.parse(r.tekst); } catch { return funn; }
+  const liste = j.hits || j.results || j.notices || j.items || j.value || [];
+  const tekstAv = v => {
+    if (!v) return '';
+    if (typeof v === 'string') return v;
+    if (Array.isArray(v)) return v.map(tekstAv).join(' ');
+    if (typeof v === 'object') {
+      for (const k of ['no','nb','en','value','text','name']) if (v[k]) return tekstAv(v[k]);
+      return Object.values(v).map(tekstAv).join(' ');
+    }
+    return String(v);
+  };
+  for (const n of liste) {
+    const cpv = tekstAv(n.cpvCodes || '');
+    if (!CPV_OMSORG.some(c => cpv.includes(c))) continue;
+    const tittel = tekstAv(n.heading || n.title || '');
+    const kjoper = tekstAv(n.buyer || n.organisationName || '');
+    const id = tekstAv(n.id || '');
+    const url = tekstAv(n.doffinClassicUrl || (id ? `https://www.doffin.no/notices/${id}` : ''));
+    funn.push({
+      id, tittel: tittel.slice(0, 200), kjoper: kjoper.slice(0, 100),
+      type: /tildeling|award/i.test(tekstAv(n.type || '')) ? 'Tildeling' : 'Kunngjøring',
+      dato: (tekstAv(n.publicationDate || '')).slice(0, 10),
+      harBygg: true, erTildeling: /tildeling|award/i.test(tekstAv(n.type || '')), score: 2, url
+    });
   }
-
-  // Fallback: søk via Doffin på selskapets navn i pressemeldinger og kunngjøringer
-  return [];
+  return funn;
 }
 
 // ---- Hoved ----

@@ -211,7 +211,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
           <button class="meny-item" onclick="openMetode()">ⓘ Slik regnes det</button>
         </div>
       </div>
-      <span class="tag">Internt · v50</span>
+      <span class="tag">Internt · v51</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -1308,14 +1308,20 @@ function rendKonk(){
     }
 
     if(nyheter.length){
-      html+=`<div>
+      html+=`<div style="margin-top:8px">
         <div style="font-size:11.5px;font-weight:700;color:#5C3A7F;margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em">📰 Nyheter</div>`;
-      nyheter.slice(0,3).forEach(n=>{
-        html+=`<div style="padding:5px 0;border-top:1px solid var(--line);font-size:12.5px">
-          <div style="color:var(--muted);font-size:11px">${(n.dato||'').slice(0,16)} ${n.kilde?'· '+n.kilde:''}</div>
-          <div style="font-weight:500;margin-top:1px">${(n.tittel||'').slice(0,130)}</div>
-          <a href="${n.lenke||'#'}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:12px;color:var(--teal)">Les artikkel ↗</a>
-        </div>`;
+      nyheter.forEach(n=>{
+        if(n.erLenke){
+          html+=`<a href="${n.lenke||'#'}" target="_blank" rel="noopener" onclick="event.stopPropagation()"
+            style="display:inline-flex;align-items:center;gap:6px;padding:7px 12px;background:#F3EEF9;color:#5C3A7F;border-radius:8px;font-size:13px;font-weight:600;text-decoration:none;border:1px solid #D9C9EE">
+            🔍 Søk nyheter om ${n.tittel.replace(/Søk etter nyheter om /,'')} ↗</a>`;
+        } else {
+          html+=`<div style="padding:5px 0;border-top:1px solid var(--line);font-size:12.5px">
+            <div style="color:var(--muted);font-size:11px">${(n.dato||'').slice(0,16)} ${n.kilde?'· '+n.kilde:''}</div>
+            <div style="font-weight:500;margin-top:1px">${(n.tittel||'').slice(0,130)}</div>
+            <a href="${n.lenke||'#'}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:12px;color:var(--teal)">Les artikkel ↗</a>
+          </div>`;
+        }
       });
       html+=`</div>`;
     }
