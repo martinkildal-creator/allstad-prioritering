@@ -211,7 +211,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
           <button class="meny-item" onclick="openMetode()">ⓘ Slik regnes det</button>
         </div>
       </div>
-      <span class="tag">Internt · v51</span>
+      <span class="tag">Internt · v52</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -1243,6 +1243,13 @@ async function openKonkurrenter(){
   document.getElementById('konkModal').classList.add('open');
   const body=document.getElementById('konkBody');
   body.innerHTML='<div style="padding:40px;text-align:center;color:var(--muted)">Laster…</div>';
+  // last config hvis ikke allerede lastet
+  if(!window._konkCfg||!window._konkCfg.length){
+    try{
+      const r=await fetch('konkurrenter.json?v='+Date.now());
+      if(r.ok){const j=await r.json();window._konkCfg=j.selskaper||[];}
+    }catch(e){}
+  }
   await lastKonkurrenter();
   rendKonk();
 }
@@ -1270,7 +1277,6 @@ function rendKonk(){
   const body=document.getElementById('konkBody');
   if(!liste.length){body.innerHTML='<div style="padding:60px;text-align:center;color:var(--muted)">Ingen selskaper funnet.</div>';return;}
 
-  let html=`<div style="color:var(--muted);font-size:13px;margin-bottom:16px">${liste.length} selskaper · Sist oppdatert: ${oppdatert}</div>`;
   html+=`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(480px,1fr));gap:14px">`;
 
   liste.forEach(s=>{
