@@ -1,5 +1,5 @@
 {
- "_oppdatert": "2026-09-18",
+ "_oppdatert": "2026-09-19",
  "_kilder": "Doffin (åpne kunngjøringer) og Husbankens statistikkbank (manuell csv)",
  "kommuner": {
   "frøya": {
@@ -79,7 +79,7 @@
      "url": "https://www.doffin.no/notices/2026-113102"
     },
     {
-     "type": "Aktiv konkurranse",
+     "type": "Kunngjøring",
      "tittel": "Prosjektdirektør med styringsstab til å lede gjennomføring av Mortensrudprosjektet",
      "frist": "18.09.2026",
      "verdi": null,
@@ -204,11 +204,11 @@
    }
   },
   "arendal": {
-   "doffinScore": 20,
+   "doffinScore": 18,
    "husbankScore": 9,
    "doffinTreff": [
     {
-     "type": "Aktiv konkurranse",
+     "type": "Kunngjøring",
      "tittel": "Totalentreprise for Waglegårdsveien bofelleskap",
      "frist": "18.09.2026",
      "verdi": "27,0 mill. kr",
@@ -467,17 +467,17 @@
     },
     {
      "type": "Tildeling",
-     "tittel": "Utvidelse av Kvernaland omsorgssenter - varme- sanitær- og sprinkler - EP05",
-     "frist": "18.12.2025",
-     "verdi": null,
-     "url": "https://www.doffin.no/notices/2025-116893"
-    },
-    {
-     "type": "Tildeling",
      "tittel": "Utvidelse av Kvernaland omsorgssenter - bygningsmessige arbeider - EP01",
      "frist": "18.12.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-116888"
+    },
+    {
+     "type": "Tildeling",
+     "tittel": "Utvidelse av Kvernaland omsorgssenter - varme- sanitær- og sprinkler - EP05",
+     "frist": "18.12.2025",
+     "verdi": null,
+     "url": "https://www.doffin.no/notices/2025-116893"
     },
     {
      "type": "Kunngjøring",
@@ -933,7 +933,7 @@
    "husbankDetalj": null
   },
   "sola": {
-   "doffinScore": 18,
+   "doffinScore": 20,
    "husbankScore": 6,
    "doffinTreff": [
     {
@@ -942,6 +942,13 @@
      "frist": "22.12.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-112996"
+    },
+    {
+     "type": "Aktiv konkurranse",
+     "tittel": "Sola sykehjem - Ny sengeheis - 2. gangs utlysning",
+     "frist": "19.10.2026",
+     "verdi": null,
+     "url": "https://www.doffin.no/notices/2026-114671"
     },
     {
      "type": "Kunngjøring",
@@ -1438,13 +1445,6 @@
      "frist": "04.05.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-107266"
-    },
-    {
-     "type": "Kunngjøring",
-     "tittel": "R0008EBE - Rammeavtale gulvlegging",
-     "frist": "12.05.2026",
-     "verdi": "45,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2026-106168"
     },
     {
      "type": "Kunngjøring",
