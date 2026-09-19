@@ -1,0 +1,23 @@
+{
+  "_info": "Konkurrenter Allstad følger. Legg til/fjern selskaper her.",
+  "_oppdatert": "2026-09-18",
+  "selskaper": [
+    {"id":"lille-oslo-eiendom","navn":"Lille Oslo Eiendom","kategori":"Eiendomsutvikler","søkeord":["Lille Oslo Eiendom"],"nyhetsord":"\"Lille Oslo Eiendom\" omsorgsbolig"},
+    {"id":"konseptpluss","navn":"KonseptPluss","kategori":"Eiendomsutvikler","søkeord":["KonseptPluss","konseptPLUSS"],"nyhetsord":"KonseptPluss helse omsorg"},
+    {"id":"morgenstjernen","navn":"Morgenstjernen","kategori":"Eiendomsutvikler","søkeord":["Morgenstjernen"],"nyhetsord":"Morgenstjernen omsorgsbolig eiendom"},
+    {"id":"omtanke","navn":"Omtanke AS","kategori":"Eiendomsutvikler","søkeord":["Omtanke AS"],"nyhetsord":"\"Omtanke AS\" omsorgsbolig"},
+    {"id":"steinar-moe","navn":"Steinar Moe Eiendom","kategori":"Eiendomsutvikler","søkeord":["Steinar Moe Eiendom","Steinar Moe"],"nyhetsord":"\"Steinar Moe Eiendom\" omsorgsbolig"},
+    {"id":"bof","navn":"BOF AS","kategori":"Eiendomsutvikler","søkeord":["BOF AS","BOF eiendom"],"nyhetsord":"\"BOF\" omsorgsbolig sykehjem kommuner Norge"},
+    {"id":"consto","navn":"Consto AS","kategori":"Totalentreprenør","søkeord":["Consto"],"nyhetsord":"Consto sykehjem omsorgsbolig totalentreprise"},
+    {"id":"af-gruppen","navn":"AF Gruppen","kategori":"Totalentreprenør","søkeord":["AF Gruppen","AF Bygg"],"nyhetsord":"\"AF Gruppen\" sykehjem omsorgsbolig helsehus"},
+    {"id":"veidekke","navn":"Veidekke","kategori":"Totalentreprenør","søkeord":["Veidekke"],"nyhetsord":"Veidekke sykehjem omsorgsbolig kommune"},
+    {"id":"skanska","navn":"Skanska Norge","kategori":"Totalentreprenør","søkeord":["Skanska"],"nyhetsord":"Skanska sykehjem omsorgsbolig helsehus Norge"},
+    {"id":"ncc","navn":"NCC","kategori":"Totalentreprenør","søkeord":["NCC"],"nyhetsord":"NCC sykehjem omsorgsbolig helsehus Norge"},
+    {"id":"backe","navn":"Backe Gruppen","kategori":"Totalentreprenør","søkeord":["Backe"],"nyhetsord":"Backe sykehjem omsorgsbolig kommune"},
+    {"id":"obos","navn":"OBOS","kategori":"Boligutbygger","søkeord":["OBOS"],"nyhetsord":"OBOS omsorgsbolig sykehjem helsehus kommune"},
+    {"id":"samfunnspartner","navn":"Samfunnspartner","kategori":"Eiendomsutvikler","søkeord":["Samfunnspartner"],"nyhetsord":"Samfunnspartner omsorgsbolig kommune"},
+    {"id":"bomer","navn":"BoMer","kategori":"Eiendomsutvikler","søkeord":["BoMer"],"nyhetsord":"BoMer omsorgsbolig bolig eldre"},
+    {"id":"stendi","navn":"Stendi","kategori":"Driftsaktør","søkeord":["Stendi"],"nyhetsord":"Stendi omsorgsbolig sykehjem bygg utbygging"},
+    {"id":"norlandia","navn":"Norlandia","kategori":"Driftsaktør","søkeord":["Norlandia"],"nyhetsord":"Norlandia omsorgsbolig sykehjem bygg utbygging"}
+  ]
+}

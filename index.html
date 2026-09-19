@@ -195,6 +195,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
     <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
       <span id="hentStatus" class="tag" style="cursor:default;font-size:11px">Laster…</span>
       <button class="btn" onclick="autoLoad()" style="font-size:13px;padding:8px 13px">↻ Hent fra SSB</button>
+      <button class="btn" style="background:#5C3A7F;font-size:13px;padding:8px 13px" onclick="openKonkurrenter()">🔍 Konkurrenter</button>
       <button class="btn" style="background:#3A6FA8;font-size:13px;padding:8px 13px" onclick="openKilde('politikk')">📋 Kommunesaker</button>
       <button class="btn" style="background:#2E6F62;font-size:13px;padding:8px 13px" onclick="openKilde('husbank')">🏦 Husbanken</button>
       <button class="btn" style="background:#B8742A;font-size:13px;padding:8px 13px" onclick="openKilde('doffin')">🏗 Doffin</button>
@@ -210,7 +211,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
           <button class="meny-item" onclick="openMetode()">ⓘ Slik regnes det</button>
         </div>
       </div>
-      <span class="tag">Internt · v48</span>
+      <span class="tag">Internt · v50</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -218,6 +219,27 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
   <div id="metodeBg" class="modalbg" onclick="closeMetode()"></div>
   <aside id="metodeModal" class="modal"><button class="x" onclick="closeMetode()">×</button><div id="metodeBody"></div></aside>
   <div id="signalerBg" class="modalbg" onclick="closeSignaler()"></div>
+  <div id="konkModal" class="kilde-modal">
+    <div class="kilde-topbar">
+      <button onclick="closeKonkurrenter()" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted);padding:0 8px 0 0">←</button>
+      <h2 style="color:#5C3A7F">🔍 Konkurrentovervåkning</h2>
+      <div style="flex:1"></div>
+      <input id="konkSearch" type="text" placeholder="🔍 Søk selskap…" class="search" style="width:200px" oninput="rendKonk()">
+      <select id="konkFilter" onchange="rendKonk()" style="font:inherit;font-size:13px;padding:7px 10px;border:1px solid var(--line);border-radius:9px;background:var(--card)">
+        <option value="alle">Alle kategorier</option>
+        <option value="Eiendomsutvikler">Eiendomsutviklere</option>
+        <option value="Totalentreprenør">Totalentreprenører</option>
+        <option value="Boligutbygger">Boligutbyggere</option>
+        <option value="Driftsaktør">Driftsaktører</option>
+      </select>
+      <select id="konkSort" onchange="rendKonk()" style="font:inherit;font-size:13px;padding:7px 10px;border:1px solid var(--line);border-radius:9px;background:var(--card)">
+        <option value="aktivitet">Sortér: Mest aktiv</option>
+        <option value="alfa">Sortér: A–Å</option>
+      </select>
+      <button class="btn ghost" style="font-size:13px" onclick="visKonkurrentRapport()">📋 Rapport</button>
+    </div>
+    <div class="kilde-body" id="konkBody"></div>
+  </div>
   <div id="kildeModal" class="kilde-modal">
     <div class="kilde-topbar">
       <button onclick="closeKilde()" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted);padding:0 8px 0 0">←</button>
@@ -1206,6 +1228,162 @@ function openKilde(kat){
 }
 function closeKilde(){document.getElementById('kildeModal').classList.remove('open');}
 
+let _konkData = null;
+
+async function lastKonkurrenter(){
+  if(_konkData) return _konkData;
+  try{
+    const r=await fetch('konkurrenter-data.json?v='+Date.now());
+    if(r.ok){ _konkData=await r.json(); }
+  }catch(e){ console.warn('Konkurrentdata ikke lastet:', e.message); }
+  return _konkData;
+}
+
+async function openKonkurrenter(){
+  document.getElementById('konkModal').classList.add('open');
+  const body=document.getElementById('konkBody');
+  body.innerHTML='<div style="padding:40px;text-align:center;color:var(--muted)">Laster…</div>';
+  await lastKonkurrenter();
+  rendKonk();
+}
+function closeKonkurrenter(){document.getElementById('konkModal').classList.remove('open');}
+
+function rendKonk(){
+  const q=norm(document.getElementById('konkSearch').value||'');
+  const kat=document.getElementById('konkFilter').value;
+  const srt=document.getElementById('konkSort').value;
+
+  // hent konfig-listen
+  const cfg=window._konkCfg||[];
+  const data=(_konkData&&_konkData.selskaper)||{};
+
+  let liste=cfg.filter(s=>{
+    if(kat!=='alle'&&s.kategori!==kat) return false;
+    if(q&&!norm(s.navn).includes(q)) return false;
+    return true;
+  }).map(s=>({...s, ...data[s.id], id:s.id}));
+
+  if(srt==='aktivitet') liste.sort((a,b)=>(b.aktivitet||0)-(a.aktivitet||0));
+  else liste.sort((a,b)=>(a.navn||'').localeCompare(b.navn||'','no'));
+
+  const oppdatert=_konkData?_konkData._oppdatert:'–';
+  const body=document.getElementById('konkBody');
+  if(!liste.length){body.innerHTML='<div style="padding:60px;text-align:center;color:var(--muted)">Ingen selskaper funnet.</div>';return;}
+
+  let html=`<div style="color:var(--muted);font-size:13px;margin-bottom:16px">${liste.length} selskaper · Sist oppdatert: ${oppdatert}</div>`;
+  html+=`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(480px,1fr));gap:14px">`;
+
+  liste.forEach(s=>{
+    const doffin=(s.doffin||[]);
+    const nyheter=(s.nyheter||[]);
+    const aktivitet=s.aktivitet||0;
+    const aktFarge=aktivitet>5?'#B8742A':aktivitet>1?'#2E6F62':'#9AA6A3';
+
+    html+=`<div class="kilde-card" style="padding:16px 18px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
+        <div>
+          <div style="font-size:16px;font-weight:700">${s.navn}</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px">${s.kategori||''}</div>
+        </div>
+        <div style="text-align:right">
+          <div style="font-size:20px;font-weight:800;color:${aktFarge}">${aktivitet}</div>
+          <div style="font-size:11px;color:var(--muted)">Doffin-treff</div>
+        </div>
+      </div>`;
+
+    if(doffin.length){
+      html+=`<div style="margin-bottom:10px">
+        <div style="font-size:11.5px;font-weight:700;color:#B8742A;margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em">🏗 Doffin</div>`;
+      doffin.slice(0,4).forEach(d=>{
+        const erTild=d.erTildeling;
+        html+=`<div style="padding:5px 0;border-top:1px solid var(--line);font-size:12.5px">
+          <span class="kilde-badge ${erTild?'badge-tildelt':'badge-konk'}" style="font-size:10.5px">${erTild?'Tildeling':'Kunngjøring'}</span>
+          <span style="color:var(--muted);font-size:11px">${d.dato||''}</span>
+          <div style="font-weight:600;margin-top:2px">${(d.tittel||'').slice(0,120)}</div>
+          ${d.kjoper?`<div style="color:var(--muted);font-size:11.5px">Kjøper: ${d.kjoper.slice(0,60)}</div>`:''}
+          ${d.url?`<a href="${d.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:12px;color:var(--teal)">Åpne i Doffin ↗</a>`:''}
+        </div>`;
+      });
+      html+=`</div>`;
+    }
+
+    if(nyheter.length){
+      html+=`<div>
+        <div style="font-size:11.5px;font-weight:700;color:#5C3A7F;margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em">📰 Nyheter</div>`;
+      nyheter.slice(0,3).forEach(n=>{
+        html+=`<div style="padding:5px 0;border-top:1px solid var(--line);font-size:12.5px">
+          <div style="color:var(--muted);font-size:11px">${(n.dato||'').slice(0,16)} ${n.kilde?'· '+n.kilde:''}</div>
+          <div style="font-weight:500;margin-top:1px">${(n.tittel||'').slice(0,130)}</div>
+          <a href="${n.lenke||'#'}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-size:12px;color:var(--teal)">Les artikkel ↗</a>
+        </div>`;
+      });
+      html+=`</div>`;
+    }
+
+    if(!doffin.length&&!nyheter.length){
+      html+=`<div style="color:var(--muted);font-size:13px;padding:8px 0">Ingen aktivitet funnet denne uken.</div>`;
+    }
+    html+=`</div>`;
+  });
+
+  html+=`</div>`;
+  body.innerHTML=html;
+}
+
+function visKonkurrentRapport(){
+  const data=(_konkData&&_konkData.selskaper)||{};
+  const cfg=window._konkCfg||[];
+  const idag=new Date();
+  const fmtDato=d=>`${d.getDate()}.${d.getMonth()+1}.${d.getFullYear()}`;
+
+  const rad=(navn,tittel,dato,type,url,ekstra)=>`<tr style="border-bottom:1px solid #f0f0f0">
+    <td style="padding:8px 10px;font-weight:600;white-space:nowrap">${navn}</td>
+    <td style="padding:8px 10px;color:#666;font-size:12px;white-space:nowrap">${type||''}</td>
+    <td style="padding:8px 10px;font-size:13px">${tittel||''}${url?` <a href="${url}" target="_blank" style="color:#2E6F62">↗</a>`:''}</td>
+    <td style="padding:8px 10px;color:#999;font-size:12px;white-space:nowrap">${dato||''}</td>
+  </tr>`;
+  const hode=`<tr style="background:#f7f7f7;border-bottom:2px solid #ddd">
+    <th style="padding:8px 10px;text-align:left;font-size:12px">Selskap</th>
+    <th style="padding:8px 10px;text-align:left;font-size:12px">Type</th>
+    <th style="padding:8px 10px;text-align:left;font-size:12px">Sak / overskrift</th>
+    <th style="padding:8px 10px;text-align:left;font-size:12px">Dato</th>
+  </tr>`;
+
+  const doffinRader=[], nyhetsRader=[];
+  cfg.forEach(s=>{
+    const d=data[s.id]||{};
+    (d.doffin||[]).forEach(t=>doffinRader.push(rad(s.navn,t.tittel,t.dato,t.type,t.url)));
+    (d.nyheter||[]).forEach(n=>nyhetsRader.push(rad(s.navn,n.tittel,(n.dato||'').slice(0,16),'Nyhet',n.lenke)));
+  });
+
+  let html=`<div style="font-family:Arial,sans-serif;max-width:1000px;margin:0 auto;padding:32px 24px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;flex-wrap:wrap;gap:12px">
+    <div><h1 style="margin:0;font-size:24px;color:#3B1F6A">Konkurrentrapport – Allstad</h1>
+    <div style="color:#888;font-size:14px;margin-top:4px">${fmtDato(idag)} · ${cfg.length} selskaper overvåket</div></div>
+    <button onclick="window.print()" style="padding:9px 18px;background:#5C3A7F;color:#fff;border:none;border-radius:8px;font:inherit;font-size:14px;cursor:pointer">⎙ Skriv ut / PDF</button>
+  </div>`;
+
+  if(doffinRader.length){
+    html+=`<h2 style="font-size:17px;color:#B8742A;margin:24px 0 8px">🏗 Doffin-aktivitet (${doffinRader.length} treff)</h2>
+    <table style="width:100%;border-collapse:collapse;border:1px solid #e8e8e8;margin-bottom:24px">${hode}${doffinRader.join('')}</table>`;
+  }
+  if(nyhetsRader.length){
+    html+=`<h2 style="font-size:17px;color:#5C3A7F;margin:24px 0 8px">📰 Nyheter (${nyhetsRader.length} artikler)</h2>
+    <table style="width:100%;border-collapse:collapse;border:1px solid #e8e8e8">${hode}${nyhetsRader.join('')}</table>`;
+  }
+  if(!doffinRader.length&&!nyhetsRader.length){
+    html+=`<div style="padding:60px;text-align:center;color:#888">Ingen konkurrentaktivitet funnet denne uken.</div>`;}
+  html+=`<div style="margin-top:32px;padding-top:16px;border-top:1px solid #eee;color:#bbb;font-size:12px">
+    Allstad · Intern bruk · ${fmtDato(idag)}</div></div>`;
+
+  const w=window.open('','_blank','width=1100,height=850');
+  if(!w){alert('Tillat popup for å åpne rapporten.');return;}
+  w.document.write(`<!doctype html><html lang="no"><head><meta charset="utf-8"><title>Konkurrentrapport</title>
+    <style>@media print{button{display:none}body{margin:0}@page{margin:15mm}}</style></head><body>${html}</body></html>`);
+  w.document.close();
+}
+
+
 function filtrKilde(){
   const kat=_kildeKategori;
   const q=(document.getElementById('kildeSearch').value||'').toLowerCase().trim();
@@ -1864,43 +2042,102 @@ autoLoad();
 
 // ---- Sanntidssignaler (Doffin + Husbanken) ----
 async function visUkesrapport(){
-  const idag=new Date(), ukeStart=new Date(idag-7*24*3600*1000);
+  // Beregn ukenummer (ISO 8601)
+  function isoUke(d){
+    const d2=new Date(d); d2.setHours(0,0,0,0);
+    d2.setDate(d2.getDate()+4-(d2.getDay()||7));
+    const aar=new Date(d2.getFullYear(),0,1);
+    return {uke:Math.ceil(((d2-aar)/86400000+1)/7),aar:d2.getFullYear()};
+  }
+  function ukeLabel(uke,aar){
+    // mandag-søndag for den uken
+    const jan1=new Date(aar,0,1);
+    const mandag=new Date(jan1.getTime()+(uke-1)*7*86400000-(jan1.getDay()-1)*86400000);
+    const sondag=new Date(mandag.getTime()+6*86400000);
+    const fmt=d=>d.getDate()+'.'+(d.getMonth()+1)+'.';
+    return `Uke ${uke} – ${fmt(mandag)}–${fmt(sondag)}${aar}`;
+  }
   const fmtDato=d=>`${d.getDate()}.${d.getMonth()+1}.${d.getFullYear()}`;
-  const nyeDoffin=[], nyePol=[];
+
+  // Samle alle signaler med dato
+  const ukeBokser={};
+  const leggTil=(dato,kommune,rang,tittel,type,url,kilde)=>{
+    const p=parseDato(dato); if(!p) return;
+    const {uke,aar}=isoUke(p);
+    const key=`${aar}-${String(uke).padStart(2,'0')}`;
+    if(!ukeBokser[key]) ukeBokser[key]={uke,aar,doffin:[],politikk:[]};
+    ukeBokser[key][kilde].push({kommune,rang,dato,tittel,type,url});
+  };
+
   DATA.forEach(d=>{
     (d.doffinTreff||[]).forEach(t=>{
-      if(erSisteSyvDager(t.frist)||erSisteSyvDager(t.dato))
-        nyeDoffin.push({kommune:d.navn,rang:d.rang,...t});
+      if(t.frist) leggTil(t.frist,d.navn,d.rang,t.tittel,t.type,t.url,'doffin');
     });
     (d.politikkTreff||[]).forEach(t=>{
-      if(erSisteSyvDager(t.dato))
-        nyePol.push({kommune:d.navn,rang:d.rang,...t});
+      if(t.dato) leggTil(t.dato,d.navn,d.rang,t.tittel,t.type,t.url,'politikk');
     });
   });
-  const rad=(k,tittel,dato,type,url)=>`<tr style="border-bottom:1px solid #eee">
-    <td style="padding:8px 12px;font-weight:600">${k}</td>
-    <td style="padding:8px 12px;color:#555;font-size:13px">${type||''}</td>
-    <td style="padding:8px 12px;font-size:13px">${tittel||''}${url?` <a href="${url}" target="_blank" rel="noopener" style="color:#2E6F62">↗</a>`:''}</td>
-    <td style="padding:8px 12px;color:#888;font-size:12px;white-space:nowrap">${dato||''}</td>
+
+  const sorterteUker=Object.keys(ukeBokser).sort().reverse();
+
+  const rad=(k,rang,tittel,dato,type,url)=>`<tr style="border-bottom:1px solid #f0f0f0">
+    <td style="padding:8px 10px;font-weight:600;white-space:nowrap">${k} <span style="font-weight:400;color:#888;font-size:12px">nr.${rang}</span></td>
+    <td style="padding:8px 10px;color:#666;font-size:12.5px;white-space:nowrap">${type||''}</td>
+    <td style="padding:8px 10px;font-size:13px">${tittel||''}${url?` <a href="${url}" target="_blank" rel="noopener" style="color:#2E6F62">↗</a>`:''}</td>
+    <td style="padding:8px 10px;color:#999;font-size:12px;white-space:nowrap">${dato||''}</td>
   </tr>`;
-  const tblHode=`<tr style="background:#f5f5f5"><th style="padding:8px 12px;text-align:left;font-size:12px">Kommune</th><th style="padding:8px 12px;text-align:left;font-size:12px">Type</th><th style="padding:8px 12px;text-align:left;font-size:12px">Sak/kunngjøring</th><th style="padding:8px 12px;text-align:left;font-size:12px">Dato</th></tr>`;
-  let html=`<div style="font-family:sans-serif;max-width:900px;margin:0 auto;padding:32px 24px">
-  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px">
+  const hode=`<tr style="background:#f7f7f7;border-bottom:2px solid #ddd">
+    <th style="padding:8px 10px;text-align:left;font-size:12px">Kommune</th>
+    <th style="padding:8px 10px;text-align:left;font-size:12px">Type</th>
+    <th style="padding:8px 10px;text-align:left;font-size:12px">Sak / kunngjøring</th>
+    <th style="padding:8px 10px;text-align:left;font-size:12px">Dato</th>
+  </tr>`;
+
+  let html=`<div style="font-family:Arial,sans-serif;max-width:960px;margin:0 auto;padding:32px 24px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;flex-wrap:wrap;gap:12px">
     <div>
-      <h1 style="margin:0;font-size:24px;color:#1F4E45">Ukesrapport – Signaler</h1>
-      <div style="color:#666;margin-top:4px;font-size:14px">${fmtDato(ukeStart)} – ${fmtDato(idag)}</div>
+      <h1 style="margin:0;font-size:26px;color:#1F4E45">Signalrapport – Allstad</h1>
+      <div style="color:#888;margin-top:4px;font-size:14px">Generert ${fmtDato(new Date())} · ${sorterteUker.length} uker med aktivitet</div>
     </div>
-    <button onclick="window.print()" style="padding:8px 16px;background:#2E6F62;color:#fff;border:none;border-radius:8px;font:inherit;font-size:14px;cursor:pointer">Skriv ut / lagre PDF</button>
+    <button onclick="window.print()" style="padding:9px 18px;background:#2E6F62;color:#fff;border:none;border-radius:8px;font:inherit;font-size:14px;cursor:pointer">⎙ Skriv ut / lagre PDF</button>
   </div>`;
-  if(nyePol.length){html+=`<h2 style="font-size:16px;color:#3A6FA8;margin:20px 0 8px">📋 Nye saker fra kommunenes nettsider (${nyePol.length})</h2>
-    <table style="width:100%;border-collapse:collapse;margin-bottom:24px">${tblHode}${nyePol.map(t=>rad(t.kommune,t.tittel,t.dato,t.type,t.url)).join('')}</table>`;}
-  if(nyeDoffin.length){html+=`<h2 style="font-size:16px;color:#B8742A;margin:20px 0 8px">🏗 Nye Doffin-kunngjøringer med frist denne uken (${nyeDoffin.length})</h2>
-    <table style="width:100%;border-collapse:collapse;margin-bottom:24px">${tblHode}${nyeDoffin.map(t=>rad(t.kommune,t.tittel,t.frist||t.dato,t.type,t.url)).join('')}</table>`;}
-  if(!nyePol.length&&!nyeDoffin.length) html+=`<div style="padding:40px;text-align:center;color:#888;font-size:15px">Ingen nye signaler den siste uken.<br><span style="font-size:13px">Signalene oppdateres hver mandag morgen automatisk.</span></div>`;
-  html+=`<div style="margin-top:32px;padding-top:16px;border-top:1px solid #eee;color:#aaa;font-size:12px">Generert ${new Date().toLocaleString('no')} · Allstad kommuneprioritering · Intern bruk</div></div>`;
-  const w=window.open('','_blank','width=1000,height=800');
-  w.document.write(`<!doctype html><html><head><meta charset="utf-8"><title>Ukesrapport</title>
-    <style>@media print{button{display:none}body{margin:0}}</style></head><body>${html}</body></html>`);
+
+  if(!sorterteUker.length){
+    html+=`<div style="padding:60px;text-align:center;color:#888">Ingen signaler med dato funnet.<br>
+      <span style="font-size:13px">Signalene oppdateres automatisk hver mandag.</span></div>`;
+  } else {
+    sorterteUker.forEach(key=>{
+      const b=ukeBokser[key];
+      const totalt=b.doffin.length+b.politikk.length;
+      html+=`<div style="margin-bottom:32px">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+          <h2 style="margin:0;font-size:18px;color:#1F4E45">${ukeLabel(b.uke,b.aar)}</h2>
+          <span style="background:#E9F1EC;color:#2E6F62;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:700">${totalt} signal${totalt!==1?'er':''}</span>
+        </div>`;
+      if(b.politikk.length){
+        html+=`<div style="margin-bottom:10px">
+          <div style="font-size:13px;font-weight:700;color:#3A6FA8;margin-bottom:6px">📋 Saker fra kommunenes nettsider (${b.politikk.length})</div>
+          <table style="width:100%;border-collapse:collapse;border-radius:8px;overflow:hidden;border:1px solid #e8e8e8">${hode}
+            ${b.politikk.map(t=>rad(t.kommune,t.rang,t.tittel,t.dato,t.type,t.url)).join('')}
+          </table></div>`;}
+      if(b.doffin.length){
+        html+=`<div>
+          <div style="font-size:13px;font-weight:700;color:#B8742A;margin-bottom:6px">🏗 Doffin-kunngjøringer med frist (${b.doffin.length})</div>
+          <table style="width:100%;border-collapse:collapse;border-radius:8px;overflow:hidden;border:1px solid #e8e8e8">${hode}
+            ${b.doffin.map(t=>rad(t.kommune,t.rang,t.tittel,t.dato,t.type,t.url)).join('')}
+          </table></div>`;}
+      html+=`</div>`;
+    });
+  }
+  html+=`<div style="margin-top:32px;padding-top:16px;border-top:1px solid #eee;color:#bbb;font-size:12px">
+    Allstad kommuneprioritering · Intern bruk · ${fmtDato(new Date())}</div></div>`;
+
+  const w=window.open('','_blank','width=1100,height=850');
+  if(!w){alert('Tillat popup for å åpne rapporten.'); return;}
+  w.document.write(`<!doctype html><html lang="no"><head><meta charset="utf-8">
+    <title>Signalrapport – Allstad</title>
+    <style>@media print{button{display:none!important}body{margin:0}@page{margin:15mm}}</style>
+    </head><body>${html}</body></html>`);
   w.document.close();
 }
 
