@@ -1,5 +1,5 @@
 {
- "_oppdatert": "2026-09-18",
+ "_oppdatert": "2026-09-19",
  "_kilde": "ACOS Innsyn Pluss – søk i saker og dokumenter",
  "kommuner": {
   "lund": {
@@ -140,10 +140,10 @@
     {
      "ord": "omsorgsbolig",
      "vekt": 2,
-     "tittel": "Omsorgsboligprosjekt på Algarheim - vedrørende miljørettet helsevern - funksjons- og kravspesifikajson",
+     "tittel": "Omsorgsboligprosjekt på Algarheim - vedrørende miljørettet helsevern - planbeskrivelse for detaljreguleringsplan",
      "type": "Inngående dokument",
      "dato": "03.09.2026",
-     "saksnr": "2026/21590",
+     "saksnr": "2026/21589",
      "url": "https://innsynpluss.onacos.no/nannestad/sok/#/?searchTerm=omsorgsbolig"
     },
     {
@@ -158,19 +158,19 @@
     {
      "ord": "omsorgsbolig",
      "vekt": 2,
-     "tittel": "Omsorgsboligprosjekt på Algarheim - vedrørende miljørettet helsevern - planbeskrivelse for detaljreguleringsplan",
+     "tittel": "Omsorgsboligprosjekt på Algarheim - vedrørende miljørettet helsevern",
      "type": "Inngående dokument",
      "dato": "03.09.2026",
-     "saksnr": "2026/21589",
+     "saksnr": "2026/21586",
      "url": "https://innsynpluss.onacos.no/nannestad/sok/#/?searchTerm=omsorgsbolig"
     },
     {
      "ord": "omsorgsbolig",
      "vekt": 2,
-     "tittel": "Omsorgsboligprosjekt på Algarheim - vedrørende miljørettet helsevern",
+     "tittel": "Omsorgsboligprosjekt på Algarheim - vedrørende miljørettet helsevern - funksjons- og kravspesifikajson",
      "type": "Inngående dokument",
      "dato": "03.09.2026",
-     "saksnr": "2026/21586",
+     "saksnr": "2026/21590",
      "url": "https://innsynpluss.onacos.no/nannestad/sok/#/?searchTerm=omsorgsbolig"
     },
     {
@@ -261,15 +261,6 @@
    "poeng": 10,
    "treff": [
     {
-     "ord": "omsorgssenter",
-     "vekt": 3,
-     "tittel": "Detaljreguleringsplan for Martineåsen omsorgssenter - gbnr. 4064/36 m.fl. Fastsettelse av planprogram",
-     "type": "Saksframlegg",
-     "dato": "22.01.2026",
-     "saksnr": "2026/7800",
-     "url": "https://innsynpluss.onacos.no/larvik/sok/#/?searchTerm=omsorgssenter"
-    },
-    {
      "ord": "omsorgsbolig",
      "vekt": 2,
      "tittel": "Vedtak - Tillatelse til endring - ombygging av omsorgsboliger - Håkestadveien 7 og 11 - Gbnr. 1037/128 - 1037/36",
@@ -322,6 +313,15 @@
      "dato": "22.01.2026",
      "saksnr": "2026/7940",
      "url": "https://innsynpluss.onacos.no/larvik/sok/#/?searchTerm=omsorgssenter"
+    },
+    {
+     "ord": "omsorgssenter",
+     "vekt": 2,
+     "tittel": "Dialog om revidering av planprogram - Detaljreguleringsplan for Martineåsen omsorgssenter - gbnr. 4064/36 m.fl.",
+     "type": "Utgående dokument",
+     "dato": "22.01.2026",
+     "saksnr": "2026/7939",
+     "url": "https://innsynpluss.onacos.no/larvik/sok/#/?searchTerm=omsorgssenter"
     }
    ]
   },
@@ -369,19 +369,19 @@
     {
      "ord": "boligbehov",
      "vekt": 2,
-     "tittel": "Invitasjon til kartlegging av kommunenes analyser av boligbehov og boligmarked",
-     "type": "Inngående dokument",
+     "tittel": "Kartlegging av kommuenes analyser av boligbehov og boligmarked",
+     "type": "Generell sak",
      "dato": "29.09.2025",
-     "saksnr": "2025/23663",
+     "saksnr": null,
      "url": "https://innsynpluss.onacos.no/bamble/sok/#/?searchTerm=boligbehov"
     },
     {
      "ord": "boligbehov",
      "vekt": 2,
-     "tittel": "Kartlegging av kommuenes analyser av boligbehov og boligmarked",
-     "type": "Generell sak",
+     "tittel": "Invitasjon til kartlegging av kommunenes analyser av boligbehov og boligmarked",
+     "type": "Inngående dokument",
      "dato": "29.09.2025",
-     "saksnr": null,
+     "saksnr": "2025/23663",
      "url": "https://innsynpluss.onacos.no/bamble/sok/#/?searchTerm=boligbehov"
     }
    ]
@@ -469,7 +469,7 @@
      "tittel": "Rapport etter tilsyn ved Helsehuset korttids - og rehabiliteringsavdeling - miljø og helse",
      "type": "Internt notat (N)",
      "dato": "30.06.2026",
-     "saksnr": "2026/40895",
+     "saksnr": "2026/19254",
      "url": "https://innsynpluss.onacos.no/harstad/sok/#/?searchTerm=helsehus"
     },
     {
