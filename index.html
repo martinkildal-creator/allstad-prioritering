@@ -211,7 +211,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
           <button class="meny-item" onclick="openMetode()">ⓘ Slik regnes det</button>
         </div>
       </div>
-      <span class="tag">Internt · v52</span>
+      <span class="tag">Internt · v53</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -1256,6 +1256,7 @@ async function openKonkurrenter(){
 function closeKonkurrenter(){document.getElementById('konkModal').classList.remove('open');}
 
 function rendKonk(){
+  const norm=v=>(v||'').toString().toLowerCase().trim();
   const q=norm(document.getElementById('konkSearch').value||'');
   const kat=document.getElementById('konkFilter').value;
   const srt=document.getElementById('konkSort').value;
@@ -1343,6 +1344,7 @@ function rendKonk(){
 }
 
 function visKonkurrentRapport(){
+  const norm=v=>(v||'').toString().toLowerCase().trim();
   const data=(_konkData&&_konkData.selskaper)||{};
   const cfg=window._konkCfg||[];
   const idag=new Date();
