@@ -1,0 +1,669 @@
+{
+ "_oppdatert": "2026-09-19",
+ "_kilde": "Doffin (offentlige kunngjøringer) og Google News",
+ "selskaper": {
+  "lille-oslo-eiendom": {
+   "navn": "Lille Oslo Eiendom",
+   "kategori": "Eiendomsutvikler",
+   "oppdatert": "2026-09-19",
+   "aktivitet": 0,
+   "doffin": [],
+   "doffinAndre": [],
+   "nyheter": [],
+   "tildelinger": []
+  },
+  "konseptpluss": {
+   "navn": "KonseptPluss",
+   "kategori": "Eiendomsutvikler",
+   "oppdatert": "2026-09-19",
+   "aktivitet": 6,
+   "doffin": [
+    {
+     "id": "2026-106611",
+     "tittel": "Intensjonskunngjøring omsorgsboliger Vingnes",
+     "kjoper": "Lillehammer Kommune",
+     "type": "Kunngjøring",
+     "dato": "2026-04-13",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "score": 3,
+     "url": "https://www.doffin.no/notices/2026-106611"
+    },
+    {
+     "id": "2025-115173",
+     "tittel": "Kjøp av boliger Kamsvegen 4",
+     "kjoper": "Rauma kommune Molde Kommune",
+     "type": "Kunngjøring",
+     "dato": "2025-10-22",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "score": 3,
+     "url": "https://www.doffin.no/notices/2025-115173"
+    },
+    {
+     "id": "2025-113530",
+     "tittel": "Omsorgsboliger med base og aktivitetssenter Nyli",
+     "kjoper": "Arendal kommune",
+     "type": "Kunngjøring",
+     "dato": "2025-09-22",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "score": 3,
+     "url": "https://www.doffin.no/notices/2025-113530"
+    },
+    {
+     "id": "2025-113449",
+     "tittel": "Omsorgsboliger med base og aktivitetssenter Bjorbekk",
+     "kjoper": "Arendal kommune",
+     "type": "Kunngjøring",
+     "dato": "2025-09-19",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "score": 3,
+     "url": "https://www.doffin.no/notices/2025-113449"
+    },
+    {
+     "id": "2024-110926",
+     "tittel": "Omsorgsboliger Lyngseidet",
+     "kjoper": "Lyngen Kommune",
+     "type": "Kunngjøring",
+     "dato": "2024-07-15",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "score": 3,
+     "url": "https://www.doffin.no/notices/2024-110926"
+    },
+    {
+     "id": "2024-104417",
+     "tittel": "Omsorgsboliger Lyngseidet",
+     "kjoper": "Lyngen Kommune",
+     "type": "Kunngjøring",
+     "dato": "2024-03-25",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "score": 3,
+     "url": "https://www.doffin.no/notices/2024-104417"
+    }
+   ],
+   "doffinAndre": [],
+   "nyheter": [],
+   "tildelinger": []
+  },
+  "morgenstjernen": {
+   "navn": "Morgenstjernen",
+   "kategori": "Eiendomsutvikler",
+   "oppdatert": "2026-09-19",
+   "aktivitet": 0,
+   "doffin": [],
+   "doffinAndre": [],
+   "nyheter": [],
+   "tildelinger": []
+  },
+  "omtanke": {
+   "navn": "Omtanke AS",
+   "kategori": "Eiendomsutvikler",
+   "oppdatert": "2026-09-19",
+   "aktivitet": 0,
+   "doffin": [],
+   "doffinAndre": [],
+   "nyheter": [],
+   "tildelinger": []
+  },
+  "steinar-moe": {
+   "navn": "Steinar Moe Eiendom",
+   "kategori": "Eiendomsutvikler",
+   "oppdatert": "2026-09-19",
+   "aktivitet": 2,
+   "doffin": [
+    {
+     "id": "2026-112012",
+     "tittel": "Intensjonskunngjøring om inngåelse av kontrakt",
+     "kjoper": "Siljan kommune",
+     "type": "Kunngjøring",
+     "dato": "2026-07-08",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "score": 3,
+     "url": "https://www.doffin.no/notices/2026-112012"
+    },
+    {
+     "id": "2025-118116",
+     "tittel": "Anskaffelse av rådgivere til prosjektering av omsorgsboliger og Bibliotek i Siljan",
+     "kjoper": "Siljan kommune",
+     "type": "Kunngjøring",
+     "dato": "2025-11-26",
+     "frist": "2026-01-02",
+     "harBygg": true,
+     "erTildeling": false,
+     "score": 3,
+     "url": "https://www.doffin.no/notices/2025-118116"
+    }
+   ],
+   "doffinAndre": [],
+   "nyheter": [],
+   "tildelinger": []
+  },
+  "bof": {
+   "navn": "BOF AS",
+   "kategori": "Eiendomsutvikler",
+   "oppdatert": "2026-09-19",
+   "aktivitet": 0,
+   "doffin": [],
+   "doffinAndre": [],
+   "nyheter": [],
+   "tildelinger": []
+  },
+  "consto": {
+   "navn": "Consto AS",
+   "kategori": "Totalentreprenør",
+   "oppdatert": "2026-09-19",
+   "aktivitet": 1,
+   "doffin": [
+    {
+     "id": "2023-672891",
+     "tittel": "Endring i kontraktsomfang på totalentreprise Nye Hammerfest Sykehus (NHS), på vegne av Finnmarkssykehuset HF",
+     "kjoper": "Sykehusbygg HF",
+     "type": "Kunngjøring",
+     "dato": "2023-06-29",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "score": 3,
+     "url": "https://www.doffin.no/notices/2023-672891"
+    }
+   ],
+   "doffinAndre": [
+    {
+     "id": "2026-110148",
+     "tittel": "innkjøp av verkstedsmaskiner til nye Mosjøen vgs",
+     "kjoper": "Nordland fylkeskommune",
+     "type": "Kunngjøring",
+     "dato": "2026-06-08",
+     "frist": "2026-07-24",
+     "harBygg": false,
+     "erTildeling": false,
+     "score": 1,
+     "url": "https://www.doffin.no/notices/2026-110148"
+    },
+    {
+     "id": "2026-109996",
+     "tittel": "Innkjøp av platearbeidingsmaskiner Mosjøen vgs",
+     "kjoper": "Nordland fylkeskommune",
+     "type": "Kunngjøring",
+     "dato": "2026-06-04",
+     "frist": "2026-07-24",
+     "harBygg": false,
+     "erTildeling": false,
+     "score": 1,
+     "url": "https://www.doffin.no/notices/2026-109996"
+    },
+    {
+     "id": "2026-109943",
+     "tittel": "Innkjøp av sveiseutstyr",
+     "kjoper": "Nordland fylkeskommune",
+     "type": "Kunngjøring",
+     "dato": "2026-06-03",
+     "frist": "2026-07-24",
+     "harBygg": false,
+     "erTildeling": false,
+     "score": 1,
+     "url": "https://www.doffin.no/notices/2026-109943"
+    },
+    {
+     "id": "2020-398311",
+     "tittel": "Byggeleder Straumsnes flerbrukshall",
+     "kjoper": "Tingvoll kommune",
+     "type": "Kunngjøring",
+     "dato": "2020-05-04",
+     "frist": "2020-05-29",
+     "harBygg": false,
+     "erTildeling": false,
+     "score": 1,
+     "url": "https://www.doffin.no/notices/2020-398311"
+    },
+    {
+     "id": "2019-363181",
+     "tittel": "Skyveamfi",
+     "kjoper": "Vaksdal kommune",
+     "type": "Kunngjøring",
+     "dato": "2019-02-18",
+     "frist": "2019-03-20",
+     "harBygg": false,
+     "erTildeling": false,
+     "score": 1,
+     "url": "https://www.doffin.no/notices/2019-363181"
+    }
+   ],
+   "nyheter": [],
+   "tildelinger": []
+  },
+  "af-gruppen": {
+   "navn": "AF Gruppen",
+   "kategori": "Totalentreprenør",
+   "oppdatert": "2026-09-19",
+   "aktivitet": 0,
+   "doffin": [],
+   "doffinAndre": [
+    {
+     "id": "2025-102153",
+     "tittel": "Totalentreprise E6 Roterud - Storhove",
+     "kjoper": "Nye Veier",
+     "type": "Kunngjøring",
+     "dato": "2025-02-14",
+     "frist": "",
+     "harBygg": false,
+     "erTildeling": false,
+     "score": 1,
+     "url": "https://www.doffin.no/notices/2025-102153"
+    },
+    {
+     "id": "2024-106465",
+     "tittel": "E6 Roterud - Storhove",
+     "kjoper": "Nye Veier",
+     "type": "Kunngjøring",
+     "dato": "2024-05-02",
+     "frist": "",
+     "harBygg": false,
+     "erTildeling": false,
+     "score": 1,
+     "url": "https://www.doffin.no/notices/2024-106465"
+    },
+    {
+     "id": "2023-691724",
+     "tittel": "Delprosjektleder tekniske fag VBA - Ny Vannforsyning Oslo",
+     "kjoper": "Oslo kommune v/ Vann- og avløpsetaten",
+     "type": "Kunngjøring",
+     "dato": "2023-01-02",
+     "frist": "2023-02-02",
+     "harBygg": false,
+     "erTildeling": false,
+     "score": 1,
+     "url": "https://www.doffin.no/notices/2023-691724"
+    }
+   ],
+   "nyheter": [],
+   "tildelinger": []
+  },
+  "veidekke": {
+   "navn": "Veidekke",
+   "kategori": "Totalentreprenør",
+   "oppdatert": "2026-09-19",
+   "aktivitet": 0,
+   "doffin": [],
+   "doffinAndre": [],
+   "nyheter": [],
+   "tildelinger": []
+  },
+  "skanska": {
+   "navn": "Skanska Norge",
+   "kategori": "Totalentreprenør",
+   "oppdatert": "2026-09-19",
+   "aktivitet": 2,
+   "doffin": [
+    {
+     "id": "2021-343566",
+     "tittel": "Medisinkabinett og medisinvogner",
+     "kjoper": "Vestnes kommune",
+     "type": "Kunngjøring",
+     "dato": "2021-10-11",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "score": 3,
+     "url": "https://www.doffin.no/notices/2021-343566"
+    },
+    {
+     "id": "2020-382512",
+     "tittel": "Medisinkabinett og medisinvogner",
+     "kjoper": "Vestnes kommune",
+     "type": "Kunngjøring",
+     "dato": "2020-06-25",
+     "frist": "2020-08-24",
+     "harBygg": true,
+     "erTildeling": false,
+     "score": 3,
+     "url": "https://www.doffin.no/notices/2020-382512"
+    }
+   ],
+   "doffinAndre": [
+    {
+     "id": "2025-104760",
+     "tittel": "Anskaffelse av kontrollingeniør elektro automasjon for E39 Rogfast",
+     "kjoper": "Statens vegvesen",
+     "type": "Kunngjøring",
+     "dato": "2025-03-26",
+     "frist": "",
+     "harBygg": false,
+     "erTildeling": false,
+     "score": 1,
+     "url": "https://www.doffin.no/notices/2025-104760"
+    },
+    {
+     "id": "2025-101461",
+     "tittel": "Anskaffelse av kontrollingeniør elektro automasjon for E39 Rogfast",
+     "kjoper": "Statens vegvesen",
+     "type": "Kunngjøring",
+     "dato": "2025-02-03",
+     "frist": "2025-03-03",
+     "harBygg": false,
+     "erTildeling": false,
+     "score": 1,
+     "url": "https://www.doffin.no/notices/2025-101461"
+    },
+    {
+     "id": "2024-102873",
+     "tittel": "Mottak av steinmasser, Rødskjær havn",
+     "kjoper": "Harstad kommune",
+     "type": "Kunngjøring",
+     "dato": "2024-02-28",
+     "frist": "",
+     "harBygg": false,
+     "erTildeling": false,
+     "score": 1,
+     "url": "https://www.doffin.no/notices/2024-102873"
+    },
+    {
+     "id": "2020-397067",
+     "tittel": "Konkurranse om utvikling av sanntidsmålingsløsning for miljøparametere knyttet til massehåndtering",
+     "kjoper": "Bærum kommune Statens Vegvesen region SØ Ringeriksbanen (FRE16) /BaneNor Asker og Bærum Vannverk IKS",
+     "type": "Kunngjøring",
+     "dato": "2020-10-19",
+     "frist": "",
+     "harBygg": false,
+     "erTildeling": false,
+     "score": 1,
+     "url": "https://www.doffin.no/notices/2020-397067"
+    },
+    {
+     "id": "2020-334733",
+     "tittel": "Trondsheimsveien 235 - Oslo storbylegevakt - anskaffelse - kjøling",
+     "kjoper": "Oslo kommune v/ Omsorgsbygg Oslo KF",
+     "type": "Kunngjøring",
+     "dato": "2020-10-01",
+     "frist": "",
+     "harBygg": false,
+     "erTildeling": false,
+     "score": 1,
+     "url": "https://www.doffin.no/notices/2020-334733"
+    }
+   ],
+   "nyheter": [],
+   "tildelinger": []
+  },
+  "ncc": {
+   "navn": "NCC",
+   "kategori": "Totalentreprenør",
+   "oppdatert": "2026-09-19",
+   "aktivitet": 0,
+   "doffin": [],
+   "doffinAndre": [
+    {
+     "id": "2023-101206",
+     "tittel": "66-BYM-2022 Mottak og behandling av forurenset snø ",
+     "kjoper": "Oslo kommune v/ Bymiljøetaten",
+     "type": "Kunngjøring",
+     "dato": "2023-11-21",
+     "frist": "",
+     "harBygg": false,
+     "erTildeling": false,
+     "score": 1,
+     "url": "https://www.doffin.no/notices/2023-101206"
+    }
+   ],
+   "nyheter": [],
+   "tildelinger": []
+  },
+  "backe": {
+   "navn": "Backe Gruppen",
+   "kategori": "Totalentreprenør",
+   "oppdatert": "2026-09-19",
+   "aktivitet": 0,
+   "doffin": [],
+   "doffinAndre": [
+    {
+     "id": "2026-106142",
+     "tittel": "Kontraktstildeling - Seniorutvikler med spisskompetanse på backend og AI – DPS",
+     "kjoper": "Digitaliseringsdirektoratet",
+     "type": "Tildeling",
+     "dato": "2026-03-31",
+     "frist": "",
+     "harBygg": false,
+     "erTildeling": true,
+     "score": 4,
+     "url": "https://www.doffin.no/notices/2026-106142"
+    },
+    {
+     "id": "2026-103915",
+     "tittel": "Kontraktstildeling - Backendutvikler med spisskompetanse på .Net til Altinn Studio – DPS",
+     "kjoper": "Digitaliseringsdirektoratet",
+     "type": "Tildeling",
+     "dato": "2026-02-26",
+     "frist": "",
+     "harBygg": false,
+     "erTildeling": true,
+     "score": 4,
+     "url": "https://www.doffin.no/notices/2026-103915"
+    },
+    {
+     "id": "2026-103917",
+     "tittel": "Kontraktstildeling - Backendutvikler med spisskompetanse innen .Net og Azure til Altinn Studio – DPS",
+     "kjoper": "Digitaliseringsdirektoratet",
+     "type": "Tildeling",
+     "dato": "2026-02-26",
+     "frist": "",
+     "harBygg": false,
+     "erTildeling": true,
+     "score": 4,
+     "url": "https://www.doffin.no/notices/2026-103917"
+    },
+    {
+     "id": "2026-101530",
+     "tittel": "Kontraktstildeling - Backend-/infrastrukturutvikler til Altinn 3 - Dynamisk innkjøpsordning",
+     "kjoper": "Digitaliseringsdirektoratet",
+     "type": "Tildeling",
+     "dato": "2026-01-21",
+     "frist": "",
+     "harBygg": false,
+     "erTildeling": true,
+     "score": 4,
+     "url": "https://www.doffin.no/notices/2026-101530"
+    },
+    {
+     "id": "2025-120816",
+     "tittel": "Kontraktstildeling - Backendutvikler til Team Altinn Studio – DPS",
+     "kjoper": "Digitaliseringsdirektoratet",
+     "type": "Tildeling",
+     "dato": "2025-12-19",
+     "frist": "",
+     "harBygg": false,
+     "erTildeling": true,
+     "score": 4,
+     "url": "https://www.doffin.no/notices/2025-120816"
+    }
+   ],
+   "nyheter": [],
+   "tildelinger": []
+  },
+  "obos": {
+   "navn": "OBOS",
+   "kategori": "Boligutbygger",
+   "oppdatert": "2026-09-19",
+   "aktivitet": 0,
+   "doffin": [],
+   "doffinAndre": [
+    {
+     "id": "2025-111895",
+     "tittel": "Anda delfelt A",
+     "kjoper": "Anda Utvikling AS",
+     "type": "Kunngjøring",
+     "dato": "2025-08-19",
+     "frist": "2025-10-01",
+     "harBygg": false,
+     "erTildeling": false,
+     "score": 1,
+     "url": "https://www.doffin.no/notices/2025-111895"
+    },
+    {
+     "id": "2024-106392",
+     "tittel": "Konkurranse - Jåttåvågen, hovedanlegg VVA og parkanlegg, byggetrinn 1",
+     "kjoper": "Stavanger kommune",
+     "type": "Kunngjøring",
+     "dato": "2024-05-02",
+     "frist": "2024-06-14",
+     "harBygg": false,
+     "erTildeling": false,
+     "score": 1,
+     "url": "https://www.doffin.no/notices/2024-106392"
+    },
+    {
+     "id": "2023-666817",
+     "tittel": "Anskaffelse av flomlys til Strømmen stadion",
+     "kjoper": "Lillestrøm Kommune",
+     "type": "Kunngjøring",
+     "dato": "2023-06-12",
+     "frist": "",
+     "harBygg": false,
+     "erTildeling": false,
+     "score": 1,
+     "url": "https://www.doffin.no/notices/2023-666817"
+    },
+    {
+     "id": "2022-902313",
+     "tittel": "Anskaffelse av flomlys til Strømmen stadion",
+     "kjoper": "Lillestrøm Kommune",
+     "type": "Kunngjøring",
+     "dato": "2022-10-07",
+     "frist": "",
+     "harBygg": false,
+     "erTildeling": false,
+     "score": 1,
+     "url": "https://www.doffin.no/notices/2022-902313"
+    },
+    {
+     "id": "2021-304413",
+     "tittel": "210745 - Åskollvegen boligområde VVA entreprise. Utbyggingsavtale Gjøvik kommune/ OBOS Block Watne",
+     "kjoper": "Gjøvikregionen - Anskaffelser for Gjøvik kommune",
+     "type": "Kunngjøring",
+     "dato": "2021-02-15",
+     "frist": "",
+     "harBygg": false,
+     "erTildeling": false,
+     "score": 1,
+     "url": "https://www.doffin.no/notices/2021-304413"
+    }
+   ],
+   "nyheter": [],
+   "tildelinger": []
+  },
+  "samfunnspartner": {
+   "navn": "Samfunnspartner",
+   "kategori": "Eiendomsutvikler",
+   "oppdatert": "2026-09-19",
+   "aktivitet": 0,
+   "doffin": [],
+   "doffinAndre": [],
+   "nyheter": [],
+   "tildelinger": []
+  },
+  "bomer": {
+   "navn": "BoMer",
+   "kategori": "Eiendomsutvikler",
+   "oppdatert": "2026-09-19",
+   "aktivitet": 0,
+   "doffin": [],
+   "doffinAndre": [],
+   "nyheter": [],
+   "tildelinger": []
+  },
+  "stendi": {
+   "navn": "Stendi",
+   "kategori": "Driftsaktør",
+   "oppdatert": "2026-09-19",
+   "aktivitet": 0,
+   "doffin": [],
+   "doffinAndre": [
+    {
+     "id": "2022-323639",
+     "tittel": "Konkurranse om kjøp av brukerstyrt personlig assistanse (BPA)",
+     "kjoper": "Oslo kommune v/ Velferdsetaten",
+     "type": "Kunngjøring",
+     "dato": "2022-06-30",
+     "frist": "",
+     "harBygg": false,
+     "erTildeling": false,
+     "score": 1,
+     "url": "https://www.doffin.no/notices/2022-323639"
+    },
+    {
+     "id": "2021-355985",
+     "tittel": "Samkjøpsavtale for legemidler, multidose og farmasøytiske tjenester",
+     "kjoper": "Oslo kommune v/Utviklings- og kompetanseetaten Asker kommune Bærum kommune Drammen kommune Vestby ko",
+     "type": "Kunngjøring",
+     "dato": "2021-06-29",
+     "frist": "",
+     "harBygg": false,
+     "erTildeling": false,
+     "score": 1,
+     "url": "https://www.doffin.no/notices/2021-355985"
+    },
+    {
+     "id": "2020-383077",
+     "tittel": "Intensjonskunngjøring - forlengelse av eksisterende avtale på omsorgstjeneste (1 bruker)",
+     "kjoper": "Bardu kommune",
+     "type": "Kunngjøring",
+     "dato": "2020-12-10",
+     "frist": "",
+     "harBygg": false,
+     "erTildeling": false,
+     "score": 1,
+     "url": "https://www.doffin.no/notices/2020-383077"
+    }
+   ],
+   "nyheter": [],
+   "tildelinger": []
+  },
+  "norlandia": {
+   "navn": "Norlandia",
+   "kategori": "Driftsaktør",
+   "oppdatert": "2026-09-19",
+   "aktivitet": 1,
+   "doffin": [
+    {
+     "id": "2024-112039",
+     "tittel": "02-24 Nettverksutstyr",
+     "kjoper": "IKOMM AS",
+     "type": "Kunngjøring",
+     "dato": "2024-08-23",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "score": 3,
+     "url": "https://www.doffin.no/notices/2024-112039"
+    }
+   ],
+   "doffinAndre": [
+    {
+     "id": "2021-355985",
+     "tittel": "Samkjøpsavtale for legemidler, multidose og farmasøytiske tjenester",
+     "kjoper": "Oslo kommune v/Utviklings- og kompetanseetaten Asker kommune Bærum kommune Drammen kommune Vestby ko",
+     "type": "Kunngjøring",
+     "dato": "2021-06-29",
+     "frist": "",
+     "harBygg": false,
+     "erTildeling": false,
+     "score": 1,
+     "url": "https://www.doffin.no/notices/2021-355985"
+    }
+   ],
+   "nyheter": [],
+   "tildelinger": []
+  }
+ }
+}
