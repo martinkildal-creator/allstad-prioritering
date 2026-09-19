@@ -9,7 +9,15 @@
    "aktivitet": 0,
    "doffin": [],
    "doffinAndre": [],
-   "nyheter": [],
+   "nyheter": [
+    {
+     "tittel": "Søk etter nyheter om Lille Oslo Eiendom",
+     "lenke": "https://news.google.com/search?q=%22Lille%20Oslo%20Eiendom%22%20omsorgsbolig&hl=no&gl=NO&ceid=NO:no",
+     "dato": "",
+     "kilde": "Google News",
+     "erLenke": true
+    }
+   ],
    "tildelinger": []
   },
   "konseptpluss": {
@@ -92,7 +100,15 @@
     }
    ],
    "doffinAndre": [],
-   "nyheter": [],
+   "nyheter": [
+    {
+     "tittel": "Søk etter nyheter om KonseptPluss",
+     "lenke": "https://news.google.com/search?q=KonseptPluss%20helse%20omsorg&hl=no&gl=NO&ceid=NO:no",
+     "dato": "",
+     "kilde": "Google News",
+     "erLenke": true
+    }
+   ],
    "tildelinger": []
   },
   "morgenstjernen": {
@@ -102,7 +118,15 @@
    "aktivitet": 0,
    "doffin": [],
    "doffinAndre": [],
-   "nyheter": [],
+   "nyheter": [
+    {
+     "tittel": "Søk etter nyheter om Morgenstjernen",
+     "lenke": "https://news.google.com/search?q=Morgenstjernen%20omsorgsbolig%20eiendom&hl=no&gl=NO&ceid=NO:no",
+     "dato": "",
+     "kilde": "Google News",
+     "erLenke": true
+    }
+   ],
    "tildelinger": []
   },
   "omtanke": {
@@ -112,7 +136,15 @@
    "aktivitet": 0,
    "doffin": [],
    "doffinAndre": [],
-   "nyheter": [],
+   "nyheter": [
+    {
+     "tittel": "Søk etter nyheter om Omtanke AS",
+     "lenke": "https://news.google.com/search?q=%22Omtanke%20AS%22%20omsorgsbolig&hl=no&gl=NO&ceid=NO:no",
+     "dato": "",
+     "kilde": "Google News",
+     "erLenke": true
+    }
+   ],
    "tildelinger": []
   },
   "steinar-moe": {
@@ -147,7 +179,15 @@
     }
    ],
    "doffinAndre": [],
-   "nyheter": [],
+   "nyheter": [
+    {
+     "tittel": "Søk etter nyheter om Steinar Moe Eiendom",
+     "lenke": "https://news.google.com/search?q=%22Steinar%20Moe%20Eiendom%22%20omsorgsbolig&hl=no&gl=NO&ceid=NO:no",
+     "dato": "",
+     "kilde": "Google News",
+     "erLenke": true
+    }
+   ],
    "tildelinger": []
   },
   "bof": {
@@ -157,7 +197,15 @@
    "aktivitet": 0,
    "doffin": [],
    "doffinAndre": [],
-   "nyheter": [],
+   "nyheter": [
+    {
+     "tittel": "Søk etter nyheter om BOF AS",
+     "lenke": "https://news.google.com/search?q=%22BOF%22%20omsorgsbolig%20sykehjem%20kommuner%20Norge&hl=no&gl=NO&ceid=NO:no",
+     "dato": "",
+     "kilde": "Google News",
+     "erLenke": true
+    }
+   ],
    "tildelinger": []
   },
   "consto": {
@@ -241,7 +289,15 @@
      "url": "https://www.doffin.no/notices/2019-363181"
     }
    ],
-   "nyheter": [],
+   "nyheter": [
+    {
+     "tittel": "Søk etter nyheter om Consto AS",
+     "lenke": "https://news.google.com/search?q=Consto%20sykehjem%20omsorgsbolig%20totalentreprise&hl=no&gl=NO&ceid=NO:no",
+     "dato": "",
+     "kilde": "Google News",
+     "erLenke": true
+    }
+   ],
    "tildelinger": []
   },
   "af-gruppen": {
@@ -288,7 +344,15 @@
      "url": "https://www.doffin.no/notices/2023-691724"
     }
    ],
-   "nyheter": [],
+   "nyheter": [
+    {
+     "tittel": "Søk etter nyheter om AF Gruppen",
+     "lenke": "https://news.google.com/search?q=%22AF%20Gruppen%22%20sykehjem%20omsorgsbolig%20helsehus&hl=no&gl=NO&ceid=NO:no",
+     "dato": "",
+     "kilde": "Google News",
+     "erLenke": true
+    }
+   ],
    "tildelinger": []
   },
   "veidekke": {
@@ -298,7 +362,15 @@
    "aktivitet": 0,
    "doffin": [],
    "doffinAndre": [],
-   "nyheter": [],
+   "nyheter": [
+    {
+     "tittel": "Søk etter nyheter om Veidekke",
+     "lenke": "https://news.google.com/search?q=Veidekke%20sykehjem%20omsorgsbolig%20kommune&hl=no&gl=NO&ceid=NO:no",
+     "dato": "",
+     "kilde": "Google News",
+     "erLenke": true
+    }
+   ],
    "tildelinger": []
   },
   "skanska": {
@@ -394,7 +466,15 @@
      "url": "https://www.doffin.no/notices/2020-334733"
     }
    ],
-   "nyheter": [],
+   "nyheter": [
+    {
+     "tittel": "Søk etter nyheter om Skanska Norge",
+     "lenke": "https://news.google.com/search?q=Skanska%20sykehjem%20omsorgsbolig%20helsehus%20Norge&hl=no&gl=NO&ceid=NO:no",
+     "dato": "",
+     "kilde": "Google News",
+     "erLenke": true
+    }
+   ],
    "tildelinger": []
   },
   "ncc": {
@@ -417,7 +497,15 @@
      "url": "https://www.doffin.no/notices/2023-101206"
     }
    ],
-   "nyheter": [],
+   "nyheter": [
+    {
+     "tittel": "Søk etter nyheter om NCC",
+     "lenke": "https://news.google.com/search?q=NCC%20sykehjem%20omsorgsbolig%20helsehus%20Norge&hl=no&gl=NO&ceid=NO:no",
+     "dato": "",
+     "kilde": "Google News",
+     "erLenke": true
+    }
+   ],
    "tildelinger": []
   },
   "backe": {
@@ -488,7 +576,15 @@
      "url": "https://www.doffin.no/notices/2025-120816"
     }
    ],
-   "nyheter": [],
+   "nyheter": [
+    {
+     "tittel": "Søk etter nyheter om Backe Gruppen",
+     "lenke": "https://news.google.com/search?q=Backe%20sykehjem%20omsorgsbolig%20kommune&hl=no&gl=NO&ceid=NO:no",
+     "dato": "",
+     "kilde": "Google News",
+     "erLenke": true
+    }
+   ],
    "tildelinger": []
   },
   "obos": {
@@ -559,7 +655,15 @@
      "url": "https://www.doffin.no/notices/2021-304413"
     }
    ],
-   "nyheter": [],
+   "nyheter": [
+    {
+     "tittel": "Søk etter nyheter om OBOS",
+     "lenke": "https://news.google.com/search?q=OBOS%20omsorgsbolig%20sykehjem%20helsehus%20kommune&hl=no&gl=NO&ceid=NO:no",
+     "dato": "",
+     "kilde": "Google News",
+     "erLenke": true
+    }
+   ],
    "tildelinger": []
   },
   "samfunnspartner": {
@@ -569,7 +673,15 @@
    "aktivitet": 0,
    "doffin": [],
    "doffinAndre": [],
-   "nyheter": [],
+   "nyheter": [
+    {
+     "tittel": "Søk etter nyheter om Samfunnspartner",
+     "lenke": "https://news.google.com/search?q=Samfunnspartner%20omsorgsbolig%20kommune&hl=no&gl=NO&ceid=NO:no",
+     "dato": "",
+     "kilde": "Google News",
+     "erLenke": true
+    }
+   ],
    "tildelinger": []
   },
   "bomer": {
@@ -579,7 +691,15 @@
    "aktivitet": 0,
    "doffin": [],
    "doffinAndre": [],
-   "nyheter": [],
+   "nyheter": [
+    {
+     "tittel": "Søk etter nyheter om BoMer",
+     "lenke": "https://news.google.com/search?q=BoMer%20omsorgsbolig%20bolig%20eldre&hl=no&gl=NO&ceid=NO:no",
+     "dato": "",
+     "kilde": "Google News",
+     "erLenke": true
+    }
+   ],
    "tildelinger": []
   },
   "stendi": {
@@ -626,7 +746,15 @@
      "url": "https://www.doffin.no/notices/2020-383077"
     }
    ],
-   "nyheter": [],
+   "nyheter": [
+    {
+     "tittel": "Søk etter nyheter om Stendi",
+     "lenke": "https://news.google.com/search?q=Stendi%20omsorgsbolig%20sykehjem%20bygg%20utbygging&hl=no&gl=NO&ceid=NO:no",
+     "dato": "",
+     "kilde": "Google News",
+     "erLenke": true
+    }
+   ],
    "tildelinger": []
   },
   "norlandia": {
@@ -662,7 +790,15 @@
      "url": "https://www.doffin.no/notices/2021-355985"
     }
    ],
-   "nyheter": [],
+   "nyheter": [
+    {
+     "tittel": "Søk etter nyheter om Norlandia",
+     "lenke": "https://news.google.com/search?q=Norlandia%20omsorgsbolig%20sykehjem%20bygg%20utbygging&hl=no&gl=NO&ceid=NO:no",
+     "dato": "",
+     "kilde": "Google News",
+     "erLenke": true
+    }
+   ],
    "tildelinger": []
   }
  }
