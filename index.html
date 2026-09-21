@@ -211,7 +211,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
           <button class="meny-item" onclick="openMetode()">ⓘ Slik regnes det</button>
         </div>
       </div>
-      <span class="tag">Internt · v54</span>
+      <span class="tag">Internt · v55</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -1276,6 +1276,7 @@ function rendKonk(){
 
   const harData=!!_konkData;
   const oppdatert=_konkData?_konkData._oppdatert:'–';
+  const body=document.getElementById('konkBody');
   if(!liste.length){body.innerHTML='<div style="padding:60px;text-align:center;color:var(--muted)">Ingen selskaper funnet.</div>';return;}
 
   let html=`<div style="color:var(--muted);font-size:13px;margin-bottom:16px">${liste.length} selskaper${harData?' · Sist oppdatert: '+oppdatert:' · <b style="color:#B8742A">Kjør «Overvak konkurrenter» i Actions for å hente data</b>'}</div>`;
