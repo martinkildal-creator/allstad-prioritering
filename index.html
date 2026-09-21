@@ -213,7 +213,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
           <button class="meny-item" onclick="openMetode()">ⓘ Slik regnes det</button>
         </div>
       </div>
-      <span class="tag">Internt · v56</span>
+      <span class="tag">Internt · v57</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -1284,7 +1284,153 @@ const KONK_FARGER = {
   'stendi':'#F44336','norlandia':'#2196F3'
 };
 
+const KOMMUNE_KOORD={
+'oslo':{lat:59.91,lng:10.75},'bergen':{lat:60.39,lng:5.32},'trondheim':{lat:63.43,lng:10.39},
+'stavanger':{lat:58.97,lng:5.73},'tromsø':{lat:69.65,lng:18.95},'drammen':{lat:59.74,lng:10.2},
+'kristiansand':{lat:58.15,lng:7.99},'fredrikstad':{lat:59.21,lng:10.93},'sandnes':{lat:58.85,lng:5.73},
+'bodø':{lat:67.28,lng:14.38},'sarpsborg':{lat:59.28,lng:11.1},'sandefjord':{lat:59.13,lng:10.22},
+'arendal':{lat:58.46,lng:8.77},'ålesund':{lat:62.47,lng:6.15},'porsgrunn':{lat:59.14,lng:9.66},
+'skien':{lat:59.21,lng:9.61},'haugesund':{lat:59.41,lng:5.27},'tønsberg':{lat:59.27,lng:10.41},
+'moss':{lat:59.43,lng:10.66},'gjøvik':{lat:60.79,lng:10.69},'hamar':{lat:60.79,lng:11.07},
+'lillehammer':{lat:61.12,lng:10.47},'elverum':{lat:60.88,lng:11.56},'molde':{lat:62.74,lng:7.16},
+'horten':{lat:59.42,lng:10.49},'halden':{lat:59.12,lng:11.38},'kongsberg':{lat:59.67,lng:9.65},
+'harstad':{lat:68.8,lng:16.54},'narvik':{lat:68.44,lng:17.43},'namsos':{lat:64.47,lng:11.5},
+'steinkjer':{lat:64.01,lng:11.49},'levanger':{lat:63.75,lng:11.3},'verdal':{lat:63.79,lng:11.48},
+'stjørdal':{lat:63.47,lng:10.93},'orkanger':{lat:63.31,lng:9.85},'oppdal':{lat:62.6,lng:9.68},
+'røros':{lat:62.57,lng:11.39},'mosjøen':{lat:65.84,lng:13.19},'mo i rana':{lat:66.31,lng:14.14},
+'alta':{lat:69.97,lng:23.27},'hammerfest':{lat:70.66,lng:23.68},'vadsø':{lat:70.07,lng:29.75},
+'vardø':{lat:70.37,lng:31.11},'kirkenes':{lat:69.73,lng:30.05},'honningsvåg':{lat:70.98,lng:25.97},
+'lakselv':{lat:70.05,lng:24.96},'kautokeino':{lat:69.02,lng:23.04},'karasjok':{lat:69.47,lng:25.51},
+'svolvær':{lat:68.23,lng:14.57},'leknes':{lat:68.15,lng:13.61},'sortland':{lat:68.69,lng:15.42},
+'stokmarknes':{lat:68.56,lng:14.9},'finnsnes':{lat:69.23,lng:17.98},'lenvik':{lat:69.37,lng:18.15},
+'bardufoss':{lat:69.06,lng:18.54},'andenes':{lat:69.32,lng:16.12},'brønnøysund':{lat:65.47,lng:12.21},
+'sandnessjøen':{lat:66.02,lng:12.63},'rana':{lat:66.3,lng:14.15},'nesna':{lat:66.2,lng:13.02},
+'rørvik':{lat:64.86,lng:11.24},'grong':{lat:64.47,lng:12.33},'lierne':{lat:64.48,lng:13.57},
+'meråker':{lat:63.42,lng:11.83},'frosta':{lat:63.59,lng:10.96},'inderøy':{lat:63.98,lng:11.22},
+'snåsa':{lat:64.25,lng:12.38},'overhalla':{lat:64.47,lng:11.98},'vikna':{lat:64.88,lng:11.02},
+'nærøy':{lat:65.01,lng:11.22},'leka':{lat:65.1,lng:11.64},'flatanger':{lat:64.54,lng:11.0},
+'fosnes':{lat:64.67,lng:11.0},'namdalseid':{lat:64.29,lng:11.18},'osen':{lat:64.39,lng:10.26},
+'roan':{lat:64.2,lng:10.4},'åfjord':{lat:63.95,lng:9.9},'bjugn':{lat:63.73,lng:9.69},
+'ørland':{lat:63.7,lng:9.6},'hitra':{lat:63.57,lng:8.75},'frøya':{lat:63.72,lng:8.68},
+'hemne':{lat:63.0,lng:9.42},'snillfjord':{lat:63.15,lng:9.7},'agdenes':{lat:63.53,lng:9.52},
+'skaun':{lat:63.39,lng:10.05},'melhus':{lat:63.28,lng:10.28},'midtre gauldal':{lat:63.08,lng:10.17},
+'holtålen':{lat:62.75,lng:11.13},'rennebu':{lat:62.84,lng:9.88},'sunndalsøra':{lat:62.68,lng:8.56},
+'tingvoll':{lat:62.91,lng:8.19},'aure':{lat:63.16,lng:8.43},'kristiansund':{lat:63.11,lng:7.73},
+'aukra':{lat:62.84,lng:6.91},'midsund':{lat:62.69,lng:6.68},'vestnes':{lat:62.63,lng:7.06},
+'rauma':{lat:62.57,lng:7.72},'nesset':{lat:62.52,lng:8.24},'eide':{lat:63.04,lng:7.52},
+'gjemnes':{lat:62.97,lng:8.04},'halsa':{lat:63.18,lng:8.23},'rindal':{lat:63.04,lng:9.24},
+'smøla':{lat:63.38,lng:8.04},'averøy':{lat:63.0,lng:7.56},'frei':{lat:63.05,lng:7.8},
+'volda':{lat:62.14,lng:6.07},'ørsta':{lat:62.2,lng:6.14},'ulstein':{lat:62.35,lng:5.85},
+'herøy':{lat:62.37,lng:5.52},'sande':{lat:62.25,lng:5.58},'vanylven':{lat:62.07,lng:5.45},
+'stryn':{lat:61.9,lng:6.72},'nordfjordeid':{lat:61.9,lng:5.99},'eid':{lat:61.9,lng:5.99},
+'gloppen':{lat:61.77,lng:6.52},'jølster':{lat:61.57,lng:6.3},'gaular':{lat:61.42,lng:5.97},
+'høyanger':{lat:61.22,lng:6.08},'balestrand':{lat:61.2,lng:6.53},'vik':{lat:61.07,lng:6.57},
+'leikanger':{lat:61.18,lng:6.8},'luster':{lat:61.47,lng:7.47},'årdal':{lat:61.24,lng:7.7},
+'lærdal':{lat:61.1,lng:7.48},'aurland':{lat:60.9,lng:7.19},'sogndal':{lat:61.23,lng:7.1},
+'hornindal':{lat:61.96,lng:6.52},'stranda':{lat:62.31,lng:7.16},'norddal':{lat:62.21,lng:7.36},
+'stordal':{lat:62.38,lng:7.03},'sykkylven':{lat:62.39,lng:6.57},'haram':{lat:62.58,lng:6.5},
+'sandøy':{lat:62.75,lng:5.72},'sula':{lat:62.45,lng:6.16},'giske':{lat:62.5,lng:6.05},
+'skodje':{lat:62.49,lng:6.74},'ørskog':{lat:62.5,lng:7.01},'vestnes':{lat:62.63,lng:7.06},
+'askøy':{lat:60.4,lng:5.17},'fjell':{lat:60.36,lng:5.11},'sund':{lat:60.23,lng:5.18},
+'øygarden':{lat:60.54,lng:4.86},'meland':{lat:60.54,lng:5.07},'lindås':{lat:60.61,lng:5.44},
+'masfjorden':{lat:60.77,lng:5.51},'austrheim':{lat:60.76,lng:5.02},'fedje':{lat:60.78,lng:4.73},
+'radøy':{lat:60.64,lng:5.1},'voss':{lat:60.63,lng:6.42},'granvin':{lat:60.56,lng:6.72},
+'ulvik':{lat:60.57,lng:6.9},'eidfjord':{lat:60.47,lng:7.07},'ullensvang':{lat:60.3,lng:6.64},
+'odda':{lat:60.07,lng:6.54},'jondal':{lat:60.24,lng:6.36},'kvam':{lat:60.37,lng:6.0},
+'fusa':{lat:60.2,lng:5.65},'samnanger':{lat:60.37,lng:5.82},'os':{lat:60.19,lng:5.47},
+'austevoll':{lat:60.09,lng:5.27},'fitjar':{lat:59.92,lng:5.31},'stord':{lat:59.78,lng:5.5},
+'bømlo':{lat:59.77,lng:5.2},'sveio':{lat:59.65,lng:5.38},'etne':{lat:59.66,lng:5.93},
+'vindafjord':{lat:59.55,lng:5.82},'sauda':{lat:59.65,lng:6.35},'suldal':{lat:59.58,lng:6.3},
+'hjelmeland':{lat:59.23,lng:5.88},'strand':{lat:59.05,lng:5.97},'forsand':{lat:58.88,lng:6.1},
+'gjesdal':{lat:58.78,lng:5.93},'sola':{lat:58.89,lng:5.64},'randaberg':{lat:59.0,lng:5.61},
+'rennesøy':{lat:59.08,lng:5.58},'finnøy':{lat:59.04,lng:5.78},'kvitsøy':{lat:59.07,lng:5.42},
+'bokn':{lat:59.23,lng:5.45},'tysvær':{lat:59.31,lng:5.53},'karmøy':{lat:59.28,lng:5.3},
+'utsira':{lat:59.31,lng:4.88},'lund':{lat:58.29,lng:6.7},'bjerkreim':{lat:58.58,lng:6.21},
+'eigersund':{lat:58.46,lng:6.0},'sokndal':{lat:58.34,lng:6.28},'hå':{lat:58.61,lng:5.7},
+'klepp':{lat:58.78,lng:5.64},'time':{lat:58.73,lng:5.74},'bryne':{lat:58.74,lng:5.75},
+'lyse':{lat:59.06,lng:6.23},'kvitseid':{lat:59.4,lng:8.49},'nissedal':{lat:59.13,lng:8.52},
+'fyresdal':{lat:59.18,lng:8.1},'tokke':{lat:59.44,lng:8.17},'vinje':{lat:59.56,lng:7.97},
+'seljord':{lat:59.49,lng:9.0},'hjartdal':{lat:59.58,lng:8.85},'notodden':{lat:59.56,lng:9.26},
+'sauherad':{lat:59.41,lng:9.22},'nome':{lat:59.24,lng:9.27},'bø':{lat:59.42,lng:9.07},
+'telemark':{lat:59.4,lng:8.5},'bamble':{lat:59.08,lng:9.56},'kragerø':{lat:59.04,lng:9.41},
+'drangedal':{lat:59.09,lng:9.05},'siljan':{lat:59.27,lng:9.75},'eidanger':{lat:59.14,lng:9.72},
+'stathelle':{lat:59.04,lng:9.7},'risør':{lat:58.72,lng:9.23},'gjerstad':{lat:58.89,lng:9.1},
+'vegårshei':{lat:58.76,lng:9.15},'tvedestrand':{lat:58.62,lng:9.08},'froland':{lat:58.57,lng:8.61},
+'grimstad':{lat:58.34,lng:8.59},'lillesand':{lat:58.25,lng:8.38},'birkenes':{lat:58.4,lng:8.24},
+'iveland':{lat:58.52,lng:7.89},'evje':{lat:58.59,lng:7.82},'bygland':{lat:58.97,lng:7.81},
+'valle':{lat:59.22,lng:7.53},'bykle':{lat:59.35,lng:7.37},'vennesla':{lat:58.28,lng:7.95},
+'songdalen':{lat:58.17,lng:7.84},'søgne':{lat:58.11,lng:7.87},'mandal':{lat:58.03,lng:7.46},
+'marnardal':{lat:58.24,lng:7.55},'åseral':{lat:58.59,lng:7.41},'audnedal':{lat:58.28,lng:7.22},
+'lindesnes':{lat:57.98,lng:7.07},'lyngdal':{lat:58.14,lng:7.1},'farsund':{lat:58.09,lng:6.8},
+'flekkefjord':{lat:58.3,lng:6.65},'kvinesdal':{lat:58.29,lng:6.95},'sirdal':{lat:58.72,lng:6.7},
+'hægebostad':{lat:58.4,lng:7.17},'feda':{lat:58.27,lng:7.0},'nordre land':{lat:61.12,lng:10.1},
+'søndre land':{lat:60.82,lng:9.87},'vestre toten':{lat:60.73,lng:10.6},'østre toten':{lat:60.73,lng:10.88},
+'lunner':{lat:60.35,lng:10.62},'gran':{lat:60.43,lng:10.58},'jevnaker':{lat:60.24,lng:10.41},
+'nittedal':{lat:60.07,lng:10.89},'lørenskog':{lat:59.92,lng:10.97},'skedsmo':{lat:59.99,lng:11.06},
+'ullensaker':{lat:60.08,lng:11.07},'nannestad':{lat:60.22,lng:11.07},'gjerdrum':{lat:60.17,lng:11.0},
+'nes':{lat:60.54,lng:11.42},'eidsvoll':{lat:60.33,lng:11.25},'hurdal':{lat:60.43,lng:11.07},
+'aurskog-høland':{lat:59.9,lng:11.54},'rømskog':{lat:59.76,lng:11.7},'marker':{lat:59.53,lng:11.48},
+'aremark':{lat:59.38,lng:11.46},'trøgstad':{lat:59.62,lng:11.26},'spydeberg':{lat:59.62,lng:11.06},
+'hobøl':{lat:59.61,lng:10.93},'skiptvet':{lat:59.49,lng:11.16},'råde':{lat:59.33,lng:10.87},
+'rygge':{lat:59.35,lng:10.78},'viken':{lat:59.8,lng:10.9},'indre østfold':{lat:59.65,lng:11.2},
+'nordre follo':{lat:59.82,lng:10.84},'lier':{lat:59.8,lng:10.24},'røyken':{lat:59.74,lng:10.38},
+'hurum':{lat:59.64,lng:10.43},'flå':{lat:60.43,lng:9.36},'nesbyen':{lat:60.57,lng:9.12},
+'gol':{lat:60.7,lng:8.95},'hemsedal':{lat:60.86,lng:8.57},'ål':{lat:60.63,lng:8.56},
+'hol':{lat:60.63,lng:8.27},'sigdal':{lat:60.07,lng:9.85},'numedal':{lat:60.0,lng:9.0},
+'flesberg':{lat:59.94,lng:9.4},'rollag':{lat:60.04,lng:9.29},'nore og uvdal':{lat:60.3,lng:8.89},
+'larvik':{lat:59.06,lng:10.01},'stokke':{lat:59.25,lng:10.29},'lardal':{lat:59.38,lng:9.97},
+'andebu':{lat:59.26,lng:10.09},'stokke':{lat:59.25,lng:10.29},'nøtterøy':{lat:59.18,lng:10.4},
+'tjøme':{lat:59.12,lng:10.44},'stavern':{lat:59.0,lng:10.03},'sande':{lat:59.6,lng:10.2},
+'holmestrand':{lat:59.49,lng:10.32},'hof':{lat:59.53,lng:10.15},'re':{lat:59.36,lng:10.23},
+'stokke':{lat:59.25,lng:10.29},'sem':{lat:59.27,lng:10.4},'nøtterøy':{lat:59.18,lng:10.4},
+'skien':{lat:59.21,lng:9.61},'modum':{lat:60.04,lng:9.91},'nedre eiker':{lat:59.76,lng:10.04},
+'øvre eiker':{lat:59.89,lng:9.91},'kongsberg':{lat:59.67,lng:9.65},'ringerike':{lat:60.27,lng:10.43},
+'bærum':{lat:59.9,lng:10.5},'asker':{lat:59.83,lng:10.43},'frogn':{lat:59.67,lng:10.67},
+'vestby':{lat:59.6,lng:10.72},'ski':{lat:59.72,lng:10.84},'ås':{lat:59.67,lng:10.79},
+'oppegård':{lat:59.78,lng:10.79},'nesodden':{lat:59.72,lng:10.66},'rælingen':{lat:59.91,lng:10.99},
+'enebakk':{lat:59.77,lng:11.12},'fet':{lat:59.96,lng:11.17},'sørum':{lat:59.99,lng:11.27},
+'gjøvik':{lat:60.79,lng:10.69},'biri':{lat:60.88,lng:10.67},'raufoss':{lat:60.73,lng:10.62},
+'toten':{lat:60.73,lng:10.7},'vågå':{lat:61.88,lng:9.1},'lom':{lat:61.84,lng:8.57},
+'skjåk':{lat:61.87,lng:8.37},'lesja':{lat:62.07,lng:8.92},'dovre':{lat:62.0,lng:9.22},
+'sel':{lat:61.97,lng:9.52},'ringebu':{lat:61.53,lng:10.17},'øyer':{lat:61.27,lng:10.43},
+'gausdal':{lat:61.23,lng:10.0},'nordre land':{lat:61.12,lng:10.1},'etnedal':{lat:61.16,lng:9.55},
+'søndre land':{lat:60.82,lng:9.87},'sør-aurdal':{lat:60.72,lng:9.4},'nord-aurdal':{lat:60.89,lng:9.52},
+'vestre slidre':{lat:61.08,lng:8.96},'øystre slidre':{lat:61.28,lng:8.82},'vågå':{lat:61.88,lng:9.1},
+'koppang':{lat:61.57,lng:11.05},'stor-elvdal':{lat:61.62,lng:10.95},'rendalen':{lat:61.95,lng:10.91},
+'engerdal':{lat:62.43,lng:11.96},'trysil':{lat:61.32,lng:12.27},'åmot':{lat:61.5,lng:11.35},
+'åsnes':{lat:60.73,lng:12.0},'grue':{lat:60.66,lng:12.31},'kongsvinger':{lat:60.19,lng:12.0},
+'sør-odal':{lat:60.26,lng:11.62},'nord-odal':{lat:60.37,lng:11.56},'eidskog':{lat:59.95,lng:12.12},
+'stange':{lat:60.71,lng:11.21},'løten':{lat:60.82,lng:11.34},'ringsaker':{lat:60.9,lng:10.87},
+'alvdal':{lat:62.1,lng:10.63},'tynset':{lat:62.27,lng:10.78},'tolga':{lat:62.37,lng:11.01},
+'os':{lat:62.49,lng:11.23},'folldal':{lat:62.13,lng:9.99},'balsfjord':{lat:69.33,lng:19.34},
+'lyngen':{lat:69.82,lng:20.2},'storfjord':{lat:69.43,lng:20.0},'kåfjord':{lat:69.78,lng:20.83},
+'skjervøy':{lat:70.03,lng:20.97},'nordreisa':{lat:69.96,lng:21.0},'kvænangen':{lat:70.08,lng:21.76},
+'salangen':{lat:68.8,lng:17.54},'lavangen':{lat:68.72,lng:17.17},'bardu':{lat:68.78,lng:18.3},
+'målselv':{lat:69.05,lng:18.76},'sørreisa':{lat:69.13,lng:17.93},'dyrøy':{lat:69.12,lng:17.52},
+'tranøy':{lat:69.4,lng:17.87},'torsken':{lat:69.47,lng:17.2},'berg':{lat:69.42,lng:16.9},
+'tjeldsund':{lat:68.58,lng:16.68},'evenes':{lat:68.5,lng:16.93},'skånland':{lat:68.56,lng:17.28},
+'ibestad':{lat:68.86,lng:17.16},'gratangen':{lat:68.74,lng:17.34},'kvæfjord':{lat:68.77,lng:16.63},
+'andøy':{lat:69.32,lng:16.12},'øksnes':{lat:68.71,lng:15.04},'sortland':{lat:68.69,lng:15.42},
+'lødingen':{lat:68.43,lng:16.04},'tjeldsund':{lat:68.58,lng:16.68},'steigen':{lat:67.83,lng:15.36},
+'hamarøy':{lat:67.87,lng:15.66},'tysfjord':{lat:67.99,lng:16.28},'ballangen':{lat:68.34,lng:17.0},
+'evenes':{lat:68.5,lng:16.93},'meløy':{lat:66.96,lng:14.14},'beiarn':{lat:67.04,lng:14.67},
+'saltdal':{lat:66.97,lng:15.15},'sørfold':{lat:67.46,lng:15.45},'fauske':{lat:67.26,lng:15.38},
+'sørfold':{lat:67.46,lng:15.45},'hamarøy':{lat:67.87,lng:15.66},'gildeskål':{lat:67.04,lng:14.07},
+'rødøy':{lat:66.76,lng:13.57},'lurøy':{lat:66.41,lng:12.95},'nesna':{lat:66.2,lng:13.02},
+'hemnes':{lat:66.24,lng:13.68},'rana':{lat:66.3,lng:14.15},'træna':{lat:66.5,lng:12.08},
+'dønna':{lat:66.11,lng:12.46},'herøy':{lat:65.99,lng:12.22},'alstahaug':{lat:65.87,lng:12.64},
+'leirfjord':{lat:65.8,lng:12.94},'vefsn':{lat:65.84,lng:13.19},'grane':{lat:65.48,lng:13.4},
+'hattfjelldal':{lat:65.6,lng:13.97},'bindal':{lat:65.12,lng:12.38},'sømna':{lat:65.26,lng:12.14},
+'vevelstad':{lat:65.52,lng:12.35},'vega':{lat:65.67,lng:11.94},'velfjord':{lat:65.27,lng:12.42},
+'brønnøy':{lat:65.47,lng:12.21},'nordkapp':{lat:70.98,lng:25.97},'porsanger':{lat:70.05,lng:25.0},
+'lebesby':{lat:70.52,lng:27.04},'gamvik':{lat:71.06,lng:28.23},'berlevåg':{lat:70.86,lng:29.09},
+'tana':{lat:70.2,lng:28.18},'nesseby':{lat:70.1,lng:28.74},'båtsfjord':{lat:70.64,lng:29.72},
+'sør-varanger':{lat:69.73,lng:30.05},'måsøy':{lat:70.98,lng:25.97},'loppa':{lat:70.34,lng:21.26},
+'alta':{lat:69.97,lng:23.27},'kvalsund':{lat:70.48,lng:24.07},'repvåg':{lat:70.76,lng:25.69},
+'hasvik':{lat:70.49,lng:22.14},'sørøysund':{lat:70.6,lng:23.68}
+};
 function rendKart(){
+  const norm = v => (v||'').toString().toLowerCase().trim();
   const body = document.getElementById('konkBody');
   const data = (_konkData && _konkData.selskaper) || {};
   const cfg  = window._konkCfg || [];
@@ -1297,7 +1443,7 @@ function rendKart(){
     const kommuneKart = d.kommuneKart || {};
     (d.doffin || []).forEach(t => {
       if (!t.kommune) return;
-      const pos = kommuneKart[t.kommune];
+      const pos = kommuneKart[t.kommune] || KOMMUNE_KOORD[norm(t.kommune)] || null;
       if (!pos) return;
       pins.push({ lat: pos.lat, lng: pos.lng, navn: s.navn, kommune: t.kommune,
                   tittel: t.tittel, type: t.type, dato: t.dato, farge, id: s.id });
@@ -1305,7 +1451,10 @@ function rendKart(){
     // SPV-kommuner
     (d.spv || []).forEach(sp => {
       if (!sp.kommune) return;
-      const pos = kommuneKart[norm(sp.kommune).split(' ')[0]] || kommuneKart[sp.kommune];
+      const pos = kommuneKart[sp.kommune]
+             || KOMMUNE_KOORD[norm(sp.kommune)]
+             || KOMMUNE_KOORD[norm(sp.kommune).split(' ')[0]]
+             || null;
       if (!pos) return;
       pins.push({ lat: pos.lat, lng: pos.lng, navn: s.navn, kommune: sp.kommune,
                   tittel: 'SPV: ' + sp.navn, type: 'SPV', dato: '', farge, id: s.id });
