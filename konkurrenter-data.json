@@ -1,11 +1,11 @@
 {
- "_oppdatert": "2026-09-19",
+ "_oppdatert": "2026-09-21",
  "_kilde": "Doffin (offentlige kunngjøringer) og Google News",
  "selskaper": {
   "lille-oslo-eiendom": {
    "navn": "Lille Oslo Eiendom",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-19",
+   "oppdatert": "2026-09-21",
    "aktivitet": 0,
    "doffin": [],
    "doffinAndre": [],
@@ -23,7 +23,7 @@
   "konseptpluss": {
    "navn": "KonseptPluss",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-19",
+   "oppdatert": "2026-09-21",
    "aktivitet": 6,
    "doffin": [
     {
@@ -114,7 +114,7 @@
   "morgenstjernen": {
    "navn": "Morgenstjernen",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-19",
+   "oppdatert": "2026-09-21",
    "aktivitet": 0,
    "doffin": [],
    "doffinAndre": [],
@@ -132,7 +132,7 @@
   "omtanke": {
    "navn": "Omtanke AS",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-19",
+   "oppdatert": "2026-09-21",
    "aktivitet": 0,
    "doffin": [],
    "doffinAndre": [],
@@ -150,7 +150,7 @@
   "steinar-moe": {
    "navn": "Steinar Moe Eiendom",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-19",
+   "oppdatert": "2026-09-21",
    "aktivitet": 2,
    "doffin": [
     {
@@ -193,7 +193,7 @@
   "bof": {
    "navn": "BOF AS",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-19",
+   "oppdatert": "2026-09-21",
    "aktivitet": 0,
    "doffin": [],
    "doffinAndre": [],
@@ -211,7 +211,7 @@
   "consto": {
    "navn": "Consto AS",
    "kategori": "Totalentreprenør",
-   "oppdatert": "2026-09-19",
+   "oppdatert": "2026-09-21",
    "aktivitet": 1,
    "doffin": [
     {
@@ -303,7 +303,7 @@
   "af-gruppen": {
    "navn": "AF Gruppen",
    "kategori": "Totalentreprenør",
-   "oppdatert": "2026-09-19",
+   "oppdatert": "2026-09-21",
    "aktivitet": 0,
    "doffin": [],
    "doffinAndre": [
@@ -358,7 +358,7 @@
   "veidekke": {
    "navn": "Veidekke",
    "kategori": "Totalentreprenør",
-   "oppdatert": "2026-09-19",
+   "oppdatert": "2026-09-21",
    "aktivitet": 0,
    "doffin": [],
    "doffinAndre": [],
@@ -376,7 +376,7 @@
   "skanska": {
    "navn": "Skanska Norge",
    "kategori": "Totalentreprenør",
-   "oppdatert": "2026-09-19",
+   "oppdatert": "2026-09-21",
    "aktivitet": 2,
    "doffin": [
     {
@@ -480,7 +480,7 @@
   "ncc": {
    "navn": "NCC",
    "kategori": "Totalentreprenør",
-   "oppdatert": "2026-09-19",
+   "oppdatert": "2026-09-21",
    "aktivitet": 0,
    "doffin": [],
    "doffinAndre": [
@@ -511,7 +511,7 @@
   "backe": {
    "navn": "Backe Gruppen",
    "kategori": "Totalentreprenør",
-   "oppdatert": "2026-09-19",
+   "oppdatert": "2026-09-21",
    "aktivitet": 0,
    "doffin": [],
    "doffinAndre": [
@@ -590,7 +590,7 @@
   "obos": {
    "navn": "OBOS",
    "kategori": "Boligutbygger",
-   "oppdatert": "2026-09-19",
+   "oppdatert": "2026-09-21",
    "aktivitet": 0,
    "doffin": [],
    "doffinAndre": [
@@ -669,7 +669,7 @@
   "samfunnspartner": {
    "navn": "Samfunnspartner",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-19",
+   "oppdatert": "2026-09-21",
    "aktivitet": 0,
    "doffin": [],
    "doffinAndre": [],
@@ -687,7 +687,7 @@
   "bomer": {
    "navn": "BoMer",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-19",
+   "oppdatert": "2026-09-21",
    "aktivitet": 0,
    "doffin": [],
    "doffinAndre": [],
@@ -705,7 +705,7 @@
   "stendi": {
    "navn": "Stendi",
    "kategori": "Driftsaktør",
-   "oppdatert": "2026-09-19",
+   "oppdatert": "2026-09-21",
    "aktivitet": 0,
    "doffin": [],
    "doffinAndre": [
@@ -760,7 +760,7 @@
   "norlandia": {
    "navn": "Norlandia",
    "kategori": "Driftsaktør",
-   "oppdatert": "2026-09-19",
+   "oppdatert": "2026-09-21",
    "aktivitet": 1,
    "doffin": [
     {
