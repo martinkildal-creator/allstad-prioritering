@@ -1,0 +1,36 @@
+{
+  "_info": "Allstads egne omsorgsprosjekter. Oppdater manuelt når nye prosjekter kommer til eller status endrer seg.",
+  "_oppdatert": "2026-09-19",
+  "prosjekter": [
+    {
+      "id": "lyngen",
+      "navn": "Lyngen",
+      "kommune": "Lyngen",
+      "status": "Gjennomført",
+      "statusFarge": "#2E6F62",
+      "beskrivelse": "Gjennomført og overlevert",
+      "lat": 69.82,
+      "lng": 20.2
+    },
+    {
+      "id": "alstahaug",
+      "navn": "Alstahaug",
+      "kommune": "Alstahaug",
+      "status": "Gjennomført",
+      "statusFarge": "#2E6F62",
+      "beskrivelse": "Gjennomført og overlevert",
+      "lat": 65.87,
+      "lng": 12.64
+    },
+    {
+      "id": "bjorbekk",
+      "navn": "Bjorbekk (Arendal)",
+      "kommune": "Arendal",
+      "status": "Under regulering",
+      "statusFarge": "#E67E22",
+      "beskrivelse": "Under regulering",
+      "lat": 58.46,
+      "lng": 8.77
+    }
+  ]
+}

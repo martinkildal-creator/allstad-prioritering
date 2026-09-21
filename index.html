@@ -213,7 +213,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
           <button class="meny-item" onclick="openMetode()">ⓘ Slik regnes det</button>
         </div>
       </div>
-      <span class="tag">Internt · v58</span>
+      <span class="tag">Internt · v61</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -500,6 +500,8 @@ function compute(){
   NAT.andel80=sP?s80/sP:0;
   NAT.instDek=s80i?sInst/s80i:null;
   NAT.boligDek=s80b?sBol/s80b:null;
+  const fArr=valN.filter(d=>d.fagdekning!=null);
+  NAT.fagdekning=fArr.length?fArr.reduce((s,d)=>s+d.fagdekning,0)/fArr.length:null;
   DATA.forEach(d=>{
     d.andel80VsNat=NAT.andel80?d.andel80-NAT.andel80:null;
     d.instVsNat=(d.instDek!=null&&NAT.instDek!=null)?d.instDek-NAT.instDek:null;
@@ -606,6 +608,23 @@ function omsorgsbyrdeChart(d){
   g+=refLine(landAvg,'#5A6B8C','Land');
   return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="font-family:'Hanken Grotesk'">${g}<line x1="${mL}" y1="${mT+ph}" x2="${W-mR}" y2="${mT+ph}" stroke="var(--muted)"/></svg>`;
 }
+function bemanningTekst(d){
+  let deler=[];
+  if(d.fagdekning!=null&&NAT.fagdekning!=null){
+    const diff=d.fagdekning-NAT.fagdekning;
+    const pp=v=>(v>=0?'+':'\u2212')+Math.abs(v).toFixed(1).replace('.',',')+' pp';
+    deler.push(`<b>Andel årsverk med fagutdanning:</b> ${d.fagdekning.toFixed(1).replace('.',',')} % mot landssnittet ${NAT.fagdekning.toFixed(1).replace('.',',')} % (${pp(diff)}).`);
+    if(diff<-3){
+      deler.push(`Kommunen ligger <b>under</b> landssnittet på fagutdanning \u2013 et argument for samlokalisering: én ny, samlokalisert enhet kan dekke behovet med færre ansatte per plass enn spredte, eldre bygg (Helsepersonellkommisjonen, 2023).`);
+    } else if(diff>3){
+      deler.push(`Kommunen ligger over landssnittet på fagutdanning \u2013 god kvalitet i dagens tjeneste, men presset på bemanning vil likevel øke med eldrebølgen.`);
+    }
+  }
+  const slugify=s=>(s||'').toString().toLowerCase().replace(/æ/g,'ae').replace(/ø/g,'o').replace(/å/g,'a').replace(/[^a-z0-9]/g,'');
+  const sokUrl=`https://www.google.com/search?q=${encodeURIComponent('site:'+slugify(d.navn)+'.kommune.no økonomiplan helse omsorg investering')}`;
+  deler.push(`<b>Kommunens egen investeringsplan:</b> vi henter ikke dette automatisk \u2013 KOSTRA har ingen pålitelig samletabell for planlagte investeringer per sektor og kommune. Sjekk kommunens økonomiplan/handlingsprogram direkte: <a href="${sokUrl}" target="_blank" rel="noopener">søk opp ${d.navn}s økonomiplan \u2197</a>. Har kommunen allerede satt av midler til omsorgsbygg, er dette en varm lead \u2013 notér gjerne beløp og år i "Sett egne data".`);
+  return deler.join(' ');
+}
 function profilTekst(d){
   const pp=v=>(v>=0?'+':'\u2212')+Math.abs(v*100).toFixed(1).replace('.',',')+' pp';
   const pc1=v=>(v*100).toFixed(1).replace('.',',')+'%';
@@ -635,6 +654,7 @@ function snittChart(d){
   if(d.plasser>0)metrics.push({label:'Andel 80+ med plass i dag',ref:0.25,vals:[['Kommune',d.dekn],['Land',avg(DATA.filter(x=>x.plasser>0),x=>x.dekn)]]});
   if(d.instDek!=null)metrics.push({label:'Andel 80+ på institusjon',vals:[['Kommune',d.instDek],['Land',avg(DATA.filter(x=>x.instDek!=null),x=>x.instDek)]]});
   if(d.boligDek!=null)metrics.push({label:'Andel 80+ i omsorgsbolig m/ bemanning',vals:[['Kommune',d.boligDek],['Land',avg(DATA.filter(x=>x.boligDek!=null),x=>x.boligDek)]]});
+  if(d.fagdekning!=null)metrics.push({label:'Andel årsverk med fagutdanning',vals:[['Kommune',d.fagdekning/100],['Land',avg(DATA.filter(x=>x.fagdekning!=null),x=>x.fagdekning)/100]]});
   const W=560,rowH=24,mL=78,barW=W-mL-72;let y=6,g='';
   metrics.forEach(m=>{
     const max=Math.max(...m.vals.map(v=>v[1]),m.ref||0,0.0001)*1.16;
@@ -1025,6 +1045,8 @@ function openNote(navn){
     <div class="recco">«Andel 80+ av befolkningen» viser om kommunen er eldre enn landet. «Andel 80+ med plass» = hvor stor del av de eldste som har en heldøgnsplass i dag (mål <b>25 %</b>, stiplet linje). Ligger kommunen under linja, eller høyere på vekst/andel eldre enn landssnittet, er behovet mer påtrengende her enn for gjennomsnittskommunen.</div>
     ${d.profil||d.boligUnder!=null?`<h3>Dekningsprofil mot landssnitt</h3>
     <div class="recco">${profilTekst(d)}</div>`:''}
+    ${(d.fagdekning!=null||d.navn)?`<h3>Bemanning og investeringsvilje</h3>
+    <div class="recco">${bemanningTekst(d)}</div>`:''}
     <h3>Flere nøkkeltall</h3>
     <div class="kv">
       <div><div class="k">Dagens HDO-plasser</div><div class="v">${(d.plasser||0).toLocaleString('no')}${(d.kapInst!=null||d.kapBolig!=null)?` <small>inst. ${(d.kapInst||0).toLocaleString('no')} · bolig ${(d.kapBolig||0).toLocaleString('no')}</small>`:((d.instP||d.boligP)?` <small>inst. ${Math.round((d.instP||0)/100*d.i80)} · bolig ${Math.round((d.boligP||0)/100*d.i80)}</small>`:'')}</div></div>
@@ -1277,6 +1299,7 @@ function setKonkVisning(v){
 
 // Farger per selskap-id
 const KONK_FARGER = {
+  'allstad':'#2E3A2C',
   'lille-oslo-eiendom':'#E74C3C','konseptpluss':'#E67E22','morgenstjernen':'#F1C40F',
   'omtanke':'#2ECC71','steinar-moe':'#1ABC9C','bof':'#3498DB','consto':'#9B59B6',
   'af-gruppen':'#E91E63','veidekke':'#FF5722','skanska':'#795548','ncc':'#607D8B',
@@ -1465,6 +1488,19 @@ function rendKart(){
     });
   });
 
+  // Legg til Allstads egne prosjekter
+  const egneProj = window._allstadProj || [];
+  egneProj.forEach(proj => {
+    pins.push({
+      lat: proj.lat, lng: proj.lng,
+      navn: 'Allstad (oss)', kommune: proj.kommune,
+      tittel: proj.navn, type: proj.status,
+      dato: '', farge: '#2E3A2C', id: 'allstad',
+      vekt: 3, erAllstad: true, statusFarge: proj.statusFarge,
+      beskrivelse: proj.beskrivelse
+    });
+  });
+
   if (!pins.length) {
     body.innerHTML = `<div style="padding:60px;text-align:center;color:var(--muted)">
       Ingen kartdata ennå – kjør roboten for å hente koordinater.</div>`;
@@ -1473,10 +1509,16 @@ function rendKart(){
 
   // Legende
   const aktiveSel = [...new Set(pins.map(p => p.id))];
-  const legend = cfg.filter(s => aktiveSel.includes(s.id)).map(s =>
-    `<span style="display:inline-flex;align-items:center;gap:5px;margin:2px 8px 2px 0;font-size:12px">
-      <span style="width:12px;height:12px;border-radius:50%;background:${KONK_FARGER[s.id]||'#888'};flex-shrink:0"></span>${s.navn}
-    </span>`).join('');
+  const legend = cfg.filter(s => aktiveSel.includes(s.id))
+    .sort((a,b)=>a.id==='allstad'?-1:b.id==='allstad'?1:0)
+    .map(s => s.id==='allstad'
+      ? `<span style="display:inline-flex;align-items:center;gap:5px;margin:2px 12px 2px 0;font-size:12px;font-weight:700">
+          <span style="width:14px;height:14px;border-radius:50%;background:#2E3A2C;border:2px solid #BE8A4E;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#BE8A4E;font-size:9px">★</span>${s.navn}
+        </span>`
+      : `<span style="display:inline-flex;align-items:center;gap:5px;margin:2px 8px 2px 0;font-size:12px">
+          <span style="width:12px;height:12px;border-radius:50%;background:${KONK_FARGER[s.id]||'#888'};flex-shrink:0"></span>${s.navn}
+        </span>`
+    ).join('');
 
   body.innerHTML = `
     <div style="margin-bottom:10px;flex-wrap:wrap;display:flex;align-items:center;gap:4px">
@@ -1484,9 +1526,10 @@ function rendKart(){
       ${legend}
     </div>
     <div style="font-size:12px;color:var(--muted);margin:4px 0 8px;display:flex;gap:14px;flex-wrap:wrap">
+      <span>★ <b>Allstad</b> (oss)</span>
       <span>⬤ liten = Kunngjøring</span>
       <span>⬤ middels = Intensjonskunngjøring</span>
-      <span>⬤ stor = Tildeling (vunnet)</span>
+      <span>⬤ stor = Tildeling (konkurrent vunnet)</span>
     </div>
     <div id="konkKartDiv" style="height:580px;border-radius:12px;overflow:hidden;border:1px solid var(--line)"></div>`;
 
@@ -1502,25 +1545,55 @@ function rendKart(){
   pins.forEach(p => {
     const k = `${p.lat.toFixed(2)},${p.lng.toFixed(2)},${p.id}`;
     if (!kluster[k]) kluster[k] = { ...p, saker: [] };
-    kluster[k].saker.push({ tittel: p.tittel, type: p.type, dato: p.dato });
+    kluster[k].saker.push({ tittel: p.tittel, type: p.type, dato: p.dato,
+      erAllstad: p.erAllstad, statusFarge: p.statusFarge, beskrivelse: p.beskrivelse });
   });
 
   Object.values(kluster).forEach(p => {
     const maxVekt = Math.max(...p.saker.map(x => x.vekt || 1));
-    const radius = maxVekt === 3 ? 14 : maxVekt === 2 ? 10 : 7;
-    const marker = L.circleMarker([p.lat, p.lng], {
-      radius: radius + Math.min((p.saker.length - 1), 4),
-      fillColor: p.farge, color: '#fff', weight: 2,
-      fillOpacity: 0.88
-    }).addTo(_konkKart);
-    const typeFarge = t => t==='Tildeling'?'#2ECC71':t==='Intensjonskunngjøring'?'#E67E22':'#3498DB';
-    const innhold = `<div style="min-width:220px"><b style="font-size:14px">${p.navn}</b>
-      <div style="color:#666;margin-bottom:6px">${p.kommune}</div>
-      ${p.saker.slice(0,4).map(sk=>`<div style="margin-top:5px;padding:5px 8px;background:#f8f8f8;border-radius:6px;font-size:12px">
-        <span style="background:${typeFarge(sk.type)};color:#fff;padding:1px 6px;border-radius:4px;font-size:10px;font-weight:700">${sk.type}</span>
-        <span style="color:#888;margin-left:4px">${sk.dato}</span>
-        <div style="margin-top:2px;font-weight:500">${(sk.tittel||'').slice(0,100)}</div>
-      </div>`).join('')}</div>`;
+    let marker;
+    if(p.id === 'allstad'){
+      // Allstad: grønt stjernepunkt
+      const ikon = L.divIcon({
+        className:'',
+        html:`<div style="width:22px;height:22px;background:#2E3A2C;border:3px solid #BE8A4E;
+          border-radius:50%;display:flex;align-items:center;justify-content:center;
+          color:#BE8A4E;font-size:12px;font-weight:900;box-shadow:0 2px 6px rgba(0,0,0,.4)">★</div>`,
+        iconSize:[22,22], iconAnchor:[11,11]
+      });
+      marker = L.marker([p.lat, p.lng], {icon: ikon}).addTo(_konkKart);
+    } else {
+      const radius = maxVekt === 3 ? 14 : maxVekt === 2 ? 10 : 7;
+      marker = L.circleMarker([p.lat, p.lng], {
+        radius: radius + Math.min((p.saker.length - 1), 4),
+        fillColor: p.farge, color: '#fff', weight: 2,
+        fillOpacity: 0.88
+      }).addTo(_konkKart);
+    }
+    const typeFarge = t => t==='Tildeling'?'#2ECC71':t==='Intensjonskunngjøring'?'#E67E22':
+      t==='Gjennomført'?'#2E3A2C':t==='Under regulering'?'#E67E22':'#3498DB';
+
+    // Allstad-prosjekter har enklere popup
+    const erAllstad = p.saker.some(x => x.erAllstad);
+    const innhold = erAllstad
+      ? `<div style="min-width:180px">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px">
+            <span style="font-size:18px">★</span>
+            <b style="font-size:14px;color:#2E3A2C">Allstad</b>
+          </div>
+          ${p.saker.map(sk=>`<div style="padding:6px 8px;background:#f1f8f4;border-radius:8px;border-left:3px solid ${sk.statusFarge||'#2E3A2C'};margin-bottom:4px">
+            <div style="font-weight:700;font-size:13px">${sk.tittel}</div>
+            <div style="font-size:12px;color:${sk.statusFarge||'#2E3A2C'};font-weight:600;margin-top:2px">${sk.type}</div>
+            ${sk.beskrivelse&&sk.beskrivelse!==sk.type?`<div style="font-size:11px;color:#666">${sk.beskrivelse}</div>`:''}
+          </div>`).join('')}
+        </div>`
+      : `<div style="min-width:220px"><b style="font-size:14px">${p.navn}</b>
+          <div style="color:#666;margin-bottom:6px">${p.kommune}</div>
+          ${p.saker.slice(0,4).map(sk=>`<div style="margin-top:5px;padding:5px 8px;background:#f8f8f8;border-radius:6px;font-size:12px">
+            <span style="background:${typeFarge(sk.type)};color:#fff;padding:1px 6px;border-radius:4px;font-size:10px;font-weight:700">${sk.type}</span>
+            <span style="color:#888;margin-left:4px">${sk.dato}</span>
+            <div style="margin-top:2px;font-weight:500">${(sk.tittel||'').slice(0,100)}</div>
+          </div>`).join('')}</div>`;
     marker.bindPopup(innhold, { maxWidth: 300 });
   });
 
@@ -1538,6 +1611,7 @@ function rendKonk(){
   const data=(_konkData&&_konkData.selskaper)||{};
 
   let liste=cfg.filter(s=>{
+    if(s.id==='allstad') return false;  // Allstad vises bare på kartet, ikke i konkurrentlista
     if(kat!=='alle'&&s.kategori!==kat) return false;
     if(q&&!norm(s.navn).includes(q)) return false;
     return true;
@@ -1563,8 +1637,11 @@ function rendKonk(){
     html+=`<div class="kilde-card" style="padding:16px 18px">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
         <div>
-          <div style="font-size:16px;font-weight:700">${s.navn}</div>
-          <div style="font-size:12px;color:var(--muted);margin-top:2px">${s.kategori||''}</div>
+          <div style="display:flex;align-items:center;gap:7px">
+            <div style="font-size:16px;font-weight:700">${s.navn}</div>
+            ${s.kategori==='Allstad'?'<span style="background:#2E3A2C;color:#BE8A4E;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700;letter-spacing:.04em">OSS</span>':''}
+          </div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px">${s.kategori!=='Allstad'?s.kategori||'':''}</div>
         </div>
         <div style="text-align:right">
           <div style="font-size:20px;font-weight:800;color:${aktFarge}">${aktivitet}</div>
@@ -1894,6 +1971,7 @@ function openMetode(){
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.fram40Table||'13600'}</td><td style="padding:5px 8px">Befolkningsframskriving mot 2040 (hovedalt. MMMM)</td><td style="padding:5px 8px">${META.fram40Year||'–'}</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.hdoTable||'12292'}</td><td style="padding:5px 8px">Heldøgns plasser (80+): beboere institusjon (langtid) + bolig m/ heldøgns bemanning</td><td style="padding:5px 8px">${META.hdoYear||'–'}</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.demensTable||'13232'}</td><td style="padding:5px 8px">Demens-tilrettelagte institusjonsplasser (skjermet enhet)</td><td style="padding:5px 8px">${META.demensYear||'–'}</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">12209/12293/07800</td><td style="padding:5px 8px">Andel årsverk med fagutdanning i pleie og omsorg (KOSTRA)</td><td style="padding:5px 8px">${META.kapYear||'–'}</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.econTable||'12143'}</td><td style="padding:5px 8px">KOSTRA: netto driftsresultat og disposisjonsfond (% av brutto driftsinntekter)</td><td style="padding:5px 8px">${META.econYear||'–'}</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.kapTable||'12293'}</td><td style="padding:5px 8px">KOSTRA: dekningsgrad institusjon + bemannet bolig, hjemmetjeneste høy timeinnsats, enerom, driftskostnad per plass</td><td style="padding:5px 8px">${META.kapYear||'–'}</td></tr>
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">${META.gjeldTable||'12137'}</td><td style="padding:5px 8px">KOSTRA: netto lånegjeld per innbygger</td><td style="padding:5px 8px">${META.gjeldYear||'–'}</td></tr>
@@ -2117,7 +2195,8 @@ async function fetchKapasitet(id){
     {key:'bolig',test:t=>/bolig/i.test(t)&&/(heldøgn|fast tilknyttet bemanning)/i.test(t)&&/prosent/i.test(t)&&/innbygg/i.test(t)&&!/utgift/i.test(t)},
     {key:'hjem',test:t=>/hjemmetjeneste/i.test(t)&&/h(ø|o)y/i.test(t)&&/timeinnsats/i.test(t)&&/prosent/i.test(t)},
     {key:'enerom',test:t=>/(enerom|brukertilpasset)/i.test(t)&&/(bad|wc|enerom)/i.test(t)&&/prosent/i.test(t)},
-    {key:'kostpr',test:t=>/korrigerte brutto driftsutgifter/i.test(t)&&/institusjon/i.test(t)&&/plass/i.test(t)}
+    {key:'kostpr',test:t=>/korrigerte brutto driftsutgifter/i.test(t)&&/institusjon/i.test(t)&&/plass/i.test(t)},
+    {key:'fagdekning',test:t=>/fagutdanning/i.test(t)&&/årsverk/i.test(t)&&/prosent|andel/i.test(t)&&!/fravær|sykefravær/i.test(t)}
   ];
   let ind=null; const valOf={};
   for(const v of vars){if(v===reg||v===tid)continue;const vt=v.valueTexts||[];let found=false;
@@ -2282,6 +2361,16 @@ async function fetchSSB(){
   let kap={},kapErr="";
   await ssbSleep(350);
   for(const t of ["12209","12293"]){try{const r=await fetchKapasitet(t);if(Object.keys(r).length){kap=r;kapErr="";break;}}catch(e){kapErr=e.message;console.warn("Kapasitet "+t+":",e);}}
+  // Fagdekning (andel årsverk med fagutdanning) - prøv en tredje tabell hvis ikke funnet i kap-tabellene
+  let fagFraKap=Object.values(kap).some(v=>v&&v.fagdekning!=null);
+  if(!fagFraKap){
+    await ssbSleep(350);
+    try{const r=await fetchKapasitet("07800");
+      if(Object.keys(r).length){
+        for(const nr in r){if(r[nr].fagdekning!=null){if(!kap[nr])kap[nr]={};kap[nr].fagdekning=r[nr].fagdekning;}}
+      }
+    }catch(e){console.warn("Fagdekning 07800:",e);}
+  }
   let hdo={};await ssbSleep(350);try{const r=await fetchHDO("12292");if(Object.keys(r).length)hdo=r;}catch(e){console.warn("HDO 12292:",e);}
   let demp={};await ssbSleep(350);try{const r=await fetchDemens("13232");if(Object.keys(r).length)demp=r;}catch(e){console.warn("Demensplasser 13232:",e);}
   let gjeld={};await ssbSleep(350);try{const r=await fetchGjeld("12137");if(Object.keys(r).length)gjeld=r;}catch(e){console.warn("Gjeld:",e);}
@@ -2306,6 +2395,7 @@ async function fetchSSB(){
       kapInst:instBeb!=null?Math.round(instBeb):null, kapBolig:boligBeb!=null?Math.round(boligBeb):null,
       demensPlasser:(demp[p.nr]!=null?Math.round(demp[p.nr]):null),
       instP:k.inst||0, boligP:k.bolig||0, hjemHoy:k.hjem||0, enerom:k.enerom||0, kostpr:k.kostpr||0, overligger:0,
+      fagdekning:k.fagdekning!=null?k.fagdekning:null,
       ndr:e.ndr!=null?e.ndr:0,disp:e.disp!=null?e.disp:0,gjeld:gj.g!=null?gj.g:0,
       robek:false,tomt:3,won:false,econLoaded:hasE,politikk:pl};});
   if(!rows.length)throw new Error("ingen kommuner i svaret");
