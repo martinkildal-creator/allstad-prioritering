@@ -43,20 +43,65 @@ async function hent(url, opts = {}) {
   } finally { clearTimeout(t); }
 }
 
-// ---- Brønnøysund: finn SPV-er med konkurrentnavn i firmanavnet ---------------
-async function finnSPV(navn) {
-  const r = await hent(`${BRREG_BASE}/enheter?navn=${encodeURIComponent(navn)}&size=50&page=0`);
+// ---- Brønnøysund: finn SPV-er – kun relevante NACE-koder og firmanavn ------
+
+// NACE-koder: pleie/helse + eiendomsutvikling + byggeprosjekt
+const RELEVANTE_NACE = [
+  '87',    // Omsorgsboliger, sykehjem, pleieinstitusjoner (87.10, 87.20, 87.30, 87.90)
+  '86',    // Helsetjenester
+  '68.1',  // Kjøp og salg av egen fast eiendom
+  '68.2',  // Drift av egne eller leide eiendommer
+  '41.1',  // Utvikling av byggeprosjekter
+  '41.2',  // Oppføring av bygninger
+];
+
+// Firmanavn-ord som røper omsorgsrelevant SPV
+const SPV_NAVN_ORD = [
+  'omsorg', 'sykehjem', 'helsehus', 'helse', 'bofellesskap', 'omsorgsbolig',
+  'bo og', 'bo-og', 'eldrebo', 'eldresenter', 'omsorgsbygg', 'helsebygg',
+  'omsorgssenter', 'behandlingssenter', 'bokonsept', 'pleie', 'demens',
+  'eiendom', 'utbygging', 'utvikling', 'invest', 'holding', 'prosjekt',
+  'eiendomsselskap', 'eiendomsutvikling'
+];
+
+function erRelevantNace(enheten) {
+  const nacer = [
+    enheten.naeringskode1, enheten.naeringskode2, enheten.naeringskode3
+  ].filter(Boolean).map(n => (n.kode || '').replace(/\./g, '').slice(0, 4));
+  return nacer.some(k => RELEVANTE_NACE.some(r => k.startsWith(r.replace('.', '').replace(/\./g, ''))));
+}
+
+function erRelevantNavn(firmanavn) {
+  const n = norm(firmanavn);
+  return SPV_NAVN_ORD.some(o => n.includes(o));
+}
+
+async function finnSPV(søkenavn) {
+  const r = await hent(`${BRREG_BASE}/enheter?navn=${encodeURIComponent(søkenavn)}&size=100&page=0`);
   if (!r.ok) return [];
   let j; try { j = JSON.parse(r.tekst); } catch { return []; }
   const enheter = (j._embedded && j._embedded.enheter) || [];
+
   return enheter
-    .filter(e => e.navn && norm(e.navn).includes(norm(navn)) && e.organisasjonsnummer)
-    .map(e => ({
-      org: e.organisasjonsnummer,
-      navn: e.navn,
-      kommuneNr: (e.forretningsadresse || e.beliggenhetsadresse || {}).kommunenummer || null,
-      kommuneNavn: (e.forretningsadresse || e.beliggenhetsadresse || {}).kommune || null
-    }));
+    .filter(e => {
+      if (!e.navn || !e.organisasjonsnummer) return false;
+      if (!norm(e.navn).includes(norm(søkenavn))) return false;
+      // krev enten riktig NACE-kode ELLER relevant firmanavn
+      return erRelevantNace(e) || erRelevantNavn(e.navn);
+    })
+    .map(e => {
+      const adr = e.forretningsadresse || e.beliggenhetsadresse || {};
+      const nacer = [e.naeringskode1, e.naeringskode2].filter(Boolean)
+        .map(n => n.beskrivelse || n.kode || '').join(' / ');
+      return {
+        org: e.organisasjonsnummer,
+        navn: e.navn,
+        nace: nacer,
+        kommuneNr: adr.kommunenummer || null,
+        kommuneNavn: adr.kommune || null,
+        ansatte: e.antallAnsatte || 0
+      };
+    });
 }
 
 // ---- Doffin: søk med utvidede søkeord og intensjonskunngjøringer -------------
