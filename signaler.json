@@ -1,5 +1,5 @@
 {
- "_oppdatert": "2026-09-19",
+ "_oppdatert": "2026-09-21",
  "_kilder": "Doffin (åpne kunngjøringer) og Husbankens statistikkbank (manuell csv)",
  "kommuner": {
   "frøya": {
@@ -261,7 +261,7 @@
    }
   },
   "øksnes": {
-   "doffinScore": 6,
+   "doffinScore": 3,
    "husbankScore": 3,
    "doffinTreff": [
     {
@@ -270,13 +270,6 @@
      "frist": "11.09.2026",
      "verdi": "4,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-112838"
-    },
-    {
-     "type": "Kunngjøring",
-     "tittel": "Forprosjekt Morgendagens helse og omsorg Øksnes kommune",
-     "frist": "02.05.2025",
-     "verdi": "1,5 mill. kr",
-     "url": "https://www.doffin.no/notices/2025-104460"
     }
    ],
    "husbankTilsagn": 1,
@@ -1377,47 +1370,17 @@
     "status": "Investeringstilskudd"
    }
   },
-  "åmot": {
-   "doffinScore": 12,
-   "husbankScore": 0,
-   "doffinTreff": [
-    {
-     "type": "Aktiv konkurranse",
-     "tittel": "ÅM-26-01 Samspillsentreprise helsehus",
-     "frist": "12.10.2026",
-     "verdi": "400,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2026-114355"
-    }
-   ],
-   "husbankTilsagn": 0,
-   "husbankDetalj": null
-  },
-  "alver": {
-   "doffinScore": 12,
-   "husbankScore": 9,
-   "doffinTreff": [
-    {
-     "type": "Aktiv konkurranse",
-     "tittel": "2026/0033 Rammeavtale tømrertjenester",
-     "frist": "02.10.2026",
-     "verdi": null,
-     "url": "https://www.doffin.no/notices/2026-114232"
-    }
-   ],
-   "husbankTilsagn": 3,
-   "husbankDetalj": {
-    "tilsagn": 3,
-    "plasser": null,
-    "belop": "17,9 mill. kr",
-    "belopTall": 17899000,
-    "serie": null,
-    "status": "Investeringstilskudd"
-   }
-  },
   "bergen": {
    "doffinScore": 20,
    "husbankScore": 9,
    "doffinTreff": [
+    {
+     "type": "Aktiv konkurranse",
+     "tittel": "R0015EBE - Rammeavtale heiskontroll",
+     "frist": "19.10.2026",
+     "verdi": null,
+     "url": "https://www.doffin.no/notices/2026-114712"
+    },
     {
      "type": "Aktiv konkurranse",
      "tittel": "R0014EBE - Rammeavtale stillastjenester",
@@ -1427,6 +1390,13 @@
     },
     {
      "type": "Kunngjøring",
+     "tittel": "R0011EBE - Rammeavtale grunn og betong",
+     "frist": null,
+     "verdi": "280,0 mill. kr",
+     "url": "https://www.doffin.no/notices/2026-114742"
+    },
+    {
+     "type": "Tildeling",
      "tittel": "R0011EBE - Rammeavtale grunn og betong",
      "frist": "23.06.2026",
      "verdi": "280,0 mill. kr",
@@ -1460,6 +1430,72 @@
     "plasser": null,
     "belop": "907,5 mill. kr",
     "belopTall": 907528000,
+    "serie": null,
+    "status": "Investeringstilskudd"
+   }
+  },
+  "luster": {
+   "doffinScore": 20,
+   "husbankScore": 0,
+   "doffinTreff": [
+    {
+     "type": "Aktiv konkurranse",
+     "tittel": "Helse- og omsorgssenter Luster kommune",
+     "frist": "21.10.2026",
+     "verdi": "450,0 mill. kr",
+     "url": "https://www.doffin.no/notices/2026-114731"
+    },
+    {
+     "type": "Markedsdialog",
+     "tittel": "Invitasjon til marknadsdialog i samband med nytt helse- og omsorgssenter i Gaupne sentrum",
+     "frist": null,
+     "verdi": "450,0 mill. kr",
+     "url": "https://www.doffin.no/notices/2026-109068"
+    },
+    {
+     "type": "Kunngjøring",
+     "tittel": "Grunnundersøkingar Gaupne",
+     "frist": "15.08.2025",
+     "verdi": null,
+     "url": "https://www.doffin.no/notices/2025-110592"
+    }
+   ],
+   "husbankTilsagn": 0,
+   "husbankDetalj": null
+  },
+  "åmot": {
+   "doffinScore": 12,
+   "husbankScore": 0,
+   "doffinTreff": [
+    {
+     "type": "Aktiv konkurranse",
+     "tittel": "ÅM-26-01 Samspillsentreprise helsehus",
+     "frist": "12.10.2026",
+     "verdi": "400,0 mill. kr",
+     "url": "https://www.doffin.no/notices/2026-114355"
+    }
+   ],
+   "husbankTilsagn": 0,
+   "husbankDetalj": null
+  },
+  "alver": {
+   "doffinScore": 12,
+   "husbankScore": 9,
+   "doffinTreff": [
+    {
+     "type": "Aktiv konkurranse",
+     "tittel": "2026/0033 Rammeavtale tømrertjenester",
+     "frist": "02.10.2026",
+     "verdi": null,
+     "url": "https://www.doffin.no/notices/2026-114232"
+    }
+   ],
+   "husbankTilsagn": 3,
+   "husbankDetalj": {
+    "tilsagn": 3,
+    "plasser": null,
+    "belop": "17,9 mill. kr",
+    "belopTall": 17899000,
     "serie": null,
     "status": "Investeringstilskudd"
    }
@@ -1574,16 +1610,9 @@
    }
   },
   "askøy": {
-   "doffinScore": 14,
+   "doffinScore": 6,
    "husbankScore": 6,
    "doffinTreff": [
-    {
-     "type": "Markedsdialog",
-     "tittel": "2026 - VEI - Sykehjemsplasser - Markedsdialog med ideelle organisasjoner",
-     "frist": null,
-     "verdi": null,
-     "url": "https://www.doffin.no/notices/2026-106665"
-    },
     {
      "type": "Kunngjøring",
      "tittel": "2026 - NOR - Ombygging av lokaler til heldøgns omsorgsplasser 3395",
@@ -1894,28 +1923,6 @@
     "plasser": null,
     "belop": "687,3 mill. kr",
     "belopTall": 687258000,
-    "serie": null,
-    "status": "Investeringstilskudd"
-   }
-  },
-  "porsgrunn": {
-   "doffinScore": 3,
-   "husbankScore": 6,
-   "doffinTreff": [
-    {
-     "type": "Kunngjøring",
-     "tittel": "Solceller 3101 Frednes sykehjem",
-     "frist": "14.05.2026",
-     "verdi": "1,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2026-106516"
-    }
-   ],
-   "husbankTilsagn": 2,
-   "husbankDetalj": {
-    "tilsagn": 2,
-    "plasser": null,
-    "belop": "158,2 mill. kr",
-    "belopTall": 158244000,
     "serie": null,
     "status": "Investeringstilskudd"
    }
@@ -2549,28 +2556,6 @@
     "status": "Investeringstilskudd"
    }
   },
-  "luster": {
-   "doffinScore": 11,
-   "husbankScore": 0,
-   "doffinTreff": [
-    {
-     "type": "Markedsdialog",
-     "tittel": "Invitasjon til marknadsdialog i samband med nytt helse- og omsorgssenter i Gaupne sentrum",
-     "frist": null,
-     "verdi": "450,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2026-109068"
-    },
-    {
-     "type": "Kunngjøring",
-     "tittel": "Grunnundersøkingar Gaupne",
-     "frist": "15.08.2025",
-     "verdi": null,
-     "url": "https://www.doffin.no/notices/2025-110592"
-    }
-   ],
-   "husbankTilsagn": 0,
-   "husbankDetalj": null
-  },
   "gloppen": {
    "doffinScore": 3,
    "husbankScore": 0,
@@ -2639,7 +2624,7 @@
    }
   },
   "ringerike": {
-   "doffinScore": 12,
+   "doffinScore": 9,
    "husbankScore": 3,
    "doffinTreff": [
     {
@@ -2662,13 +2647,6 @@
      "frist": "13.06.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-107992"
-    },
-    {
-     "type": "Kunngjøring",
-     "tittel": "SHA-Rådgiver, Vesterntunet omsorgssenter",
-     "frist": "06.06.2025",
-     "verdi": null,
-     "url": "https://www.doffin.no/notices/2025-107719"
     }
    ],
    "husbankTilsagn": 1,
@@ -4123,6 +4101,20 @@
     "plasser": null,
     "belop": "10,9 mill. kr",
     "belopTall": 10935000,
+    "serie": null,
+    "status": "Investeringstilskudd"
+   }
+  },
+  "porsgrunn": {
+   "doffinScore": 0,
+   "husbankScore": 6,
+   "doffinTreff": [],
+   "husbankTilsagn": 2,
+   "husbankDetalj": {
+    "tilsagn": 2,
+    "plasser": null,
+    "belop": "158,2 mill. kr",
+    "belopTall": 158244000,
     "serie": null,
     "status": "Investeringstilskudd"
    }
