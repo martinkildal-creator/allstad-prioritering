@@ -179,6 +179,8 @@ tbody tr:hover{background:var(--sand);box-shadow:inset 3px 0 0 var(--teal)}
 #pdfview{display:none}
 body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overflow:auto;z-index:9999}
 </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 </head>
 <body>
 <div class="wrap">
@@ -211,7 +213,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
           <button class="meny-item" onclick="openMetode()">ⓘ Slik regnes det</button>
         </div>
       </div>
-      <span class="tag">Internt · v55</span>
+      <span class="tag">Internt · v56</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -224,6 +226,10 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
       <button onclick="closeKonkurrenter()" style="background:none;border:none;font-size:22px;cursor:pointer;color:var(--muted);padding:0 8px 0 0">←</button>
       <h2 style="color:#5C3A7F">🔍 Konkurrentovervåkning</h2>
       <div style="flex:1"></div>
+      <div style="display:flex;background:var(--sand);border-radius:9px;padding:2px;gap:2px">
+        <button id="btnListe" onclick="setKonkVisning('liste')" style="border:none;padding:6px 14px;border-radius:7px;font:inherit;font-size:13px;cursor:pointer;background:var(--card);font-weight:700">☰ Liste</button>
+        <button id="btnKart" onclick="setKonkVisning('kart')" style="border:none;padding:6px 14px;border-radius:7px;font:inherit;font-size:13px;cursor:pointer;background:transparent">🗺 Kart</button>
+      </div>
       <input id="konkSearch" type="text" placeholder="🔍 Søk selskap…" class="search" style="width:200px" oninput="rendKonk()">
       <select id="konkFilter" onchange="rendKonk()" style="font:inherit;font-size:13px;padding:7px 10px;border:1px solid var(--line);border-radius:9px;background:var(--card)">
         <option value="alle">Alle kategorier</option>
@@ -1255,6 +1261,106 @@ async function openKonkurrenter(){
 }
 function closeKonkurrenter(){document.getElementById('konkModal').classList.remove('open');}
 
+
+let _konkVisning = 'liste';
+let _konkKart = null;
+
+function setKonkVisning(v){
+  _konkVisning = v;
+  document.getElementById('btnListe').style.background = v==='liste'?'var(--card)':'transparent';
+  document.getElementById('btnKart').style.background  = v==='kart' ?'var(--card)':'transparent';
+  document.getElementById('btnListe').style.fontWeight = v==='liste'?'700':'400';
+  document.getElementById('btnKart').style.fontWeight  = v==='kart' ?'700':'400';
+  if(v==='kart') rendKart();
+  else rendKonk();
+}
+
+// Farger per selskap-id
+const KONK_FARGER = {
+  'lille-oslo-eiendom':'#E74C3C','konseptpluss':'#E67E22','morgenstjernen':'#F1C40F',
+  'omtanke':'#2ECC71','steinar-moe':'#1ABC9C','bof':'#3498DB','consto':'#9B59B6',
+  'af-gruppen':'#E91E63','veidekke':'#FF5722','skanska':'#795548','ncc':'#607D8B',
+  'backe':'#00BCD4','obos':'#4CAF50','samfunnspartner':'#FF9800','bomer':'#9C27B0',
+  'stendi':'#F44336','norlandia':'#2196F3'
+};
+
+function rendKart(){
+  const body = document.getElementById('konkBody');
+  const data = (_konkData && _konkData.selskaper) || {};
+  const cfg  = window._konkCfg || [];
+
+  // bygg opp kart over alle kommune-treff
+  const pins = [];
+  cfg.forEach(s => {
+    const d = data[s.id] || {};
+    const farge = KONK_FARGER[s.id] || '#888';
+    const kommuneKart = d.kommuneKart || {};
+    (d.doffin || []).forEach(t => {
+      if (!t.kommune) return;
+      const pos = kommuneKart[t.kommune];
+      if (!pos) return;
+      pins.push({ lat: pos.lat, lng: pos.lng, navn: s.navn, kommune: t.kommune,
+                  tittel: t.tittel, type: t.type, dato: t.dato, farge, id: s.id });
+    });
+    // SPV-kommuner
+    (d.spv || []).forEach(sp => {
+      if (!sp.kommune) return;
+      const pos = kommuneKart[norm(sp.kommune).split(' ')[0]] || kommuneKart[sp.kommune];
+      if (!pos) return;
+      pins.push({ lat: pos.lat, lng: pos.lng, navn: s.navn, kommune: sp.kommune,
+                  tittel: 'SPV: ' + sp.navn, type: 'SPV', dato: '', farge, id: s.id });
+    });
+  });
+
+  if (!pins.length) {
+    body.innerHTML = `<div style="padding:60px;text-align:center;color:var(--muted)">
+      Ingen kartdata ennå – kjør roboten for å hente koordinater.</div>`;
+    return;
+  }
+
+  // Legende
+  const aktiveSel = [...new Set(pins.map(p => p.id))];
+  const legend = cfg.filter(s => aktiveSel.includes(s.id)).map(s =>
+    `<span style="display:inline-flex;align-items:center;gap:5px;margin:2px 8px 2px 0;font-size:12px">
+      <span style="width:12px;height:12px;border-radius:50%;background:${KONK_FARGER[s.id]||'#888'};flex-shrink:0"></span>${s.navn}
+    </span>`).join('');
+
+  body.innerHTML = `
+    <div style="margin-bottom:10px;flex-wrap:wrap;display:flex;align-items:center;gap:4px">
+      <span style="font-size:13px;color:var(--muted);margin-right:8px">${pins.length} aktiviteter i ${[...new Set(pins.map(p=>p.kommune))].length} kommuner</span>
+      ${legend}
+    </div>
+    <div id="konkKartDiv" style="height:600px;border-radius:12px;overflow:hidden;border:1px solid var(--line)"></div>`;
+
+  // init kart
+  if (_konkKart) { _konkKart.remove(); _konkKart = null; }
+  _konkKart = L.map('konkKartDiv').setView([65.0, 16.0], 5);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap', maxZoom: 14
+  }).addTo(_konkKart);
+
+  // Kluster pins per kommune+selskap
+  const kluster = {};
+  pins.forEach(p => {
+    const k = `${p.lat.toFixed(2)},${p.lng.toFixed(2)},${p.id}`;
+    if (!kluster[k]) kluster[k] = { ...p, saker: [] };
+    kluster[k].saker.push({ tittel: p.tittel, type: p.type, dato: p.dato });
+  });
+
+  Object.values(kluster).forEach(p => {
+    const marker = L.circleMarker([p.lat, p.lng], {
+      radius: 8 + Math.min(p.saker.length * 2, 10),
+      fillColor: p.farge, color: '#fff', weight: 2,
+      fillOpacity: 0.85
+    }).addTo(_konkKart);
+    const innhold = `<b>${p.navn}</b><br><span style="color:#666">${p.kommune}</span><br>
+      ${p.saker.slice(0,4).map(s=>`<div style="margin-top:4px;font-size:12px"><span style="color:#888">${s.type} ${s.dato}</span><br>${s.tittel.slice(0,80)}</div>`).join('')}`;
+    marker.bindPopup(innhold, { maxWidth: 300 });
+  });
+
+  setTimeout(() => _konkKart.invalidateSize(), 100);
+}
+
 function rendKonk(){
   const norm=v=>(v||'').toString().toLowerCase().trim();
   const q=norm(document.getElementById('konkSearch').value||'');
@@ -1335,7 +1441,14 @@ function rendKonk(){
       html+=`</div>`;
     }
 
-    if(!doffin.length&&!nyheter.length){
+    const spv=(s.spv||[]);
+    if(spv.length){
+      html+=`<div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--line)">
+        <div style="font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">🏢 ${spv.length} prosjektselskaper (SPV)</div>
+        <div style="display:flex;flex-wrap:wrap;gap:4px">${spv.slice(0,8).map(sp=>`<span style="background:var(--sand);padding:2px 8px;border-radius:6px;font-size:12px">${sp.navn}${sp.kommune?' · '+sp.kommune:''}</span>`).join('')}</div>
+      </div>`;
+    }
+    if(!doffin.length&&!nyheter.length&&!spv.length){
       html+=`<div style="color:var(--muted);font-size:13px;padding:8px 0">Ingen aktivitet funnet denne uken.</div>`;
     }
     html+=`</div>`;
@@ -1395,7 +1508,9 @@ function visKonkurrentRapport(){
   const w=window.open('','_blank','width=1100,height=850');
   if(!w){alert('Tillat popup for å åpne rapporten.');return;}
   w.document.write(`<!doctype html><html lang="no"><head><meta charset="utf-8"><title>Konkurrentrapport</title>
-    <style>@media print{button{display:none}body{margin:0}@page{margin:15mm}}</style></head><body>${html}</body></html>`);
+    <style>@media print{button{display:none}body{margin:0}@page{margin:15mm}}</style>  
+  
+</head><body>${html}</body></html>`);
   w.document.close();
 }
 
@@ -2153,7 +2268,9 @@ async function visUkesrapport(){
   w.document.write(`<!doctype html><html lang="no"><head><meta charset="utf-8">
     <title>Signalrapport – Allstad</title>
     <style>@media print{button{display:none!important}body{margin:0}@page{margin:15mm}}</style>
-    </head><body>${html}</body></html>`);
+      
+  
+</head><body>${html}</body></html>`);
   w.document.close();
 }
 
