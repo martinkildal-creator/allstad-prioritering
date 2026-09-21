@@ -99,8 +99,8 @@
    ],
    "kommuneKart": {
     "lillehammer": {
-     "lat": 61.1356723,
-     "lng": 10.4308874
+     "lat": 61.1100299,
+     "lng": 10.4707508
     },
     "rauma": {
      "lat": 62.5600912,
@@ -122,11 +122,6 @@
    "aktivitet": 0,
    "doffin": [],
    "spv": [
-    {
-     "navn": "LOSJE MORGENSTJERNEN",
-     "org": "971377879",
-     "kommune": "TRONDHEIM"
-    },
     {
      "navn": "MORGENSTJERNEN AS",
      "org": "989038737",
@@ -244,45 +239,15 @@
      "kommune": "SKIEN"
     },
     {
-     "navn": "STEINAR MOE",
-     "org": "890369162",
-     "kommune": "TRONDHEIM"
-    },
-    {
      "navn": "STEINAR MOEN BRÆKKEN",
      "org": "918284451",
      "kommune": "MIDTRE GAULDAL"
-    },
-    {
-     "navn": "CROSS BORDER STEINAR MOE",
-     "org": "815286502",
-     "kommune": "ÅSNES"
-    },
-    {
-     "navn": "PER STEINAR MOEN AS",
-     "org": "916582439",
-     "kommune": "TRONDHEIM"
-    },
-    {
-     "navn": "SM ELEKTRONIKK Steinar Moen",
-     "org": "851363122",
-     "kommune": "MIDT-TELEMARK"
-    },
-    {
-     "navn": "SKARET ØKO-GÅRD ODD STEINAR MOEN",
-     "org": "976897064",
-     "kommune": "LARVIK"
-    },
-    {
-     "navn": "MOE DAME OG HERREFRISØR Bjørn Steinar Moe",
-     "org": "955943570",
-     "kommune": "ULLENSAKER"
     }
    ],
    "kommuneKart": {
     "siljan": {
-     "lat": 59.2791116,
-     "lng": 9.7282019
+     "lat": 59.2789828,
+     "lng": 9.7279969
     }
    },
    "nyheter": [
@@ -299,13 +264,7 @@
    "oppdatert": "2026-09-21",
    "aktivitet": 0,
    "doffin": [],
-   "spv": [
-    {
-     "navn": "BOF AS",
-     "org": "933667510",
-     "kommune": "BJØRNAFJORDEN"
-    }
-   ],
+   "spv": [],
    "kommuneKart": {},
    "nyheter": [
     {
@@ -319,39 +278,190 @@
    "navn": "Consto AS",
    "kategori": "Totalentreprenør",
    "oppdatert": "2026-09-21",
-   "aktivitet": 0,
-   "doffin": [],
+   "aktivitet": 12,
+   "doffin": [
+    {
+     "id": "2025-118086",
+     "tittel": "H0600 Loddefjordåsen behandlingssenter, totalentreprise",
+     "kjoper": "Bergen kommune - Etat for utbygging",
+     "type": "Kunngjøring",
+     "dato": "2025-11-26",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": "bergen",
+     "url": "https://www.doffin.no/notices/2025-118086",
+     "fraSpv": false
+    },
+    {
+     "id": "2025-104833",
+     "tittel": "Ny Tromsøhall - samspillsentreprise",
+     "kjoper": "Tromsø kommune",
+     "type": "Kunngjøring",
+     "dato": "2025-03-27",
+     "frist": "2028-12-31",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": "tromsø",
+     "url": "https://www.doffin.no/notices/2025-104833",
+     "fraSpv": false
+    },
+    {
+     "id": "2024-110285",
+     "tittel": "Andenes Omsorgsboliger",
+     "kjoper": "Andøy Kommune",
+     "type": "Kunngjøring",
+     "dato": "2024-07-03",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": "andøy",
+     "url": "https://www.doffin.no/notices/2024-110285",
+     "fraSpv": false
+    },
+    {
+     "id": "2023-349221",
+     "tittel": "Samspillsentreprise for nytt idrettsbygg i Vefsn kommune",
+     "kjoper": "Vefsn Kommune",
+     "type": "Kunngjøring",
+     "dato": "2023-09-21",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": "vefsn",
+     "url": "https://www.doffin.no/notices/2023-349221",
+     "fraSpv": false
+    },
+    {
+     "id": "2023-672891",
+     "tittel": "Endring i kontraktsomfang på totalentreprise Nye Hammerfest Sykehus (NHS), på vegne av Finnmarkssykehuset HF",
+     "kjoper": "Sykehusbygg HF",
+     "type": "Kunngjøring",
+     "dato": "2023-06-29",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": null,
+     "url": "https://www.doffin.no/notices/2023-672891",
+     "fraSpv": false
+    },
+    {
+     "id": "2021-395471",
+     "tittel": "Anskaffelse - totalentreprise Haramsøy skule, 2021",
+     "kjoper": "Ålesund kommunale eiendom KF",
+     "type": "Kunngjøring",
+     "dato": "2021-12-22",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": null,
+     "url": "https://www.doffin.no/notices/2021-395471",
+     "fraSpv": false
+    },
+    {
+     "id": "2019-333016",
+     "tittel": "Inkubatorbygg på Bygg for biologiske basalfag (BBB)",
+     "kjoper": "UNIVERSITETET I BERGEN",
+     "type": "Kunngjøring",
+     "dato": "2019-12-21",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": null,
+     "url": "https://www.doffin.no/notices/2019-333016",
+     "fraSpv": false
+    },
+    {
+     "id": "2019-363181",
+     "tittel": "Skyveamfi",
+     "kjoper": "Vaksdal kommune",
+     "type": "Kunngjøring",
+     "dato": "2019-02-18",
+     "frist": "2019-03-20",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": "vaksdal",
+     "url": "https://www.doffin.no/notices/2019-363181",
+     "fraSpv": false
+    },
+    {
+     "id": "2018-220098",
+     "tittel": "Totalentreprise på nye Dale barne- og ungdomsskule",
+     "kjoper": "Vaksdal Kommune",
+     "type": "Kunngjøring",
+     "dato": "2018-05-30",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": "vaksdal",
+     "url": "https://www.doffin.no/notices/2018-220098",
+     "fraSpv": false
+    },
+    {
+     "id": "2018-145722",
+     "tittel": "BYGGENTREPRENØR, SYKKELVELODROM SOLA",
+     "kjoper": "Sørmarka Flerbrukshall IKS",
+     "type": "Kunngjøring",
+     "dato": "2018-03-09",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": null,
+     "url": "https://www.doffin.no/notices/2018-145722",
+     "fraSpv": false
+    },
+    {
+     "id": "2017-299983",
+     "tittel": "13.078 Samlokalisering Vest- Lofoten",
+     "kjoper": "Nordland fylkeskommune",
+     "type": "Kunngjøring",
+     "dato": "2017-10-24",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": null,
+     "url": "https://www.doffin.no/notices/2017-299983",
+     "fraSpv": false
+    },
+    {
+     "id": "2017-713180",
+     "tittel": "Finneidfjord Barnehage",
+     "kjoper": "Hemnes kommune",
+     "type": "Kunngjøring",
+     "dato": "2017-08-03",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": "hemnes",
+     "url": "https://www.doffin.no/notices/2017-713180",
+     "fraSpv": false
+    }
+   ],
    "spv": [
-    {
-     "navn": "CONSTO AS",
-     "org": "995754606",
-     "kommune": "TROMSØ"
-    },
-    {
-     "navn": "CONSTO BEDRIFTSIDRETTSLAG",
-     "org": "924041005",
-     "kommune": "TROMSØ"
-    },
-    {
-     "navn": "CONSTO PENSJONISTFORENING",
-     "org": "928465659",
-     "kommune": "TROMSØ"
-    },
-    {
-     "navn": "CONSTO ANLEGG AS",
-     "org": "939767770",
-     "kommune": "LILLESTRØM"
-    },
-    {
-     "navn": "CONSTO BERGEN AS",
-     "org": "987769580",
-     "kommune": "BERGEN"
-    },
-    {
-     "navn": "CONSTO DAMBYGG AS",
-     "org": "918481613",
-     "kommune": "KVINNHERAD"
-    },
     {
      "navn": "CONSTO EIENDOM AS",
      "org": "930171034",
@@ -361,39 +471,22 @@
      "navn": "CONSTO HOLDING AS",
      "org": "917807299",
      "kommune": "TROMSØ"
-    },
-    {
-     "navn": "CONSTO ROGALAND BEDRIFTSIDRETTSLAG",
-     "org": "995070545",
-     "kommune": "STAVANGER"
-    },
-    {
-     "navn": "CONSTO ANLEGG MIDT AS",
-     "org": "922193770",
-     "kommune": "TRONDHEIM"
-    },
-    {
-     "navn": "CONSTO ANLEGG NORD AS",
-     "org": "917330069",
-     "kommune": "BODØ"
-    },
-    {
-     "navn": "CONSTO ANLEGG SØR AS",
-     "org": "922203652",
-     "kommune": "ARENDAL"
-    },
-    {
-     "navn": "CONSTO ANLEGG VEST AS",
-     "org": "926327542",
-     "kommune": "BERGEN"
-    },
-    {
-     "navn": "CONSTO ANLEGG ØST AS",
-     "org": "916505000",
-     "kommune": "LILLESTRØM"
     }
    ],
-   "kommuneKart": {},
+   "kommuneKart": {
+    "bergen": {
+     "lat": 60.2508249,
+     "lng": 5.2690695
+    },
+    "tromsø": {
+     "lat": 69.6297371,
+     "lng": 18.9159101
+    },
+    "vefsn": {
+     "lat": 65.8409495,
+     "lng": 13.1997717
+    }
+   },
    "nyheter": [
     {
      "tittel": "Søk nyheter om Consto AS",
@@ -410,11 +503,6 @@
    "doffin": [],
    "spv": [
     {
-     "navn": "AF GRUPPEN ASA",
-     "org": "938702675",
-     "kommune": "OSLO"
-    },
-    {
      "navn": "AF GRUPPEN HOLDING AS",
      "org": "819366942",
      "kommune": "OSLO"
@@ -423,26 +511,6 @@
      "navn": "AF GRUPPEN NORGE AS",
      "org": "938333572",
      "kommune": "OSLO"
-    },
-    {
-     "navn": "AF GRUPPEN SVERIGE AB",
-     "org": "936119220",
-     "kommune": null
-    },
-    {
-     "navn": "AF BYGG - FRACZKIEWICZ",
-     "org": "912425835",
-     "kommune": "ASKER"
-    },
-    {
-     "navn": "AF BYGG ALEKSANDER FRYDENBERG",
-     "org": "988483621",
-     "kommune": "SIGDAL"
-    },
-    {
-     "navn": "KLUBBEN I AF BYGG ØSTFOLD",
-     "org": "922825831",
-     "kommune": "RÅDE"
     }
    ],
    "kommuneKart": {},
@@ -460,83 +528,7 @@
    "oppdatert": "2026-09-21",
    "aktivitet": 0,
    "doffin": [],
-   "spv": [
-    {
-     "navn": "Veidekke ASA",
-     "org": "917103801",
-     "kommune": "OSLO"
-    },
-    {
-     "navn": "TEAM VEIDEKKE DA",
-     "org": "919423625",
-     "kommune": "OSLO"
-    },
-    {
-     "navn": "BEDRIFTSKLUBBEN VEIDEKKE BERGEN",
-     "org": "924549610",
-     "kommune": "BERGEN"
-    },
-    {
-     "navn": "KLUBBEN VEIDEKKE ROGALAND",
-     "org": "921475306",
-     "kommune": "KLEPP"
-    },
-    {
-     "navn": "VEIDEKKE AGDER-KLUBBEN",
-     "org": "918442111",
-     "kommune": "KRISTIANSAND"
-    },
-    {
-     "navn": "VEIDEKKE ENTREPRENAD AB",
-     "org": "998335213",
-     "kommune": null
-    },
-    {
-     "navn": "VEIDEKKE ENTREPRENØR AS",
-     "org": "984024290",
-     "kommune": "OSLO"
-    },
-    {
-     "navn": "VEIDEKKE FELLESTJENESTER AS",
-     "org": "923477675",
-     "kommune": "OSLO"
-    },
-    {
-     "navn": "VEIDEKKE GRUNDLÄGGNING AB",
-     "org": "913156536",
-     "kommune": null
-    },
-    {
-     "navn": "VEIDEKKE GRUNDLÄGGNING AB",
-     "org": "813156512",
-     "kommune": null
-    },
-    {
-     "navn": "VEIDEKKE INDRE ØSTLAND",
-     "org": "919767197",
-     "kommune": "RINGSAKER"
-    },
-    {
-     "navn": "VEIDEKKE INDUSTRI AS",
-     "org": "913536770",
-     "kommune": "OSLO"
-    },
-    {
-     "navn": "VEIDEKKE LOGISTIKKBYGG AS",
-     "org": "971203587",
-     "kommune": "LARVIK"
-    },
-    {
-     "navn": "VEIDEKKE PREFAB AS",
-     "org": "980798267",
-     "kommune": "KLEPP"
-    },
-    {
-     "navn": "VEIDEKKE PREFAB B.I.L.",
-     "org": "984012926",
-     "kommune": "KLEPP"
-    }
-   ],
+   "spv": [],
    "kommuneKart": {},
    "nyheter": [
     {
@@ -554,79 +546,79 @@
    "doffin": [],
    "spv": [
     {
-     "navn": "SKANSKA OY",
-     "org": "915755348",
-     "kommune": null
-    },
-    {
-     "navn": "SKANSKA OY",
-     "org": "815755332",
-     "kommune": null
-    },
-    {
-     "navn": "SKANSKA S.A.",
-     "org": "991591478",
-     "kommune": null
-    },
-    {
-     "navn": "SKANSKA S.A.",
-     "org": "991571477",
-     "kommune": "OSLO"
-    },
-    {
-     "navn": "SKANSKA SK",
-     "org": "997808533",
-     "kommune": null
-    },
-    {
-     "navn": "BEDRIFTSKLUBBEN SKANSKA OSLO",
-     "org": "999281842",
-     "kommune": "OSLO"
-    },
-    {
-     "navn": "KLUBBEN SKANSKA KRISTIANSAND",
-     "org": "914775949",
-     "kommune": "KRISTIANSAND"
-    },
-    {
-     "navn": "KLUBBEN SKANSKA STÅLFABRIKKEN",
-     "org": "922131317",
-     "kommune": "MELHUS"
-    },
-    {
-     "navn": "KLUBBEN SKANSKA TRONDHEIM",
-     "org": "916870310",
-     "kommune": "TRONDHEIM"
-    },
-    {
-     "navn": "SKANSKA AGDER PENSJONISTFORENING",
-     "org": "997723120",
-     "kommune": "KRISTIANSAND"
-    },
-    {
-     "navn": "SKANSKA ASFALT DANMARK",
-     "org": "998552206",
-     "kommune": null
-    },
-    {
      "navn": "SKANSKA BOLIG AS",
      "org": "979476256",
      "kommune": "OSLO"
     },
     {
-     "navn": "SKANSKA FERROAL AB",
-     "org": "996458253",
-     "kommune": null
+     "navn": "SKANSKA NÆRINGSEIENDOM AS",
+     "org": "993147419",
+     "kommune": "OSLO"
     },
     {
-     "navn": "SKANSKA HUSFABRIKKEN AS",
-     "org": "977085551",
-     "kommune": "STEINKJER"
+     "navn": "SKANSKA MARINABAKKEN HOLDING AS",
+     "org": "926034316",
+     "kommune": "OSLO"
     },
     {
-     "navn": "SKANSKA INFRA OY",
-     "org": "936244122",
-     "kommune": null
+     "navn": "SKANSKA NFG HOLDING AS",
+     "org": "929363108",
+     "kommune": "OSLO"
+    },
+    {
+     "navn": "SKANSKA NL HOLDING AS",
+     "org": "930371599",
+     "kommune": "OSLO"
+    },
+    {
+     "navn": "SKANSKA NÆRINGSEIENDOM HOLDING AS",
+     "org": "995122022",
+     "kommune": "OSLO"
+    },
+    {
+     "navn": "SKANSKA UTVIKLING 37 AS",
+     "org": "934567757",
+     "kommune": "OSLO"
+    },
+    {
+     "navn": "SKANSKA UTVIKLING 38 AS",
+     "org": "934567927",
+     "kommune": "OSLO"
+    },
+    {
+     "navn": "SKANSKA UTVIKLING 39 AS",
+     "org": "834567792",
+     "kommune": "OSLO"
+    },
+    {
+     "navn": "SKANSKA ØP HOLDING AS",
+     "org": "930371327",
+     "kommune": "OSLO"
+    },
+    {
+     "navn": "SKANSKA CDN UTVIKLING 10 AS",
+     "org": "926743546",
+     "kommune": "OSLO"
+    },
+    {
+     "navn": "SKANSKA CDN UTVIKLING 11 AS",
+     "org": "936604048",
+     "kommune": "OSLO"
+    },
+    {
+     "navn": "SKANSKA GARTNERSLETTA II HOLDING AS",
+     "org": "933485773",
+     "kommune": "OSLO"
+    },
+    {
+     "navn": "SKANSKA JESSHEIM B6.5 HOLDING AS",
+     "org": "830906452",
+     "kommune": "OSLO"
+    },
+    {
+     "navn": "SKANSKA SKI VEST HOLDING AS",
+     "org": "921310102",
+     "kommune": "OSLO"
     }
    ],
    "kommuneKart": {},
@@ -642,224 +634,26 @@
    "navn": "NCC",
    "kategori": "Totalentreprenør",
    "oppdatert": "2026-09-21",
-   "aktivitet": 8,
-   "doffin": [
-    {
-     "id": "2026-109987",
-     "tittel": "Anskaffelse av IPL-entreprenør for prosjekt Senter for psykisk helse Øya - SPH, på vegne av St.Olavs hospital HF og NTNU",
-     "kjoper": "Sykehusbygg HF St. Olavs Hospital HF",
-     "type": "Kunngjøring",
-     "dato": "2026-06-04",
-     "frist": "",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": null,
-     "url": "https://www.doffin.no/notices/2026-109987",
-     "fraSpv": false
-    },
-    {
-     "id": "2025-108741",
-     "tittel": "Rehabilitering av Nesoddtangen barneskole og ny flerbrukshall, samspillsentreprise",
-     "kjoper": "Nesodden kommune",
-     "type": "Kunngjøring",
-     "dato": "2025-06-04",
-     "frist": "2028-11-30",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": "nesodden",
-     "url": "https://www.doffin.no/notices/2025-108741",
-     "fraSpv": false
-    },
-    {
-     "id": "2023-617036",
-     "tittel": "Stasjonstiltak - Strømmen - Oslo - Ski - Anskaffelse totalentreprise med samspill",
-     "kjoper": "Bane NOR SF",
-     "type": "Kunngjøring",
-     "dato": "2023-11-16",
-     "frist": "",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": null,
-     "url": "https://www.doffin.no/notices/2023-617036",
-     "fraSpv": false
-    },
-    {
-     "id": "2023-367305",
-     "tittel": "Prosjekt 1202002 Tønsberg tinghus Totalentreprise med løsningsforslag K 201",
-     "kjoper": "STATSBYGG",
-     "type": "Kunngjøring",
-     "dato": "2023-07-20",
-     "frist": "",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": null,
-     "url": "https://www.doffin.no/notices/2023-367305",
-     "fraSpv": false
-    },
-    {
-     "id": "2023-653561",
-     "tittel": "Føyka barnehage - Samspillsentreprise",
-     "kjoper": "Asker kommune",
-     "type": "Kunngjøring",
-     "dato": "2023-06-06",
-     "frist": "",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": "asker",
-     "url": "https://www.doffin.no/notices/2023-653561",
-     "fraSpv": true,
-     "spvNavn": "NCC NO AS"
-    },
-    {
-     "id": "2023-649124",
-     "tittel": "Samspillsentreprise Båstadlund arbeids- og aktivitetssenter",
-     "kjoper": "Halden Kommune",
-     "type": "Kunngjøring",
-     "dato": "2023-01-18",
-     "frist": "",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": "halden",
-     "url": "https://www.doffin.no/notices/2023-649124",
-     "fraSpv": true,
-     "spvNavn": "NCC NO AS"
-    },
-    {
-     "id": "2022-345081",
-     "tittel": "Stovner bad - Samspillsentreprise",
-     "kjoper": "Oslo kommune v/ Oslobygg KF",
-     "type": "Kunngjøring",
-     "dato": "2022-06-07",
-     "frist": "",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": "oslo",
-     "url": "https://www.doffin.no/notices/2022-345081",
-     "fraSpv": true,
-     "spvNavn": "NCC NO AS"
-    },
-    {
-     "id": "2022-355909",
-     "tittel": "2001 Totalentreprise med samspill, prekvalifisering - Ny sikkerhetspsykiatri",
-     "kjoper": "Helse Sør-Øst RHF",
-     "type": "Kunngjøring",
-     "dato": "2022-04-21",
-     "frist": "",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": null,
-     "url": "https://www.doffin.no/notices/2022-355909",
-     "fraSpv": true,
-     "spvNavn": "NCC NO AS"
-    }
-   ],
+   "aktivitet": 0,
+   "doffin": [],
    "spv": [
     {
-     "navn": "BEDRIFTSKLUBB NCC",
-     "org": "912656233",
-     "kommune": "TRONDHEIM"
-    },
-    {
-     "navn": "NCC AB",
-     "org": "937287151",
-     "kommune": null
-    },
-    {
-     "navn": "NCC BEDRIFTSIDRETTSLAG",
-     "org": "824353352",
+     "navn": "NCC PD HOLDING AS",
+     "org": "936245838",
      "kommune": "OSLO"
     },
     {
-     "navn": "NCC INDUSTRY",
-     "org": "986985263",
-     "kommune": "OSLO"
-    },
-    {
-     "navn": "NCC NO AS",
-     "org": "930070165",
-     "kommune": "HAMAR"
-    },
-    {
-     "navn": "NCC INDUSTRY AB",
-     "org": "994919415",
+     "navn": "NCC ROADS HOLDING AKTIEBOLAG",
+     "org": "994915525",
      "kommune": null
     },
     {
-     "navn": "NCC INDUSTRY AB",
-     "org": "994919458",
-     "kommune": null
-    },
-    {
-     "navn": "NCC INDUSTRY AS",
-     "org": "984884176",
-     "kommune": "OSLO"
-    },
-    {
-     "navn": "NCC NORGE AS",
-     "org": "911274426",
-     "kommune": "OSLO"
-    },
-    {
-     "navn": "NCC SVERIGE AB",
-     "org": "915017606",
-     "kommune": null
-    },
-    {
-     "navn": "KLUBBEN VEST, NCC ROADS",
-     "org": "899030842",
-     "kommune": "BERGEN"
-    },
-    {
-     "navn": "NCC AVD 154 TOTEN",
-     "org": "983957250",
-     "kommune": "VESTRE TOTEN"
-    },
-    {
-     "navn": "NCC FØROYAR SP/F",
-     "org": "937287887",
-     "kommune": null
-    },
-    {
-     "navn": "NCC INDUSTRY A/S",
-     "org": "886985282",
-     "kommune": null
-    },
-    {
-     "navn": "NCC INDUSTRY NORDIC AB",
-     "org": "994915541",
-     "kommune": null
+     "navn": "NCCT AS",
+     "org": "928146952",
+     "kommune": "KLEPP"
     }
    ],
-   "kommuneKart": {
-    "asker": {
-     "lat": 59.8569821,
-     "lng": 10.4089809
-    },
-    "halden": {
-     "lat": 59.1225499,
-     "lng": 11.4845706
-    },
-    "oslo": {
-     "lat": 59.9277248,
-     "lng": 10.7994183
-    }
-   },
+   "kommuneKart": {},
    "nyheter": [
     {
      "tittel": "Søk nyheter om NCC",
@@ -872,200 +666,8 @@
    "navn": "Backe Gruppen",
    "kategori": "Totalentreprenør",
    "oppdatert": "2026-09-21",
-   "aktivitet": 12,
-   "doffin": [
-    {
-     "id": "2026-106814",
-     "tittel": "Utvidelse av Bingsfoss ungdomsskole",
-     "kjoper": "Lillestrøm Kommune",
-     "type": "Kunngjøring",
-     "dato": "2026-04-16",
-     "frist": "2027-08-13",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": "lillestrøm",
-     "url": "https://www.doffin.no/notices/2026-106814",
-     "fraSpv": false
-    },
-    {
-     "id": "2025-119740",
-     "tittel": "Prosjektering og bygging av nye Hommersåk skole",
-     "kjoper": "Sandnes kommune",
-     "type": "Kunngjøring",
-     "dato": "2025-12-11",
-     "frist": "",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": "sandnes",
-     "url": "https://www.doffin.no/notices/2025-119740",
-     "fraSpv": true,
-     "spvNavn": "BACKE & BACKE AS"
-    },
-    {
-     "id": "2025-114100",
-     "tittel": "Kvernevik skole og idrettsanlegg",
-     "kjoper": "Stavanger kommune",
-     "type": "Kunngjøring",
-     "dato": "2025-10-02",
-     "frist": "",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": "stavanger",
-     "url": "https://www.doffin.no/notices/2025-114100",
-     "fraSpv": true,
-     "spvNavn": "BACKE & BACKE AS"
-    },
-    {
-     "id": "2025-107772",
-     "tittel": "Jevnaker ungdomsskole, totalentreprise",
-     "kjoper": "Jevnaker kommune",
-     "type": "Kunngjøring",
-     "dato": "2025-05-19",
-     "frist": "2025-04-25",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": "jevnaker",
-     "url": "https://www.doffin.no/notices/2025-107772",
-     "fraSpv": true,
-     "spvNavn": "BACKE & BACKE AS"
-    },
-    {
-     "id": "2024-118738",
-     "tittel": "Prosjektering og bygging av Skarabakken aktivitetssenter",
-     "kjoper": "Sandnes kommune",
-     "type": "Kunngjøring",
-     "dato": "2024-12-31",
-     "frist": "2026-06-02",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": "sandnes",
-     "url": "https://www.doffin.no/notices/2024-118738",
-     "fraSpv": true,
-     "spvNavn": "BACKE & BACKE AS"
-    },
-    {
-     "id": "2024-108333",
-     "tittel": "Etablering av Haugtun spesialskole",
-     "kjoper": "Lillestrøm Kommune",
-     "type": "Kunngjøring",
-     "dato": "2024-06-04",
-     "frist": "2025-12-18",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": "lillestrøm",
-     "url": "https://www.doffin.no/notices/2024-108333",
-     "fraSpv": true,
-     "spvNavn": "BACKE & BACKE AS"
-    },
-    {
-     "id": "2024-107407",
-     "tittel": "Ombygging av Bingsfoss ungdomsskole",
-     "kjoper": "Lillestrøm Kommune",
-     "type": "Kunngjøring",
-     "dato": "2024-05-17",
-     "frist": "2025-08-14",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": "lillestrøm",
-     "url": "https://www.doffin.no/notices/2024-107407",
-     "fraSpv": true,
-     "spvNavn": "BACKE & BACKE AS"
-    },
-    {
-     "id": "2022-916554",
-     "tittel": "Totalentreprise ny Haraldsvang skole og flerbrukshall",
-     "kjoper": "Haugesund kommune",
-     "type": "Kunngjøring",
-     "dato": "2022-10-10",
-     "frist": "",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": "haugesund",
-     "url": "https://www.doffin.no/notices/2022-916554",
-     "fraSpv": true,
-     "spvNavn": "BACKE & BACKE AS"
-    },
-    {
-     "id": "2022-972883",
-     "tittel": "Nye Rødmyr gjenvinningsstasjon (andregangsutlysning)",
-     "kjoper": "Renovasjon i Grenland IKS",
-     "type": "Kunngjøring",
-     "dato": "2022-09-23",
-     "frist": "",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": null,
-     "url": "https://www.doffin.no/notices/2022-972883",
-     "fraSpv": true,
-     "spvNavn": "BACKE & BACKE AS"
-    },
-    {
-     "id": "2022-364902",
-     "tittel": "Langhus svømmehall - Prekvalifisering",
-     "kjoper": "NORDRE FOLLO KOMMUNE",
-     "type": "Kunngjøring",
-     "dato": "2022-06-29",
-     "frist": "",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": "follo",
-     "url": "https://www.doffin.no/notices/2022-364902",
-     "fraSpv": true,
-     "spvNavn": "BACKE & BACKE AS"
-    },
-    {
-     "id": "2021-397142",
-     "tittel": "Dokka vgs - Utbedring yrkesfag",
-     "kjoper": "Innlandet fylkeskommune",
-     "type": "Kunngjøring",
-     "dato": "2021-08-17",
-     "frist": "",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": null,
-     "url": "https://www.doffin.no/notices/2021-397142",
-     "fraSpv": true,
-     "spvNavn": "BACKE & BACKE AS"
-    },
-    {
-     "id": "2021-353945",
-     "tittel": "Rehabilitering og utbygging, Valdres VGS",
-     "kjoper": "Innlandet fylkeskommune",
-     "type": "Kunngjøring",
-     "dato": "2021-02-11",
-     "frist": "",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": null,
-     "url": "https://www.doffin.no/notices/2021-353945",
-     "fraSpv": true,
-     "spvNavn": "BACKE & BACKE AS"
-    }
-   ],
+   "aktivitet": 0,
+   "doffin": [],
    "spv": [
     {
      "navn": "BACKE & BACKE AS",
@@ -1073,90 +675,77 @@
      "kommune": "ASKER"
     },
     {
-     "navn": "ANDERS BACKE",
-     "org": "993164097",
-     "kommune": "SIGDAL"
-    },
-    {
-     "navn": "AS BACKE",
-     "org": "932555689",
-     "kommune": "BÆRUM"
-    },
-    {
      "navn": "BACKE ASBJØRN",
      "org": "971511508",
      "kommune": "HOLMESTRAND"
     },
     {
-     "navn": "BACKE BESTLIFE",
-     "org": "985168652",
-     "kommune": "ASKER"
+     "navn": "BACKE EIENDOM AS",
+     "org": "910380311",
+     "kommune": "GJØVIK"
     },
     {
-     "navn": "BACKE FYSIOTERAPI",
-     "org": "921419147",
-     "kommune": "SKIEN"
+     "navn": "BACKE HOLDING AS",
+     "org": "927725835",
+     "kommune": "BÆRUM"
     },
     {
-     "navn": "BACKE SERVICE",
-     "org": "926966375",
-     "kommune": "FÆRDER"
+     "navn": "BACKE INVEST AS",
+     "org": "989069160",
+     "kommune": "GJØVIK"
     },
     {
-     "navn": "BACKE SOULUTIONS",
-     "org": "930874191",
-     "kommune": "RINGSAKER"
+     "navn": "BACKE JAN TORE",
+     "org": "969113678",
+     "kommune": "ØSTRE TOTEN"
     },
     {
-     "navn": "PER BACKE",
-     "org": "980276236",
-     "kommune": "HOLMESTRAND"
+     "navn": "BACKE PROSJEKT AS",
+     "org": "994171658",
+     "kommune": "BÆRUM"
     },
     {
-     "navn": "SIGURD BACKE",
-     "org": "998432480",
-     "kommune": "MODUM"
-    },
-    {
-     "navn": "STIAN BACKE",
-     "org": "821702992",
-     "kommune": "TRONDHEIM"
-    },
-    {
-     "navn": "THOMAS BACKE",
-     "org": "933075591",
+     "navn": "KLEVER & BACKE AS",
+     "org": "911932997",
      "kommune": "OSLO"
     },
     {
-     "navn": "ALBION BACKE FORLAG",
-     "org": "937539444",
+     "navn": "ANDERS BACKE INVEST AS",
+     "org": "936998879",
+     "kommune": "GRAN"
+    },
+    {
+     "navn": "BACKE EIENDOM BOLIGFORVALTNING AS",
+     "org": "920060358",
+     "kommune": "BÆRUM"
+    },
+    {
+     "navn": "BACKE EIENDOM INVEST AS",
+     "org": "879705452",
+     "kommune": "BÆRUM"
+    },
+    {
+     "navn": "BACKE PROSJEKT NORD AS",
+     "org": "987650648",
+     "kommune": "BÆRUM"
+    },
+    {
+     "navn": "BJØRN BACKE HOLDING AS",
+     "org": "985086532",
+     "kommune": "NITTEDAL"
+    },
+    {
+     "navn": "TANNLEGE KRISTIN BRANDE BACKE",
+     "org": "979923562",
      "kommune": "OSLO"
     },
     {
-     "navn": "BACKE BERGEN AS",
-     "org": "995144425",
-     "kommune": "BERGEN"
-    },
-    {
-     "navn": "BACKE BMB AS",
-     "org": "992951532",
-     "kommune": "BERGEN"
+     "navn": "DRAMMEN OSTEOPATI Ingunn Backe Wennberg",
+     "org": "981226313",
+     "kommune": "DRAMMEN"
     }
    ],
-   "kommuneKart": {
-    "lillestrøm": {
-     "lat": 59.9483546,
-     "lng": 11.009851
-    },
-    "sandnes": {
-     "lat": 58.8623806,
-     "lng": 5.7000422
-    },
-    "stavanger": {
-     "lat": 58.9368251,
-     "lng": 5.7207158
-    }
-   },
+   "kommuneKart": {},
    "nyheter": [
     {
      "tittel": "Søk nyheter om Backe Gruppen",
@@ -1169,93 +758,17 @@
    "navn": "OBOS",
    "kategori": "Boligutbygger",
    "oppdatert": "2026-09-21",
-   "aktivitet": 3,
-   "doffin": [
-    {
-     "id": "2017-109084",
-     "tittel": "Rehabilitering av grasbane på Florø Stadion",
-     "kjoper": "Flora kommune",
-     "type": "Kunngjøring",
-     "dato": "2017-06-13",
-     "frist": "",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": "flora",
-     "url": "https://www.doffin.no/notices/2017-109084",
-     "fraSpv": false
-    },
-    {
-     "id": "2017-546272",
-     "tittel": "Forneburingen barnehage - Grunn og utomhusarbeider",
-     "kjoper": "Bærum kommune",
-     "type": "Kunngjøring",
-     "dato": "2017-03-15",
-     "frist": "",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": "bærum",
-     "url": "https://www.doffin.no/notices/2017-546272",
-     "fraSpv": false
-    },
-    {
-     "id": "2017-297060",
-     "tittel": "Forneburingen barnehage - Grunn og utomhusarbeider",
-     "kjoper": "Bærum kommune",
-     "type": "Kunngjøring",
-     "dato": "2017-01-05",
-     "frist": "2017-02-03",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": "bærum",
-     "url": "https://www.doffin.no/notices/2017-297060",
-     "fraSpv": false
-    }
-   ],
+   "aktivitet": 0,
+   "doffin": [],
    "spv": [
-    {
-     "navn": "OBOS AB",
-     "org": "936199828",
-     "kommune": null
-    },
     {
      "navn": "OBOS BBL",
      "org": "937052766",
      "kommune": "OSLO"
     },
     {
-     "navn": "OBOS SENIORKLUBB",
-     "org": "996831361",
-     "kommune": "OSLO"
-    },
-    {
      "navn": "OBOS AKSJEINVESTERINGER AS",
      "org": "934070119",
-     "kommune": "OSLO"
-    },
-    {
-     "navn": "OBOS B.I.L BERGEN",
-     "org": "916749953",
-     "kommune": null
-    },
-    {
-     "navn": "OBOS BBL AB",
-     "org": "931702866",
-     "kommune": null
-    },
-    {
-     "navn": "OBOS BOKJØPSMODELLER AB",
-     "org": "931702920",
-     "kommune": null
-    },
-    {
-     "navn": "OBOS BOLIGKREDITT AS",
-     "org": "917213658",
      "kommune": "OSLO"
     },
     {
@@ -1279,27 +792,52 @@
      "kommune": "OSLO"
     },
     {
-     "navn": "OBOS FACTORING AS",
-     "org": "912226980",
-     "kommune": "OSLO"
-    },
-    {
-     "navn": "OBOS FELLESKOST AS",
-     "org": "916298420",
-     "kommune": "OSLO"
-    },
-    {
      "navn": "OBOS FORNEBU AS",
      "org": "982366879",
      "kommune": "BÆRUM"
+    },
+    {
+     "navn": "OBOS KOKSA AS",
+     "org": "991372091",
+     "kommune": "BÆRUM"
+    },
+    {
+     "navn": "OBOS KVÆRNERBYEN AS",
+     "org": "995325055",
+     "kommune": "OSLO"
+    },
+    {
+     "navn": "OBOS PROSJEKT AS",
+     "org": "931536532",
+     "kommune": "OSLO"
+    },
+    {
+     "navn": "OBOS NORDVEST UTBYGGING AS",
+     "org": "941529038",
+     "kommune": "ÅLESUND"
+    },
+    {
+     "navn": "OBOS NYE HJEM AS",
+     "org": "935283280",
+     "kommune": "OSLO"
+    },
+    {
+     "navn": "OBOS ULVESETH STRAUMSFJELLET AS",
+     "org": "992637439",
+     "kommune": "OSLO"
+    },
+    {
+     "navn": "OBOS ULVESETH UTVIKLING AS",
+     "org": "997672232",
+     "kommune": "BERGEN"
+    },
+    {
+     "navn": "OBOS VETLANDSVEIEN 68 AS",
+     "org": "916348886",
+     "kommune": "OSLO"
     }
    ],
-   "kommuneKart": {
-    "bærum": {
-     "lat": 59.9385213,
-     "lng": 10.4379187
-    }
-   },
+   "kommuneKart": {},
    "nyheter": [
     {
      "tittel": "Søk nyheter om OBOS",
@@ -1493,49 +1031,14 @@
    "doffin": [],
    "spv": [
     {
-     "navn": "FAU NORLANDIA BREISTEIN",
-     "org": "937653972",
-     "kommune": "BERGEN"
-    },
-    {
-     "navn": "NORLANDIA BARNEHAGEDRIFT AS",
-     "org": "815455452",
-     "kommune": "OSLO"
-    },
-    {
-     "navn": "NORLANDIA BARNEHAGENE AS",
-     "org": "980018563",
-     "kommune": "OSLO"
-    },
-    {
      "navn": "NORLANDIA CARE AS",
      "org": "979381042",
-     "kommune": "OSLO"
-    },
-    {
-     "navn": "NORLANDIA DRIFT AB",
-     "org": "985409293",
-     "kommune": null
-    },
-    {
-     "navn": "NORLANDIA DRIFT AS",
-     "org": "976657802",
      "kommune": "OSLO"
     },
     {
      "navn": "NORLANDIA EIENDOM AS",
      "org": "976657438",
      "kommune": "OSLO"
-    },
-    {
-     "navn": "NORLANDIA FASTIGHETER AB",
-     "org": "824294682",
-     "kommune": null
-    },
-    {
-     "navn": "NORLANDIA FASTIGHETER AB",
-     "org": "923695117",
-     "kommune": null
     },
     {
      "navn": "NORLANDIA HJEMMEOMSORG AS",
@@ -1553,19 +1056,14 @@
      "kommune": "OSLO"
     },
     {
-     "navn": "NORLANDIA PRESCHOOLS AS",
-     "org": "986554270",
+     "navn": "NORLANDIA UTVIKLING AS",
+     "org": "980935094",
      "kommune": "OSLO"
     },
     {
-     "navn": "NORLANDIA SERVICES AS",
-     "org": "945971401",
+     "navn": "NORLANDIA CARE NORGE AS",
+     "org": "980478076",
      "kommune": "OSLO"
-    },
-    {
-     "navn": "NORLANDIA SJØFLYHAVNA AS",
-     "org": "915719627",
-     "kommune": "BÆRUM"
     }
    ],
    "kommuneKart": {},
