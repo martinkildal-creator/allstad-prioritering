@@ -241,6 +241,7 @@ async function hentDoffin() {
           _poeng: poeng,
           type: etikett,
           tittel: tittel.slice(0, 160),
+          publisert: datoKort(tekstAv(publ)),
           frist: datoKort(tekstAv(frist)),
           verdi: belopKort(verdi),
           url: tekstAv(n.doffinClassicUrl) || (id ? `https://www.doffin.no/notices/${id}` : null)
