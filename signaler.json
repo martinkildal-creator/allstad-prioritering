@@ -1,7 +1,149 @@
 {
- "_oppdatert": "2026-09-21",
+ "_oppdatert": "2026-09-24",
  "_kilder": "Doffin (åpne kunngjøringer) og Husbankens statistikkbank (manuell csv)",
  "kommuner": {
+  "sigdal": {
+   "doffinScore": 12,
+   "husbankScore": 3,
+   "doffinTreff": [
+    {
+     "type": "Aktiv konkurranse",
+     "tittel": "Robuste omsorgsboliger i Prestfoss",
+     "publisert": "24.09.2026",
+     "frist": "02.11.2026",
+     "verdi": "9,0 mill. kr",
+     "url": "https://www.doffin.no/notices/2026-114956"
+    }
+   ],
+   "husbankTilsagn": 1,
+   "husbankDetalj": {
+    "tilsagn": 1,
+    "plasser": null,
+    "belop": "2,2 mill. kr",
+    "belopTall": 2222000,
+    "serie": null,
+    "status": "Investeringstilskudd"
+   }
+  },
+  "oslo": {
+   "doffinScore": 20,
+   "husbankScore": 9,
+   "doffinTreff": [
+    {
+     "type": "Aktiv konkurranse",
+     "tittel": "Totalentreprise for rehabilitering og ombygging av enebolig i Kringveien 27B",
+     "publisert": "22.09.2026",
+     "frist": "02.11.2026",
+     "verdi": null,
+     "url": "https://www.doffin.no/notices/2026-114830"
+    },
+    {
+     "type": "Aktiv konkurranse",
+     "tittel": "Elektrikertjenester",
+     "publisert": "09.09.2026",
+     "frist": "07.10.2026",
+     "verdi": "1200,0 mill. kr",
+     "url": "https://www.doffin.no/notices/2026-114187"
+    },
+    {
+     "type": "Aktiv konkurranse",
+     "tittel": "Prosjektdirektør med styringsstab til å lede gjennomføring av Mortensrudprosjektet",
+     "publisert": "18.08.2026",
+     "frist": "31.12.2032",
+     "verdi": null,
+     "url": "https://www.doffin.no/notices/2026-113102"
+    },
+    {
+     "type": "Kunngjøring",
+     "tittel": "Prosjektdirektør med styringsstab til å lede gjennomføring av Mortensrudprosjektet",
+     "publisert": "18.08.2026",
+     "frist": "18.09.2026",
+     "verdi": null,
+     "url": "https://www.doffin.no/notices/2026-113106"
+    },
+    {
+     "type": "Kunngjøring",
+     "tittel": "Prosjektdirektør med styringsstab til å lede gjennomføring av Mortensrudprosjektet",
+     "publisert": "12.08.2026",
+     "frist": "09.09.2026",
+     "verdi": null,
+     "url": "https://www.doffin.no/notices/2026-112904"
+    },
+    {
+     "type": "Kunngjøring",
+     "tittel": "Parallelle rammeavtaler for kjøp av sammensatte håndverkertjenester",
+     "publisert": "15.12.2025",
+     "frist": "16.01.2026",
+     "verdi": "2000,0 mill. kr",
+     "url": "https://www.doffin.no/notices/2025-120152"
+    },
+    {
+     "type": "Kunngjøring",
+     "tittel": "Rammeavtale for glassmestertjenester",
+     "publisert": "09.12.2025",
+     "frist": null,
+     "verdi": "72,0 mill. kr",
+     "url": "https://www.doffin.no/notices/2025-119477"
+    },
+    {
+     "type": "Tildeling",
+     "tittel": "Rammeavtale for glassmestertjenester",
+     "publisert": "18.09.2025",
+     "frist": "17.10.2025",
+     "verdi": "72,0 mill. kr",
+     "url": "https://www.doffin.no/notices/2025-113363"
+    },
+    {
+     "type": "Kunngjøring",
+     "tittel": "Totalentreprise for kjøp av ombygging av boligblokk- Olav Bjaalands  vei 7",
+     "publisert": "29.07.2025",
+     "frist": null,
+     "verdi": "16,0 mill. kr",
+     "url": "https://www.doffin.no/notices/2025-111306"
+    },
+    {
+     "type": "Kunngjøring",
+     "tittel": "Forespørsel om innspill - kontraktsvilkår om lønn for arbeidstakere som omfattes av virksomhetsoverdragelse i forbindelse med anskaffelse av sykehjemsdrift",
+     "publisert": "15.05.2026",
+     "frist": null,
+     "verdi": null,
+     "url": "https://www.doffin.no/notices/2026-108785"
+    },
+    {
+     "type": "Kunngjøring",
+     "tittel": "Maskinlæring - Øraker skole og Ryen helsehus",
+     "publisert": "30.10.2025",
+     "frist": null,
+     "verdi": "4,0 mill. kr",
+     "url": "https://www.doffin.no/notices/2025-115642"
+    },
+    {
+     "type": "Tildeling",
+     "tittel": "Maskinlæring - Øraker skole og Ryen helsehus",
+     "publisert": "19.05.2025",
+     "frist": "18.06.2025",
+     "verdi": null,
+     "url": "https://www.doffin.no/notices/2025-107777"
+    },
+    {
+     "type": "Kunngjøring",
+     "tittel": "Totalentreprise Adamstuen omsorgssenter - heis",
+     "publisert": "12.06.2026",
+     "frist": "22.06.2026",
+     "verdi": null,
+     "url": "https://www.doffin.no/notices/2026-110473"
+    }
+   ],
+   "husbankTilsagn": 10,
+   "husbankDetalj": {
+    "tilsagn": 10,
+    "plasser": null,
+    "belop": "492,9 mill. kr",
+    "belopTall": 492907000,
+    "serie": null,
+    "status": "Investeringstilskudd"
+   }
+  },
   "frøya": {
    "doffinScore": 12,
    "husbankScore": 3,
@@ -9,6 +151,7 @@
     {
      "type": "Aktiv konkurranse",
      "tittel": "Totalentreprise Øvergården bofellesskap",
+     "publisert": "12.09.2026",
      "frist": "16.10.2026",
      "verdi": "60,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-114342"
@@ -25,12 +168,13 @@
    }
   },
   "bærum": {
-   "doffinScore": 18,
+   "doffinScore": 9,
    "husbankScore": 9,
    "doffinTreff": [
     {
-     "type": "Aktiv konkurranse",
+     "type": "Kunngjøring",
      "tittel": "1000819 Berger barnehage - riving av Berger sykehjem",
+     "publisert": "10.09.2026",
      "frist": "22.09.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-114240"
@@ -38,6 +182,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Totalentreprise med løsningsforslag basert på husmodeller - prekvalifisering - prosjektene 1001359 Underhaugsbakken omsorgsboliger - 1001213 Dønskiveien boliger",
+     "publisert": "13.02.2026",
      "frist": "13.03.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-103010"
@@ -45,6 +190,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "1001431 Lønnås helsehus og rehab. - Solcelleanlegg",
+     "publisert": "19.11.2025",
      "frist": "28.11.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-117399"
@@ -60,105 +206,6 @@
     "status": "Investeringstilskudd"
    }
   },
-  "oslo": {
-   "doffinScore": 20,
-   "husbankScore": 9,
-   "doffinTreff": [
-    {
-     "type": "Aktiv konkurranse",
-     "tittel": "Elektrikertjenester",
-     "frist": "07.10.2026",
-     "verdi": "1200,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2026-114187"
-    },
-    {
-     "type": "Aktiv konkurranse",
-     "tittel": "Prosjektdirektør med styringsstab til å lede gjennomføring av Mortensrudprosjektet",
-     "frist": "31.12.2032",
-     "verdi": null,
-     "url": "https://www.doffin.no/notices/2026-113102"
-    },
-    {
-     "type": "Kunngjøring",
-     "tittel": "Prosjektdirektør med styringsstab til å lede gjennomføring av Mortensrudprosjektet",
-     "frist": "18.09.2026",
-     "verdi": null,
-     "url": "https://www.doffin.no/notices/2026-113106"
-    },
-    {
-     "type": "Kunngjøring",
-     "tittel": "Prosjektdirektør med styringsstab til å lede gjennomføring av Mortensrudprosjektet",
-     "frist": "09.09.2026",
-     "verdi": null,
-     "url": "https://www.doffin.no/notices/2026-112904"
-    },
-    {
-     "type": "Kunngjøring",
-     "tittel": "Parallelle rammeavtaler for kjøp av sammensatte håndverkertjenester",
-     "frist": "16.01.2026",
-     "verdi": "2000,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2025-120152"
-    },
-    {
-     "type": "Kunngjøring",
-     "tittel": "Rammeavtale for glassmestertjenester",
-     "frist": null,
-     "verdi": "72,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2025-119477"
-    },
-    {
-     "type": "Tildeling",
-     "tittel": "Rammeavtale for glassmestertjenester",
-     "frist": "17.10.2025",
-     "verdi": "72,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2025-113363"
-    },
-    {
-     "type": "Kunngjøring",
-     "tittel": "Totalentreprise for kjøp av ombygging av boligblokk- Olav Bjaalands  vei 7",
-     "frist": null,
-     "verdi": "16,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2025-111306"
-    },
-    {
-     "type": "Kunngjøring",
-     "tittel": "Forespørsel om innspill - kontraktsvilkår om lønn for arbeidstakere som omfattes av virksomhetsoverdragelse i forbindelse med anskaffelse av sykehjemsdrift",
-     "frist": null,
-     "verdi": null,
-     "url": "https://www.doffin.no/notices/2026-108785"
-    },
-    {
-     "type": "Kunngjøring",
-     "tittel": "Maskinlæring - Øraker skole og Ryen helsehus",
-     "frist": null,
-     "verdi": "4,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2025-115642"
-    },
-    {
-     "type": "Tildeling",
-     "tittel": "Maskinlæring - Øraker skole og Ryen helsehus",
-     "frist": "18.06.2025",
-     "verdi": null,
-     "url": "https://www.doffin.no/notices/2025-107777"
-    },
-    {
-     "type": "Kunngjøring",
-     "tittel": "Totalentreprise Adamstuen omsorgssenter - heis",
-     "frist": "22.06.2026",
-     "verdi": null,
-     "url": "https://www.doffin.no/notices/2026-110473"
-    }
-   ],
-   "husbankTilsagn": 10,
-   "husbankDetalj": {
-    "tilsagn": 10,
-    "plasser": null,
-    "belop": "492,9 mill. kr",
-    "belopTall": 492907000,
-    "serie": null,
-    "status": "Investeringstilskudd"
-   }
-  },
   "sandefjord": {
    "doffinScore": 12,
    "husbankScore": 9,
@@ -166,6 +213,7 @@
     {
      "type": "Aktiv konkurranse",
      "tittel": "Vesteråt BOA - Bygging av omsorgsboliger",
+     "publisert": "28.08.2026",
      "frist": "16.10.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-113575"
@@ -188,6 +236,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Vangsheimen Uppigarden Påbygg",
+     "publisert": "26.08.2026",
      "frist": "10.09.2026",
      "verdi": "48,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-113455"
@@ -210,6 +259,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Totalentreprise for Waglegårdsveien bofelleskap",
+     "publisert": "11.08.2026",
      "frist": "18.09.2026",
      "verdi": "27,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-112846"
@@ -217,6 +267,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Omsorgsboliger med base og aktivitetssenter Nyli",
+     "publisert": "22.09.2025",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-113530"
@@ -224,6 +275,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Omsorgsboliger med base og aktivitetssenter Bjorbekk",
+     "publisert": "19.09.2025",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-113449"
@@ -231,6 +283,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Totalentreprise for Marisberg bofelleskap",
+     "publisert": "08.08.2026",
      "frist": "07.09.2026",
      "verdi": "22,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-112751"
@@ -238,6 +291,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Totalentreprise for Stuenes bofellesskap",
+     "publisert": "04.09.2025",
      "frist": "22.09.2025",
      "verdi": "22,0 mill. kr",
      "url": "https://www.doffin.no/notices/2025-112684"
@@ -245,6 +299,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Totalentreprise for Påskeveien bofellesskap",
+     "publisert": "26.08.2025",
      "frist": "29.09.2025",
      "verdi": "22,0 mill. kr",
      "url": "https://www.doffin.no/notices/2025-112237"
@@ -267,6 +322,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Rammeavtale  håndverkertjenester med tilhørende materiell, Øksnes kommune, 2.gangs utlysning",
+     "publisert": "11.08.2026",
      "frist": "11.09.2026",
      "verdi": "4,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-112838"
@@ -289,6 +345,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Utvikling bofellesskap Brokelandsheia - Grunnarbeid",
+     "publisert": "08.08.2026",
      "frist": "27.08.2026",
      "verdi": "25,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-112759"
@@ -304,6 +361,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Gang og sykkelvei omsorgsbolig - utførelse, Ullensaker kommune",
+     "publisert": "04.08.2026",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-112612"
@@ -311,6 +369,7 @@
     {
      "type": "Tildeling",
      "tittel": "Gang og sykkelvei omsorgsbolig - utførelse, Ullensaker kommune",
+     "publisert": "18.04.2026",
      "frist": "21.05.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-107027"
@@ -318,6 +377,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Totalentreprise med samspill for Omsorgsboliger på Algarheim i Ullensaker kommune",
+     "publisert": "28.01.2026",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-101934"
@@ -340,6 +400,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Totalentreprise for omsorgsbustader Røyskattlia 18",
+     "publisert": "18.07.2026",
      "frist": "14.08.2026",
      "verdi": "76,7 mill. kr",
      "url": "https://www.doffin.no/notices/2026-112355"
@@ -362,6 +423,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Intensjonskunngjøring omsorgsboliger Lødingen",
+     "publisert": "14.07.2026",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-112238"
@@ -384,6 +446,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Prosjekt 3217 - Totalentreprise - Foreldreinitiativet og kommunale omsorgsboliger Kvernaland",
+     "publisert": "09.07.2026",
      "frist": "28.08.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-112109"
@@ -391,6 +454,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Prosjekt 3287 - Nytt sykehjem - Rådgivertjenester i forbindelse med reguleringsarbeid - Prekvalifiseringsfase",
+     "publisert": "16.06.2026",
      "frist": "07.08.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-110620"
@@ -398,6 +462,7 @@
     {
      "type": "Tildeling",
      "tittel": "Utvidelse av Kvernaland omsorgssenter - varme- sanitær- og sprinkler - EP05 - kontraktstildeling",
+     "publisert": "27.04.2026",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-107513"
@@ -405,6 +470,7 @@
     {
      "type": "Tildeling",
      "tittel": "Utvidelse av Kvernaland omsorgssenter - grunn, VA, fundamenter og uteanlegg - EP02 - kontraktstildeling",
+     "publisert": "27.04.2026",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-107515"
@@ -412,6 +478,7 @@
     {
      "type": "Tildeling",
      "tittel": "Utvidelse av Kvernaland omsorgssenter - bygningsmessige arbeider - EP01 - kontraktstildeling",
+     "publisert": "27.04.2026",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-107530"
@@ -419,6 +486,7 @@
     {
      "type": "Tildeling",
      "tittel": "Utvidelse av Kvernaland omsorgssenter - ventilasjon - EP06 - kontraktstildeling",
+     "publisert": "27.04.2026",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-107531"
@@ -426,6 +494,7 @@
     {
      "type": "Tildeling",
      "tittel": "Utvidelse av Kvernaland omsorgssenter - elektro og automasjon - EP03 - kontraktstildeling",
+     "publisert": "27.04.2026",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-107533"
@@ -433,6 +502,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Utvidelse av Kvernaland omsorgssenter - Heis - EP 07",
+     "publisert": "22.11.2025",
      "frist": "30.01.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-117743"
@@ -440,6 +510,7 @@
     {
      "type": "Tildeling",
      "tittel": "Utvidelse av Kvernaland omsorgssenter - elektro og automasjon - EP03",
+     "publisert": "19.11.2025",
      "frist": "23.12.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-117378"
@@ -447,6 +518,7 @@
     {
      "type": "Tildeling",
      "tittel": "Utvidelse av Kvernaland omsorgssenter - grunn, VA, fundamenter og uteanlegg - EP02",
+     "publisert": "18.11.2025",
      "frist": "19.12.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-117193"
@@ -454,6 +526,7 @@
     {
      "type": "Tildeling",
      "tittel": "Utvidelse av Kvernaland omsorgssenter - ventilasjon - EP06",
+     "publisert": "17.11.2025",
      "frist": "18.12.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-117094"
@@ -461,6 +534,7 @@
     {
      "type": "Tildeling",
      "tittel": "Utvidelse av Kvernaland omsorgssenter - bygningsmessige arbeider - EP01",
+     "publisert": "14.11.2025",
      "frist": "18.12.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-116888"
@@ -468,6 +542,7 @@
     {
      "type": "Tildeling",
      "tittel": "Utvidelse av Kvernaland omsorgssenter - varme- sanitær- og sprinkler - EP05",
+     "publisert": "14.11.2025",
      "frist": "18.12.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-116893"
@@ -475,6 +550,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Utvidelse av Kvernaland omsorgssenter - Energibrønner",
+     "publisert": "01.11.2025",
      "frist": "01.12.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-115772"
@@ -482,6 +558,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Leie av brakkerigg Kvernaland omsorgssenter",
+     "publisert": "07.06.2025",
      "frist": "27.06.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-108974"
@@ -489,6 +566,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Totalentreprise rehabilitering av tak Kvernaland omsorgssenter",
+     "publisert": "29.05.2025",
      "frist": "20.06.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-108435"
@@ -511,6 +589,7 @@
     {
      "type": "Markedsdialog",
      "tittel": "Markedsdialog om leie av omsorgsboliger i bofellesskap med heldøgnsbemannet personalbase på Lundavangområdet",
+     "publisert": "08.07.2026",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-112002"
@@ -518,6 +597,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Bytte av hovedheis Bergmo omsorgsboliger- Total entreprise",
+     "publisert": "17.07.2025",
      "frist": "10.09.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-111188"
@@ -525,6 +605,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Bergmo omsorgsboliger- Tilbygg med løfteplattform- Totalentreprise",
+     "publisert": "16.07.2025",
      "frist": "10.09.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-111167"
@@ -532,6 +613,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Samlokaliserte og tilrettelagte boliger - Skåla",
+     "publisert": "05.05.2026",
      "frist": "23.06.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-108117"
@@ -539,6 +621,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Glassutskifting omsorgssenter Molde kommune",
+     "publisert": "24.03.2026",
      "frist": "07.04.2026",
      "verdi": "2,5 mill. kr",
      "url": "https://www.doffin.no/notices/2026-105667"
@@ -561,6 +644,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Garchinggata Omsorgsboliger",
+     "publisert": "18.06.2026",
      "frist": "27.07.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-110801"
@@ -577,12 +661,13 @@
    }
   },
   "ås": {
-   "doffinScore": 12,
+   "doffinScore": 9,
    "husbankScore": 3,
    "doffinTreff": [
     {
      "type": "Kunngjøring",
      "tittel": "Granheimtunet omsorgsboliger. Utskifting av verandaer 2026",
+     "publisert": "17.06.2026",
      "frist": "21.08.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-110745"
@@ -590,6 +675,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Dr. Sødringsvei omsorgsboliger - rehabilitering av balkonger",
+     "publisert": "27.05.2026",
      "frist": "26.06.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-109483"
@@ -597,16 +683,10 @@
     {
      "type": "Kunngjøring",
      "tittel": "Kajaveien. Ombygging og utvidelse",
+     "publisert": "28.02.2026",
      "frist": "16.04.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-104110"
-    },
-    {
-     "type": "Kunngjøring",
-     "tittel": "Granheimtunet omsorgsboliger. Utskifting av verandaer",
-     "frist": "20.08.2025",
-     "verdi": null,
-     "url": "https://www.doffin.no/notices/2025-110808"
     }
    ],
    "husbankTilsagn": 1,
@@ -626,6 +706,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Rehabilitering og energitiltak Vegårshei Bo- og omsorgssenter (VBO), og omsorgsboliger",
+     "publisert": "13.06.2026",
      "frist": "20.07.2026",
      "verdi": "5,5 mill. kr",
      "url": "https://www.doffin.no/notices/2026-110522"
@@ -641,6 +722,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Rammeavtale - Rådgivertjenester innenfor geoteknikk, miljøgeologi og ingeniørgeologi inkl. grunnundersøkelser",
+     "publisert": "08.06.2026",
      "frist": null,
      "verdi": "5,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-110201"
@@ -648,6 +730,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Rammeavtale - Arkitekt og reguleringsplanlegger",
+     "publisert": "08.06.2026",
      "frist": null,
      "verdi": "6,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-110202"
@@ -655,6 +738,7 @@
     {
      "type": "Tildeling",
      "tittel": "Rammeavtale - Rådgivertjenester innenfor geoteknikk, miljøgeologi og ingeniørgeologi inkl. grunnundersøkelser",
+     "publisert": "24.02.2026",
      "frist": "23.03.2026",
      "verdi": "5,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-103721"
@@ -662,6 +746,7 @@
     {
      "type": "Tildeling",
      "tittel": "Rammeavtale - Arkitekt og reguleringsplanlegger",
+     "publisert": "23.02.2026",
      "frist": "23.03.2026",
      "verdi": "6,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-103670"
@@ -677,6 +762,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Jamtvegen 16-18 Omsorgsleiligheter - Prekvalifisering til Pris- og designkonkurranse",
+     "publisert": "05.06.2026",
      "frist": "02.07.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-110097"
@@ -699,6 +785,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Røsetvegen 8 - rennovering",
+     "publisert": "27.05.2026",
      "frist": "22.06.2026",
      "verdi": "3,5 mill. kr",
      "url": "https://www.doffin.no/notices/2026-109492"
@@ -721,6 +808,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "BA-26-013-VT-OMSORGSSENTER",
+     "publisert": "13.04.2026",
      "frist": "05.06.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-106632"
@@ -736,6 +824,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Eidesbrotet 14",
+     "publisert": "20.03.2026",
      "frist": "30.04.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-105468"
@@ -758,6 +847,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Trinn 1 Prekvalifisering - Totalentreprise Pro 1218 Omsorgsboliger Sveberg",
+     "publisert": "19.03.2026",
      "frist": "15.04.2026",
      "verdi": "50,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-105382"
@@ -780,6 +870,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "25/6102 - Nye Sundheim - Skisseprosjekt",
+     "publisert": "18.03.2026",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-105266"
@@ -787,6 +878,7 @@
     {
      "type": "Tildeling",
      "tittel": "25/6102 - Nye Sundheim - Skisseprosjekt",
+     "publisert": "14.01.2026",
      "frist": "26.01.2026",
      "verdi": "703 000 kr",
      "url": "https://www.doffin.no/notices/2026-100938"
@@ -809,6 +901,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "(26/350) Helseparken Sandetun, totalentreprise",
+     "publisert": "12.03.2026",
      "frist": "16.04.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-104905"
@@ -816,6 +909,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "(26/349) Heldøgns boliger Våleveien 34, totalentreprise",
+     "publisert": "06.02.2026",
      "frist": "02.03.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-102635"
@@ -823,6 +917,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Tegning/planlegging av nytt helsehus",
+     "publisert": "22.07.2026",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-112395"
@@ -830,6 +925,7 @@
     {
      "type": "Tildeling",
      "tittel": "Tegning/planlegging av nytt helsehus",
+     "publisert": "23.04.2026",
      "frist": "27.05.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-107318"
@@ -852,6 +948,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Tusenfryd - Skånevik Omsorgssenter totalentreprise",
+     "publisert": "05.03.2026",
      "frist": "08.04.2026",
      "verdi": "15,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-104435"
@@ -874,6 +971,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Strømsdalen boliger",
+     "publisert": "03.03.2026",
      "frist": "23.04.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-104233"
@@ -896,6 +994,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Ombygging Tredal Barnehage",
+     "publisert": "17.02.2026",
      "frist": "27.02.2026",
      "verdi": "5,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-103253"
@@ -903,6 +1002,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Midlertidig omsorgsboliger modulbygg",
+     "publisert": "14.01.2026",
      "frist": "30.01.2026",
      "verdi": "15,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-100928"
@@ -910,6 +1010,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Totalentreprise Sunndal helsetun",
+     "publisert": "08.12.2025",
      "frist": "19.12.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-119349"
@@ -917,6 +1018,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Geoteknikk og grunnundersøkelser",
+     "publisert": "29.04.2025",
      "frist": "23.05.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-106688"
@@ -932,6 +1034,7 @@
     {
      "type": "Aktiv konkurranse",
      "tittel": "Lensmannskroken - 8 Boliger med base",
+     "publisert": "11.09.2025",
      "frist": "22.12.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-112996"
@@ -939,6 +1042,7 @@
     {
      "type": "Aktiv konkurranse",
      "tittel": "Sola sykehjem - Ny sengeheis - 2. gangs utlysning",
+     "publisert": "18.09.2026",
      "frist": "19.10.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-114671"
@@ -946,6 +1050,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "K2 - Omsorgsboliger for rus og psykiatri - prosjektnummer 39120",
+     "publisert": "04.02.2026",
      "frist": "10.04.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-102390"
@@ -953,6 +1058,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Sola sykehjem - Ny sengeheis",
+     "publisert": "01.05.2026",
      "frist": "31.07.2026",
      "verdi": "1,5 mill. kr",
      "url": "https://www.doffin.no/notices/2026-107907"
@@ -975,6 +1081,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Boligbygging Skjervøy kommune",
+     "publisert": "29.01.2026",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-101997"
@@ -997,6 +1104,7 @@
     {
      "type": "Markedsdialog",
      "tittel": "Arkitekt til samisk barnehage og omsorgsboliger i Kautokeino",
+     "publisert": "13.08.2025",
      "frist": "12.09.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-111660"
@@ -1004,6 +1112,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "TOTALENTREPRENØR TIL SAMISK BARNEHAGE OG OMSORGSBOLIGER I KAUTOKEINO",
+     "publisert": "29.01.2026",
      "frist": "06.03.2026",
      "verdi": "90,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-102024"
@@ -1019,6 +1128,7 @@
     {
      "type": "Markedsdialog",
      "tittel": "Markedsdialog - Tilvisningsavtaler og salg av boligenheter i Orkland",
+     "publisert": "22.11.2025",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-117752"
@@ -1026,6 +1136,7 @@
     {
      "type": "Tildeling",
      "tittel": "Utlysning av tilvisningsavte, Krokstadøra SOS",
+     "publisert": "23.01.2026",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-101726"
@@ -1048,6 +1159,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "RI-25-01 Totalentreprise ombygging og tilbygg Rindal helsehus",
+     "publisert": "23.12.2025",
      "frist": "26.01.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-121301"
@@ -1070,6 +1182,7 @@
     {
      "type": "Tildeling",
      "tittel": "Omsorgsboliger med tildelingsrett",
+     "publisert": "19.12.2025",
      "frist": "22.01.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-120819"
@@ -1092,6 +1205,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Ryavegen omsorgsboliger totalentreprise 3. utlysning",
+     "publisert": "08.12.2025",
      "frist": "31.12.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-119285"
@@ -1114,6 +1228,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Anskaffelse av rådgivere til prosjektering av omsorgsboliger og Bibliotek i Siljan",
+     "publisert": "26.11.2025",
      "frist": "02.01.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-118116"
@@ -1129,6 +1244,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Renovering av tak og innvendig arbeid Riarhaugen Omsorgsboliger.",
+     "publisert": "10.11.2025",
      "frist": "28.11.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-116376"
@@ -1151,6 +1267,7 @@
     {
      "type": "Markedsdialog",
      "tittel": "Invitasjon til dialogkonferanse – Bli med på å forme fremtidens helsehus i Hamar!",
+     "publisert": "15.05.2025",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-107540"
@@ -1158,6 +1275,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Kjøp av 4 stykk omsorgsboliger inkludert tomter",
+     "publisert": "08.11.2025",
      "frist": "02.02.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-116247"
@@ -1165,6 +1283,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Sprinkleranlegg/oppgradering teknisk anlegg. Kløverenga omsorgssenter",
+     "publisert": "26.02.2026",
      "frist": "25.03.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-103981"
@@ -1181,12 +1300,13 @@
    }
   },
   "bodø": {
-   "doffinScore": 9,
+   "doffinScore": 6,
    "husbankScore": 9,
    "doffinTreff": [
     {
      "type": "Kunngjøring",
      "tittel": "Vollveien 30 - Ombygging avlastningsplasser miljøtjenesten",
+     "publisert": "28.10.2025",
      "frist": "07.11.2025",
      "verdi": "43,0 mill. kr",
      "url": "https://www.doffin.no/notices/2025-115532"
@@ -1194,16 +1314,10 @@
     {
      "type": "Kunngjøring",
      "tittel": "Ny utlysning Osphaugen barnehage - ombygging fra barnehage til to omsorgsboliger og en base",
+     "publisert": "18.07.2025",
      "frist": "12.09.2025",
      "verdi": "8,0 mill. kr",
      "url": "https://www.doffin.no/notices/2025-111208"
-    },
-    {
-     "type": "Kunngjøring",
-     "tittel": "Osphaugen barnehage - Ombygging fra barnehage til to omsorgsboliger med en base.",
-     "frist": "12.09.2025",
-     "verdi": "8,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2025-110926"
     }
    ],
    "husbankTilsagn": 10,
@@ -1223,6 +1337,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Omsorgsboliger",
+     "publisert": "28.10.2025",
      "frist": "26.11.2025",
      "verdi": "48,0 mill. kr",
      "url": "https://www.doffin.no/notices/2025-115546"
@@ -1245,6 +1360,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Konkurransegrunnlag HOB - Hebekk omsorgsboliger - Prekvalifisering",
+     "publisert": "13.10.2025",
      "frist": "12.11.2025",
      "verdi": "400,0 mill. kr",
      "url": "https://www.doffin.no/notices/2025-114664"
@@ -1260,6 +1376,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Samspillsentreprise - F9 rusinstitusjon - IN1376",
+     "publisert": "10.10.2025",
      "frist": "03.11.2025",
      "verdi": "7,0 mill. kr",
      "url": "https://www.doffin.no/notices/2025-114585"
@@ -1267,6 +1384,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Brønnerødlia Bofellesskap - NS 8407",
+     "publisert": "25.04.2025",
      "frist": "12.05.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-106543"
@@ -1289,6 +1407,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Omsorgsboliger - Petersborgveien 2",
+     "publisert": "02.10.2025",
      "frist": "06.11.2025",
      "verdi": "40,0 mill. kr",
      "url": "https://www.doffin.no/notices/2025-114143"
@@ -1304,6 +1423,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "721 Markadompa base og korttidsplasser - Totalentreprise",
+     "publisert": "01.10.2025",
      "frist": null,
      "verdi": "20,4 mill. kr",
      "url": "https://www.doffin.no/notices/2025-114070"
@@ -1311,6 +1431,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "659 Bemannet omsorgsbolig Orhagavegen - Anskaffelse av totalentreprenør",
+     "publisert": "15.08.2025",
      "frist": "15.09.2025",
      "verdi": "26,3 mill. kr",
      "url": "https://www.doffin.no/notices/2025-111768"
@@ -1333,6 +1454,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Prosjektering og bygging av omsorgsboliger i Åsveien 156",
+     "publisert": "30.09.2025",
      "frist": "10.10.2025",
      "verdi": "33,0 mill. kr",
      "url": "https://www.doffin.no/notices/2025-113982"
@@ -1355,6 +1477,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Prekvalifisering etablering av omsorgsboliger i borettslag",
+     "publisert": "26.08.2025",
      "frist": "24.09.2025",
      "verdi": "120,0 mill. kr",
      "url": "https://www.doffin.no/notices/2025-112198"
@@ -1370,6 +1493,38 @@
     "status": "Investeringstilskudd"
    }
   },
+  "luster": {
+   "doffinScore": 20,
+   "husbankScore": 0,
+   "doffinTreff": [
+    {
+     "type": "Aktiv konkurranse",
+     "tittel": "Helse- og omsorgssenter Luster kommune",
+     "publisert": "21.09.2026",
+     "frist": "21.10.2026",
+     "verdi": "450,0 mill. kr",
+     "url": "https://www.doffin.no/notices/2026-114731"
+    },
+    {
+     "type": "Markedsdialog",
+     "tittel": "Invitasjon til marknadsdialog i samband med nytt helse- og omsorgssenter i Gaupne sentrum",
+     "publisert": "20.05.2026",
+     "frist": null,
+     "verdi": "450,0 mill. kr",
+     "url": "https://www.doffin.no/notices/2026-109068"
+    },
+    {
+     "type": "Kunngjøring",
+     "tittel": "Grunnundersøkingar Gaupne",
+     "publisert": "04.07.2025",
+     "frist": "15.08.2025",
+     "verdi": null,
+     "url": "https://www.doffin.no/notices/2025-110592"
+    }
+   ],
+   "husbankTilsagn": 0,
+   "husbankDetalj": null
+  },
   "bergen": {
    "doffinScore": 20,
    "husbankScore": 9,
@@ -1377,13 +1532,15 @@
     {
      "type": "Aktiv konkurranse",
      "tittel": "R0015EBE - Rammeavtale heiskontroll",
-     "frist": "19.10.2026",
+     "publisert": "21.09.2026",
+     "frist": "22.10.2026",
      "verdi": null,
-     "url": "https://www.doffin.no/notices/2026-114712"
+     "url": "https://www.doffin.no/notices/2026-114770"
     },
     {
      "type": "Aktiv konkurranse",
      "tittel": "R0014EBE - Rammeavtale stillastjenester",
+     "publisert": "08.09.2026",
      "frist": "06.10.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-114097"
@@ -1391,6 +1548,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "R0011EBE - Rammeavtale grunn og betong",
+     "publisert": "21.09.2026",
      "frist": null,
      "verdi": "280,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-114742"
@@ -1398,6 +1556,7 @@
     {
      "type": "Tildeling",
      "tittel": "R0011EBE - Rammeavtale grunn og betong",
+     "publisert": "12.06.2026",
      "frist": "23.06.2026",
      "verdi": "280,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-110488"
@@ -1405,6 +1564,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "H0900 EFU-10977 Anskaffelse av sykehjem - trinn 1 prekvalifisering",
+     "publisert": "27.04.2026",
      "frist": "05.05.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-107551"
@@ -1412,6 +1572,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "E0008EBE - Flaktveit skole - Ventilasjon",
+     "publisert": "22.04.2026",
      "frist": "04.05.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-107266"
@@ -1419,6 +1580,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "H0730 EFU-10976 Nedre Totland bofellesskap, totalentreprise",
+     "publisert": "28.04.2026",
      "frist": "19.06.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-107571"
@@ -1434,35 +1596,6 @@
     "status": "Investeringstilskudd"
    }
   },
-  "luster": {
-   "doffinScore": 20,
-   "husbankScore": 0,
-   "doffinTreff": [
-    {
-     "type": "Aktiv konkurranse",
-     "tittel": "Helse- og omsorgssenter Luster kommune",
-     "frist": "21.10.2026",
-     "verdi": "450,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2026-114731"
-    },
-    {
-     "type": "Markedsdialog",
-     "tittel": "Invitasjon til marknadsdialog i samband med nytt helse- og omsorgssenter i Gaupne sentrum",
-     "frist": null,
-     "verdi": "450,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2026-109068"
-    },
-    {
-     "type": "Kunngjøring",
-     "tittel": "Grunnundersøkingar Gaupne",
-     "frist": "15.08.2025",
-     "verdi": null,
-     "url": "https://www.doffin.no/notices/2025-110592"
-    }
-   ],
-   "husbankTilsagn": 0,
-   "husbankDetalj": null
-  },
   "åmot": {
    "doffinScore": 12,
    "husbankScore": 0,
@@ -1470,6 +1603,7 @@
     {
      "type": "Aktiv konkurranse",
      "tittel": "ÅM-26-01 Samspillsentreprise helsehus",
+     "publisert": "14.09.2026",
      "frist": "12.10.2026",
      "verdi": "400,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-114355"
@@ -1485,6 +1619,7 @@
     {
      "type": "Aktiv konkurranse",
      "tittel": "2026/0033 Rammeavtale tømrertjenester",
+     "publisert": "10.09.2026",
      "frist": "02.10.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-114232"
@@ -1507,6 +1642,7 @@
     {
      "type": "Aktiv konkurranse",
      "tittel": "Haugåstunet sykehjem tilbygg med heis, og bistand til takentreprenør",
+     "publisert": "08.09.2026",
      "frist": "01.10.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-114105"
@@ -1529,6 +1665,7 @@
     {
      "type": "Aktiv konkurranse",
      "tittel": "Rammeavtale rørleggertjenester med matriell",
+     "publisert": "01.09.2026",
      "frist": "05.10.2026",
      "verdi": "2,8 mill. kr",
      "url": "https://www.doffin.no/notices/2026-113717"
@@ -1551,6 +1688,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "RE-26-04 Totalentreprise - tilbygg sykehjem",
+     "publisert": "26.08.2026",
      "frist": "14.09.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-113464"
@@ -1566,6 +1704,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Rammeavtale trelast, byggevarer, maling, malervarer, festemidler, verktøy, redskap og maskiner",
+     "publisert": "20.08.2026",
      "frist": null,
      "verdi": "8,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-113209"
@@ -1573,6 +1712,7 @@
     {
      "type": "Tildeling",
      "tittel": "Rammeavtale trelast, byggevarer, maling, malervarer, festemidler, verktøy, redskap og maskiner",
+     "publisert": "12.05.2026",
      "frist": "12.06.2026",
      "verdi": "8,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-108528"
@@ -1580,6 +1720,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Utstyrsplanlegger  Nytt omsorgssenter og helsehus i Lindesnes",
+     "publisert": "06.03.2026",
      "frist": "23.03.2026",
      "verdi": "1,3 mill. kr",
      "url": "https://www.doffin.no/notices/2026-104524"
@@ -1587,6 +1728,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Møbler til nytt omsorgssenter og helsehus",
+     "publisert": "10.04.2025",
      "frist": "13.05.2025",
      "verdi": "20,0 mill. kr",
      "url": "https://www.doffin.no/notices/2025-105797"
@@ -1594,6 +1736,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "2550 Heis, Marnardal Omsorgssenter",
+     "publisert": "28.05.2026",
      "frist": "17.06.2026",
      "verdi": "1,5 mill. kr",
      "url": "https://www.doffin.no/notices/2026-109584"
@@ -1616,6 +1759,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "2026 - NOR - Ombygging av lokaler til heldøgns omsorgsplasser 3395",
+     "publisert": "05.08.2026",
      "frist": "10.09.2026",
      "verdi": "34,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-112646"
@@ -1623,6 +1767,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "2026 - NOR - Ombygging av lokaler Ravnanger sykehjem prosjekt nr. 3400",
+     "publisert": "20.03.2026",
      "frist": "27.04.2026",
      "verdi": "3,3 mill. kr",
      "url": "https://www.doffin.no/notices/2026-105476"
@@ -1645,6 +1790,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Luft til vann varmepumpe til Vardø sykehjem",
+     "publisert": "31.07.2026",
      "frist": "31.08.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-112522"
@@ -1667,6 +1813,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Nytt helsehus - Sørfold kommune",
+     "publisert": "22.06.2026",
      "frist": "26.08.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-110984"
@@ -1689,6 +1836,7 @@
     {
      "type": "Markedsdialog",
      "tittel": "Markedsdialog - Prosjekt Stigertun",
+     "publisert": "26.05.2026",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-109334"
@@ -1696,6 +1844,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Gulset sykehjem - ny hovedtavle",
+     "publisert": "19.06.2026",
      "frist": "09.07.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-110893"
@@ -1703,6 +1852,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Gulset sykehjem - nye vinduer",
+     "publisert": "01.05.2026",
      "frist": "15.05.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-107877"
@@ -1710,6 +1860,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Skien Brannstasjon og Skien Helsehus - Solcelleanlegg",
+     "publisert": "19.08.2026",
      "frist": "17.09.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-113176"
@@ -1732,6 +1883,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "E401 El-tekniske anlegg",
+     "publisert": "05.06.2026",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-110027"
@@ -1739,6 +1891,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "E501 Automatikk",
+     "publisert": "05.06.2026",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-110031"
@@ -1746,6 +1899,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "E701 Grunn- og utomhusarbeider",
+     "publisert": "05.06.2026",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-110033"
@@ -1753,6 +1907,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "E201 Bygningsmessig hovedentreprise",
+     "publisert": "04.06.2026",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-109972"
@@ -1760,6 +1915,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "E301 Røranlegg",
+     "publisert": "04.06.2026",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-109976"
@@ -1767,6 +1923,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "E302 Luftbehandlingsanlegg",
+     "publisert": "04.06.2026",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-109977"
@@ -1789,6 +1946,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Velferdsteknologiløsning for institusjoner og tjenestemottakere i boliger med tilhørende responssentertjeneste og produkter",
+     "publisert": "21.05.2026",
      "frist": "15.06.2026",
      "verdi": "30,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-109162"
@@ -1811,6 +1969,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Prekvalifisering for bygging av Langevann helsesenter",
+     "publisert": "11.05.2026",
      "frist": "08.06.2026",
      "verdi": "293,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-108501"
@@ -1818,6 +1977,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Tilbygg for personale til bofellesskap - 2. gangs utlysning",
+     "publisert": "31.10.2025",
      "frist": "13.11.2025",
      "verdi": "5,0 mill. kr",
      "url": "https://www.doffin.no/notices/2025-115739"
@@ -1825,6 +1985,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Tilbygg for personale til bofellesskap",
+     "publisert": "18.09.2025",
      "frist": "16.10.2025",
      "verdi": "5,0 mill. kr",
      "url": "https://www.doffin.no/notices/2025-113412"
@@ -1847,6 +2008,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Norheim sykehjem- rehabilitering av yttervegger",
+     "publisert": "30.04.2026",
      "frist": "08.05.2026",
      "verdi": "4,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-107824"
@@ -1869,6 +2031,7 @@
     {
      "type": "Markedsdialog",
      "tittel": "Markedsdialog behov for flere sykehjemsplasser",
+     "publisert": "17.04.2026",
      "frist": null,
      "verdi": "6,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-106936"
@@ -1891,6 +2054,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Legemiddel og multidose (Storby 2)",
+     "publisert": "16.04.2026",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-106844"
@@ -1898,6 +2062,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Modernisering av heiser- Nypantunet HVS og Øya helsehus",
+     "publisert": "18.09.2025",
      "frist": "20.10.2025",
      "verdi": "3,5 mill. kr",
      "url": "https://www.doffin.no/notices/2025-113403"
@@ -1905,6 +2070,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Ivar Reitens veg - bofellesskap - totalentreprise",
+     "publisert": "03.07.2026",
      "frist": "01.09.2026",
      "verdi": "70,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-111723"
@@ -1912,6 +2078,7 @@
     {
      "type": "Tildeling",
      "tittel": "Legemiddel og multidose (Storby 2)",
+     "publisert": "16.02.2026",
      "frist": "25.02.2026",
      "verdi": "1650,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-103166"
@@ -1927,6 +2094,29 @@
     "status": "Investeringstilskudd"
    }
   },
+  "surnadal": {
+   "doffinScore": 12,
+   "husbankScore": 3,
+   "doffinTreff": [
+    {
+     "type": "Aktiv konkurranse",
+     "tittel": "Ombygging Bårdshaugvegen 35",
+     "publisert": "23.09.2026",
+     "frist": "23.10.2026",
+     "verdi": "4,0 mill. kr",
+     "url": "https://www.doffin.no/notices/2026-114898"
+    }
+   ],
+   "husbankTilsagn": 1,
+   "husbankDetalj": {
+    "tilsagn": 1,
+    "plasser": null,
+    "belop": "25,2 mill. kr",
+    "belopTall": 25185000,
+    "serie": null,
+    "status": "Investeringstilskudd"
+   }
+  },
   "hjelmeland": {
    "doffinScore": 18,
    "husbankScore": 0,
@@ -1934,6 +2124,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "PROSJEKTLEIAR TIL SAMLOKALISERING OMSORGSSENTER - HJELMELAND KOMMUNE",
+     "publisert": "25.06.2026",
      "frist": "31.08.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-111214"
@@ -1941,6 +2132,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Utskifting av takvindauge, Helsehuset, Prestagarden 15, 2. gong utlysning",
+     "publisert": "09.04.2026",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-106394"
@@ -1948,6 +2140,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Utskifting av takvindauge, Helsehuset, Prestagarden 15, 2. gong utlysning",
+     "publisert": "14.02.2026",
      "frist": "17.03.2026",
      "verdi": "1,9 mill. kr",
      "url": "https://www.doffin.no/notices/2026-103096"
@@ -1955,6 +2148,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Utskifting av takvindauge, Helsehuset, Prestagarden 15",
+     "publisert": "03.02.2026",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-102370"
@@ -1962,6 +2156,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Hjelmeland Kommune - Prosjektleiar til samlokalisering omsorgssenter",
+     "publisert": "02.02.2026",
      "frist": "06.03.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-102288"
@@ -1969,6 +2164,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Utskifting av takvindauge, Helsehuset, Prestagarden 15",
+     "publisert": "06.12.2025",
      "frist": "26.01.2026",
      "verdi": "1,8 mill. kr",
      "url": "https://www.doffin.no/notices/2025-119219"
@@ -1984,6 +2180,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Renovering kjøkken Snåsa Helsehus",
+     "publisert": "21.04.2026",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-107184"
@@ -1991,6 +2188,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Renovering kjøkken Snåsa Helsehus",
+     "publisert": "01.04.2026",
      "frist": "08.04.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-106228"
@@ -2006,6 +2204,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "26071 Kirkegaten 48 - Helsehus, totalentreprise",
+     "publisert": "21.04.2026",
      "frist": "13.05.2026",
      "verdi": "50,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-107165"
@@ -2028,6 +2227,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Tilbygg dagsenter Tokke helsehus",
+     "publisert": "09.04.2026",
      "frist": "14.05.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-106397"
@@ -2050,6 +2250,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "KK-DPS Konsulenttjenester for ombygging krisesenter Storhaugen",
+     "publisert": "08.04.2026",
      "frist": "14.04.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-106351"
@@ -2057,6 +2258,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "KK - DPS - Prosjektering av støttemur og plate for vegfylling og fortau mot mur ved Helsehus",
+     "publisert": "25.02.2026",
      "frist": "09.03.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-103859"
@@ -2079,6 +2281,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "2026/6084 Solcelleanlegg til Re helsehus og Hogsnes helsehus",
+     "publisert": "27.03.2026",
      "frist": "16.06.2026",
      "verdi": "3 kr",
      "url": "https://www.doffin.no/notices/2026-105941"
@@ -2101,6 +2304,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Vestnes kommune - Renovering av sentralkjøkken",
+     "publisert": "21.03.2026",
      "frist": "17.04.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-105539"
@@ -2123,6 +2327,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Forprosjekt nytt helsehus i Industrigata, Lillehammer",
+     "publisert": "24.02.2026",
      "frist": "16.03.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-103788"
@@ -2130,6 +2335,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Ansattbygg Blestervegen",
+     "publisert": "16.04.2026",
      "frist": "13.05.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-106882"
@@ -2152,6 +2358,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Prekvalifisering kunstnere - Nytt helsehus på Ålgård",
+     "publisert": "28.10.2025",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-115530"
@@ -2174,6 +2381,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Prosjektskisse nytt helsehus",
+     "publisert": "25.10.2025",
      "frist": "13.11.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-115396"
@@ -2189,6 +2397,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "UNIVERSELL UTFORMING & OMBYGGING  AV HJARTDAL KOMMUNEHUS & HJARTDAL HELSEHUS",
+     "publisert": "09.10.2025",
      "frist": "27.10.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-114527"
@@ -2204,6 +2413,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "25121 - Ombygging Valle Helsehus",
+     "publisert": "04.10.2025",
      "frist": null,
      "verdi": "4,0 mill. kr",
      "url": "https://www.doffin.no/notices/2025-114235"
@@ -2211,6 +2421,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "25121 - Ombygging Valle Helsehus",
+     "publisert": "09.09.2025",
      "frist": "12.10.2025",
      "verdi": "4,0 mill. kr",
      "url": "https://www.doffin.no/notices/2025-112929"
@@ -2226,6 +2437,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Ny heis i Helsehuset i Sør-Odal kommune",
+     "publisert": "04.10.2025",
      "frist": "07.11.2025",
      "verdi": "1,7 mill. kr",
      "url": "https://www.doffin.no/notices/2025-114250"
@@ -2233,6 +2445,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Totalentreprenør for bygging av «Femkløveret»",
+     "publisert": "29.03.2025",
      "frist": "25.04.2025",
      "verdi": "20,0 mill. kr",
      "url": "https://www.doffin.no/notices/2025-104972"
@@ -2255,6 +2468,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Totalentreprise for ny varmepumpe og ventilasjon mv. på Tonstad helsehus",
+     "publisert": "19.08.2025",
      "frist": "29.08.2025",
      "verdi": "2,0 mill. kr",
      "url": "https://www.doffin.no/notices/2025-111913"
@@ -2270,6 +2484,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "04328 Helsekvartalet Innbyggertjenester 24/37920 NY",
+     "publisert": "05.06.2025",
      "frist": "01.08.2025",
      "verdi": "5,0 mill. kr",
      "url": "https://www.doffin.no/notices/2025-108796"
@@ -2277,6 +2492,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "24/37711 - 4255 Skisseprosjekt - nytt heldøgns omsorgssenter - Fase 1",
+     "publisert": "27.03.2025",
      "frist": "07.04.2025",
      "verdi": "2,3 mill. kr",
      "url": "https://www.doffin.no/notices/2025-104799"
@@ -2299,6 +2515,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Samspelsentreprise Husnes helsehus",
+     "publisert": "10.04.2025",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-105780"
@@ -2321,6 +2538,7 @@
     {
      "type": "Markedsdialog",
      "tittel": "Markedsdialog - nytt bofellesskap",
+     "publisert": "03.07.2026",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-111771"
@@ -2336,6 +2554,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Fritznerbakken Bofellesskap",
+     "publisert": "10.10.2025",
      "frist": "03.11.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-114582"
@@ -2358,6 +2577,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Totalenteprise - RENNEBU KOMMUNE TILBYGG/OMBYGGING BOFELLESSKAP LØKKJBAKKVEIEN 5",
+     "publisert": "13.06.2025",
      "frist": "25.06.2025",
      "verdi": "10,0 mill. kr",
      "url": "https://www.doffin.no/notices/2025-109184"
@@ -2380,6 +2600,7 @@
     {
      "type": "Aktiv konkurranse",
      "tittel": "Trygghetsalarm med tilhørende tjenester",
+     "publisert": "28.05.2025",
      "frist": "20.05.2041",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-108385"
@@ -2395,6 +2616,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Anskaffelse av  Sykesignalanlegg til Lekneshagen bofelleskap - Prekvalifisering",
+     "publisert": "16.05.2025",
      "frist": "02.06.2025",
      "verdi": "7,0 mill. kr",
      "url": "https://www.doffin.no/notices/2025-107700"
@@ -2417,6 +2639,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "24/3485 ENØK-tiltak Lille Kjonerud",
+     "publisert": "28.03.2025",
      "frist": "06.05.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-104858"
@@ -2439,6 +2662,7 @@
     {
      "type": "Tildeling",
      "tittel": "Omsorgsboliger for eldre Ballangen og Bjerkvik",
+     "publisert": "01.07.2025",
      "frist": "15.08.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-110332"
@@ -2446,6 +2670,7 @@
     {
      "type": "Tildeling",
      "tittel": "Omsorgsboliger for eldre",
+     "publisert": "24.04.2025",
      "frist": "26.05.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-106433"
@@ -2454,28 +2679,6 @@
    "husbankTilsagn": 0,
    "husbankDetalj": null
   },
-  "rødøy": {
-   "doffinScore": 3,
-   "husbankScore": 3,
-   "doffinTreff": [
-    {
-     "type": "Kunngjøring",
-     "tittel": "Forberedende grunnarbeider, rivning og sprenging.",
-     "frist": "23.04.2025",
-     "verdi": "2,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2025-104524"
-    }
-   ],
-   "husbankTilsagn": 1,
-   "husbankDetalj": {
-    "tilsagn": 1,
-    "plasser": null,
-    "belop": "9,3 mill. kr",
-    "belopTall": 9290000,
-    "serie": null,
-    "status": "Investeringstilskudd"
-   }
-  },
   "vinje": {
    "doffinScore": 3,
    "husbankScore": 6,
@@ -2483,6 +2686,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Utbygging av mobilnett i Fyresdal kommune",
+     "publisert": "05.08.2026",
      "frist": "01.09.2026",
      "verdi": "3,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-112643"
@@ -2505,6 +2709,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Ny konkurranse Utarbeiding av reguleringsplan og moglegheitsstudie",
+     "publisert": "03.07.2026",
      "frist": "31.08.2026",
      "verdi": "1,5 mill. kr",
      "url": "https://www.doffin.no/notices/2026-111779"
@@ -2512,6 +2717,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Utarbeiding av reguleringsplan, moglegheitsstudie, skisseprosjekt og forprosjekt",
+     "publisert": "22.06.2026",
      "frist": null,
      "verdi": "3,5 mill. kr",
      "url": "https://www.doffin.no/notices/2026-110952"
@@ -2519,6 +2725,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Utarbeiding av reguleringsplan, moglegheitsstudie, skisseprosjekt og forprosjekt",
+     "publisert": "20.05.2026",
      "frist": "22.06.2026",
      "verdi": "3,5 mill. kr",
      "url": "https://www.doffin.no/notices/2026-109032"
@@ -2541,6 +2748,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Utskifting av vinduer ved Vågsøy omsorgssenter",
+     "publisert": "10.06.2026",
      "frist": "25.06.2026",
      "verdi": "1,5 mill. kr",
      "url": "https://www.doffin.no/notices/2026-110359"
@@ -2563,6 +2771,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Ny taktekking på deler av Gloppen omsorgssenter",
+     "publisert": "18.02.2026",
      "frist": "25.03.2026",
      "verdi": "2,5 mill. kr",
      "url": "https://www.doffin.no/notices/2026-103332"
@@ -2578,6 +2787,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Prosessleiing - Nytt samlokalisert omsorgssenter",
+     "publisert": "30.01.2026",
      "frist": "23.02.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-102033"
@@ -2593,6 +2803,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Grunnarbeid nye omsorgsbustadar/dagsenter Kviteseid kommune",
+     "publisert": "08.01.2026",
      "frist": "23.01.2026",
      "verdi": "1,6 mill. kr",
      "url": "https://www.doffin.no/notices/2026-100368"
@@ -2608,6 +2819,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Utskifting av to pellets-anlegg til væske-vann varmepumper - Møvig og Flekkerøy",
+     "publisert": "18.12.2025",
      "frist": "30.01.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-120692"
@@ -2630,6 +2842,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Anskaffelse rådgivende ingeniør RIM, Breeam og RIByfy. Nye Vesterntunet Omsorgssenter",
+     "publisert": "12.11.2025",
      "frist": null,
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-116614"
@@ -2637,6 +2850,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "BREAM-NOR revisor, nye Vesterntunet omsorgssenter",
+     "publisert": "05.06.2025",
      "frist": "27.06.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-108823"
@@ -2644,6 +2858,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Kunstfaglig prosjektleder, Vesterntunet Omsorgssenter",
+     "publisert": "22.05.2025",
      "frist": "13.06.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-107992"
@@ -2666,6 +2881,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Osterøytunet Omsorg+",
+     "publisert": "21.10.2025",
      "frist": "20.11.2025",
      "verdi": "600,0 mill. kr",
      "url": "https://www.doffin.no/notices/2025-115080"
@@ -2688,6 +2904,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Prosjektleiar for byggesteg 2 kommunalt omsorgssenter",
+     "publisert": "12.09.2025",
      "frist": null,
      "verdi": "2,5 mill. kr",
      "url": "https://www.doffin.no/notices/2025-113076"
@@ -2695,6 +2912,7 @@
     {
      "type": "Tildeling",
      "tittel": "Prosjektleiar for byggesteg 2 kommunalt omsorgssenter",
+     "publisert": "04.06.2025",
      "frist": "18.08.2025",
      "verdi": "2,5 mill. kr",
      "url": "https://www.doffin.no/notices/2025-108739"
@@ -2717,6 +2935,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "223212 TV-signaler Gjøvik kommune",
+     "publisert": "21.08.2025",
      "frist": "19.09.2025",
      "verdi": "2,0 mill. kr",
      "url": "https://www.doffin.no/notices/2025-111998"
@@ -2739,6 +2958,7 @@
     {
      "type": "Kunngjøring",
      "tittel": "Rehabilitering tak/taktekking Askvollheimen",
+     "publisert": "28.05.2025",
      "frist": "20.06.2025",
      "verdi": "7,5 mill. kr",
      "url": "https://www.doffin.no/notices/2025-108366"
@@ -4203,6 +4423,20 @@
     "status": "Investeringstilskudd"
    }
   },
+  "rødøy": {
+   "doffinScore": 0,
+   "husbankScore": 3,
+   "doffinTreff": [],
+   "husbankTilsagn": 1,
+   "husbankDetalj": {
+    "tilsagn": 1,
+    "plasser": null,
+    "belop": "9,3 mill. kr",
+    "belopTall": 9290000,
+    "serie": null,
+    "status": "Investeringstilskudd"
+   }
+  },
   "røros": {
    "doffinScore": 0,
    "husbankScore": 3,
@@ -4311,20 +4545,6 @@
     "plasser": null,
     "belop": "4,0 mill. kr",
     "belopTall": 3998000,
-    "serie": null,
-    "status": "Investeringstilskudd"
-   }
-  },
-  "sigdal": {
-   "doffinScore": 0,
-   "husbankScore": 3,
-   "doffinTreff": [],
-   "husbankTilsagn": 1,
-   "husbankDetalj": {
-    "tilsagn": 1,
-    "plasser": null,
-    "belop": "2,2 mill. kr",
-    "belopTall": 2222000,
     "serie": null,
     "status": "Investeringstilskudd"
    }
@@ -4521,20 +4741,6 @@
     "plasser": null,
     "belop": "105,7 mill. kr",
     "belopTall": 105739000,
-    "serie": null,
-    "status": "Investeringstilskudd"
-   }
-  },
-  "surnadal": {
-   "doffinScore": 0,
-   "husbankScore": 3,
-   "doffinTreff": [],
-   "husbankTilsagn": 1,
-   "husbankDetalj": {
-    "tilsagn": 1,
-    "plasser": null,
-    "belop": "25,2 mill. kr",
-    "belopTall": 25185000,
     "serie": null,
     "status": "Investeringstilskudd"
    }
