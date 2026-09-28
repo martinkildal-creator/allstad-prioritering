@@ -1,10 +1,10 @@
 {
- "_oppdatert": "2026-09-24",
+ "_oppdatert": "2026-09-28",
  "selskaper": {
   "allstad": {
    "navn": "Allstad (oss)",
    "kategori": "Allstad",
-   "oppdatert": "2026-09-24",
+   "oppdatert": "2026-09-28",
    "aktivitet": 2,
    "doffin": [
     {
@@ -91,7 +91,7 @@
   "lille-oslo-eiendom": {
    "navn": "Lille Oslo Eiendom",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-24",
+   "oppdatert": "2026-09-28",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -113,7 +113,7 @@
   "konseptpluss": {
    "navn": "KonseptPluss",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-24",
+   "oppdatert": "2026-09-28",
    "aktivitet": 4,
    "doffin": [
     {
@@ -205,7 +205,7 @@
   "morgenstjernen": {
    "navn": "Morgenstjernen",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-24",
+   "oppdatert": "2026-09-28",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -247,7 +247,7 @@
   "omtanke": {
    "navn": "Omtanke AS",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-24",
+   "oppdatert": "2026-09-28",
    "aktivitet": 1,
    "doffin": [
     {
@@ -285,7 +285,7 @@
   "steinar-moe": {
    "navn": "Steinar Moe Eiendom",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-24",
+   "oppdatert": "2026-09-28",
    "aktivitet": 2,
    "doffin": [
     {
@@ -333,8 +333,8 @@
    ],
    "kommuneKart": {
     "siljan": {
-     "lat": 59.2791116,
-     "lng": 9.7282019
+     "lat": 59.2789828,
+     "lng": 9.7279969
     }
    },
    "nyheter": [
@@ -348,7 +348,7 @@
   "bof": {
    "navn": "BOF AS",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-24",
+   "oppdatert": "2026-09-28",
    "aktivitet": 0,
    "doffin": [],
    "spv": [],
@@ -364,7 +364,7 @@
   "consto": {
    "navn": "Consto AS",
    "kategori": "Totalentreprenør",
-   "oppdatert": "2026-09-24",
+   "oppdatert": "2026-09-28",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -391,7 +391,7 @@
   "af-gruppen": {
    "navn": "AF Gruppen",
    "kategori": "Totalentreprenør",
-   "oppdatert": "2026-09-24",
+   "oppdatert": "2026-09-28",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -418,7 +418,7 @@
   "veidekke": {
    "navn": "Veidekke",
    "kategori": "Totalentreprenør",
-   "oppdatert": "2026-09-24",
+   "oppdatert": "2026-09-28",
    "aktivitet": 0,
    "doffin": [],
    "spv": [],
@@ -434,7 +434,7 @@
   "skanska": {
    "navn": "Skanska Norge",
    "kategori": "Totalentreprenør",
-   "oppdatert": "2026-09-24",
+   "oppdatert": "2026-09-28",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -526,7 +526,7 @@
   "ncc": {
    "navn": "NCC",
    "kategori": "Totalentreprenør",
-   "oppdatert": "2026-09-24",
+   "oppdatert": "2026-09-28",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -558,7 +558,7 @@
   "backe": {
    "navn": "Backe Gruppen",
    "kategori": "Totalentreprenør",
-   "oppdatert": "2026-09-24",
+   "oppdatert": "2026-09-28",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -650,55 +650,9 @@
   "obos": {
    "navn": "OBOS",
    "kategori": "Boligutbygger",
-   "oppdatert": "2026-09-24",
-   "aktivitet": 3,
-   "doffin": [
-    {
-     "id": "2017-109084",
-     "tittel": "Rehabilitering av grasbane på Florø Stadion",
-     "kjoper": "Flora kommune",
-     "type": "Kunngjøring",
-     "dato": "2017-06-13",
-     "frist": "",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": "flora",
-     "url": "https://www.doffin.no/notices/2017-109084",
-     "fraSpv": false
-    },
-    {
-     "id": "2017-546272",
-     "tittel": "Forneburingen barnehage - Grunn og utomhusarbeider",
-     "kjoper": "Bærum kommune",
-     "type": "Kunngjøring",
-     "dato": "2017-03-15",
-     "frist": "",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": "bærum",
-     "url": "https://www.doffin.no/notices/2017-546272",
-     "fraSpv": false
-    },
-    {
-     "id": "2017-297060",
-     "tittel": "Forneburingen barnehage - Grunn og utomhusarbeider",
-     "kjoper": "Bærum kommune",
-     "type": "Kunngjøring",
-     "dato": "2017-01-05",
-     "frist": "2017-02-03",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": "bærum",
-     "url": "https://www.doffin.no/notices/2017-297060",
-     "fraSpv": false
-    }
-   ],
+   "oppdatert": "2026-09-28",
+   "aktivitet": 0,
+   "doffin": [],
    "spv": [
     {
      "navn": "OBOS BBL",
@@ -751,6 +705,11 @@
      "kommune": "OSLO"
     },
     {
+     "navn": "OBOS BLOCK WATNE AS",
+     "org": "968757954",
+     "kommune": "OSLO"
+    },
+    {
      "navn": "OBOS NORDVEST UTBYGGING AS",
      "org": "941529038",
      "kommune": "ÅLESUND"
@@ -769,19 +728,9 @@
      "navn": "OBOS ULVESETH UTVIKLING AS",
      "org": "997672232",
      "kommune": "BERGEN"
-    },
-    {
-     "navn": "OBOS VETLANDSVEIEN 68 AS",
-     "org": "916348886",
-     "kommune": "OSLO"
     }
    ],
-   "kommuneKart": {
-    "bærum": {
-     "lat": 59.9385213,
-     "lng": 10.4379187
-    }
-   },
+   "kommuneKart": {},
    "nyheter": [
     {
      "tittel": "Søk nyheter om OBOS",
@@ -793,7 +742,7 @@
   "samfunnspartner": {
    "navn": "Samfunnspartner",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-24",
+   "oppdatert": "2026-09-28",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -815,7 +764,7 @@
   "bomer": {
    "navn": "BoMer",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-24",
+   "oppdatert": "2026-09-28",
    "aktivitet": 5,
    "doffin": [
     {
@@ -983,40 +932,9 @@
   "stendi": {
    "navn": "Stendi",
    "kategori": "Driftsaktør",
-   "oppdatert": "2026-09-24",
-   "aktivitet": 2,
-   "doffin": [
-    {
-     "id": "2022-351810",
-     "tittel": "Kunngjøring av kontraktstildeling for heldøgns helse - og omsorgstilbud til voksne",
-     "kjoper": "Bærum kommune",
-     "type": "Tildeling",
-     "dato": "2022-02-17",
-     "frist": "",
-     "harBygg": true,
-     "erTildeling": true,
-     "erIntensjon": false,
-     "score": 5,
-     "kommune": "bærum",
-     "url": "https://www.doffin.no/notices/2022-351810",
-     "fraSpv": false
-    },
-    {
-     "id": "2021-307941",
-     "tittel": "Kontraktstildeling: Heldøgns helse- og omsorgstjenester til kommunene i Kongsvingerregionen 2021-2026",
-     "kjoper": "Regionalt Innkjøp i Kongsvingerregionen Eidskog kommune Grue kommune Kongsvinger kommune Nord-Odal k",
-     "type": "Tildeling",
-     "dato": "2021-11-05",
-     "frist": "",
-     "harBygg": true,
-     "erTildeling": true,
-     "erIntensjon": false,
-     "score": 5,
-     "kommune": "eidskog",
-     "url": "https://www.doffin.no/notices/2021-307941",
-     "fraSpv": false
-    }
-   ],
+   "oppdatert": "2026-09-28",
+   "aktivitet": 0,
+   "doffin": [],
    "spv": [
     {
      "navn": "STENDI AS",
@@ -1029,12 +947,7 @@
      "kommune": "OSLO"
     }
    ],
-   "kommuneKart": {
-    "bærum": {
-     "lat": 59.9385213,
-     "lng": 10.4379187
-    }
-   },
+   "kommuneKart": {},
    "nyheter": [
     {
      "tittel": "Søk nyheter om Stendi",
@@ -1046,7 +959,7 @@
   "norlandia": {
    "navn": "Norlandia",
    "kategori": "Driftsaktør",
-   "oppdatert": "2026-09-24",
+   "oppdatert": "2026-09-28",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -1098,7 +1011,7 @@
   "bolig-for-folket": {
    "navn": "Bolig for folket",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-24",
+   "oppdatert": "2026-09-28",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -1130,7 +1043,7 @@
   "infraheim": {
    "navn": "Infraheim",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-24",
+   "oppdatert": "2026-09-28",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
