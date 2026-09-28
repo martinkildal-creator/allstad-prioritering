@@ -1,5 +1,5 @@
 {
- "_oppdatert": "2026-09-24",
+ "_oppdatert": "2026-09-28",
  "_kilder": "Doffin (åpne kunngjøringer) og Husbankens statistikkbank (manuell csv)",
  "kommuner": {
   "sigdal": {
@@ -533,19 +533,19 @@
     },
     {
      "type": "Tildeling",
-     "tittel": "Utvidelse av Kvernaland omsorgssenter - bygningsmessige arbeider - EP01",
-     "publisert": "14.11.2025",
-     "frist": "18.12.2025",
-     "verdi": null,
-     "url": "https://www.doffin.no/notices/2025-116888"
-    },
-    {
-     "type": "Tildeling",
      "tittel": "Utvidelse av Kvernaland omsorgssenter - varme- sanitær- og sprinkler - EP05",
      "publisert": "14.11.2025",
      "frist": "18.12.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-116893"
+    },
+    {
+     "type": "Tildeling",
+     "tittel": "Utvidelse av Kvernaland omsorgssenter - bygningsmessige arbeider - EP01",
+     "publisert": "14.11.2025",
+     "frist": "18.12.2025",
+     "verdi": null,
+     "url": "https://www.doffin.no/notices/2025-116888"
     },
     {
      "type": "Kunngjøring",
@@ -2024,76 +2024,6 @@
     "status": "Investeringstilskudd"
    }
   },
-  "bamble": {
-   "doffinScore": 8,
-   "husbankScore": 6,
-   "doffinTreff": [
-    {
-     "type": "Markedsdialog",
-     "tittel": "Markedsdialog behov for flere sykehjemsplasser",
-     "publisert": "17.04.2026",
-     "frist": null,
-     "verdi": "6,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2026-106936"
-    }
-   ],
-   "husbankTilsagn": 2,
-   "husbankDetalj": {
-    "tilsagn": 2,
-    "plasser": null,
-    "belop": "56,1 mill. kr",
-    "belopTall": 56097000,
-    "serie": null,
-    "status": "Investeringstilskudd"
-   }
-  },
-  "trondheim": {
-   "doffinScore": 13,
-   "husbankScore": 9,
-   "doffinTreff": [
-    {
-     "type": "Kunngjøring",
-     "tittel": "Legemiddel og multidose (Storby 2)",
-     "publisert": "16.04.2026",
-     "frist": null,
-     "verdi": null,
-     "url": "https://www.doffin.no/notices/2026-106844"
-    },
-    {
-     "type": "Kunngjøring",
-     "tittel": "Modernisering av heiser- Nypantunet HVS og Øya helsehus",
-     "publisert": "18.09.2025",
-     "frist": "20.10.2025",
-     "verdi": "3,5 mill. kr",
-     "url": "https://www.doffin.no/notices/2025-113403"
-    },
-    {
-     "type": "Kunngjøring",
-     "tittel": "Ivar Reitens veg - bofellesskap - totalentreprise",
-     "publisert": "03.07.2026",
-     "frist": "01.09.2026",
-     "verdi": "70,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2026-111723"
-    },
-    {
-     "type": "Tildeling",
-     "tittel": "Legemiddel og multidose (Storby 2)",
-     "publisert": "16.02.2026",
-     "frist": "25.02.2026",
-     "verdi": "1650,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2026-103166"
-    }
-   ],
-   "husbankTilsagn": 12,
-   "husbankDetalj": {
-    "tilsagn": 12,
-    "plasser": null,
-    "belop": "687,3 mill. kr",
-    "belopTall": 687258000,
-    "serie": null,
-    "status": "Investeringstilskudd"
-   }
-  },
   "surnadal": {
    "doffinScore": 12,
    "husbankScore": 3,
@@ -2461,6 +2391,53 @@
     "status": "Investeringstilskudd"
    }
   },
+  "trondheim": {
+   "doffinScore": 13,
+   "husbankScore": 9,
+   "doffinTreff": [
+    {
+     "type": "Kunngjøring",
+     "tittel": "Modernisering av heiser- Nypantunet HVS og Øya helsehus",
+     "publisert": "18.09.2025",
+     "frist": "20.10.2025",
+     "verdi": "3,5 mill. kr",
+     "url": "https://www.doffin.no/notices/2025-113403"
+    },
+    {
+     "type": "Kunngjøring",
+     "tittel": "Ivar Reitens veg - bofellesskap - totalentreprise",
+     "publisert": "03.07.2026",
+     "frist": "01.09.2026",
+     "verdi": "70,0 mill. kr",
+     "url": "https://www.doffin.no/notices/2026-111723"
+    },
+    {
+     "type": "Kunngjøring",
+     "tittel": "Legemiddel og multidose (Storby 2)",
+     "publisert": "16.04.2026",
+     "frist": null,
+     "verdi": null,
+     "url": "https://www.doffin.no/notices/2026-106844"
+    },
+    {
+     "type": "Tildeling",
+     "tittel": "Legemiddel og multidose (Storby 2)",
+     "publisert": "16.02.2026",
+     "frist": "25.02.2026",
+     "verdi": "1650,0 mill. kr",
+     "url": "https://www.doffin.no/notices/2026-103166"
+    }
+   ],
+   "husbankTilsagn": 12,
+   "husbankDetalj": {
+    "tilsagn": 12,
+    "plasser": null,
+    "belop": "687,3 mill. kr",
+    "belopTall": 687258000,
+    "serie": null,
+    "status": "Investeringstilskudd"
+   }
+  },
   "sirdal": {
    "doffinScore": 3,
    "husbankScore": 0,
@@ -2478,7 +2455,7 @@
    "husbankDetalj": null
   },
   "larvik": {
-   "doffinScore": 6,
+   "doffinScore": 3,
    "husbankScore": 9,
    "doffinTreff": [
     {
@@ -2488,14 +2465,6 @@
      "frist": "01.08.2025",
      "verdi": "5,0 mill. kr",
      "url": "https://www.doffin.no/notices/2025-108796"
-    },
-    {
-     "type": "Kunngjøring",
-     "tittel": "24/37711 - 4255 Skisseprosjekt - nytt heldøgns omsorgssenter - Fase 1",
-     "publisert": "27.03.2025",
-     "frist": "07.04.2025",
-     "verdi": "2,3 mill. kr",
-     "url": "https://www.doffin.no/notices/2025-104799"
     }
    ],
    "husbankTilsagn": 3,
@@ -2628,29 +2597,6 @@
     "plasser": null,
     "belop": "50,0 mill. kr",
     "belopTall": 49987000,
-    "serie": null,
-    "status": "Investeringstilskudd"
-   }
-  },
-  "stange": {
-   "doffinScore": 3,
-   "husbankScore": 6,
-   "doffinTreff": [
-    {
-     "type": "Kunngjøring",
-     "tittel": "24/3485 ENØK-tiltak Lille Kjonerud",
-     "publisert": "28.03.2025",
-     "frist": "06.05.2025",
-     "verdi": null,
-     "url": "https://www.doffin.no/notices/2025-104858"
-    }
-   ],
-   "husbankTilsagn": 2,
-   "husbankDetalj": {
-    "tilsagn": 2,
-    "plasser": null,
-    "belop": "55,4 mill. kr",
-    "belopTall": 55355000,
     "serie": null,
     "status": "Investeringstilskudd"
    }
@@ -3103,6 +3049,20 @@
     "plasser": null,
     "belop": "7,5 mill. kr",
     "belopTall": 7545000,
+    "serie": null,
+    "status": "Investeringstilskudd"
+   }
+  },
+  "bamble": {
+   "doffinScore": 0,
+   "husbankScore": 6,
+   "doffinTreff": [],
+   "husbankTilsagn": 2,
+   "husbankDetalj": {
+    "tilsagn": 2,
+    "plasser": null,
+    "belop": "56,1 mill. kr",
+    "belopTall": 56097000,
     "serie": null,
     "status": "Investeringstilskudd"
    }
@@ -4629,6 +4589,20 @@
     "plasser": null,
     "belop": "74,7 mill. kr",
     "belopTall": 74673000,
+    "serie": null,
+    "status": "Investeringstilskudd"
+   }
+  },
+  "stange": {
+   "doffinScore": 0,
+   "husbankScore": 6,
+   "doffinTreff": [],
+   "husbankTilsagn": 2,
+   "husbankDetalj": {
+    "tilsagn": 2,
+    "plasser": null,
+    "belop": "55,4 mill. kr",
+    "belopTall": 55355000,
     "serie": null,
     "status": "Investeringstilskudd"
    }
