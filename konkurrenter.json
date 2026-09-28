@@ -1,18 +1,7 @@
 {
   "_info": "Konkurrenter Allstad følger. Legg til/fjern selskaper her.",
-  "_oppdatert": "2026-09-19",
+  "_oppdatert": "2026-09-28",
   "selskaper": [
-    {
-      "id": "allstad",
-      "navn": "Allstad (oss)",
-      "kategori": "Allstad",
-      "erAllstad": true,
-      "søkeord": [
-        "Allstad",
-        "AEU"
-      ],
-      "nyhetsord": "Allstad eiendom omsorgsbolig prosjekt"
-    },
     {
       "id": "lille-oslo-eiendom",
       "navn": "Lille Oslo Eiendom",
