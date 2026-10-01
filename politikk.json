@@ -1,5 +1,229 @@
 {
- "_oppdatert": "2026-09-16",
+ "_oppdatert": "2026-10-01",
  "_kilde": "Kommunale møtekalendere og sakslister (offentlige dokumenter)",
- "kommuner": {}
+ "kommuner": {
+  "molde": {
+   "navn": "Molde",
+   "nr": "1506",
+   "plattform": "Public 360 (opengov)",
+   "poeng": 3,
+   "treff": [
+    {
+     "ord": "helsehus",
+     "utdrag": "49/26 Areal til Helsehus",
+     "url": "https://opengov.360online.com/Meetings/MOLDE/Meetings/Details/1021757"
+    }
+   ]
+  },
+  "rana": {
+   "navn": "Rana",
+   "nr": "1833",
+   "plattform": "ACOS Innsyn",
+   "poeng": 9,
+   "treff": [
+    {
+     "ord": "helsehus",
+     "utdrag": "15/26 Presentasjon status nytt kommune- og helsehus -",
+     "url": "https://www.konsek.no/kontrollutvalg/frosta/"
+    },
+    {
+     "ord": "helsehus",
+     "utdrag": "14/26 Saksdokumenter Saksnr. Saksframlegg Vedlegg 09/26 Orientering om status, og befaring i kommune- og helsehuset Notat fra kommunedirektøren - status kommune- og helsehuset 10/26 Refe",
+     "url": "https://www.konsek.no/kontrollutvalg/frosta/"
+    },
+    {
+     "ord": "helsehus",
+     "utdrag": "19/25 Status kommune- og helsehus Saksdokumenter Saksnr. Saksframlegg Vedlegg 17/25 Orientering fra kommunedirektøren om den økonomiske situasjon og utfordringsbildet i tida framover 18/",
+     "url": "https://www.konsek.no/kontrollutvalg/frosta/"
+    }
+   ]
+  },
+  "rodoy": {
+   "navn": "Rødøy",
+   "nr": "1836",
+   "plattform": "ACOS Innsyn",
+   "poeng": 3,
+   "treff": [
+    {
+     "ord": "helse- og omsorgsplan",
+     "utdrag": "73/2025 Helse- og omsorgsplan for Rødøy kommune (PDF, 7 MB)",
+     "url": "https://www.rodoy.kommune.no/politikk-og-politiske-moter/motedokumenter/sak/kommunestyremote-11-desember-2025.8185.aspx"
+    }
+   ]
+  },
+  "indreostfold": {
+   "navn": "Indre Østfold",
+   "nr": "3118",
+   "plattform": "ACOS Innsyn",
+   "poeng": 1,
+   "treff": [
+    {
+     "ord": "bofellesskap",
+     "utdrag": "065/23 Tomt til bofellesskap. Det ble et omforent forslag med H, FRP, KRF og V og FS som lyder som følge: Kommunestyret ber administrasjonen innen september 2023 legge fram en sak som",
+     "url": "https://www.io.kommune.no/tjenester/politikk/sporsmal-i-politiske-moter/moter-i-2023/"
+    }
+   ]
+  },
+  "drammen": {
+   "navn": "Drammen",
+   "nr": "3301",
+   "plattform": "ukjent",
+   "poeng": 6,
+   "treff": [
+    {
+     "ord": "helsehus",
+     "utdrag": "16/26 Sak om tilbakef&oslash;ring av KAD plasser fra Drammen helsehus til Drammen legevakt for &aring; fristille plasser p&aring; helsehuset (pdf) Sp&oslash;rsm&aring;l 76 fra J&oslash;r",
+     "url": "https://www.drammen.kommune.no/politikk-samfunn/politikk/kommunestyre-og-formannskap/sporsmal-fra-folkevalgte/"
+    },
+    {
+     "ord": "sykehjem",
+     "utdrag": "16/25 i hovedutvalg for helse og omsorg: Behovspr&oslash;ving av trygghetsalarm (pdf) Sp&oslash;rsm&aring;l 51 fra Karianne Lund Gulbrandsen (PP) Sp&oslash;rsm&aring;l ifm sykehjemsplass",
+     "url": "https://www.drammen.kommune.no/politikk-samfunn/politikk/kommunestyre-og-formannskap/sporsmal-fra-folkevalgte/"
+    }
+   ]
+  },
+  "porsgrunn": {
+   "navn": "Porsgrunn",
+   "nr": "4001",
+   "plattform": "ACOS Innsyn",
+   "poeng": 3,
+   "treff": [
+    {
+     "ord": "sykehjem",
+     "utdrag": "50/25 Publisert: 06.06.2025 Politikk Endring etter enklere prosess av Reguleringsplan for Mule sykehjem, planID 642 Reguleringsplan for Mule sykehjem, vedtatt i Bystyret 26.03.15 (",
+     "url": "https://www.porsgrunn.kommune.no/lokalpolitikk/hoeringer/"
+    }
+   ]
+  },
+  "steinkjer": {
+   "navn": "Steinkjer",
+   "nr": "5006",
+   "plattform": "ACOS Innsyn",
+   "poeng": 9,
+   "treff": [
+    {
+     "ord": "helsehus",
+     "utdrag": "15/26 Presentasjon status nytt kommune- og helsehus -",
+     "url": "https://www.konsek.no/kontrollutvalg/frosta/"
+    },
+    {
+     "ord": "helsehus",
+     "utdrag": "14/26 Saksdokumenter Saksnr. Saksframlegg Vedlegg 09/26 Orientering om status, og befaring i kommune- og helsehuset Notat fra kommunedirektøren - status kommune- og helsehuset 10/26 Refe",
+     "url": "https://www.konsek.no/kontrollutvalg/frosta/"
+    },
+    {
+     "ord": "helsehus",
+     "utdrag": "19/25 Status kommune- og helsehus Saksdokumenter Saksnr. Saksframlegg Vedlegg 17/25 Orientering fra kommunedirektøren om den økonomiske situasjon og utfordringsbildet i tida framover 18/",
+     "url": "https://www.konsek.no/kontrollutvalg/frosta/"
+    }
+   ]
+  },
+  "oppdal": {
+   "navn": "Oppdal",
+   "nr": "5021",
+   "plattform": "ACOS Innsyn",
+   "poeng": 9,
+   "treff": [
+    {
+     "ord": "helsehus",
+     "utdrag": "15/26 Presentasjon status nytt kommune- og helsehus -",
+     "url": "https://www.konsek.no/kontrollutvalg/frosta/"
+    },
+    {
+     "ord": "helsehus",
+     "utdrag": "14/26 Saksdokumenter Saksnr. Saksframlegg Vedlegg 09/26 Orientering om status, og befaring i kommune- og helsehuset Notat fra kommunedirektøren - status kommune- og helsehuset 10/26 Refe",
+     "url": "https://www.konsek.no/kontrollutvalg/frosta/"
+    },
+    {
+     "ord": "helsehus",
+     "utdrag": "19/25 Status kommune- og helsehus Saksdokumenter Saksnr. Saksframlegg Vedlegg 17/25 Orientering fra kommunedirektøren om den økonomiske situasjon og utfordringsbildet i tida framover 18/",
+     "url": "https://www.konsek.no/kontrollutvalg/frosta/"
+    }
+   ]
+  },
+  "tydal": {
+   "navn": "Tydal",
+   "nr": "5033",
+   "plattform": "ACOS Innsyn",
+   "poeng": 9,
+   "treff": [
+    {
+     "ord": "helsehus",
+     "utdrag": "15/26 Presentasjon status nytt kommune- og helsehus -",
+     "url": "https://www.konsek.no/kontrollutvalg/frosta/"
+    },
+    {
+     "ord": "helsehus",
+     "utdrag": "14/26 Saksdokumenter Saksnr. Saksframlegg Vedlegg 09/26 Orientering om status, og befaring i kommune- og helsehuset Notat fra kommunedirektøren - status kommune- og helsehuset 10/26 Refe",
+     "url": "https://www.konsek.no/kontrollutvalg/frosta/"
+    },
+    {
+     "ord": "helsehus",
+     "utdrag": "19/25 Status kommune- og helsehus Saksdokumenter Saksnr. Saksframlegg Vedlegg 17/25 Orientering fra kommunedirektøren om den økonomiske situasjon og utfordringsbildet i tida framover 18/",
+     "url": "https://www.konsek.no/kontrollutvalg/frosta/"
+    }
+   ]
+  },
+  "indrefosen": {
+   "navn": "Indre Fosen",
+   "nr": "5054",
+   "plattform": "ACOS Innsyn",
+   "poeng": 10,
+   "treff": [
+    {
+     "ord": "omsorgssenter",
+     "utdrag": "02/23 39/23 Evaluering av virksomhetsbesøk hos Stadsbygd omsorgssenter Presentasjon - virksomhetsbesøk 40/23 Evaluering av perioden 41/23 Referatsaker Artikkel - Kjønnsmessig balanse så ",
+     "url": "https://www.konsek.no/kontrollutvalg/indre-fosen/"
+    },
+    {
+     "ord": "omsorgssenter",
+     "utdrag": "10/23 Sakspapirer og protokoll formannskapets møte 30.03.2020 20/23 Reglement for kontrollutvalget Forslag til reglement 21/23 Tidsplan - Virksomhetsbesøk Stadsbygd omsorgssenter 22/23 S",
+     "url": "https://www.konsek.no/kontrollutvalg/indre-fosen/"
+    },
+    {
+     "ord": "omsorgssenter",
+     "utdrag": "54/22 med vedlegg Oversendelse av dokumenter fra Indre Fosen kommune Kart vann og avløp 2000 Kart vann og avløp 1000 03/23 Forberedelse av virksomhetsbesøk 2023 - Stadsbygd omsorgssenter",
+     "url": "https://www.konsek.no/kontrollutvalg/indre-fosen/"
+    },
+    {
+     "ord": "helsehus",
+     "utdrag": "15/26 Presentasjon status nytt kommune- og helsehus -",
+     "url": "https://www.konsek.no/kontrollutvalg/frosta/"
+    },
+    {
+     "ord": "helsehus",
+     "utdrag": "14/26 Saksdokumenter Saksnr. Saksframlegg Vedlegg 09/26 Orientering om status, og befaring i kommune- og helsehuset Notat fra kommunedirektøren - status kommune- og helsehuset 10/26 Refe",
+     "url": "https://www.konsek.no/kontrollutvalg/frosta/"
+    },
+    {
+     "ord": "helsehus",
+     "utdrag": "19/25 Status kommune- og helsehus Saksdokumenter Saksnr. Saksframlegg Vedlegg 17/25 Orientering fra kommunedirektøren om den økonomiske situasjon og utfordringsbildet i tida framover 18/",
+     "url": "https://www.konsek.no/kontrollutvalg/frosta/"
+    }
+   ]
+  },
+  "afjord": {
+   "navn": "Åfjord",
+   "nr": "5058",
+   "plattform": "ACOS Innsyn",
+   "poeng": 9,
+   "treff": [
+    {
+     "ord": "helsehus",
+     "utdrag": "15/26 Presentasjon status nytt kommune- og helsehus -",
+     "url": "https://www.konsek.no/kontrollutvalg/frosta/"
+    },
+    {
+     "ord": "helsehus",
+     "utdrag": "14/26 Saksdokumenter Saksnr. Saksframlegg Vedlegg 09/26 Orientering om status, og befaring i kommune- og helsehuset Notat fra kommunedirektøren - status kommune- og helsehuset 10/26 Refe",
+     "url": "https://www.konsek.no/kontrollutvalg/frosta/"
+    },
+    {
+     "ord": "helsehus",
+     "utdrag": "19/25 Status kommune- og helsehus Saksdokumenter Saksnr. Saksframlegg Vedlegg 17/25 Orientering fra kommunedirektøren om den økonomiske situasjon og utfordringsbildet i tida framover 18/",
+     "url": "https://www.konsek.no/kontrollutvalg/frosta/"
+    }
+   ]
+  }
+ }
 }
