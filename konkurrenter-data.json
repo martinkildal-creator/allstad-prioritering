@@ -1,97 +1,10 @@
 {
- "_oppdatert": "2026-09-28",
+ "_oppdatert": "2026-10-05",
  "selskaper": {
-  "allstad": {
-   "navn": "Allstad (oss)",
-   "kategori": "Allstad",
-   "oppdatert": "2026-09-28",
-   "aktivitet": 2,
-   "doffin": [
-    {
-     "id": "2026-112238",
-     "tittel": "Intensjonskunngjøring omsorgsboliger Lødingen",
-     "kjoper": "Lødingen Kommune",
-     "type": "Intensjonskunngjøring",
-     "dato": "2026-07-14",
-     "frist": "",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": true,
-     "score": 4,
-     "kommune": "lødingen",
-     "url": "https://www.doffin.no/notices/2026-112238",
-     "fraSpv": false
-    },
-    {
-     "id": "2025-115173",
-     "tittel": "Kjøp av boliger Kamsvegen 4",
-     "kjoper": "Rauma kommune Molde Kommune",
-     "type": "Kunngjøring",
-     "dato": "2025-10-22",
-     "frist": "",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": "rauma",
-     "url": "https://www.doffin.no/notices/2025-115173",
-     "fraSpv": false
-    }
-   ],
-   "spv": [
-    {
-     "navn": "ALLSTAD AS",
-     "org": "934006127",
-     "kommune": "OSLO"
-    },
-    {
-     "navn": "ALLSTAD EIENDOMSUTVIKLING AS",
-     "org": "995141450",
-     "kommune": "OSLO"
-    },
-    {
-     "navn": "ALLSTAD GRUNNEIENDOM AS",
-     "org": "933730077",
-     "kommune": "OSLO"
-    },
-    {
-     "navn": "ALLSTAD NÆRINGSEIENDOM AS",
-     "org": "933730247",
-     "kommune": "OSLO"
-    },
-    {
-     "navn": "ALLSTAD UTVIKLINGSTOMTER AS",
-     "org": "933730158",
-     "kommune": "OSLO"
-    },
-    {
-     "navn": "AEU INVEST AS",
-     "org": "912080498",
-     "kommune": "SANDNES"
-    }
-   ],
-   "kommuneKart": {
-    "lødingen": {
-     "lat": 68.4100446,
-     "lng": 15.9902844
-    },
-    "rauma": {
-     "lat": 62.5600912,
-     "lng": 7.6792611
-    }
-   },
-   "nyheter": [
-    {
-     "tittel": "Søk nyheter om Allstad (oss)",
-     "lenke": "https://news.google.com/search?q=Allstad%20eiendom%20omsorgsbolig%20prosjekt&hl=no&gl=NO&ceid=NO:no",
-     "erLenke": true
-    }
-   ]
-  },
   "lille-oslo-eiendom": {
    "navn": "Lille Oslo Eiendom",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-28",
+   "oppdatert": "2026-10-05",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -113,7 +26,7 @@
   "konseptpluss": {
    "navn": "KonseptPluss",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-28",
+   "oppdatert": "2026-10-05",
    "aktivitet": 4,
    "doffin": [
     {
@@ -205,7 +118,7 @@
   "morgenstjernen": {
    "navn": "Morgenstjernen",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-28",
+   "oppdatert": "2026-10-05",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -247,7 +160,7 @@
   "omtanke": {
    "navn": "Omtanke AS",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-28",
+   "oppdatert": "2026-10-05",
    "aktivitet": 1,
    "doffin": [
     {
@@ -285,7 +198,7 @@
   "steinar-moe": {
    "navn": "Steinar Moe Eiendom",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-28",
+   "oppdatert": "2026-10-05",
    "aktivitet": 2,
    "doffin": [
     {
@@ -333,8 +246,8 @@
    ],
    "kommuneKart": {
     "siljan": {
-     "lat": 59.2789828,
-     "lng": 9.7279969
+     "lat": 59.2791116,
+     "lng": 9.7282019
     }
    },
    "nyheter": [
@@ -348,7 +261,7 @@
   "bof": {
    "navn": "BOF AS",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-28",
+   "oppdatert": "2026-10-05",
    "aktivitet": 0,
    "doffin": [],
    "spv": [],
@@ -364,9 +277,190 @@
   "consto": {
    "navn": "Consto AS",
    "kategori": "Totalentreprenør",
-   "oppdatert": "2026-09-28",
-   "aktivitet": 0,
-   "doffin": [],
+   "oppdatert": "2026-10-05",
+   "aktivitet": 12,
+   "doffin": [
+    {
+     "id": "2025-118086",
+     "tittel": "H0600 Loddefjordåsen behandlingssenter, totalentreprise",
+     "kjoper": "Bergen kommune - Etat for utbygging",
+     "type": "Kunngjøring",
+     "dato": "2025-11-26",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": "bergen",
+     "url": "https://www.doffin.no/notices/2025-118086",
+     "fraSpv": false
+    },
+    {
+     "id": "2025-104833",
+     "tittel": "Ny Tromsøhall - samspillsentreprise",
+     "kjoper": "Tromsø kommune",
+     "type": "Kunngjøring",
+     "dato": "2025-03-27",
+     "frist": "2028-12-31",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": "tromsø",
+     "url": "https://www.doffin.no/notices/2025-104833",
+     "fraSpv": false
+    },
+    {
+     "id": "2024-110285",
+     "tittel": "Andenes Omsorgsboliger",
+     "kjoper": "Andøy Kommune",
+     "type": "Kunngjøring",
+     "dato": "2024-07-03",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": "andøy",
+     "url": "https://www.doffin.no/notices/2024-110285",
+     "fraSpv": false
+    },
+    {
+     "id": "2023-349221",
+     "tittel": "Samspillsentreprise for nytt idrettsbygg i Vefsn kommune",
+     "kjoper": "Vefsn Kommune",
+     "type": "Kunngjøring",
+     "dato": "2023-09-21",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": "vefsn",
+     "url": "https://www.doffin.no/notices/2023-349221",
+     "fraSpv": false
+    },
+    {
+     "id": "2023-672891",
+     "tittel": "Endring i kontraktsomfang på totalentreprise Nye Hammerfest Sykehus (NHS), på vegne av Finnmarkssykehuset HF",
+     "kjoper": "Sykehusbygg HF",
+     "type": "Kunngjøring",
+     "dato": "2023-06-29",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": null,
+     "url": "https://www.doffin.no/notices/2023-672891",
+     "fraSpv": false
+    },
+    {
+     "id": "2021-395471",
+     "tittel": "Anskaffelse - totalentreprise Haramsøy skule, 2021",
+     "kjoper": "Ålesund kommunale eiendom KF",
+     "type": "Kunngjøring",
+     "dato": "2021-12-22",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": null,
+     "url": "https://www.doffin.no/notices/2021-395471",
+     "fraSpv": false
+    },
+    {
+     "id": "2019-333016",
+     "tittel": "Inkubatorbygg på Bygg for biologiske basalfag (BBB)",
+     "kjoper": "UNIVERSITETET I BERGEN",
+     "type": "Kunngjøring",
+     "dato": "2019-12-21",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": null,
+     "url": "https://www.doffin.no/notices/2019-333016",
+     "fraSpv": false
+    },
+    {
+     "id": "2019-363181",
+     "tittel": "Skyveamfi",
+     "kjoper": "Vaksdal kommune",
+     "type": "Kunngjøring",
+     "dato": "2019-02-18",
+     "frist": "2019-03-20",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": "vaksdal",
+     "url": "https://www.doffin.no/notices/2019-363181",
+     "fraSpv": false
+    },
+    {
+     "id": "2018-220098",
+     "tittel": "Totalentreprise på nye Dale barne- og ungdomsskule",
+     "kjoper": "Vaksdal Kommune",
+     "type": "Kunngjøring",
+     "dato": "2018-05-30",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": "vaksdal",
+     "url": "https://www.doffin.no/notices/2018-220098",
+     "fraSpv": false
+    },
+    {
+     "id": "2018-145722",
+     "tittel": "BYGGENTREPRENØR, SYKKELVELODROM SOLA",
+     "kjoper": "Sørmarka Flerbrukshall IKS",
+     "type": "Kunngjøring",
+     "dato": "2018-03-09",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": null,
+     "url": "https://www.doffin.no/notices/2018-145722",
+     "fraSpv": false
+    },
+    {
+     "id": "2017-299983",
+     "tittel": "13.078 Samlokalisering Vest- Lofoten",
+     "kjoper": "Nordland fylkeskommune",
+     "type": "Kunngjøring",
+     "dato": "2017-10-24",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": null,
+     "url": "https://www.doffin.no/notices/2017-299983",
+     "fraSpv": false
+    },
+    {
+     "id": "2017-713180",
+     "tittel": "Finneidfjord Barnehage",
+     "kjoper": "Hemnes kommune",
+     "type": "Kunngjøring",
+     "dato": "2017-08-03",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": "hemnes",
+     "url": "https://www.doffin.no/notices/2017-713180",
+     "fraSpv": false
+    }
+   ],
    "spv": [
     {
      "navn": "CONSTO EIENDOM AS",
@@ -379,7 +473,20 @@
      "kommune": "TROMSØ"
     }
    ],
-   "kommuneKart": {},
+   "kommuneKart": {
+    "bergen": {
+     "lat": 60.2508249,
+     "lng": 5.2690695
+    },
+    "tromsø": {
+     "lat": 69.6297371,
+     "lng": 18.9159101
+    },
+    "vefsn": {
+     "lat": 65.8409495,
+     "lng": 13.1997717
+    }
+   },
    "nyheter": [
     {
      "tittel": "Søk nyheter om Consto AS",
@@ -391,7 +498,7 @@
   "af-gruppen": {
    "navn": "AF Gruppen",
    "kategori": "Totalentreprenør",
-   "oppdatert": "2026-09-28",
+   "oppdatert": "2026-10-05",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -418,7 +525,7 @@
   "veidekke": {
    "navn": "Veidekke",
    "kategori": "Totalentreprenør",
-   "oppdatert": "2026-09-28",
+   "oppdatert": "2026-10-05",
    "aktivitet": 0,
    "doffin": [],
    "spv": [],
@@ -434,7 +541,7 @@
   "skanska": {
    "navn": "Skanska Norge",
    "kategori": "Totalentreprenør",
-   "oppdatert": "2026-09-28",
+   "oppdatert": "2026-10-05",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -526,7 +633,7 @@
   "ncc": {
    "navn": "NCC",
    "kategori": "Totalentreprenør",
-   "oppdatert": "2026-09-28",
+   "oppdatert": "2026-10-05",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -558,7 +665,7 @@
   "backe": {
    "navn": "Backe Gruppen",
    "kategori": "Totalentreprenør",
-   "oppdatert": "2026-09-28",
+   "oppdatert": "2026-10-05",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -650,9 +757,55 @@
   "obos": {
    "navn": "OBOS",
    "kategori": "Boligutbygger",
-   "oppdatert": "2026-09-28",
-   "aktivitet": 0,
-   "doffin": [],
+   "oppdatert": "2026-10-05",
+   "aktivitet": 3,
+   "doffin": [
+    {
+     "id": "2017-109084",
+     "tittel": "Rehabilitering av grasbane på Florø Stadion",
+     "kjoper": "Flora kommune",
+     "type": "Kunngjøring",
+     "dato": "2017-06-13",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": "flora",
+     "url": "https://www.doffin.no/notices/2017-109084",
+     "fraSpv": false
+    },
+    {
+     "id": "2017-546272",
+     "tittel": "Forneburingen barnehage - Grunn og utomhusarbeider",
+     "kjoper": "Bærum kommune",
+     "type": "Kunngjøring",
+     "dato": "2017-03-15",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": "bærum",
+     "url": "https://www.doffin.no/notices/2017-546272",
+     "fraSpv": false
+    },
+    {
+     "id": "2017-297060",
+     "tittel": "Forneburingen barnehage - Grunn og utomhusarbeider",
+     "kjoper": "Bærum kommune",
+     "type": "Kunngjøring",
+     "dato": "2017-01-05",
+     "frist": "2017-02-03",
+     "harBygg": true,
+     "erTildeling": false,
+     "erIntensjon": false,
+     "score": 2,
+     "kommune": "bærum",
+     "url": "https://www.doffin.no/notices/2017-297060",
+     "fraSpv": false
+    }
+   ],
    "spv": [
     {
      "navn": "OBOS BBL",
@@ -730,7 +883,12 @@
      "kommune": "BERGEN"
     }
    ],
-   "kommuneKart": {},
+   "kommuneKart": {
+    "bærum": {
+     "lat": 59.9385213,
+     "lng": 10.4379187
+    }
+   },
    "nyheter": [
     {
      "tittel": "Søk nyheter om OBOS",
@@ -742,7 +900,7 @@
   "samfunnspartner": {
    "navn": "Samfunnspartner",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-28",
+   "oppdatert": "2026-10-05",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -764,7 +922,7 @@
   "bomer": {
    "navn": "BoMer",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-28",
+   "oppdatert": "2026-10-05",
    "aktivitet": 5,
    "doffin": [
     {
@@ -932,9 +1090,40 @@
   "stendi": {
    "navn": "Stendi",
    "kategori": "Driftsaktør",
-   "oppdatert": "2026-09-28",
-   "aktivitet": 0,
-   "doffin": [],
+   "oppdatert": "2026-10-05",
+   "aktivitet": 2,
+   "doffin": [
+    {
+     "id": "2022-351810",
+     "tittel": "Kunngjøring av kontraktstildeling for heldøgns helse - og omsorgstilbud til voksne",
+     "kjoper": "Bærum kommune",
+     "type": "Tildeling",
+     "dato": "2022-02-17",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": true,
+     "erIntensjon": false,
+     "score": 5,
+     "kommune": "bærum",
+     "url": "https://www.doffin.no/notices/2022-351810",
+     "fraSpv": false
+    },
+    {
+     "id": "2021-307941",
+     "tittel": "Kontraktstildeling: Heldøgns helse- og omsorgstjenester til kommunene i Kongsvingerregionen 2021-2026",
+     "kjoper": "Regionalt Innkjøp i Kongsvingerregionen Eidskog kommune Grue kommune Kongsvinger kommune Nord-Odal k",
+     "type": "Tildeling",
+     "dato": "2021-11-05",
+     "frist": "",
+     "harBygg": true,
+     "erTildeling": true,
+     "erIntensjon": false,
+     "score": 5,
+     "kommune": "eidskog",
+     "url": "https://www.doffin.no/notices/2021-307941",
+     "fraSpv": false
+    }
+   ],
    "spv": [
     {
      "navn": "STENDI AS",
@@ -947,7 +1136,12 @@
      "kommune": "OSLO"
     }
    ],
-   "kommuneKart": {},
+   "kommuneKart": {
+    "bærum": {
+     "lat": 59.9385213,
+     "lng": 10.4379187
+    }
+   },
    "nyheter": [
     {
      "tittel": "Søk nyheter om Stendi",
@@ -959,7 +1153,7 @@
   "norlandia": {
    "navn": "Norlandia",
    "kategori": "Driftsaktør",
-   "oppdatert": "2026-09-28",
+   "oppdatert": "2026-10-05",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -1011,7 +1205,7 @@
   "bolig-for-folket": {
    "navn": "Bolig for folket",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-28",
+   "oppdatert": "2026-10-05",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -1043,7 +1237,7 @@
   "infraheim": {
    "navn": "Infraheim",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-09-28",
+   "oppdatert": "2026-10-05",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
