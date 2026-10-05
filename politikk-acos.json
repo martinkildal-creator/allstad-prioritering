@@ -1,5 +1,5 @@
 {
- "_oppdatert": "2026-10-01",
+ "_oppdatert": "2026-10-05",
  "_kilde": "ACOS Innsyn Pluss – søk i saker og dokumenter",
  "kommuner": {
   "lund": {
@@ -140,19 +140,19 @@
     {
      "ord": "omsorgsbolig",
      "vekt": 2,
-     "tittel": "Omsorgsboligprosjekt på Algarheim - vedrørende miljørettet helsevern - planbeskrivelse for detaljreguleringsplan",
+     "tittel": "Omsorgsboligprosjekt på Algarheim - vedrørende miljørettet helsevern - tegninger",
      "type": "Inngående dokument",
      "dato": "03.09.2026",
-     "saksnr": "2026/21589",
+     "saksnr": "2026/21587",
      "url": "https://innsynpluss.onacos.no/nannestad/sok/#/?searchTerm=omsorgsbolig"
     },
     {
      "ord": "omsorgsbolig",
      "vekt": 2,
-     "tittel": "Omsorgsboligprosjekt på Algarheim - vedrørende miljørettet helsevern",
+     "tittel": "Omsorgsboligprosjekt på Algarheim - vedrørende miljørettet helsevern - planbeskrivelse for detaljreguleringsplan",
      "type": "Inngående dokument",
      "dato": "03.09.2026",
-     "saksnr": "2026/21586",
+     "saksnr": "2026/21589",
      "url": "https://innsynpluss.onacos.no/nannestad/sok/#/?searchTerm=omsorgsbolig"
     },
     {
@@ -167,10 +167,10 @@
     {
      "ord": "omsorgsbolig",
      "vekt": 2,
-     "tittel": "Omsorgsboligprosjekt på Algarheim - vedrørende miljørettet helsevern - tegninger",
+     "tittel": "Omsorgsboligprosjekt på Algarheim - vedrørende miljørettet helsevern",
      "type": "Inngående dokument",
      "dato": "03.09.2026",
-     "saksnr": "2026/21587",
+     "saksnr": "2026/21586",
      "url": "https://innsynpluss.onacos.no/nannestad/sok/#/?searchTerm=omsorgsbolig"
     },
     {
@@ -211,19 +211,19 @@
     {
      "ord": "omsorgsbolig",
      "vekt": 2,
-     "tittel": "Husbankens Investeringstilskudd til omsorgsboliger og sykehjem",
-     "type": "Generell sak",
+     "tittel": "Undersøkelse om Husbankens Investeringstilskudd til omsorgsboliger og sykehjem",
+     "type": "Inngående dokument",
      "dato": "27.05.2025",
-     "saksnr": null,
+     "saksnr": "2025/20259",
      "url": "https://innsynpluss.onacos.no/modum/sok/#/?searchTerm=omsorgsbolig"
     },
     {
      "ord": "omsorgsbolig",
      "vekt": 2,
-     "tittel": "Undersøkelse om Husbankens Investeringstilskudd til omsorgsboliger og sykehjem",
-     "type": "Inngående dokument",
+     "tittel": "Husbankens Investeringstilskudd til omsorgsboliger og sykehjem",
+     "type": "Generell sak",
      "dato": "27.05.2025",
-     "saksnr": "2025/20259",
+     "saksnr": null,
      "url": "https://innsynpluss.onacos.no/modum/sok/#/?searchTerm=omsorgsbolig"
     }
    ]
@@ -236,11 +236,11 @@
    "treff": [
     {
      "ord": "omsorgsbolig",
-     "vekt": 3,
+     "vekt": 2,
      "tittel": "Etablering av omsorgsboliger i Gamlevegen",
-     "type": "Saksframlegg",
+     "type": "Generell sak",
      "dato": "23.02.2026",
-     "saksnr": "2026/3875",
+     "saksnr": null,
      "url": "https://innsynpluss.onacos.no/nordre-land/sok/#/?searchTerm=omsorgsbolig"
     },
     {
@@ -381,7 +381,7 @@
    "navn": "Askøy",
    "nr": "4627",
    "plattform": "ACOS Innsyn",
-   "poeng": 10,
+   "poeng": 8,
    "treff": [
     {
      "ord": "omsorgsbolig",
@@ -399,24 +399,6 @@
      "type": "Internt notat (N)",
      "dato": "04.09.2026",
      "saksnr": "2023/70160",
-     "url": "https://innsynpluss.onacos.no/askoy/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 2,
-     "tittel": "Publisert avtale - 2026 - NOR - Ombygging av lokaler Ravnanger sykehjem prosjekt nr. 3400",
-     "type": "Utgående dokument",
-     "dato": "06.08.2026",
-     "saksnr": "2026/76412",
-     "url": "https://innsynpluss.onacos.no/askoy/sok/#/?searchTerm=sykehjem"
-    },
-    {
-     "ord": "sykehjem",
-     "vekt": 2,
-     "tittel": "Gbnr 7/83 - Sykehjem - Bruksendring, innvendig ombygging og utvendig rehabilitering",
-     "type": "Byggesak",
-     "dato": "06.08.2026",
-     "saksnr": null,
      "url": "https://innsynpluss.onacos.no/askoy/sok/#/?searchTerm=sykehjem"
     }
    ]
