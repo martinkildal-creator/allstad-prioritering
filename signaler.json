@@ -1,7 +1,38 @@
 {
- "_oppdatert": "2026-10-05",
+ "_oppdatert": "2026-10-12",
  "_kilder": "Doffin (åpne kunngjøringer) og Husbankens statistikkbank (manuell csv)",
  "kommuner": {
+  "nordreisa": {
+   "doffinScore": 15,
+   "husbankScore": 6,
+   "doffinTreff": [
+    {
+     "type": "Aktiv konkurranse",
+     "tittel": "Omsorgsboliger",
+     "publisert": "07.10.2026",
+     "frist": "11.11.2026",
+     "verdi": "86,0 mill. kr",
+     "url": "https://www.doffin.no/notices/2026-115524"
+    },
+    {
+     "type": "Kunngjøring",
+     "tittel": "Rammeavtale rørleggertjenester med matriell",
+     "publisert": "01.09.2026",
+     "frist": "05.10.2026",
+     "verdi": "2,8 mill. kr",
+     "url": "https://www.doffin.no/notices/2026-113717"
+    }
+   ],
+   "husbankTilsagn": 2,
+   "husbankDetalj": {
+    "tilsagn": 2,
+    "plasser": null,
+    "belop": "47,4 mill. kr",
+    "belopTall": 47394000,
+    "serie": null,
+    "status": "Investeringstilskudd"
+   }
+  },
   "lom": {
    "doffinScore": 7,
    "husbankScore": 6,
@@ -43,7 +74,7 @@
      "publisert": "03.10.2026",
      "frist": "04.12.2026",
      "verdi": "60,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2026-115348"
+     "url": "https://www.doffin.no/notices/2026-115349"
     }
    ],
    "husbankTilsagn": 1,
@@ -70,19 +101,27 @@
     },
     {
      "type": "Aktiv konkurranse",
-     "tittel": "Elektrikertjenester",
-     "publisert": "09.09.2026",
-     "frist": "07.10.2026",
-     "verdi": "1200,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2026-114187"
-    },
-    {
-     "type": "Aktiv konkurranse",
      "tittel": "Prosjektdirektør med styringsstab til å lede gjennomføring av Mortensrudprosjektet",
      "publisert": "18.08.2026",
      "frist": "31.12.2032",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-113102"
+    },
+    {
+     "type": "Markedsdialog",
+     "tittel": "Leie og drift av inntil 700 nye sykehjemsplasser",
+     "publisert": "09.10.2026",
+     "frist": null,
+     "verdi": null,
+     "url": "https://www.doffin.no/notices/2026-115756"
+    },
+    {
+     "type": "Kunngjøring",
+     "tittel": "Elektrikertjenester",
+     "publisert": "09.09.2026",
+     "frist": "07.10.2026",
+     "verdi": "1200,0 mill. kr",
+     "url": "https://www.doffin.no/notices/2026-114187"
     },
     {
      "type": "Kunngjøring",
@@ -123,14 +162,6 @@
      "frist": "17.10.2025",
      "verdi": "72,0 mill. kr",
      "url": "https://www.doffin.no/notices/2025-113363"
-    },
-    {
-     "type": "Kunngjøring",
-     "tittel": "Totalentreprise for kjøp av ombygging av boligblokk- Olav Bjaalands  vei 7",
-     "publisert": "29.07.2025",
-     "frist": null,
-     "verdi": "16,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2025-111306"
     },
     {
      "type": "Kunngjøring",
@@ -283,6 +314,29 @@
     "status": "Investeringstilskudd"
    }
   },
+  "øksnes": {
+   "doffinScore": 3,
+   "husbankScore": 3,
+   "doffinTreff": [
+    {
+     "type": "Kunngjøring",
+     "tittel": "Rammeavtale  håndverkertjenester med tilhørende materiell, Øksnes kommune, 2.gangs utlysning",
+     "publisert": "11.08.2026",
+     "frist": "11.09.2026",
+     "verdi": "4,0 mill. kr",
+     "url": "https://www.doffin.no/notices/2026-112838"
+    }
+   ],
+   "husbankTilsagn": 1,
+   "husbankDetalj": {
+    "tilsagn": 1,
+    "plasser": null,
+    "belop": "17,5 mill. kr",
+    "belopTall": 17536000,
+    "serie": null,
+    "status": "Investeringstilskudd"
+   }
+  },
   "arendal": {
    "doffinScore": 18,
    "husbankScore": 9,
@@ -342,29 +396,6 @@
     "plasser": null,
     "belop": "342,1 mill. kr",
     "belopTall": 342143000,
-    "serie": null,
-    "status": "Investeringstilskudd"
-   }
-  },
-  "øksnes": {
-   "doffinScore": 3,
-   "husbankScore": 3,
-   "doffinTreff": [
-    {
-     "type": "Kunngjøring",
-     "tittel": "Rammeavtale  håndverkertjenester med tilhørende materiell, Øksnes kommune, 2.gangs utlysning",
-     "publisert": "11.08.2026",
-     "frist": "11.09.2026",
-     "verdi": "4,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2026-112838"
-    }
-   ],
-   "husbankTilsagn": 1,
-   "husbankDetalj": {
-    "tilsagn": 1,
-    "plasser": null,
-    "belop": "17,5 mill. kr",
-    "belopTall": 17536000,
     "serie": null,
     "status": "Investeringstilskudd"
    }
@@ -541,19 +572,19 @@
     },
     {
      "type": "Tildeling",
-     "tittel": "Utvidelse av Kvernaland omsorgssenter - bygningsmessige arbeider - EP01",
-     "publisert": "14.11.2025",
-     "frist": "18.12.2025",
-     "verdi": null,
-     "url": "https://www.doffin.no/notices/2025-116888"
-    },
-    {
-     "type": "Tildeling",
      "tittel": "Utvidelse av Kvernaland omsorgssenter - varme- sanitær- og sprinkler - EP05",
      "publisert": "14.11.2025",
      "frist": "18.12.2025",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2025-116893"
+    },
+    {
+     "type": "Tildeling",
+     "tittel": "Utvidelse av Kvernaland omsorgssenter - bygningsmessige arbeider - EP01",
+     "publisert": "14.11.2025",
+     "frist": "18.12.2025",
+     "verdi": null,
+     "url": "https://www.doffin.no/notices/2025-116888"
     },
     {
      "type": "Kunngjøring",
@@ -1046,14 +1077,6 @@
      "frist": "10.04.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-102390"
-    },
-    {
-     "type": "Kunngjøring",
-     "tittel": "Sola sykehjem - Ny sengeheis",
-     "publisert": "01.05.2026",
-     "frist": "31.07.2026",
-     "verdi": "1,5 mill. kr",
-     "url": "https://www.doffin.no/notices/2026-107907"
     }
    ],
    "husbankTilsagn": 2,
@@ -1090,17 +1113,9 @@
    }
   },
   "kautokeino": {
-   "doffinScore": 11,
+   "doffinScore": 3,
    "husbankScore": 0,
    "doffinTreff": [
-    {
-     "type": "Markedsdialog",
-     "tittel": "Arkitekt til samisk barnehage og omsorgsboliger i Kautokeino",
-     "publisert": "13.08.2025",
-     "frist": "12.09.2025",
-     "verdi": null,
-     "url": "https://www.doffin.no/notices/2025-111660"
-    },
     {
      "type": "Kunngjøring",
      "tittel": "TOTALENTREPRENØR TIL SAMISK BARNEHAGE OG OMSORGSBOLIGER I KAUTOKEINO",
@@ -1292,7 +1307,7 @@
    }
   },
   "bodø": {
-   "doffinScore": 6,
+   "doffinScore": 3,
    "husbankScore": 9,
    "doffinTreff": [
     {
@@ -1302,14 +1317,6 @@
      "frist": "07.11.2025",
      "verdi": "43,0 mill. kr",
      "url": "https://www.doffin.no/notices/2025-115532"
-    },
-    {
-     "type": "Kunngjøring",
-     "tittel": "Ny utlysning Osphaugen barnehage - ombygging fra barnehage til to omsorgsboliger og en base",
-     "publisert": "18.07.2025",
-     "frist": "12.09.2025",
-     "verdi": "8,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2025-111208"
     }
    ],
    "husbankTilsagn": 10,
@@ -1485,6 +1492,69 @@
     "status": "Investeringstilskudd"
    }
   },
+  "åmot": {
+   "doffinScore": 12,
+   "husbankScore": 0,
+   "doffinTreff": [
+    {
+     "type": "Aktiv konkurranse",
+     "tittel": "ÅM-26-01 Samspillsentreprise helsehus",
+     "publisert": "09.10.2026",
+     "frist": "15.10.2026",
+     "verdi": "400,0 mill. kr",
+     "url": "https://www.doffin.no/notices/2026-115789"
+    }
+   ],
+   "husbankTilsagn": 0,
+   "husbankDetalj": null
+  },
+  "sarpsborg": {
+   "doffinScore": 15,
+   "husbankScore": 3,
+   "doffinTreff": [
+    {
+     "type": "Aktiv konkurranse",
+     "tittel": "Kurland Sykehjem - Etablering av nytt heisbygg",
+     "publisert": "08.10.2026",
+     "frist": "04.11.2026",
+     "verdi": null,
+     "url": "https://www.doffin.no/notices/2026-115675"
+    },
+    {
+     "type": "Kunngjøring",
+     "tittel": "Fritznerbakken Bofellesskap",
+     "publisert": "10.10.2025",
+     "frist": "03.11.2025",
+     "verdi": null,
+     "url": "https://www.doffin.no/notices/2025-114582"
+    }
+   ],
+   "husbankTilsagn": 1,
+   "husbankDetalj": {
+    "tilsagn": 1,
+    "plasser": null,
+    "belop": "1,3 mill. kr",
+    "belopTall": 1265000,
+    "serie": null,
+    "status": "Investeringstilskudd"
+   }
+  },
+  "hareid": {
+   "doffinScore": 12,
+   "husbankScore": 0,
+   "doffinTreff": [
+    {
+     "type": "Aktiv konkurranse",
+     "tittel": "Ny LED-belysning - Hareid sjukeheim",
+     "publisert": "06.10.2026",
+     "frist": "05.11.2026",
+     "verdi": null,
+     "url": "https://www.doffin.no/notices/2026-115499"
+    }
+   ],
+   "husbankTilsagn": 0,
+   "husbankDetalj": null
+  },
   "luster": {
    "doffinScore": 20,
    "husbankScore": 0,
@@ -1530,20 +1600,20 @@
      "url": "https://www.doffin.no/notices/2026-114770"
     },
     {
-     "type": "Aktiv konkurranse",
-     "tittel": "R0014EBE - Rammeavtale stillastjenester",
-     "publisert": "08.09.2026",
-     "frist": "06.10.2026",
-     "verdi": null,
-     "url": "https://www.doffin.no/notices/2026-114097"
-    },
-    {
      "type": "Kunngjøring",
      "tittel": "R0011EBE - Rammeavtale grunn og betong",
      "publisert": "21.09.2026",
      "frist": null,
      "verdi": "280,0 mill. kr",
      "url": "https://www.doffin.no/notices/2026-114742"
+    },
+    {
+     "type": "Kunngjøring",
+     "tittel": "R0014EBE - Rammeavtale stillastjenester",
+     "publisert": "08.09.2026",
+     "frist": "06.10.2026",
+     "verdi": null,
+     "url": "https://www.doffin.no/notices/2026-114097"
     },
     {
      "type": "Tildeling",
@@ -1555,19 +1625,19 @@
     },
     {
      "type": "Kunngjøring",
-     "tittel": "H0900 EFU-10977 Anskaffelse av sykehjem - trinn 1 prekvalifisering",
-     "publisert": "27.04.2026",
-     "frist": "05.05.2026",
-     "verdi": null,
-     "url": "https://www.doffin.no/notices/2026-107551"
-    },
-    {
-     "type": "Kunngjøring",
      "tittel": "H0730 EFU-10976 Nedre Totland bofellesskap, totalentreprise",
      "publisert": "28.04.2026",
      "frist": "19.06.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-107571"
+    },
+    {
+     "type": "Kunngjøring",
+     "tittel": "H0900 EFU-10977 Anskaffelse av sykehjem - trinn 1 prekvalifisering",
+     "publisert": "27.04.2026",
+     "frist": "05.05.2026",
+     "verdi": null,
+     "url": "https://www.doffin.no/notices/2026-107551"
     }
    ],
    "husbankTilsagn": 15,
@@ -1579,22 +1649,6 @@
     "serie": null,
     "status": "Investeringstilskudd"
    }
-  },
-  "åmot": {
-   "doffinScore": 12,
-   "husbankScore": 0,
-   "doffinTreff": [
-    {
-     "type": "Aktiv konkurranse",
-     "tittel": "ÅM-26-01 Samspillsentreprise helsehus",
-     "publisert": "14.09.2026",
-     "frist": "12.10.2026",
-     "verdi": "400,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2026-114355"
-    }
-   ],
-   "husbankTilsagn": 0,
-   "husbankDetalj": null
   },
   "alver": {
    "doffinScore": 3,
@@ -1642,29 +1696,6 @@
     "status": "Investeringstilskudd"
    }
   },
-  "nordreisa": {
-   "doffinScore": 3,
-   "husbankScore": 6,
-   "doffinTreff": [
-    {
-     "type": "Kunngjøring",
-     "tittel": "Rammeavtale rørleggertjenester med matriell",
-     "publisert": "01.09.2026",
-     "frist": "05.10.2026",
-     "verdi": "2,8 mill. kr",
-     "url": "https://www.doffin.no/notices/2026-113717"
-    }
-   ],
-   "husbankTilsagn": 2,
-   "husbankDetalj": {
-    "tilsagn": 2,
-    "plasser": null,
-    "belop": "47,4 mill. kr",
-    "belopTall": 47394000,
-    "serie": null,
-    "status": "Investeringstilskudd"
-   }
-  },
   "rendalen": {
    "doffinScore": 3,
    "husbankScore": 0,
@@ -1682,7 +1713,7 @@
    "husbankDetalj": null
   },
   "lindesnes": {
-   "doffinScore": 16,
+   "doffinScore": 13,
    "husbankScore": 9,
    "doffinTreff": [
     {
@@ -1708,14 +1739,6 @@
      "frist": "23.03.2026",
      "verdi": "1,3 mill. kr",
      "url": "https://www.doffin.no/notices/2026-104524"
-    },
-    {
-     "type": "Kunngjøring",
-     "tittel": "Møbler til nytt omsorgssenter og helsehus",
-     "publisert": "10.04.2025",
-     "frist": "13.05.2025",
-     "verdi": "20,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2025-105797"
     },
     {
      "type": "Kunngjøring",
@@ -1791,9 +1814,17 @@
    }
   },
   "sørfold": {
-   "doffinScore": 3,
+   "doffinScore": 15,
    "husbankScore": 3,
    "doffinTreff": [
+    {
+     "type": "Aktiv konkurranse",
+     "tittel": "Byggherreombud bygg, Byggherreombud Teknisk/ ITB og SHA-koordinator Sørfold helsehus",
+     "publisert": "07.10.2026",
+     "frist": "05.11.2026",
+     "verdi": null,
+     "url": "https://www.doffin.no/notices/2026-115570"
+    },
     {
      "type": "Kunngjøring",
      "tittel": "Nytt helsehus - Sørfold kommune",
@@ -1814,7 +1845,7 @@
    }
   },
   "skien": {
-   "doffinScore": 17,
+   "doffinScore": 14,
    "husbankScore": 9,
    "doffinTreff": [
     {
@@ -1832,14 +1863,6 @@
      "frist": "09.07.2026",
      "verdi": null,
      "url": "https://www.doffin.no/notices/2026-110893"
-    },
-    {
-     "type": "Kunngjøring",
-     "tittel": "Gulset sykehjem - nye vinduer",
-     "publisert": "01.05.2026",
-     "frist": "15.05.2026",
-     "verdi": null,
-     "url": "https://www.doffin.no/notices/2026-107877"
     },
     {
      "type": "Kunngjøring",
@@ -1942,68 +1965,6 @@
     "plasser": null,
     "belop": "118,3 mill. kr",
     "belopTall": 118254000,
-    "serie": null,
-    "status": "Investeringstilskudd"
-   }
-  },
-  "eigersund": {
-   "doffinScore": 9,
-   "husbankScore": 3,
-   "doffinTreff": [
-    {
-     "type": "Kunngjøring",
-     "tittel": "Prekvalifisering for bygging av Langevann helsesenter",
-     "publisert": "11.05.2026",
-     "frist": "08.06.2026",
-     "verdi": "293,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2026-108501"
-    },
-    {
-     "type": "Kunngjøring",
-     "tittel": "Tilbygg for personale til bofellesskap - 2. gangs utlysning",
-     "publisert": "31.10.2025",
-     "frist": "13.11.2025",
-     "verdi": "5,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2025-115739"
-    },
-    {
-     "type": "Kunngjøring",
-     "tittel": "Tilbygg for personale til bofellesskap",
-     "publisert": "18.09.2025",
-     "frist": "16.10.2025",
-     "verdi": "5,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2025-113412"
-    }
-   ],
-   "husbankTilsagn": 1,
-   "husbankDetalj": {
-    "tilsagn": 1,
-    "plasser": null,
-    "belop": "46,7 mill. kr",
-    "belopTall": 46690000,
-    "serie": null,
-    "status": "Investeringstilskudd"
-   }
-  },
-  "karmøy": {
-   "doffinScore": 3,
-   "husbankScore": 9,
-   "doffinTreff": [
-    {
-     "type": "Kunngjøring",
-     "tittel": "Norheim sykehjem- rehabilitering av yttervegger",
-     "publisert": "30.04.2026",
-     "frist": "08.05.2026",
-     "verdi": "4,0 mill. kr",
-     "url": "https://www.doffin.no/notices/2026-107824"
-    }
-   ],
-   "husbankTilsagn": 10,
-   "husbankDetalj": {
-    "tilsagn": 10,
-    "plasser": null,
-    "belop": "113,6 mill. kr",
-    "belopTall": 113552000,
     "serie": null,
     "status": "Investeringstilskudd"
    }
@@ -2453,29 +2414,6 @@
     "status": "Investeringstilskudd"
    }
   },
-  "kvinnherad": {
-   "doffinScore": 3,
-   "husbankScore": 6,
-   "doffinTreff": [
-    {
-     "type": "Kunngjøring",
-     "tittel": "Samspelsentreprise Husnes helsehus",
-     "publisert": "10.04.2025",
-     "frist": null,
-     "verdi": null,
-     "url": "https://www.doffin.no/notices/2025-105780"
-    }
-   ],
-   "husbankTilsagn": 2,
-   "husbankDetalj": {
-    "tilsagn": 2,
-    "plasser": null,
-    "belop": "13,3 mill. kr",
-    "belopTall": 13283000,
-    "serie": null,
-    "status": "Investeringstilskudd"
-   }
-  },
   "ørland": {
    "doffinScore": 8,
    "husbankScore": 0,
@@ -2492,25 +2430,33 @@
    "husbankTilsagn": 0,
    "husbankDetalj": null
   },
-  "sarpsborg": {
-   "doffinScore": 3,
+  "eigersund": {
+   "doffinScore": 6,
    "husbankScore": 3,
    "doffinTreff": [
     {
      "type": "Kunngjøring",
-     "tittel": "Fritznerbakken Bofellesskap",
-     "publisert": "10.10.2025",
-     "frist": "03.11.2025",
-     "verdi": null,
-     "url": "https://www.doffin.no/notices/2025-114582"
+     "tittel": "Tilbygg for personale til bofellesskap - 2. gangs utlysning",
+     "publisert": "31.10.2025",
+     "frist": "13.11.2025",
+     "verdi": "5,0 mill. kr",
+     "url": "https://www.doffin.no/notices/2025-115739"
+    },
+    {
+     "type": "Kunngjøring",
+     "tittel": "Tilbygg for personale til bofellesskap",
+     "publisert": "18.09.2025",
+     "frist": "16.10.2025",
+     "verdi": "5,0 mill. kr",
+     "url": "https://www.doffin.no/notices/2025-113412"
     }
    ],
    "husbankTilsagn": 1,
    "husbankDetalj": {
     "tilsagn": 1,
     "plasser": null,
-    "belop": "1,3 mill. kr",
-    "belopTall": 1265000,
+    "belop": "46,7 mill. kr",
+    "belopTall": 46690000,
     "serie": null,
     "status": "Investeringstilskudd"
    }
@@ -3743,6 +3689,20 @@
     "status": "Investeringstilskudd"
    }
   },
+  "karmøy": {
+   "doffinScore": 0,
+   "husbankScore": 9,
+   "doffinTreff": [],
+   "husbankTilsagn": 10,
+   "husbankDetalj": {
+    "tilsagn": 10,
+    "plasser": null,
+    "belop": "113,6 mill. kr",
+    "belopTall": 113552000,
+    "serie": null,
+    "status": "Investeringstilskudd"
+   }
+  },
   "klepp": {
    "doffinScore": 0,
    "husbankScore": 6,
@@ -3795,6 +3755,20 @@
     "plasser": null,
     "belop": "4,5 mill. kr",
     "belopTall": 4539000,
+    "serie": null,
+    "status": "Investeringstilskudd"
+   }
+  },
+  "kvinnherad": {
+   "doffinScore": 0,
+   "husbankScore": 6,
+   "doffinTreff": [],
+   "husbankTilsagn": 2,
+   "husbankDetalj": {
+    "tilsagn": 2,
+    "plasser": null,
+    "belop": "13,3 mill. kr",
+    "belopTall": 13283000,
     "serie": null,
     "status": "Investeringstilskudd"
    }
