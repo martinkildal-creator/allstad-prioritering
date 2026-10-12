@@ -1,5 +1,5 @@
 {
- "_oppdatert": "2026-10-05",
+ "_oppdatert": "2026-10-12",
  "_kilde": "ACOS Innsyn Pluss – søk i saker og dokumenter",
  "kommuner": {
   "lund": {
@@ -114,23 +114,6 @@
     }
    ]
   },
-  "gjerdrum": {
-   "navn": "Gjerdrum",
-   "nr": "3230",
-   "plattform": "ACOS Innsyn",
-   "poeng": 4,
-   "treff": [
-    {
-     "ord": "helsehus",
-     "vekt": 2,
-     "tittel": "FDV Helsehuset solceller og fasade rehabilitering 06.01.2026",
-     "type": "Inngående dokument",
-     "dato": "30.06.2026",
-     "saksnr": "2026/288",
-     "url": "https://innsynpluss.onacos.no/gjerdrum/sok/#/?searchTerm=helsehus"
-    }
-   ]
-  },
   "nannestad": {
    "navn": "Nannestad",
    "nr": "3238",
@@ -149,6 +132,15 @@
     {
      "ord": "omsorgsbolig",
      "vekt": 2,
+     "tittel": "Omsorgsboligprosjekt på Algarheim - vedrørende miljørettet helsevern",
+     "type": "Inngående dokument",
+     "dato": "03.09.2026",
+     "saksnr": "2026/21586",
+     "url": "https://innsynpluss.onacos.no/nannestad/sok/#/?searchTerm=omsorgsbolig"
+    },
+    {
+     "ord": "omsorgsbolig",
+     "vekt": 2,
      "tittel": "Omsorgsboligprosjekt på Algarheim - vedrørende miljørettet helsevern - planbeskrivelse for detaljreguleringsplan",
      "type": "Inngående dokument",
      "dato": "03.09.2026",
@@ -162,15 +154,6 @@
      "type": "Inngående dokument",
      "dato": "03.09.2026",
      "saksnr": "2026/21590",
-     "url": "https://innsynpluss.onacos.no/nannestad/sok/#/?searchTerm=omsorgsbolig"
-    },
-    {
-     "ord": "omsorgsbolig",
-     "vekt": 2,
-     "tittel": "Omsorgsboligprosjekt på Algarheim - vedrørende miljørettet helsevern",
-     "type": "Inngående dokument",
-     "dato": "03.09.2026",
-     "saksnr": "2026/21586",
      "url": "https://innsynpluss.onacos.no/nannestad/sok/#/?searchTerm=omsorgsbolig"
     },
     {
@@ -211,19 +194,19 @@
     {
      "ord": "omsorgsbolig",
      "vekt": 2,
-     "tittel": "Undersøkelse om Husbankens Investeringstilskudd til omsorgsboliger og sykehjem",
-     "type": "Inngående dokument",
+     "tittel": "Husbankens Investeringstilskudd til omsorgsboliger og sykehjem",
+     "type": "Generell sak",
      "dato": "27.05.2025",
-     "saksnr": "2025/20259",
+     "saksnr": null,
      "url": "https://innsynpluss.onacos.no/modum/sok/#/?searchTerm=omsorgsbolig"
     },
     {
      "ord": "omsorgsbolig",
      "vekt": 2,
-     "tittel": "Husbankens Investeringstilskudd til omsorgsboliger og sykehjem",
-     "type": "Generell sak",
+     "tittel": "Undersøkelse om Husbankens Investeringstilskudd til omsorgsboliger og sykehjem",
+     "type": "Inngående dokument",
      "dato": "27.05.2025",
-     "saksnr": null,
+     "saksnr": "2025/20259",
      "url": "https://innsynpluss.onacos.no/modum/sok/#/?searchTerm=omsorgsbolig"
     }
    ]
@@ -260,15 +243,6 @@
    "plattform": "ACOS Innsyn",
    "poeng": 10,
    "treff": [
-    {
-     "ord": "omsorgssenter",
-     "vekt": 3,
-     "tittel": "Detaljreguleringsplan for Martineåsen omsorgssenter - gbnr. 4064/36 m.fl. Fastsettelse av planprogram",
-     "type": "Saksframlegg",
-     "dato": "22.01.2026",
-     "saksnr": "2026/7800",
-     "url": "https://innsynpluss.onacos.no/larvik/sok/#/?searchTerm=omsorgssenter"
-    },
     {
      "ord": "omsorgsbolig",
      "vekt": 2,
@@ -322,6 +296,15 @@
      "dato": "22.01.2026",
      "saksnr": "2026/7939",
      "url": "https://innsynpluss.onacos.no/larvik/sok/#/?searchTerm=omsorgssenter"
+    },
+    {
+     "ord": "omsorgssenter",
+     "vekt": 2,
+     "tittel": "Dialog om krav til utredning av vannmiljø i planprogram - Detaljreguleringsplan for Martineåsen omsorgssenter - gbnr. 4064/36 m.fl.",
+     "type": "Utgående dokument",
+     "dato": "22.01.2026",
+     "saksnr": "2026/7940",
+     "url": "https://innsynpluss.onacos.no/larvik/sok/#/?searchTerm=omsorgssenter"
     }
    ]
   },
@@ -360,19 +343,19 @@
     {
      "ord": "boligbehov",
      "vekt": 2,
-     "tittel": "Invitasjon til kartlegging av kommunenes analyser av boligbehov og boligmarked",
-     "type": "Inngående dokument",
+     "tittel": "Kartlegging av kommuenes analyser av boligbehov og boligmarked",
+     "type": "Generell sak",
      "dato": "29.09.2025",
-     "saksnr": "2025/23663",
+     "saksnr": null,
      "url": "https://innsynpluss.onacos.no/bamble/sok/#/?searchTerm=boligbehov"
     },
     {
      "ord": "boligbehov",
      "vekt": 2,
-     "tittel": "Kartlegging av kommuenes analyser av boligbehov og boligmarked",
-     "type": "Generell sak",
+     "tittel": "Invitasjon til kartlegging av kommunenes analyser av boligbehov og boligmarked",
+     "type": "Inngående dokument",
      "dato": "29.09.2025",
-     "saksnr": null,
+     "saksnr": "2025/23663",
      "url": "https://innsynpluss.onacos.no/bamble/sok/#/?searchTerm=boligbehov"
     }
    ]
@@ -387,9 +370,9 @@
      "ord": "omsorgsbolig",
      "vekt": 2,
      "tittel": "Interpellasjon v/Åge Rosnes (SV) - Tempo og rammevilkår bygging av omsorgsboliger",
-     "type": "Interpellasjon",
+     "type": "Inngående dokument",
      "dato": "11.09.2026",
-     "saksnr": null,
+     "saksnr": "2026/87660",
      "url": "https://innsynpluss.onacos.no/askoy/sok/#/?searchTerm=omsorgsbolig"
     },
     {
@@ -564,7 +547,7 @@
    "navn": "Nordreisa",
    "nr": "5544",
    "plattform": "ACOS Innsyn",
-   "poeng": 4,
+   "poeng": 8,
    "treff": [
     {
      "ord": "omsorgsbolig",
@@ -573,6 +556,15 @@
      "type": "Saksframlegg",
      "dato": "06.03.2025",
      "saksnr": "2023/9025",
+     "url": "https://innsynpluss.onacos.no/nordreisa/sok/#/?searchTerm=omsorgsbolig"
+    },
+    {
+     "ord": "omsorgsbolig",
+     "vekt": 2,
+     "tittel": "Kapasitet og framtidig behov for omsorgsboliger og sykehjemsplasser – Meieriveien 14, Sonjatun og Lillebo",
+     "type": "Generell sak",
+     "dato": "23.09.2026",
+     "saksnr": null,
      "url": "https://innsynpluss.onacos.no/nordreisa/sok/#/?searchTerm=omsorgsbolig"
     }
    ]
