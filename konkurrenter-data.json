@@ -1,10 +1,10 @@
 {
- "_oppdatert": "2026-10-05",
+ "_oppdatert": "2026-10-12",
  "selskaper": {
   "lille-oslo-eiendom": {
    "navn": "Lille Oslo Eiendom",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-10-05",
+   "oppdatert": "2026-10-12",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -26,7 +26,7 @@
   "konseptpluss": {
    "navn": "KonseptPluss",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-10-05",
+   "oppdatert": "2026-10-12",
    "aktivitet": 4,
    "doffin": [
     {
@@ -118,18 +118,13 @@
   "morgenstjernen": {
    "navn": "Morgenstjernen",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-10-05",
+   "oppdatert": "2026-10-12",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
     {
      "navn": "MORGENSTJERNEN AS",
      "org": "989038737",
-     "kommune": "BÆRUM"
-    },
-    {
-     "navn": "MORGENSTJERNEN BLOMMENHOLM AS",
-     "org": "929692489",
      "kommune": "BÆRUM"
     },
     {
@@ -160,7 +155,7 @@
   "omtanke": {
    "navn": "Omtanke AS",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-10-05",
+   "oppdatert": "2026-10-12",
    "aktivitet": 1,
    "doffin": [
     {
@@ -198,7 +193,7 @@
   "steinar-moe": {
    "navn": "Steinar Moe Eiendom",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-10-05",
+   "oppdatert": "2026-10-12",
    "aktivitet": 2,
    "doffin": [
     {
@@ -261,7 +256,7 @@
   "bof": {
    "navn": "BOF AS",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-10-05",
+   "oppdatert": "2026-10-12",
    "aktivitet": 0,
    "doffin": [],
    "spv": [],
@@ -277,7 +272,7 @@
   "consto": {
    "navn": "Consto AS",
    "kategori": "Totalentreprenør",
-   "oppdatert": "2026-10-05",
+   "oppdatert": "2026-10-12",
    "aktivitet": 12,
    "doffin": [
     {
@@ -475,8 +470,8 @@
    ],
    "kommuneKart": {
     "bergen": {
-     "lat": 60.2508249,
-     "lng": 5.2690695
+     "lat": 60.297204,
+     "lng": 5.256667
     },
     "tromsø": {
      "lat": 69.6297371,
@@ -498,7 +493,7 @@
   "af-gruppen": {
    "navn": "AF Gruppen",
    "kategori": "Totalentreprenør",
-   "oppdatert": "2026-10-05",
+   "oppdatert": "2026-10-12",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -525,7 +520,7 @@
   "veidekke": {
    "navn": "Veidekke",
    "kategori": "Totalentreprenør",
-   "oppdatert": "2026-10-05",
+   "oppdatert": "2026-10-12",
    "aktivitet": 0,
    "doffin": [],
    "spv": [],
@@ -541,7 +536,7 @@
   "skanska": {
    "navn": "Skanska Norge",
    "kategori": "Totalentreprenør",
-   "oppdatert": "2026-10-05",
+   "oppdatert": "2026-10-12",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -633,7 +628,7 @@
   "ncc": {
    "navn": "NCC",
    "kategori": "Totalentreprenør",
-   "oppdatert": "2026-10-05",
+   "oppdatert": "2026-10-12",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -665,7 +660,7 @@
   "backe": {
    "navn": "Backe Gruppen",
    "kategori": "Totalentreprenør",
-   "oppdatert": "2026-10-05",
+   "oppdatert": "2026-10-12",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -757,55 +752,9 @@
   "obos": {
    "navn": "OBOS",
    "kategori": "Boligutbygger",
-   "oppdatert": "2026-10-05",
-   "aktivitet": 3,
-   "doffin": [
-    {
-     "id": "2017-109084",
-     "tittel": "Rehabilitering av grasbane på Florø Stadion",
-     "kjoper": "Flora kommune",
-     "type": "Kunngjøring",
-     "dato": "2017-06-13",
-     "frist": "",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": "flora",
-     "url": "https://www.doffin.no/notices/2017-109084",
-     "fraSpv": false
-    },
-    {
-     "id": "2017-546272",
-     "tittel": "Forneburingen barnehage - Grunn og utomhusarbeider",
-     "kjoper": "Bærum kommune",
-     "type": "Kunngjøring",
-     "dato": "2017-03-15",
-     "frist": "",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": "bærum",
-     "url": "https://www.doffin.no/notices/2017-546272",
-     "fraSpv": false
-    },
-    {
-     "id": "2017-297060",
-     "tittel": "Forneburingen barnehage - Grunn og utomhusarbeider",
-     "kjoper": "Bærum kommune",
-     "type": "Kunngjøring",
-     "dato": "2017-01-05",
-     "frist": "2017-02-03",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": "bærum",
-     "url": "https://www.doffin.no/notices/2017-297060",
-     "fraSpv": false
-    }
-   ],
+   "oppdatert": "2026-10-12",
+   "aktivitet": 0,
+   "doffin": [],
    "spv": [
     {
      "navn": "OBOS BBL",
@@ -883,12 +832,7 @@
      "kommune": "BERGEN"
     }
    ],
-   "kommuneKart": {
-    "bærum": {
-     "lat": 59.9385213,
-     "lng": 10.4379187
-    }
-   },
+   "kommuneKart": {},
    "nyheter": [
     {
      "tittel": "Søk nyheter om OBOS",
@@ -900,7 +844,7 @@
   "samfunnspartner": {
    "navn": "Samfunnspartner",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-10-05",
+   "oppdatert": "2026-10-12",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -922,85 +866,9 @@
   "bomer": {
    "navn": "BoMer",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-10-05",
-   "aktivitet": 5,
-   "doffin": [
-    {
-     "id": "2025-112967",
-     "tittel": "Prosjekt 1207503 Trondheim Fengsel Nermarka – Tiltak i bygg E og B Totalentreprise K 101",
-     "kjoper": "STATSBYGG",
-     "type": "Kunngjøring",
-     "dato": "2025-09-10",
-     "frist": "",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": null,
-     "url": "https://www.doffin.no/notices/2025-112967",
-     "fraSpv": false
-    },
-    {
-     "id": "2025-105453",
-     "tittel": "Grunnarbeider bilvekt og adgangskontroll Stormyra avfallsanlegg",
-     "kjoper": "Midtre Namdal Avfallsselskap IKS",
-     "type": "Kunngjøring",
-     "dato": "2025-04-05",
-     "frist": "2025-04-30",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": null,
-     "url": "https://www.doffin.no/notices/2025-105453",
-     "fraSpv": false
-    },
-    {
-     "id": "2024-110369",
-     "tittel": "Prosjekt 1207503 Trondheim Fengsel Nermarka – Tiltak i bygg E og B Totalentreprise K 101",
-     "kjoper": "STATSBYGG",
-     "type": "Kunngjøring",
-     "dato": "2024-07-04",
-     "frist": "2024-09-16",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": null,
-     "url": "https://www.doffin.no/notices/2024-110369",
-     "fraSpv": false
-    },
-    {
-     "id": "2021-361403",
-     "tittel": "Ankerskogen Svømmehall - Utskifting påstøp, røranlegg og fliser i bunn av 50m basseng",
-     "kjoper": "Hamar Kommune",
-     "type": "Kunngjøring",
-     "dato": "2021-06-14",
-     "frist": "2021-07-08",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": "hamar",
-     "url": "https://www.doffin.no/notices/2021-361403",
-     "fraSpv": false
-    },
-    {
-     "id": "2021-350936",
-     "tittel": "Kvalifisering - Tilsyn og teknisk vedlikehold Furumotunnelen, Nye UNN Narvik",
-     "kjoper": "Sykehusbygg HF",
-     "type": "Kunngjøring",
-     "dato": "2021-03-29",
-     "frist": "2021-05-05",
-     "harBygg": true,
-     "erTildeling": false,
-     "erIntensjon": false,
-     "score": 2,
-     "kommune": null,
-     "url": "https://www.doffin.no/notices/2021-350936",
-     "fraSpv": false
-    }
-   ],
+   "oppdatert": "2026-10-12",
+   "aktivitet": 0,
+   "doffin": [],
    "spv": [
     {
      "navn": "BOMER AS",
@@ -1090,7 +958,7 @@
   "stendi": {
    "navn": "Stendi",
    "kategori": "Driftsaktør",
-   "oppdatert": "2026-10-05",
+   "oppdatert": "2026-10-12",
    "aktivitet": 2,
    "doffin": [
     {
@@ -1153,7 +1021,7 @@
   "norlandia": {
    "navn": "Norlandia",
    "kategori": "Driftsaktør",
-   "oppdatert": "2026-10-05",
+   "oppdatert": "2026-10-12",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -1205,7 +1073,7 @@
   "bolig-for-folket": {
    "navn": "Bolig for folket",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-10-05",
+   "oppdatert": "2026-10-12",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
@@ -1237,7 +1105,7 @@
   "infraheim": {
    "navn": "Infraheim",
    "kategori": "Eiendomsutvikler",
-   "oppdatert": "2026-10-05",
+   "oppdatert": "2026-10-12",
    "aktivitet": 0,
    "doffin": [],
    "spv": [
