@@ -213,7 +213,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
           <button class="meny-item" onclick="openMetode()">ⓘ Slik regnes det</button>
         </div>
       </div>
-      <span class="tag">Internt · v63</span>
+      <span class="tag">Internt · v65</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -340,7 +340,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
           <th class="num" data-k="folketall">Folketall</th>
           <th class="num" data-k="i80">80+</th>
           <th class="num" data-k="vekst80">Vekst 80+</th>
-          <th class="num" data-k="tomter">Tomter</th>
+          <th class="num" data-k="tomter">Allstad tomt</th>
           <th data-k="behovSc">Behov</th>
           <th data-k="modell">Finansiering</th>
           <th class="num" data-k="signalScore">Signal</th>
@@ -535,7 +535,7 @@ function render(){
       <td class="num">${(d.folketall||0).toLocaleString('no')}</td>
       <td class="num">${(d.i80||0).toLocaleString('no')}</td>
       <td class="num">${d.vekst80>0?'+':''}${(d.vekst80*100).toFixed(0)}%</td>
-      <td class="num">${d.tomter?('<b>'+d.tomter.toLocaleString('no')+'</b>'):'<span style="color:var(--line)">–</span>'}</td>
+      <td class="num">${d.tomter?'<b style="color:#D98C3F">Ja</b>':'<span style="color:var(--line)">–</span>'}</td>
       <td><div class="bar"><i style="width:${d.behovSc.toFixed(0)}%"></i></div></td>
       <td>${d.hasEcon?`<span class="pill ${d.lease?'lease':'buy'}">${d.modell}</span>`:`<span class="pill" style="background:var(--line);color:var(--muted)">– ikke lastet</span>`}</td>
       <td class="num">${(d.signalScore||0)>0?`<b style="color:#B8742A" title="${(d.doffinTreff&&d.doffinTreff.length?d.doffinTreff.join('; ')+' · ':'')}Husbanken: ${d.husbankTilsagn||0} tilsagn">+${(d.signalScore||0).toFixed(0)}</b>`:'<span style="color:var(--line)">–</span>'}</td>
@@ -1018,7 +1018,7 @@ function openNote(navn){
     <div class="kv">
       <div><div class="k">Fylke</div><div class="v" style="font-size:16px">${fylkeAv(d.nr)}</div></div>
       <div><div class="k">Kommunetype</div><div class="v" style="font-size:13.5px">${kommuneType(d.folketall||0)}</div></div>
-      <div><div class="k">Allstad-tomter her</div><div class="v">${(d.tomter||0).toLocaleString('no')}</div></div>
+      <div><div class="k">Allstad har tomt</div><div class="v">${d.tomter?'Ja':'Nei'}</div></div>
       <div><div class="k">Folketall</div><div class="v">${(d.folketall||0).toLocaleString('no')}</div></div>
       <div><div class="k">Andel 80+</div><div class="v">${pct(d.andel80)}</div></div>
       <div><div class="k">Innb. 80+ i dag</div><div class="v">${d.i80.toLocaleString('no')}</div></div>
@@ -1070,7 +1070,7 @@ function openNote(navn){
     <div class="recco">${finForklaring(d)}</div>
     ${signalNoteBlokk(d)}
     <h3>Tomt</h3>
-    <p>${d.tomter?`Allstad eier <b>${d.tomter.toLocaleString('no')} tomter</b> i ${d.navn} – et reelt fortrinn for å etablere prosjekt raskt. `:'Allstad eier ingen registrerte tomter i denne kommunen. '}${d.tomt===1?'Vurdert som egnet/sentral tomt – bygg direkte (+'+P().n1+' poeng).':d.tomt===2?'Vurdert som makebytte-potensial – byttekort, ofte mot kommunen selv (+'+P().n2+' poeng).':'Ingen egnet tomt vurdert – markedserverv eller makebytte må vurderes.'} Tomtenivå og egnethet justeres per kommune under «Sett egne data».</p>
+    <p>${d.tomter?`<b>Allstad har tomt</b> i ${d.navn} – et reelt fortrinn for å etablere prosjekt raskt. `:'Allstad eier ingen registrerte tomter i denne kommunen. '}${d.tomt===1?'Vurdert som egnet/sentral tomt – bygg direkte (+'+P().n1+' poeng).':d.tomt===2?'Vurdert som makebytte-potensial – byttekort, ofte mot kommunen selv (+'+P().n2+' poeng).':'Ingen egnet tomt vurdert – markedserverv eller makebytte må vurderes.'} Tomtenivå og egnethet justeres per kommune under «Sett egne data».</p>
 
     <p style="font-size:11px;color:var(--muted);margin-top:16px;line-height:1.5">${kildelinje}</p>
 
@@ -1475,17 +1475,13 @@ function rendKart(){
       pins.push({ lat: pos.lat, lng: pos.lng, navn: s.navn, kommune: t.kommune,
                   tittel: t.tittel, type: t.type, dato: t.dato, farge, id: s.id, vekt });
     });
-    // SPV-kommuner
-    (d.spv || []).forEach(sp => {
-      if (!sp.kommune) return;
-      const pos = kommuneKart[sp.kommune]
-             || KOMMUNE_KOORD[norm(sp.kommune)]
-             || KOMMUNE_KOORD[norm(sp.kommune).split(' ')[0]]
-             || null;
-      if (!pos) return;
-      pins.push({ lat: pos.lat, lng: pos.lng, navn: s.navn, kommune: sp.kommune,
-                  tittel: 'SPV: ' + sp.navn, type: 'SPV', dato: '', farge, id: s.id });
-    });
+    // NB: SPV-er plottes IKKE på kartet – kommunefeltet fra Brønnøysund er
+    // selskapets REGISTRERTE forretningsadresse (ofte hovedkontor/regnskapsfører),
+    // ikke stedet det faktisk bygges. SPV-navnet søkes likevel opp på Doffin over
+    // (se søkDoffin med erSPV=true) – finnes en reell kunngjøring, kommer den inn
+    // som et vanlig doffin-punkt over med kommune hentet fra selve kunngjøringen
+    // (kjøper/tittel), som er en mye mer pålitelig stedsangivelse. SPV-listen vises
+    // fortsatt som ren tekst i konkurrentkortet, se rendKonk().
   });
 
   // Legg til Allstads egne prosjekter
@@ -1689,6 +1685,7 @@ function rendKonk(){
       html+=`<div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--line)">
         <div style="font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">🏢 ${spv.length} prosjektselskaper (SPV)</div>
         <div style="display:flex;flex-wrap:wrap;gap:4px">${spv.slice(0,8).map(sp=>`<span style="background:var(--sand);padding:2px 8px;border-radius:6px;font-size:12px">${sp.navn}${sp.kommune?' · '+sp.kommune:''}</span>`).join('')}</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:4px;font-style:italic">Kommune = selskapets registrerte adresse (Brønnøysund), ikke nødvendigvis byggestedet. Vises derfor ikke på kartet.</div>
       </div>`;
     }
     if(!doffin.length&&!nyheter.length&&!spv.length){
@@ -1979,7 +1976,7 @@ function openMetode(){
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">KLASS 131</td><td style="padding:5px 8px">Gjeldende kommuneinndeling</td><td style="padding:5px 8px">løpende</td></tr>
       </tbody>
     </table>
-    <p style="font-size:12px;color:var(--muted)">I tillegg: Allstads egen tomtebank (antall tomter per kommune), ROBEK-liste (regjeringen.no, mars 2026), overliggerdøgn (Helsedirektoratet SAMDATA – legges inn manuelt). Fylke utledes fra kommunenummer. Tabellnumre og år vises også nederst i hvert behovsnotat.</p>
+    <p style="font-size:12px;color:var(--muted)">I tillegg: Allstads egen tomtebank (om vi har tomt i kommunen), ROBEK-liste (regjeringen.no, mars 2026), overliggerdøgn (Helsedirektoratet SAMDATA – legges inn manuelt). Fylke utledes fra kommunenummer. Tabellnumre og år vises også nederst i hvert behovsnotat.</p>
 
     <h3>2. Behov for heldøgns omsorgsplasser (HDO)</h3>
     <p><b>Definisjon:</b> «Behov» = heldøgns omsorgsplasser = langtids institusjonsplasser + omsorgsboliger med heldøgns bemanning. Dette er samme definisjon som KS og Agenda Kaupang bruker (jf. KS' verktøy «Omsorg 2050»). Vanlige omsorgsboliger uten bemanning regnes ikke med – de ligger lavere i omsorgstrappen. Allstads boliger teller i HDO når de driftes med heldøgns bemanning.</p>
