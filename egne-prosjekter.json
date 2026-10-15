@@ -1,0 +1,36 @@
+{
+  "_info": "Egne omsorgsprosjekter som vises som stjerner på kartet. Oppdater manuelt når nye prosjekter kommer til eller status endres.",
+  "_oppdatert": "2026-10-15",
+  "prosjekter": [
+    {
+      "id": "lyngen",
+      "navn": "Lyngen",
+      "kommune": "Lyngen",
+      "status": "Gjennomført",
+      "statusFarge": "#2E6F62",
+      "beskrivelse": "Gjennomført og overlevert",
+      "lat": 69.82,
+      "lng": 20.2
+    },
+    {
+      "id": "bjorbekk",
+      "navn": "Bjorbekk (Arendal)",
+      "kommune": "Arendal",
+      "status": "Under regulering",
+      "statusFarge": "#E67E22",
+      "beskrivelse": "Under regulering",
+      "lat": 58.46,
+      "lng": 8.77
+    },
+    {
+      "id": "loddingen",
+      "navn": "Løddingen (Lofoten)",
+      "kommune": "Lødingen",
+      "status": "Under regulering",
+      "statusFarge": "#E67E22",
+      "beskrivelse": "Under regulering",
+      "lat": 68.42,
+      "lng": 15.99
+    }
+  ]
+}

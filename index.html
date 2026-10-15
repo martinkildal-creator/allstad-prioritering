@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kommuneprioritering – Allstad</title>
+<title>Kildal Kommuneprioritering</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -187,10 +187,10 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
   <header class="top">
     <div style="display:flex;align-items:center;gap:14px">
       <div id="logoSlot" class="logoSlot" onclick="logoFile.click()" title="Klikk for å sette inn logo">
-        <img id="logoImg" alt="Allstad logo"><span id="logoText">ALLSTAD</span>
+        <img id="logoImg" alt="Logo"><span id="logoText">KILDAL</span>
       </div>
       <div>
-        <div class="apptitle">Kommuneprioritering</div>
+        <div class="apptitle">Kildal Kommuneprioritering</div>
         <div class="appsub">Datadrevet innsalgsverktøy for omsorgsboliger</div>
       </div>
     </div>
@@ -213,7 +213,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
           <button class="meny-item" onclick="openMetode()">ⓘ Slik regnes det</button>
         </div>
       </div>
-      <span class="tag">Internt · v65</span>
+      <span class="tag">Internt · v66</span>
     </div>
   </header>
   <input id="logoFile" type="file" accept="image/*" class="hidden">
@@ -340,7 +340,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
           <th class="num" data-k="folketall">Folketall</th>
           <th class="num" data-k="i80">80+</th>
           <th class="num" data-k="vekst80">Vekst 80+</th>
-          <th class="num" data-k="tomter">Allstad tomt</th>
+          <th class="num" data-k="tomter">Egen tomt</th>
           <th data-k="behovSc">Behov</th>
           <th data-k="modell">Finansiering</th>
           <th class="num" data-k="signalScore">Signal</th>
@@ -372,7 +372,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
     <b>Om «auto-henting av all informasjon».</b> Denne nettsiden er frontend + regnemotor. For at den skal hente data selv for alle ~357 kommuner kreves et produksjonsoppsett (eget byggesteg):<br>
     1) <b>SSB åpne API</b> (befolkning + framskriving 80+/90+, KOSTRA-tabeller) – verifiserte tabell-ID-er og spørringer. ·
     2) <b>ROBEK-liste</b> fra KDD/Statsforvalteren. ·
-    3) <b>Allstads tomtebank</b> (internt register – tomtenivå/makebytte). ·
+    3) <b>Tomtedata</b> (Eiendomsverdi og eget register – tomtenivå/makebytte). ·
     4) <b>AI-ekstraksjon</b> av intensjonssignal fra planverk. ·
     5) Planlagt oppdateringsrutine + validering før hvert rapportuttak.<br>
     Tallene i behovsnotatet skal alltid peke tilbake til kilde med årstall – modellen finner aldri på et tall selv.
@@ -384,7 +384,7 @@ body.pdfmode #pdfview{display:block;position:fixed;inset:0;background:#fff;overf
 <div id="drawer" class="drawer"><div class="note" id="noteBody"></div></div>
 
 <script>
-const DEFAULT_LOGO="data:image/png;base64,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";
+const DEFAULT_LOGO="";
 const EIENDOM={"1851":651,"1832":483,"1833":477,"1813":298,"0301":295,"1824":273,"1865":236,"5060":228,"3105":222,"4016":213,"3905":208,"1820":200,"5001":189,"1860":186,"3907":183,"1840":161,"4649":145,"4647":142,"1826":141,"4624":140,"1806":138,"3110":137,"4631":133,"4602":133,"5007":130,"4003":126,"3120":125,"3909":124,"3407":119,"4615":119,"1101":118,"4630":116,"1539":114,"3435":113,"4202":107,"3314":94,"3420":94,"3421":93,"3226":93,"1828":91,"5530":90,"1130":89,"5041":88,"1875":87,"3438":84,"5006":82,"1818":81,"3330":80,"5514":79,"3422":79,"4648":78,"5536":76,"3903":75,"1576":74,"5534":73,"4207":73,"4205":73,"1563":73,"4640":72,"4001":70,"5503":69,"3301":68,"5059":68,"5027":67,"3205":62,"3118":61,"3212":61,"4639":61,"4030":59,"1134":59,"5028":59,"3203":56,"1841":55,"3417":55,"5605":54,"4220":53,"3401":53,"4225":52,"3411":52,"1520":51,"4227":49,"1508":49,"4211":48,"3441":48,"3328":47,"3434":47,"1146":46,"5042":46,"4213":45,"1836":45,"1837":44,"3442":42,"4636":42,"3414":41,"4626":41,"1866":40,"3412":40,"4637":40,"4026":39,"4034":39,"4028":38,"4005":38,"1839":38,"3436":38,"3451":38,"3403":38,"1103":37,"4036":36,"3428":36,"4032":35,"1848":35,"3312":33,"1506":33,"1577":33,"4612":33,"1160":32,"1834":32,"3448":32,"3238":32,"4601":32,"1804":31,"1547":31,"4611":31,"3332":30,"1535":30,"4650":30,"1838":29,"4625":29,"1511":28,"4621":28,"4018":27,"1149":27,"3452":27,"4221":26,"4204":26,"5054":26,"5038":26,"3453":26,"5501":25,"3303":25,"3901":25,"4228":25,"5035":25,"4618":25,"4214":24,"4219":24,"5058":24,"5026":24,"3424":24,"4012":23,"4206":23,"1815":23,"3418":23,"3439":23,"5620":22,"4020":22,"3454":22,"1525":22,"4622":22,"3324":21,"3322":21,"3209":21,"4644":21,"5622":20,"5612":20,"5033":20,"3240":20,"5056":19,"4635":19,"4620":19,"4634":19,"3305":18,"1111":18,"3416":18,"3437":18,"4010":17,"4216":17,"5049":17,"1514":16,"4643":16,"4646":16,"3338":15,"3432":15,"3443":15,"3242":15,"4645":15,"4022":14,"1857":14,"3450":14,"3220":14,"3207":14,"1515":14,"5522":13,"5601":13,"3336":13,"1871":13,"3447":13,"3415":13,"3413":13,"3101":13,"3228":13,"1579":13,"4651":13,"4203":12,"1853":12,"5047":12,"3449":12,"4642":12,"4024":11,"1119":11,"1112":11,"3216":11,"5510":10,"3316":10,"3911":10,"5061":10,"3423":10,"4632":10,"5532":9,"5624":9,"4014":9,"1560":9,"4617":9,"5634":8,"3334":8,"3310":8,"1108":8,"5025":8,"3419":8,"3116":8,"3124":8,"1578":8,"5029":7,"1580":7,"4616":7,"5614":6,"4226":6,"4217":6,"4215":6,"5032":6,"3431":6,"3440":6,"4638":6,"1870":5,"5021":5,"3405":5,"3103":5,"3236":5,"1557":5,"5610":4,"5618":4,"3320":4,"1120":4,"1812":4,"1845":4,"5055":4,"3427":4,"3446":4,"3425":4,"3232":4,"1566":4,"1505":4,"3318":3,"5057":3,"5034":3,"3433":3,"3107":3,"3218":3,"4641":3,"4627":3,"5512":2,"5540":2,"5628":2,"4224":2,"1867":2,"1811":2,"5037":2,"5022":2,"5052":2,"3122":2,"3114":2,"3214":2,"1516":2,"1573":2,"5607":1,"5626":1,"5630":1,"5616":1,"5031":1,"5014":1,"3234":1,"3230":1};
 const DEMO=[
  {nr:"1820",navn:"Alstahaug",won:true,folketall:7400,i80:640,i80_35:910,plasser:95,ndr:.021,disp:.06,robek:false,intens:3,tomt:1,regulert:true},
@@ -399,11 +399,11 @@ const DEMO=[
 let DATA=DEMO.map(d=>({...d})), isDemo=true, sortKey="total", sortDir=-1, searchTerm="";
 let NAT={};
 const META={};
-let OVR={}; try{OVR=JSON.parse(localStorage.getItem("allstadOverrides")||"{}");}catch(_){OVR={};}
+let OVR={}; try{OVR=JSON.parse(localStorage.getItem("kildalOverrides")||localStorage.getItem("allstadOverrides")||"{}");}catch(_){OVR={};}
 function applyOverrides(){DATA.forEach(d=>{const o=OVR[d.nr];if(o)for(const k in o)d[k]=o[k];});}
 function setOverride(nr,field,value){
   if(!OVR[nr])OVR[nr]={}; OVR[nr][field]=value;
-  try{localStorage.setItem("allstadOverrides",JSON.stringify(OVR));}catch(_){}
+  try{localStorage.setItem("kildalOverrides",JSON.stringify(OVR));}catch(_){}
   const d=DATA.find(x=>x.nr===nr); if(d){d[field]=value; compute(); openNote(d.navn);}
 }
 // ROBEK – bekreftet liste per mars 2026 (regjeringen.no). Redigerbar; brukerens egne valg overstyrer.
@@ -947,15 +947,12 @@ function kommunePDF(navn){
     </div>
     <div style="max-width:760px;margin:0 auto;background:#FBFAF5;font-family:'Hanken Grotesk',system-ui,sans-serif;color:${INK};line-height:1.55;font-size:14px;border:1px solid ${LINE}">
       <div style="background:${GREEN};color:${CREAM};padding:34px 40px 28px">
-        <div style="font-family:'Fraunces',serif;font-weight:700;font-size:20px;letter-spacing:1px;color:#fff">ALLSTAD</div>
+        <div style="font-family:'Fraunces',serif;font-weight:700;font-size:20px;letter-spacing:1px;color:#fff">KILDAL KOMMUNEPRIORITERING</div>
         <div style="height:2px;width:54px;background:${GOLD};margin:18px 0 16px"></div>
         <h1 style="font-family:'Fraunces',serif;font-size:30px;margin:0 0 8px;color:#fff;font-weight:600;line-height:1.15">Behovsvurdering:<br>omsorgsboliger i ${d.navn}</h1>
         <p style="margin:0;color:${CREAM};opacity:.85;font-size:14px">Et kunnskapsgrunnlag for dialog om heldøgns omsorgsplasser · ${dato}</p>
       </div>
       <div style="padding:6px 40px 56px">
-      ${h2('Om Allstad')}
-      <p style="margin:0 0 10px">Allstad er et <b>statlig selskap</b> som eier og forvalter eiendom i over 300 norske kommuner – en arv historisk knyttet til prestegårdene. Vi har <b>ingen private eiere</b> som tar ut utbytte; går et prosjekt med overskudd, går det til <b>Kirkebevaringsfondet</b>, som finansierer restaurering av norske kirkebygg.</p>
-      <p style="margin:0 0 4px">For en kommune betyr det en samarbeidspartner uten profittmotiv: vi utvikler, bygger og kvalitetssikrer omsorgsboliger med heldøgns bemanning, og bærer byggherrerisikoen i utviklingsfasen.</p>
       ${h2('Behovsvurdering for '+d.navn)}
       <p style="margin:0 0 12px">Behovet for <b>heldøgns omsorgsplasser</b> – langtids institusjon og omsorgsbolig med heldøgns bemanning – er beregnet ved å anvende aldersdifferensierte dekningsgrader på SSBs befolkningsframskriving (hovedalternativet), etter KS-metodikk for heldøgns omsorg. Jo eldre innbyggerne er, desto høyere andel trenger en plass – derfor er veksten blant de aller eldste særlig viktig.</p>
       <table style="width:100%;border-collapse:collapse;margin:0 0 18px;border:1px solid ${LINE};border-radius:8px;overflow:hidden">${tbl}</table>
@@ -972,20 +969,18 @@ function kommunePDF(navn){
       <div style="margin:4px 0">${konsekvensChart(d)}</div>
       ${bespBlokk}
       ${h2('Finansiering – to modeller')}
-      <p style="margin:0 0 10px">Allstad bygger gjennom et eget prosjektselskap. Når bygget står ferdig kan kommunen <b>kjøpe det selv</b>, eller la <b>Samfond</b> – KLPs eiendomsfond – <b>kjøpe og leie det tilbake</b> til kommunen på en 30-årig avtale. Med leiemodellen trenger kommunen ikke låne opp en krone.</p>
+      <p style="margin:0 0 10px">Når bygget står ferdig kan kommunen <b>kjøpe det selv</b>, eller la <b>Samfond</b> – KLPs eiendomsfond – <b>kjøpe og leie det tilbake</b> til kommunen på en 30-årig avtale. Med leiemodellen trenger kommunen ikke låne opp en krone.</p>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:0 0 14px">
         <div style="border:1px solid ${LINE};border-radius:8px;padding:12px 14px"><b style="color:${GREEN}">Ingen lånebelastning</b><div style="font-size:13px;color:${MUT};margin-top:3px">Forutsigbar leie i 30 år erstatter en stor enkeltinvestering på balansen.</div></div>
         <div style="border:1px solid ${LINE};border-radius:8px;padding:12px 14px"><b style="color:${GREEN}">Trygg motpart</b><div style="font-size:13px;color:${MUT};margin-top:3px">Samfond har KLP – kommune-Norges eget pensjonsselskap – som største eier.</div></div>
-        <div style="border:1px solid ${LINE};border-radius:8px;padding:12px 14px"><b style="color:${GREEN}">Byggherrerisiko hos oss</b><div style="font-size:13px;color:${MUT};margin-top:3px">Allstad bærer risikoen i utviklingsfasen; kommunen overtar et ferdig, kvalitetssikret bygg.</div></div>
-        <div style="border:1px solid ${LINE};border-radius:8px;padding:12px 14px"><b style="color:${GREEN}">Overskudd til kulturarven</b><div style="font-size:13px;color:${MUT};margin-top:3px">Allstads andel av overskuddet går til Kirkebevaringsfondet – uansett hvilken modell kommunen velger.</div></div>
       </div>
       <div style="background:#F2EFE6;border-left:3px solid ${GOLD};padding:12px 16px;margin:22px 0 6px;font-size:13px;color:${INK}">Dette er et foreløpig anslag til dialog. Endelige tall og anbefalinger fastsettes i en detaljert bolig- og tjenesteanalyse tilpasset kommunen.</div>
       ${h2('Veien videre')}
-      <p style="margin:0 0 22px">Allstad bistår gjerne ${d.navn} med et konkret skisseprosjekt og et finansieringsalternativ tilpasset kommunens situasjon. Ta kontakt for en uforpliktende gjennomgang.</p>
+      <p style="margin:0 0 22px">Neste steg kan være et konkret skisseprosjekt og et finansieringsalternativ tilpasset ${d.navn} sin situasjon.</p>
       ${h2('Slik er det regnet')}
       <p style="margin:0 0 8px;font-size:13px">Behovet for heldøgns omsorgsplasser er beregnet ved å legge aldersdifferensierte dekningsgrader på SSBs befolkningsframskriving (hovedalternativet MMMM), etter etablert metodikk for kommunal omsorgsplanlegging. Besparelsen bygger på differansen i driftskostnad mellom institusjon og omsorgsbolig (substitusjon) og på mer effektiv hjemmetjeneste ved samlokalisering (effektivisering/forebygging). Alle tall er anslag for dialog – endelige tall fastsettes i detaljanalysen.</p>
       <p style="margin:0 0 4px;font-size:12px;color:${MUT}"><b>Kilder:</b> ${kilderStr}.</p>
-      <div style="border-top:1px solid ${LINE};margin-top:10px;padding-top:8px;font-size:11px;color:#999">© Allstad ${new Date().getFullYear()} · Datagrunnlag fra Statistisk sentralbyrå (SSB) og KOSTRA.</div>
+      <div style="border-top:1px solid ${LINE};margin-top:10px;padding-top:8px;font-size:11px;color:#999">Kildal Kommuneprioritering ${new Date().getFullYear()} · Datagrunnlag fra Statistisk sentralbyrå (SSB) og KOSTRA.</div>
       </div>
     </div>`;
   document.body.classList.add('pdfmode');
@@ -1003,7 +998,7 @@ function openNote(navn){
   const pris=P().pris, kost=Math.round(enheter*pris);
   const vekstP=(d.vekst80*100).toFixed(0);
   const modelltxt=d.hasEcon?(d.lease?'svak kommuneøkonomi gjør Samfond-leiemodellen særlig aktuell':'solid økonomi – kommunen kan eie selv'):'økonomi ikke vurdert';
-  const tomttxt=d.tomt===1?'Allstad eier egnet tomt':d.tomt===2?'Allstad har tomt for makebytte':'tomt må skaffes';
+  const tomttxt=d.tomt===1?'Egen, egnet tomt finnes':d.tomt===2?'Tomt for makebytte finnes':'Tomt må skaffes';
   const kildelinje=`Kilder: SSB folkemengde (tab. ${META.popTable||'07459'}, ${META.popYear||'–'}), framskriving (${META.framTable||'13600'}, ${META.framYear||'–'}, alt. MMMM)${META.econTable?`, KOSTRA økonomi (${META.econTable}, ${META.econYear||''})`:''}${META.kapTable?`, kapasitet (${META.kapTable}, ${META.kapYear||''})`:''}${META.hdoTable?`, plasser (${META.hdoTable}, ${META.hdoYear||''})`:''}${META.demensTable?`, demensplasser (${META.demensTable}, ${META.demensYear||''})`:''}${META.polTable?`, kommunestyre (${META.polTable}, ${META.polYear||''})`:''}. Behov beregnet med aldersdifferensiert dekningsgrad (Agenda Kaupang/KS-metode).${META.date?' Hentet '+META.date+'.':''}`;
   noteBody.innerHTML=`
     <button class="x" onclick="closeDrawer()">×</button>
@@ -1018,7 +1013,7 @@ function openNote(navn){
     <div class="kv">
       <div><div class="k">Fylke</div><div class="v" style="font-size:16px">${fylkeAv(d.nr)}</div></div>
       <div><div class="k">Kommunetype</div><div class="v" style="font-size:13.5px">${kommuneType(d.folketall||0)}</div></div>
-      <div><div class="k">Allstad har tomt</div><div class="v">${d.tomter?'Ja':'Nei'}</div></div>
+      <div><div class="k">Egen tomt</div><div class="v">${d.tomter?'Ja':'Nei'}</div></div>
       <div><div class="k">Folketall</div><div class="v">${(d.folketall||0).toLocaleString('no')}</div></div>
       <div><div class="k">Andel 80+</div><div class="v">${pct(d.andel80)}</div></div>
       <div><div class="k">Innb. 80+ i dag</div><div class="v">${d.i80.toLocaleString('no')}</div></div>
@@ -1029,7 +1024,7 @@ function openNote(navn){
       ${d.kapDirect&&(d.kapInst!=null||d.kapBolig!=null)?`<div><div class="k">Herav 80+ inst. / bemannet bolig</div><div class="v">${(d.kapInst||0).toLocaleString('no')} / ${(d.kapBolig||0).toLocaleString('no')}</div></div>`:''}
     </div>
     <h3>Behov for heldøgns omsorgsplasser (HDO)</h3>
-    <p>«Behov» betyr her <b>heldøgns omsorgsplasser</b> – langtids institusjonsplasser pluss omsorgsboliger med heldøgns bemanning – etter KS/Agenda Kaupang-metoden (samme definisjon som KS' verktøy «Omsorg 2050»). Vanlige omsorgsboliger uten bemanning teller ikke; Allstads boliger teller når de har heldøgns bemanning. Behovet beregnes ved å legge en antatt dekningsgrad på hver aldersgruppe i den framskrevne befolkningen (67–79: ${r1.value}%, 80–89: ${r2.value}%, 90+: ${r3.value}%).</p>
+    <p>«Behov» betyr her <b>heldøgns omsorgsplasser</b> – langtids institusjonsplasser pluss omsorgsboliger med heldøgns bemanning – etter KS/Agenda Kaupang-metoden (samme definisjon som KS' verktøy «Omsorg 2050»). Vanlige omsorgsboliger uten bemanning teller ikke; boliger med heldøgns bemanning teller. Behovet beregnes ved å legge en antatt dekningsgrad på hver aldersgruppe i den framskrevne befolkningen (67–79: ${r1.value}%, 80–89: ${r2.value}%, 90+: ${r3.value}%).</p>
     <p>For ${d.navn} (${d.i80.toLocaleString('no')} innbyggere 80+ i dag, ${pct(d.andel80)} av folketallet) gir det <b>${Math.round(d.behovFuture).toLocaleString('no')} HDO-plasser mot 2035</b>, opp fra ${Math.round(d.behovNow).toLocaleString('no')} i dag (+${(d.behovVekst*100).toFixed(0)}%). Det tilsvarer en implisert måldekningsgrad på <b>~${(d.i80?d.behovNow/d.i80*100:0).toFixed(0)}%</b> av innbyggere 80+ (vanlig politisk mål: 25%) – juster aldersratene hvis dere vil treffe kommunens egne tall.${d.plasser?` Mot dagens ${d.plasser.toLocaleString('no')} plasser gir det et gap på ${n.toLocaleString('no')}.`:' (Dagens kapasitet er ikke lastet – hent fra SSB eller last opp plasser for å beregne gapet.)'} Behovsscore ${d.behovSc.toFixed(0)}/100.</p>
     <h3>Behov mot kapasitet</h3>
     <div>${behovChart(d)}</div>
@@ -1065,12 +1060,12 @@ function openNote(navn){
     <div class="edrow" style="margin-bottom:8px"><span>Antall plasser kommunen bygger</span><input id="bespN" type="number" min="0" max="3000" value="${besparDefault}" oninput="besparelse()" style="width:96px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;font-size:14px"></div>
     <div id="bespLbl" class="recco" style="background:#EAF2EF">${besparTekst(d,besparDefault)}</div>
     <div id="bespChart">${besparelseChart(d,besparDefault)}</div>
-    <div class="recco" style="font-size:12px">Anslag for møteforberedelse. Forutsetningene (kostnad uten plass / drift egen plass) justeres under «Avanserte innstillinger». I tillegg kommer investeringstilskudd fra Husbanken og Allstads leiemodell (ingen kommunal investeringsutgift) – be om eget regnestykke for disse.</div>
+    <div class="recco" style="font-size:12px">Anslag for møteforberedelse. Forutsetningene (kostnad uten plass / drift egen plass) justeres under «Avanserte innstillinger». I tillegg kommer investeringstilskudd fra Husbanken og leiemodell via eiendomsfond (ingen kommunal investeringsutgift) – be om eget regnestykke for disse.</div>
     <h3>Finansiering</h3>
     <div class="recco">${finForklaring(d)}</div>
     ${signalNoteBlokk(d)}
     <h3>Tomt</h3>
-    <p>${d.tomter?`<b>Allstad har tomt</b> i ${d.navn} – et reelt fortrinn for å etablere prosjekt raskt. `:'Allstad eier ingen registrerte tomter i denne kommunen. '}${d.tomt===1?'Vurdert som egnet/sentral tomt – bygg direkte (+'+P().n1+' poeng).':d.tomt===2?'Vurdert som makebytte-potensial – byttekort, ofte mot kommunen selv (+'+P().n2+' poeng).':'Ingen egnet tomt vurdert – markedserverv eller makebytte må vurderes.'} Tomtenivå og egnethet justeres per kommune under «Sett egne data».</p>
+    <p>${d.tomter?`<b>Egen tomt</b> i ${d.navn} – et reelt fortrinn for å etablere prosjekt raskt. `:'Ingen registrerte egne tomter i denne kommunen. '}${d.tomt===1?'Vurdert som egnet/sentral tomt – bygg direkte (+'+P().n1+' poeng).':d.tomt===2?'Vurdert som makebytte-potensial – byttekort, ofte mot kommunen selv (+'+P().n2+' poeng).':'Ingen egnet tomt vurdert – markedserverv eller makebytte må vurderes.'} Tomtenivå og egnethet justeres per kommune under «Sett egne data».</p>
 
     <p style="font-size:11px;color:var(--muted);margin-top:16px;line-height:1.5">${kildelinje}</p>
 
@@ -1278,6 +1273,12 @@ async function openKonkurrenter(){
       if(r.ok){const j=await r.json();window._konkCfg=j.selskaper||[];}
     }catch(e){}
   }
+  if(!window._egneProj){
+    try{
+      const r=await fetch('egne-prosjekter.json?v='+Date.now());
+      if(r.ok){const j=await r.json();window._egneProj=j.prosjekter||[];}
+    }catch(e){}
+  }
   await lastKonkurrenter();
   rendKonk();
 }
@@ -1299,7 +1300,7 @@ function setKonkVisning(v){
 
 // Farger per selskap-id
 const KONK_FARGER = {
-  'allstad':'#2E3A2C',
+  'egen':'#2E3A2C',
   'lille-oslo-eiendom':'#E74C3C','konseptpluss':'#E67E22','morgenstjernen':'#F1C40F',
   'omtanke':'#2ECC71','steinar-moe':'#1ABC9C','bof':'#3498DB','consto':'#9B59B6',
   'af-gruppen':'#E91E63','veidekke':'#FF5722','skanska':'#795548','ncc':'#607D8B',
@@ -1484,15 +1485,15 @@ function rendKart(){
     // fortsatt som ren tekst i konkurrentkortet, se rendKonk().
   });
 
-  // Legg til Allstads egne prosjekter
-  const egneProj = window._allstadProj || [];
+  // Legg til egne prosjekter
+  const egneProj = window._egneProj || [];
   egneProj.forEach(proj => {
     pins.push({
       lat: proj.lat, lng: proj.lng,
-      navn: 'Allstad (oss)', kommune: proj.kommune,
+      navn: 'Egne prosjekter', kommune: proj.kommune,
       tittel: proj.navn, type: proj.status,
-      dato: '', farge: '#2E3A2C', id: 'allstad',
-      vekt: 3, erAllstad: true, statusFarge: proj.statusFarge,
+      dato: '', farge: '#2E3A2C', id: 'egen',
+      vekt: 3, erEgen: true, statusFarge: proj.statusFarge,
       beskrivelse: proj.beskrivelse
     });
   });
@@ -1505,12 +1506,12 @@ function rendKart(){
 
   // Legende
   const aktiveSel = [...new Set(pins.map(p => p.id))];
-  const allstadLegend = egneProj.length
+  const egenLegend = egneProj.length
     ? `<span style="display:inline-flex;align-items:center;gap:5px;margin:2px 12px 2px 0;font-size:12px;font-weight:700">
-        <span style="width:14px;height:14px;border-radius:50%;background:#2E3A2C;border:2px solid #BE8A4E;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#BE8A4E;font-size:9px">★</span>Allstad (oss)
+        <span style="width:14px;height:14px;border-radius:50%;background:#2E3A2C;border:2px solid #BE8A4E;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#BE8A4E;font-size:9px">★</span>Egne prosjekter
       </span>`
     : '';
-  const legend = allstadLegend + cfg.filter(s => s.id!=='allstad' && aktiveSel.includes(s.id))
+  const legend = egenLegend + cfg.filter(s => s.id!=='egen' && aktiveSel.includes(s.id))
     .map(s => `<span style="display:inline-flex;align-items:center;gap:5px;margin:2px 8px 2px 0;font-size:12px">
           <span style="width:12px;height:12px;border-radius:50%;background:${KONK_FARGER[s.id]||'#888'};flex-shrink:0"></span>${s.navn}
         </span>`
@@ -1522,7 +1523,7 @@ function rendKart(){
       ${legend}
     </div>
     <div style="font-size:12px;color:var(--muted);margin:4px 0 8px;display:flex;gap:14px;flex-wrap:wrap">
-      <span>★ <b>Allstad</b> (oss)</span>
+      <span>★ <b>Egne prosjekter</b></span>
       <span>⬤ liten = Kunngjøring</span>
       <span>⬤ middels = Intensjonskunngjøring</span>
       <span>⬤ stor = Tildeling (konkurrent vunnet)</span>
@@ -1542,14 +1543,14 @@ function rendKart(){
     const k = `${p.lat.toFixed(2)},${p.lng.toFixed(2)},${p.id}`;
     if (!kluster[k]) kluster[k] = { ...p, saker: [] };
     kluster[k].saker.push({ tittel: p.tittel, type: p.type, dato: p.dato,
-      erAllstad: p.erAllstad, statusFarge: p.statusFarge, beskrivelse: p.beskrivelse });
+      erEgen: p.erEgen, statusFarge: p.statusFarge, beskrivelse: p.beskrivelse });
   });
 
   Object.values(kluster).forEach(p => {
     const maxVekt = Math.max(...p.saker.map(x => x.vekt || 1));
     let marker;
-    if(p.id === 'allstad'){
-      // Allstad: grønt stjernepunkt
+    if(p.id === 'egen'){
+      // Egne prosjekter: grønt stjernepunkt
       const ikon = L.divIcon({
         className:'',
         html:`<div style="width:22px;height:22px;background:#2E3A2C;border:3px solid #BE8A4E;
@@ -1569,13 +1570,13 @@ function rendKart(){
     const typeFarge = t => t==='Tildeling'?'#2ECC71':t==='Intensjonskunngjøring'?'#E67E22':
       t==='Gjennomført'?'#2E3A2C':t==='Under regulering'?'#E67E22':'#3498DB';
 
-    // Allstad-prosjekter har enklere popup
-    const erAllstad = p.saker.some(x => x.erAllstad);
-    const innhold = erAllstad
+    // Egne prosjekter har enklere popup
+    const erEgen = p.saker.some(x => x.erEgen);
+    const innhold = erEgen
       ? `<div style="min-width:180px">
           <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px">
             <span style="font-size:18px">★</span>
-            <b style="font-size:14px;color:#2E3A2C">Allstad</b>
+            <b style="font-size:14px;color:#2E3A2C">Eget prosjekt</b>
           </div>
           ${p.saker.map(sk=>`<div style="padding:6px 8px;background:#f1f8f4;border-radius:8px;border-left:3px solid ${sk.statusFarge||'#2E3A2C'};margin-bottom:4px">
             <div style="font-weight:700;font-size:13px">${sk.tittel}</div>
@@ -1607,7 +1608,7 @@ function rendKonk(){
   const data=(_konkData&&_konkData.selskaper)||{};
 
   let liste=cfg.filter(s=>{
-    if(s.id==='allstad') return false;  // Allstad vises bare på kartet, ikke i konkurrentlista
+    if(s.id==='egen') return false;  // Egne prosjekter vises bare på kartet, ikke i konkurrentlista
     if(kat!=='alle'&&s.kategori!==kat) return false;
     if(q&&!norm(s.navn).includes(q)) return false;
     return true;
@@ -1635,9 +1636,9 @@ function rendKonk(){
         <div>
           <div style="display:flex;align-items:center;gap:7px">
             <div style="font-size:16px;font-weight:700">${s.navn}</div>
-            ${s.kategori==='Allstad'?'<span style="background:#2E3A2C;color:#BE8A4E;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700;letter-spacing:.04em">OSS</span>':''}
+            
           </div>
-          <div style="font-size:12px;color:var(--muted);margin-top:2px">${s.kategori!=='Allstad'?s.kategori||'':''}</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px">${s.kategori||''}</div>
         </div>
         <div style="text-align:right">
           <div style="font-size:20px;font-weight:800;color:${aktFarge}">${aktivitet}</div>
@@ -1727,7 +1728,7 @@ function visKonkurrentRapport(){
 
   let html=`<div style="font-family:Arial,sans-serif;max-width:1000px;margin:0 auto;padding:32px 24px">
   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;flex-wrap:wrap;gap:12px">
-    <div><h1 style="margin:0;font-size:24px;color:#3B1F6A">Konkurrentrapport – Allstad</h1>
+    <div><h1 style="margin:0;font-size:24px;color:#3B1F6A">Konkurrentrapport</h1>
     <div style="color:#888;font-size:14px;margin-top:4px">${fmtDato(idag)} · ${cfg.length} selskaper overvåket</div></div>
     <button onclick="window.print()" style="padding:9px 18px;background:#5C3A7F;color:#fff;border:none;border-radius:8px;font:inherit;font-size:14px;cursor:pointer">⎙ Skriv ut / PDF</button>
   </div>`;
@@ -1743,7 +1744,7 @@ function visKonkurrentRapport(){
   if(!doffinRader.length&&!nyhetsRader.length){
     html+=`<div style="padding:60px;text-align:center;color:#888">Ingen konkurrentaktivitet funnet denne uken.</div>`;}
   html+=`<div style="margin-top:32px;padding-top:16px;border-top:1px solid #eee;color:#bbb;font-size:12px">
-    Allstad · Intern bruk · ${fmtDato(idag)}</div></div>`;
+    Kildal Kommuneprioritering · Intern bruk · ${fmtDato(idag)}</div></div>`;
 
   const w=window.open('','_blank','width=1100,height=850');
   if(!w){alert('Tillat popup for å åpne rapporten.');return;}
@@ -1976,10 +1977,10 @@ function openMetode(){
         <tr style="border-bottom:1px solid var(--line)"><td style="padding:5px 8px">KLASS 131</td><td style="padding:5px 8px">Gjeldende kommuneinndeling</td><td style="padding:5px 8px">løpende</td></tr>
       </tbody>
     </table>
-    <p style="font-size:12px;color:var(--muted)">I tillegg: Allstads egen tomtebank (om vi har tomt i kommunen), ROBEK-liste (regjeringen.no, mars 2026), overliggerdøgn (Helsedirektoratet SAMDATA – legges inn manuelt). Fylke utledes fra kommunenummer. Tabellnumre og år vises også nederst i hvert behovsnotat.</p>
+    <p style="font-size:12px;color:var(--muted)">I tillegg: tomtedata fra Eiendomsverdi (om det finnes egen tomt i kommunen), ROBEK-liste (regjeringen.no, mars 2026), overliggerdøgn (Helsedirektoratet SAMDATA – legges inn manuelt). Fylke utledes fra kommunenummer. Tabellnumre og år vises også nederst i hvert behovsnotat.</p>
 
     <h3>2. Behov for heldøgns omsorgsplasser (HDO)</h3>
-    <p><b>Definisjon:</b> «Behov» = heldøgns omsorgsplasser = langtids institusjonsplasser + omsorgsboliger med heldøgns bemanning. Dette er samme definisjon som KS og Agenda Kaupang bruker (jf. KS' verktøy «Omsorg 2050»). Vanlige omsorgsboliger uten bemanning regnes ikke med – de ligger lavere i omsorgstrappen. Allstads boliger teller i HDO når de driftes med heldøgns bemanning.</p>
+    <p><b>Definisjon:</b> «Behov» = heldøgns omsorgsplasser = langtids institusjonsplasser + omsorgsboliger med heldøgns bemanning. Dette er samme definisjon som KS og Agenda Kaupang bruker (jf. KS' verktøy «Omsorg 2050»). Vanlige omsorgsboliger uten bemanning regnes ikke med – de ligger lavere i omsorgstrappen. Boliger teller i HDO når de driftes med heldøgns bemanning.</p>
     <p>Behovet beregnes aldersdifferensiert: hver aldersgruppe ganges med en antatt dekningsgrad (andelen som trenger heldøgnsplass), og summeres. Gjeldende satser: 67–79 år ${r1.value}%, 80–89 år ${r2.value}%, 90+ år ${r3.value}%.</p>
     <div class="formula">Behov = (innb. 67–79 × ${r1.value}%) + (80–89 × ${r2.value}%) + (90+ × ${r3.value}%)</div>
     <p>Dette regnes både for befolkningen <b>i dag</b> og <b>framskrevet til 2035</b>. Veksten = (behov 2035 − behov i dag) / behov i dag. Ratene tilsvarer en samlet dekningsgrad på rundt 17–20% av innbyggere 80+ – nær det historiske politiske målet på 25%. Hver kommune kan ha egne tall, så ratene bør kalibreres mot kommunens faktiske dekningsgrad før møtet.</p>
@@ -2063,7 +2064,7 @@ function exportVurderinger(){
   }));
   if(!rows.length){alert("Ingen egne vurderinger satt ennå. Sett tomt/ROBEK/vunnet på kommuner først.");return;}
   const ws=XLSX.utils.json_to_sheet(rows); const wbk=XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wbk,ws,"Vurderinger"); XLSX.writeFile(wbk,"allstad_vurderinger.xlsx");
+  XLSX.utils.book_append_sheet(wbk,ws,"Vurderinger"); XLSX.writeFile(wbk,"kildal_vurderinger.xlsx");
 }
 function downloadTemplate(){
   const cols=["Kommunenr","Kommune","Folketall","Innb 80+ i dag","Innb 80+ 2035","Heldøgns plasser","Overliggerdøgn (siste år)","Netto driftsres %","Disp.fond %","Netto lånegjeld per innb","ROBEK","Tomtenivå (1-3)","Vunnet"];
@@ -2522,12 +2523,12 @@ async function visUkesrapport(){
   }
 
   html+=`<div style="margin-top:32px;padding-top:16px;border-top:1px solid #eee;color:#bbb;font-size:12px">
-    Allstad kommuneprioritering · Intern bruk · ${fmtDato(new Date())}</div></div>`;
+    Kildal Kommuneprioritering · Intern bruk · ${fmtDato(new Date())}</div></div>`;
 
   const w=window.open('','_blank','width=1100,height=850');
   if(!w){alert('Tillat popup for å åpne rapporten.'); return;}
   w.document.write(`<!doctype html><html lang="no"><head><meta charset="utf-8">
-    <title>Hva skjedde forrige uke – Allstad</title>
+    <title>Hva skjedde forrige uke – Kildal Kommuneprioritering</title>
     <style>@media print{button{display:none!important}body{margin:0}@page{margin:15mm}}</style>
 </head><body>${html}</body></html>`);
   w.document.close();
@@ -2585,8 +2586,8 @@ search.addEventListener("input",e=>{searchTerm=e.target.value.trim();render();})
 
 // ---- logo ----
 function setLogo(src){logoImg.src=src;logoImg.style.display="block";logoText.style.display="none";logoSlot.classList.add("has-logo");logoSlot.title="Klikk for å bytte logo";}
-logoFile.addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();rd.onload=ev=>{setLogo(ev.target.result);try{localStorage.setItem("allstadLogo",ev.target.result);}catch(_){}};rd.readAsDataURL(f);});
-try{const sl=localStorage.getItem("allstadLogo");setLogo(sl||DEFAULT_LOGO);}catch(_){setLogo(DEFAULT_LOGO);}
+logoFile.addEventListener("change",e=>{const f=e.target.files[0];if(!f)return;const rd=new FileReader();rd.onload=ev=>{setLogo(ev.target.result);try{localStorage.setItem("kildalLogo",ev.target.result);}catch(_){}};rd.readAsDataURL(f);});
+try{const sl=localStorage.getItem("kildalLogo");if(sl)setLogo(sl);}catch(_){}
 </script>
 <div id="pdfview"></div>
 </body>
